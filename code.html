@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pre tag styling</title>
+  <link rel="stylesheet" href="./css/kernix.css" />
+</head>
+<body>
+  <div class="container container-relative">
+<!-- move to repos\pre-tag-formatter -->
+    <p class="pre-tag-block">This is my final styling for pre tags for the time being</p>
+      <pre class="code">
+        <span class="css">pre span {</span>
+        <span class="html">  display: inline-block;</span>
+        <span class="css">}</span>
+        <span class="css"></span>
+        <span class="php">pre span::before {</span>
+        <span class="javascript">  content: counter(line);</span>
+        <span class="css">  counter-increment: line;</span>
+        <span class="css">  display: inline-block;</span>
+        <span class="css">  margin-right: 0.5em;</span>
+        <span class="css">  color: #fff;</span>
+        <span class="css">}</span>
+    </pre>
+
+    <p class="code-tag-block">This is what code blocks will look like for anything that is not PHP, CSS, HTML or Javascript like .htaccess file commands or maybe SQL</p>
+    <pre class="noncode">
+
+      <span class="code">max-width: 900px;</span>
+      <span class="code">margin: 2em auto;</span>
+      <span class="code">border-radius: 0.5em;</span>
+    </pre>
+    <p>trying just code tag with br tags - search new code</p>
+    <code>
+      function doubleMoney() { <br>
+        data = data.map(user => { <br>
+        return { ...user, money: user.money * 2 }; <br>
+        }); <br>
+      }
+    </code>
+    <p class="code-block">
+      <p>this is a p tag with a class of code-block</p>
+      <span class="code">max-width: 900px;</span><br>
+      <span class="code">margin: 2em auto;</span><br>
+      <span class="code">border-radius: 0.5em;</span><br>
+    </p>
+    <pre class="code">
+      <span class="css"></span>
+      <span class="css"></span>
+      <span class="css"></span>
+    </pre>
+    <pre class="code">
+      <span class="php"></span>
+      <span class="php"></span>
+      <span class="php"></span>
+    </pre>
+    <pre class="code">
+      <span class="html"></span>
+      <span class="html"></span>
+      <span class="html"></span>
+    </pre>
+    <pre class="code">
+      <span class="javascript"></span>
+      <span class="javascript"></span>
+      <span class="javascript"></span>
+    </pre>
+    <pre class="noncode">
+      <span class="code"></span>
+      <span class="code"></span>
+      <span class="code"></span>
+    </pre>
+    <p class="code-tag-block">Here is a custom query using WP_Query. You can use this custom query inside or outside of the loop. The first code block calls WP_Query and 3 posts in the code category while excluding sticky posts. It also selects 'posts' post types as opposed to pages or custom post types, but you could choose those as well.</p>
+    <p class="code-tag-block">You can query on any database field that you need. For me, I wanted to display the 3 most recent published posts in my Code Snippets category. Lines 10-12 uses the new instance of WP_Query ($query) to query the specific posts from the database.</p>
+    <pre class="code">
+      <span class="php">&#60;?php</span>
+      <span class="php"> </span>
+      <span class="php">$query = new WP_Query( [</span>
+      <span class="php">	'post__not_in'   => get_option( 'sticky_posts'),</span>
+      <span class="php">	'post_type'	 => 'post',</span>
+      <span class="php">	'post_status'    => 'publish',</span>
+      <span class="php">	'category_name'  => 'code',</span>
+      <span class="php">	'posts_per_page' => 3,</span>
+      <span class="php">] );</span>
+      <span class="php"> </span>
+      <span class="php">if ($query->have_posts()) {</span>
+      <span class="php">	while ($query->have_posts()) {</span>
+      <span class="php">		$query->the_post(); ?></span>
+    </pre>
+    <p class="code-tag-block">The code block below is the html for the post details along with some necessary PHP functions. Since WP_Query works both inside and outside of the loop, consider using it when you are not inside the loop.</p>
+    <pre class="code">
+      <span class="php">&#60;div class="recent-row"&#62;</span>
+      <span class="php">	&#60;?php the_post_thumbnail() ?></span>
+      <span class="php">	&#60;a class="recent-posts-link" href="&#60;?php the_permalink(); ?>" 
+        rel="bookmark">&#60;h4>&#60;?php the_title(); ?>&#60;/h4>&#60;/a></span>
+      <span class="php"> </span>
+      <span class="php">	&#60;?php get_template_part( 'template-parts/content', 'author' ); ?></span>
+      <span class="php"> </span>
+      <span class="php">	&#60;pan>&#60;?php the_excerpt(); ?></span></span>
+      <span class="php">	&#60;div class="recent-post-widget">&#60;/div></span>
+      <span class="php">		&#60;a class="recent-posts-button" href="&#60;?php the_permalink(); ?>">
+        Read more...&#60;/a></span>
+      <span class="php">		&#60;?php</span>
+      <span class="php">	}</span>
+      <span class="php">}</span>
+      <span class="php">wp_reset_postdata();</span>
+      <span class="php">?></span>
+    </pre>
+    <p class="code-tag-block">However, if you are on a page that has the loop, then you might as well take advantage of the post data. The loop is fetching the database fields for $post, so use either WP_Query or a get_posts() query while in the loop. The get_posts query does not work unless it is inside the loop.</p>
+
+    <pre class="code">
+      <span class="php">if ( have_posts() ) :</span>
+      <span class="php">while ( have_posts() ) :</span>
+      <span class="php">the_post();</span>
+      <span class="php">	get_template_part( 'template-parts/content', 'front-page' ); ?> </span>
+      <span class="empty"> </span>
+      <span class="php">&#60;aside class="bgcolor4">&#60;/aside></span>
+      <span class="php">	&#60;div class="container">&#60;/div></span>
+      <span class="php">	 &#60;h3 class="custom-title"></span>
+      <span class="php">	  &#60;?php esc_html_e('Latest Articles ', 'tower') ?></span>
+      <span class="php">   &#60;/h3></span>
+      <span class="php">	  &#60;div class="row">&#60;/div></span>
+      <span class="php">	   &#60;?php </span>
+      <span class="php">	   $posts = get_posts([</span>
+      <span class="php">		'post_type'	 => 'post',</span>
+      <span class="php">		'category_name'  => 'code',</span>
+      <span class="php">		'posts_per_page' => 3,</span>
+      <span class="php">	]);</span>
+      <span class="empty"></span>
+      <span class="php">	foreach ($posts as $post) {</span>
+      <span class="php">		setup_postdata($post); ?></span>
+      <span class="empty"> </span>
+      <span class="php">		&#60;div class="recent-row"> </span>
+    </pre>
+    <p class="code-tag-block">Lines 6-9 are the HTML elements and classes to be output for each post, then the custom get_posts query starts on line 10 and continues to line 18. You should notice the div.recent-row which starts the HTML in the code block above for WP_Query.</p>
+    <div class="parent">
+      <p>a line of text</p>
+      <div class="child"></div>
+      <p>more text</p>
+    </div>
+  </div>
+</body>
+</html>

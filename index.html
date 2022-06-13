@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Code Formatter</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>HTML Pre Tag Formatter</h1>
+      <p>Output span tags for use in a pre tag for code blocks in a blog post. The first code block has formatting for a dark background with classes for different languages. <strong>I haven't figured out how to add a line break for each span tag</strong>:</p>
+      <p id="code" class="code"></p>
+      <p>Example with classes for formatting:</p>
+      <pre class="code">
+          <span class="javascript">const users = [</span> 
+          <span class="javascript"> { name: &quot;John_&amp;_Jane&quot;, age: 34 },</span> 
+          <span class="javascript"> { name: &quot;Amy_&lt;&gt;_1&quot;, age: 20 },</span> 
+          <span class="javascript"> { name: &quot;SINGLE-QUOTE_&apos;_1&quot;, age: 10 }</span> 
+          <span class="javascript">];</span>
+      </pre>
+      <p>Example without any classes for formatting:</p>
+      <pre>
+          <span>const users = [</span> 
+          <span> { name: "John", age: 34 },</span> 
+          <span> { name: "Amy", age: 20 },</span> 
+          <span> { name: "camperCat", age: 10 }</span> 
+          <span>];</span>
+      </pre>
+
+      <p class="code-tag-block">This is what code blocks will look like for anything that is not PHP, CSS, HTML or Javascript such as .htaccess file commands, markdown, etc.</p>
+      <p id="noncode" class="noncode"></p>
+      <pre class="noncode">
+        <span class="code">const users = [</span>
+        <span class="code"> { name: &quot;John_&amp;_Jane&quot;, age: 34 },</span>
+        <span class="code"> { name: &quot;Amy_&lt;&gt;_1&quot;, age: 20 },</span>
+        <span class="code"> { name: &quot;SINGLE-QUOTE_&apos;_1&quot;, age: 10 }</span>
+        <span class="code">];</span>
+      </pre>
+    </div>
+
+    <script src="./js/script.js"></script>
+  </body>
+</html>
