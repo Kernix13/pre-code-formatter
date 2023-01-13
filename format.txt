@@ -1,0 +1,5 @@
+<span class="white">
+  &lt;<span class="lime-green">p</span> <span class="dark-blue">class</span><span class="light-blue">=&quot;test&quot;</span>&gt;words here&lt;/<span class="lime-green">p</span>&gt;
+</span>
+
+<span class="comment">&lt;!-- COMMENT HERE --&gt;</span>

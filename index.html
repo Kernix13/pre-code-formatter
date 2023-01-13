@@ -10,36 +10,70 @@
   <body>
     <div class="container">
       <h1>HTML Pre Tag Formatter</h1>
-      <p>Output span tags for use in a pre tag for code blocks in a blog post. The first code block has formatting for a dark background with classes for different languages. <strong>I haven't figured out how to add a line break for each span tag</strong>:</p>
-      <p id="code" class="code"></p>
-      <p>Example with classes for formatting:</p>
-      <pre class="code">
-          <span class="javascript">const users = [</span> 
-          <span class="javascript"> { name: &quot;John_&amp;_Jane&quot;, age: 34 },</span> 
-          <span class="javascript"> { name: &quot;Amy_&lt;&gt;_1&quot;, age: 20 },</span> 
-          <span class="javascript"> { name: &quot;SINGLE-QUOTE_&apos;_1&quot;, age: 10 }</span> 
-          <span class="javascript">];</span>
-      </pre>
-      <p>Example without any classes for formatting:</p>
-      <pre>
-          <span>const users = [</span> 
-          <span> { name: "John", age: 34 },</span> 
-          <span> { name: "Amy", age: 20 },</span> 
-          <span> { name: "camperCat", age: 10 }</span> 
-          <span>];</span>
-      </pre>
+      <p>Output span tags for use in a pre tag for code blocks in a blog post. The first code block has formatting for a dark background with classes for different languages.
 
-      <p class="code-tag-block">This is what code blocks will look like for anything that is not PHP, CSS, HTML or Javascript such as .htaccess file commands, markdown, etc.</p>
-      <p id="noncode" class="noncode"></p>
-      <pre class="noncode">
-        <span class="code">const users = [</span>
-        <span class="code"> { name: &quot;John_&amp;_Jane&quot;, age: 34 },</span>
-        <span class="code"> { name: &quot;Amy_&lt;&gt;_1&quot;, age: 20 },</span>
-        <span class="code"> { name: &quot;SINGLE-QUOTE_&apos;_1&quot;, age: 10 }</span>
-        <span class="code">];</span>
+      <!-- output here: -->
+      <hr>
+      <h2>Code to copy for <em>dark</em> code block</h2>
+      <p id="dark_block_output" class="dark-code"></p>
+
+      <p>Dark block example:</p>
+      <pre class="dark_block">
+        <span class="comment">&lt;!-- I manually added the classes below 
+          and this is what I want --&gt;</span>
+        <span class="white">&lt;<span class="lime-green">p</span> <span class="dark-blue">class</span><span class="light-blue">=&quot;test&quot;</span>&gt;words here&lt;/<span class="lime-green">p</span>&gt;</span>
+
+        <span class="comment">&lt;!-- Here my double quotes Regex is 
+          doubling for some reason --&gt;</span>
+        <span class="white">&lt;p class=<span class="light-blue">&quot;test,&quot;</span><span
+            class="light-blue">&quot;test,&quot;</span>&gt;words here&lt;/p&gt;</span>
+        <span class="white">&lt;title&gt;Code Formatter&lt;/title&gt;</span>
+        <span class="white">&lt;img src =<span
+            class="light-blue">&quot;./img/file.jpeg,&quot;</span><span class="light-blue">&quot;./img/file.jpeg,&quot;</span>/&gt;</span>
       </pre>
+      <!-- BREAK -->
+      <h3>Just a color testing block</h3>
+      <pre class="dark_block">
+        const users = [
+        <span class="light-blue">const users = [</span> 
+        <span class="dark-blue"> { name: &quot;John_&amp;_Jane&quot;, age: 34 },</span> 
+        <span class="lime-green"> { name: &quot;Amy_&lt;&gt;_1&quot;, age: 20 },</span> 
+        <span class="comment"> { name: &quot;SINGLE-QUOTE_&apos;_1&quot;, age: 10 }</span> 
+        <span class="white"> { name: &quot;SINGLE-QUOTE_&apos;_1&quot;, age: 10 }</span> 
+        <span class="red"> { name: &quot;SINGLE-QUOTE_&apos;_1&quot;, age: 10 }</span> 
+        <span class="purple"> { name: &quot;SINGLE-QUOTE_&apos;_1&quot;, age: 10 }</span> 
+        <span class="orange"> { name: &quot;camperCat&quot;, age: 10 }</span> 
+        <span class="white">];</span>
+      </pre>
+      <hr>
+
     </div>
+    <div class="dark-bg">
+      <div class="container">
+        <h2 class="light-text">Code to copy for <em>light</em> code block</h2>
+          <!-- output here: -->
+          <p id="light_block_output" class="light-code light-text"></p>
+
+          <p class="light-text">Light block example:</p>
+          <pre class="light_block">
+              const users = [
+              <span class="light-blue2">const users = [</span>
+              <span class="dark-blue2"> { name: &quot;John_&amp;_Jane&quot;, age: 34 },</span>
+              <span class="lime-green2"> { name: &quot;Amy_&lt;&gt;_1&quot;, age: 20 },</span>
+              <span class="comment2"> { name: &quot;SINGLE-QUOTE_&apos;_1&quot;, age: 10 }</span>
+              <span class="gray"> { name: &quot;SINGLE-QUOTE_&apos;_1&quot;, age: 10 }</span>
+              <span class="red2"> { name: &quot;SINGLE-QUOTE_&apos;_1&quot;, age: 10 }</span>
+              <span class="purple2"> { name: &quot;SINGLE-QUOTE_&apos;_1&quot;, age: 10 }</span>
+              <span class="orange2"> { name: &quot;camperCat&quot;, age: 10 }</span>
+              <span class="white2">];</span>
+          </pre>
+        </div>
+        <hr>
+      </div>
+
+
 
     <script src="./js/script.js"></script>
+    <script src="./js/script2.js"></script>
   </body>
 </html>
