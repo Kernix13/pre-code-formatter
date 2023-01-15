@@ -1,35 +1,18 @@
 const darkBlockOutput = document.getElementById("dark_block_output");
 const lightBlockOutput = document.getElementById("light_block_output");
 
-const languages = ["html", "css", "javascript", "php", "markdown"];
 const classes = ["white", "light-blue", "blue", "lime-green", "comment", "red", "purple", "orange", "black"]
+const jsKeys = ['const', 'function', 'return', 'switch', 'case', 'break', 'default'];
 
 // For now I'm adding lines to an array - need to find something better
-const input = [`<p id="something" class="test">words here</p>`, `<title>Code Formatter</title>`, `<img class="test-img" src="./img/file.jpeg">`];
+const input = [`<p id="something" class="test" required>words here</p>`, `<title>Code Formatter</title>`, `<img class="test-img" src="./img/file.jpeg">`];
 const codeToConvert = [`<p id="value-one" class="value-one">words here</p>`]
 
-// Regular Expressions
+// HTML Regular Expressions
 const htmlTag = /(?<=&lt;\/*)([\w]*)/g;
 const htmlAttr = /([\w-]*)(?==)/g;
-const dblQuote = /(&quot;)([.\w\/:*?-]*\w)(&quot;)/g;
-
-let codeClass = "";
-let codeClass2 = "";
-const lang = languages[0];
-
-// Set default color class by language (add to a function), need to incorporate the light code block color names
-switch (lang) {
-  case "html": 
-  case "css": 
-    codeClass = classes[0];
-    codeClass2 = classes[8];
-    break
-  case "javascript": 
-  case "php": 
-  case "markdown": 
-    codeClass = classes[2];
-    break
-}
+const htmlBoolAttr = /(\s\w*)(?=&gt;)/g; // need to have it right on > or &gt;
+const dblQuote = /(&quot;[.\w\/:*?-]*\w&quot;)/g;
 
 function convertHTML(str) {
   const convertSymbols = {
@@ -54,45 +37,80 @@ input.forEach(line => {
 });
 // console.log(convertedArr)
 
-/* add colors classes then output to DOM for DARK code block. I may need to rewrite this because I will have a class for each regex */
-let result = [];
-let result2 = [];
-let result3 = [];
+/* HTML */
+let result = []; // tags
+let lineArr = [];
+const str1 = `<span class="lime-green"></span>`;
 
-convertedArr.forEach(line => {
-  
-  // HTML tags
-  if (line.match(htmlTag)) {
-    // console.log(line.match(htmlTag))
-    result = line.replace(htmlTag, `<span class="${classes[3]}">${'$1'}</span>`);
-    // console.log(result2)
-  } else {
-    result = line;
-  }
+let result2 = []; // attributes
+let lineArr2 = [];
+const str2 = `<span class="blue"></span>`;
 
-  // HTML attributes
-  if (line.match(htmlAttr)) {
-    // console.log(line.match(htmlAttr))
-    result2 = line.replace(htmlAttr, `<span class="${classes[2]}">${'$1'}</span>`);
-    // console.log(result3)
-  } else {
-    result2 = line;
-  }
+let result3 = []; // boolean attributes
+let lineArr3 = [];
 
-  // Quotes
-  if (line.match(dblQuote)) {
-    console.log(line.match(dblQuote))
-    result3 = line.replace(dblQuote, `<span class="${classes[1]}">${'$1$2$3'}</span>`);
-    // console.log(result3)
-  } else {
-    result3 = line;
-  }
-  
-  // Consider adding an <li> to paste into the html for line breaks and then remove them before pasting into the <pre> tag
-  darkBlockOutput.textContent += '<span>' + `${result2}` + "</span>";
-});
+let result4 = []; // double quotes
+let lineArr4 = [];
+const str4 = `<span class="light-blue"></span>`;
 
-// add colors classes then output to DOM for LIGHT code block
+let repeatLen = "";
+let repeatInd = "";
+let preNewLine = "";
+let postNewLine = "";
+let newLine = "";
+let newLineArr = [];
+
+function htmlOutput(arr) {
+  arr.forEach(line => {
+
+  // Tag styling (getting an extra span.lime-green for lines with 2 tags)
+  result = line.replace(htmlTag, `<span class="${classes[3]}">${'$1'}</span>`);
+  lineArr.push(line.replace(htmlTag, `<span class="${classes[3]}">${'$1'}</span>`));
+
+  // Attribute styling (2 extra span.blue)
+  result2 = line.replace(htmlAttr, `<span class="${classes[2]}">${'$1'}</span>`);
+  lineArr2.push(line.replace(htmlAttr, `<span class="${classes[2]}">${'$1'}</span>`));
+
+  // Boolean Attribute styling
+  result3 = line.replace(htmlBoolAttr, `<span class="${classes[2]}">${'$1'}</span>`);
+  lineArr3.push(line.replace(htmlBoolAttr, `<span class="${classes[2]}">${'$1'}</span>`));
+
+  // Double-quote styling: the only one without an extra & empty span tag
+  result4 = line.replace(dblQuote, `<span class="${classes[1]}">${'$1'}</span>`);
+  lineArr4.push(line.replace(dblQuote, `<span class="${classes[1]}">${'$1'}</span>`));
+
+  // removeDups(lineArr, str1)
+  removeDups(lineArr2, str2)
+
+  // Do I need to actually return these since I am pushing to global vars?
+  return result, result2, result3, result4, lineArr, lineArr2, lineArr3, lineArr4;
+  });
+}
+htmlOutput(convertedArr)
+
+console.log(lineArr2)
+
+function removeDups(arr, str) {
+  arr.forEach(line => {
+    // console.log(line)
+    if (line.includes(str)) {
+      repeatLen = str.length
+      repeatInd = line.indexOf(str)
+      console.log(repeatInd)
+      preNewLine = line.slice(0, repeatInd)
+      postNewLine = line.slice(repeatInd + repeatLen)
+      newLine = `${preNewLine}${postNewLine}`
+    } else {
+      newLine = line;
+    }
+  })
+  newLineArr.push(newLine)
+}
+
+newLineArr.forEach(codeLine => {
+  darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
+})
+
 convertedArr.forEach(line => {
   if (line.match(dblQuote)) {
     // console.log(line.match(dblQuote))
@@ -101,8 +119,6 @@ convertedArr.forEach(line => {
     result = line;
   }
 
-  // Consider adding an <li> to paste into the html for line breaks and then remove them before pasting into the <pre> tag
-  // lightBlockOutput.textContent += '<span class="' + `${codeClass2}` + '">' + `${result2}` + "</span>";
   lightBlockOutput.textContent += '<span>' + `${result2}` + "</span>";
 });
 
