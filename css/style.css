@@ -5,8 +5,11 @@
 }
 
 body {
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem;
   color: #333;
+  padding: 0;
+  margin: 0;
 }
 
 p {
@@ -27,35 +30,40 @@ pre {
   margin: 0 auto;
 }
 
+/* dark and light code blocks */
+.code-block {
+  padding-top: 0.5em;
+  line-height: 1.6;
+  // font-size: 1.065rem;
+  overflow: scroll;
+}
+
+/* DARK code block */
+.dark_block {
+  background-color: #111519;
+  color: #fff;
+}
+
+/* LIGHT code block */
+.light_block {
+  background-color: #ddd;
+  font-weight: 700;
+  // color: #333;
+}
 .dark-bg {
   background-color: #111519;
   padding: 2em 0;
 }
-
 .light-text {
   color: #f1f5f9;
 }
 
-/* Background colors for dark and light code blocks */
-.dark_block {
-  background-color: #111519;
-  padding-top: 0.5em;
-  line-height: 1.6;
-  font-size: 1.125rem;
-}
-.light_block {
-  background-color: #ddd;
-  padding-top: 0.5em;
-  font-weight: 700;
-  line-height: 1.6;
-}
-
-/* colors for DARK code block highlighting */
+/* DARK code block language colors */
 .light-blue {
-  color: rgb(165, 224, 251);
+  color: rgb(179, 229, 253);
 }
-.dark-blue {
-  color: rgb(62, 194, 255);
+.blue, .boolean {
+  color: rgb(100, 206, 255);
 }
 .lime-green {
   color: rgb(119, 237, 22);
@@ -67,7 +75,7 @@ pre {
   color: #fff;
 }
 .red {
-  color: rgb(254, 85, 85);
+  color: rgb(250, 120, 120);
 }
 .purple {
   color: rgb(233, 177, 255);
@@ -75,15 +83,18 @@ pre {
 .orange {
   color: rgb(255, 176, 5);
 }
+.black {
+  color: #333;
+}
 
-/* colors for LIGHT code block highlighting */
+/* LIGHT code block language colors */
 .light-blue2 {
   color: rgb(83, 113, 247);
 }
-.dark-blue2 {
+.blue2, .boolean2 {
   color: rgb(40, 55, 188);
 }
-.lime-green2 {
+.green {
   color: rgb(0, 177, 50);
 }
 .comment2 {
@@ -102,20 +113,17 @@ pre {
   color: rgb(255, 113, 5);
 }
 
-/* Actual output you need to copy */
+/* The output you need to copy */
 p.dark-code, p.light-code {
   background-color: #ddd;
-  color: #333;
-  font-family: "Courier New", Courier, monospace;
   font-size: 90%;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.6;
   overflow: auto;
   padding: 1em;
   margin: 0 auto;
   width: 80%;
   // max-width: 800px;
-  border-radius: 0.5em;
 }
 
 /* inline code element */
@@ -127,7 +135,93 @@ code {
   padding: 0.0625em 0.25em;
 }
 
-/* code for line numbers
+/* color boxes */
+.color-container {
+  display: flex;
+  margin: 2rem auto;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  font-weight: bold;
+}
+.color-box {
+  width: 110px;
+  height: 110px;
+  text-align: center;
+  align-self: center;
+}
+// Dark code block
+// WTF? Why isn't this one working? for some reason the first declaration does not apply?????
+.bg-blue22 {
+  border: 1px solid red;
+}
+.bg-light-blue {
+  background-color: rgb(165, 224, 251);
+}
+.bg-blue {
+  background-color: rgb(100, 206, 255);
+}
+.bg-lime-green {
+  background-color: rgb(119, 237, 22);
+}
+.bg-comment {
+  background-color: #bbb;
+}
+.bg-red {
+  background-color: rgb(254, 85, 85);
+}
+.bg-purple {
+  background-color: rgb(233, 177, 255);
+}
+.bg-orange {
+  background-color: rgb(255, 176, 5);
+}
+.bg-background-color {
+  background-color: #111519;
+  color: white;
+}
+// Light code block
+.bg-blue22 {
+  border: 1px solid red;
+}
+.bg-light-blue2 {
+  background-color: rgb(83, 113, 247);
+  color: white;
+}
+.bg-blue2 {
+  background-color: rgb(40, 55, 188);
+  color: white;
+}
+.bg-green {
+  background-color: rgb(0, 177, 50);
+  color: white;
+}
+.bg-comment2 {
+  background-color: #999;
+  color: white;
+}
+.bg-gray {
+  background-color: #777;
+  color: white;
+}
+.bg-red2 {
+  background-color: rgb(255, 110, 110);
+  color: white;
+}
+.bg-purple2 {
+  background-color: rgb(207, 84, 255);
+  color: white;
+}
+.bg-orange2 {
+  background-color: rgb(255, 113, 5);
+  color: white;
+}
+.bg-background-color2 {
+  background-color: #ddd;
+}
+
+/* code for line numbers in pre code blocks
+
 pre {
   font-family: "Courier New", Courier, monospace;
   line-height: 1.4;

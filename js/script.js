@@ -1,28 +1,28 @@
 const darkBlockOutput = document.getElementById("dark_block_output");
 const lightBlockOutput = document.getElementById("light_block_output");
 
-const languages = ["css", "html", "javascript", "php", "markdown"];
-const classes = ["white", "light-blue", "dark-blue", "lime-green", "comment", "red", "purple", "orange"]
+const languages = ["html", "css", "javascript", "php", "markdown"];
+const classes = ["white", "light-blue", "blue", "lime-green", "comment", "red", "purple", "orange", "black"]
 
-// all languages seem to use light-blue for values in single or double-quotes so I can rule that color out as the default color and just use RegEx to add a span.light-blue around the quotes and the contents
+// For now I'm adding lines to an array - need to find something better
+const input = [`<p id="something" class="test">words here</p>`, `<title>Code Formatter</title>`, `<img class="test-img" src="./img/file.jpeg">`];
+const codeToConvert = [`<p id="value-one" class="value-one">words here</p>`]
 
-const codeToConvert = [
-  `<p class="test">words here</p>`,
-  `<title>Code Formatter</title>`,
-  `<img src ="./img/file.jpeg" />`
-]
-
-const myRegex = /&quot;[.\w\/:*?-]*/g;
-const myRegex2 = /(&quot;[.\w\/:*?-]*\w)(&quot;[.\w\/:*?-]*)/g;
+// Regular Expressions
+const htmlTag = /(?<=&lt;\/*)([\w]*)/g;
+const htmlAttr = /([\w-]*)(?==)/g;
+const dblQuote = /(&quot;)([.\w\/:*?-]*\w)(&quot;)/g;
 
 let codeClass = "";
-const lang = "html";
+let codeClass2 = "";
+const lang = languages[0];
 
-// Set default color class by language
+// Set default color class by language (add to a function), need to incorporate the light code block color names
 switch (lang) {
   case "html": 
   case "css": 
     codeClass = classes[0];
+    codeClass2 = classes[8];
     break
   case "javascript": 
   case "php": 
@@ -46,44 +46,63 @@ function convertHTML(str) {
     .join("");
 }
 
-// For now I'm adding lines to an array - need to find something better
-const input = [`<p class="test">words here</p>`, `<title>Code Formatter</title>`, `<img src ="./img/file.jpeg" />`];
-
-let testArr = [];
-
+// Convert your code to HTML entities
+let convertedArr = [];
 input.forEach(line => {
   let convertedLine = convertHTML(line);
-
-  testArr.push(`${convertedLine}`);
+  convertedArr.push(`${convertedLine}`);
 });
-console.log(testArr)
+// console.log(convertedArr)
 
-let result = '';
-let matches = testArr.map(item => {
-  let newArr = []
-  if (item.match(myRegex)) {
-    let cleanHtml = item.match(myRegex).toString().split(",").join("")
-    newArr.push(`<span class="light-blue">${cleanHtml}</span>`) 
-  } else {
-    newArr.push(item)
-  }
-  return newArr
-})
+/* add colors classes then output to DOM for DARK code block. I may need to rewrite this because I will have a class for each regex */
+let result = [];
+let result2 = [];
+let result3 = [];
 
-
-matches.forEach(line => {
-  if (line.match(myRegex)) {
-    result = line.replace(myRegex, `<span class="light-blue">${line.match(myRegex)}</span>`);
+convertedArr.forEach(line => {
+  
+  // HTML tags
+  if (line.match(htmlTag)) {
+    // console.log(line.match(htmlTag))
+    result = line.replace(htmlTag, `<span class="${classes[3]}">${'$1'}</span>`);
+    // console.log(result2)
   } else {
     result = line;
   }
 
-  darkBlockOutput.textContent += '<span class="' + `${codeClass}` + '">' + `${result}` + "</span>";
+  // HTML attributes
+  if (line.match(htmlAttr)) {
+    // console.log(line.match(htmlAttr))
+    result2 = line.replace(htmlAttr, `<span class="${classes[2]}">${'$1'}</span>`);
+    // console.log(result3)
+  } else {
+    result2 = line;
+  }
+
+  // Quotes
+  if (line.match(dblQuote)) {
+    console.log(line.match(dblQuote))
+    result3 = line.replace(dblQuote, `<span class="${classes[1]}">${'$1$2$3'}</span>`);
+    // console.log(result3)
+  } else {
+    result3 = line;
+  }
+  
+  // Consider adding an <li> to paste into the html for line breaks and then remove them before pasting into the <pre> tag
+  darkBlockOutput.textContent += '<span>' + `${result2}` + "</span>";
 });
 
+// add colors classes then output to DOM for LIGHT code block
+convertedArr.forEach(line => {
+  if (line.match(dblQuote)) {
+    // console.log(line.match(dblQuote))
+    result = line.replace(dblQuote, `<span class="light-blue2">${line.match(dblQuote)}</span>`);
+  } else {
+    result = line;
+  }
 
-// Ignore below here - just the light code block
-input.forEach(line => {
-  let convertedLine = convertHTML(line);
-  lightBlockOutput.textContent += '<span class="' + `${codeClass}` + '">' + `${convertedLine}` + "</span>";
+  // Consider adding an <li> to paste into the html for line breaks and then remove them before pasting into the <pre> tag
+  // lightBlockOutput.textContent += '<span class="' + `${codeClass2}` + '">' + `${result2}` + "</span>";
+  lightBlockOutput.textContent += '<span>' + `${result2}` + "</span>";
 });
+

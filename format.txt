@@ -1,5 +1,5 @@
-<span class="white">
-  &lt;<span class="lime-green">p</span> <span class="dark-blue">class</span><span class="light-blue">=&quot;test&quot;</span>&gt;words here&lt;/<span class="lime-green">p</span>&gt;
-</span>
+<span>&lt;p <span class="blue">id</span><span class="blue"></span>=&quot;something&quot; <span class="blue">class</span><span class="blue"></span>=&quot;test&quot;&gt;words here&lt;/p&gt;</span>
+<span>&lt;title&gt;Code Formatter&lt;/title&gt;</span><span>&lt;img <span class="blue">class</span>
+<span class="blue"></span>=&quot;test-img&quot; <span class="blue">src</span><span class="blue"></span>=&quot;./img/file.jpeg&quot;&gt;</span>
 
 <span class="comment">&lt;!-- COMMENT HERE --&gt;</span>

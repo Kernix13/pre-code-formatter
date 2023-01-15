@@ -17,63 +17,137 @@
       <h2>Code to copy for <em>dark</em> code block</h2>
       <p id="dark_block_output" class="dark-code"></p>
 
-      <p>Dark block example:</p>
-      <pre class="dark_block">
-        <span class="comment">&lt;!-- I manually added the classes below 
-          and this is what I want --&gt;</span>
-        <span class="white">&lt;<span class="lime-green">p</span> <span class="dark-blue">class</span><span class="light-blue">=&quot;test&quot;</span>&gt;words here&lt;/<span class="lime-green">p</span>&gt;</span>
+      <h3>Dark block example:</h3>
+      <pre class="code-block dark_block">
+        <span class="comment">&lt;!-- Manual --&gt;</span>
+        <span>&lt;<span class="lime-green">p</span> <span class="blue">id</span>=<span class="light-blue">&quot;test&quot;</span> <span class="blue">class</span><span class="light-blue">=&quot;something&quot;</span><span class="boolean"> required</span>&gt;words here&lt;/<span class="lime-green">p</span>&gt;</span>
+        <span>&lt;<span class="lime-green">title</span>&gt;Code Formatter&lt;/<span class="lime-green">title</span>&gt;</span>
+        <span>&lt;<span class="lime-green">img</span> <span class="blue">class</span>=<span class="light-blue">&quot;test-img&quot;</span> <span class="blue">src</span>=<span class="light-blue">&quot;./img/file.jpeg&quot;</span>&gt;</span>
 
-        <span class="comment">&lt;!-- Here my double quotes Regex is 
-          doubling for some reason --&gt;</span>
-        <span class="white">&lt;p class=<span class="light-blue">&quot;test,&quot;</span><span
-            class="light-blue">&quot;test,&quot;</span>&gt;words here&lt;/p&gt;</span>
-        <span class="white">&lt;title&gt;Code Formatter&lt;/title&gt;</span>
-        <span class="white">&lt;img src =<span
-            class="light-blue">&quot;./img/file.jpeg,&quot;</span><span class="light-blue">&quot;./img/file.jpeg,&quot;</span>/&gt;</span>
-      </pre>
+        <span class="comment">&lt;!-- RegEx: htmlTag --&gt;</span>
+        <span>&lt;<span class="lime-green">p</span> id=&quot;something&quot; class=&quot;test&quot; required&gt;words here&lt;/<span class="lime-green">p</span>&gt;</span>
+        <span>&lt;<span class="lime-green">title</span>&gt;Code Formatter&lt;/<span class="lime-green">title</span>&gt;</span>
+        <span>&lt;<span class="lime-green">img</span> class=&quot;test-img&quot; src=&quot;./img/file.jpeg&quot;&gt;</span>
+        
+        <span class="comment">&lt;!-- RegEx: htmlAttr --&gt;</span>
+        <span>&lt;p <span class="blue">id</span><span class="blue"></span>=&quot;something&quot; <span class="blue">class</span><span class="blue"></span>=&quot;test&quot; required&gt;words here&lt;/p&gt;</span>
+        <span>&lt;title&gt;Code Formatter&lt;/title&gt;</span>
+        <span>&lt;img <span class="blue">class</span><span class="blue"></span>=&quot;test-img&quot; <span class="blue">src</span><span class="blue"></span>=&quot;./img/file.jpeg&quot;&gt;</span>
+
+        <span class="comment">&lt;!-- RegEx: htmlBoolAttr --&gt;</span>
+        <span>&lt;p id=&quot;something&quot; class=&quot;test&quot;<span class="blue"> required</span>&gt;words here&lt;/p&gt;</span>
+
+        <span class="comment">&lt;!-- RegEx: dblQuote --&gt;</span>
+        <span>&lt;p id=<span class="light-blue">&quot;something&quot;</span> class=<span class="light-blue">&quot;test&quot;</span> required&gt;words here&lt;/p&gt;</span>
+        <span>&lt;title&gt;Code Formatter&lt;/title&gt;</span>
+        <span>&lt;img class=<span class="light-blue">&quot;test-img&quot;</span> src=<span class="light-blue">&quot;./img/file.jpeg&quot;</span>&gt;</span>
+      </pre>   
+
       <!-- BREAK -->
-      <h3>Just a color testing block</h3>
-      <pre class="dark_block">
-        const users = [
-        <span class="light-blue">const users = [</span> 
-        <span class="dark-blue"> { name: &quot;John_&amp;_Jane&quot;, age: 34 },</span> 
-        <span class="lime-green"> { name: &quot;Amy_&lt;&gt;_1&quot;, age: 20 },</span> 
-        <span class="comment"> { name: &quot;SINGLE-QUOTE_&apos;_1&quot;, age: 10 }</span> 
-        <span class="white"> { name: &quot;SINGLE-QUOTE_&apos;_1&quot;, age: 10 }</span> 
-        <span class="red"> { name: &quot;SINGLE-QUOTE_&apos;_1&quot;, age: 10 }</span> 
-        <span class="purple"> { name: &quot;SINGLE-QUOTE_&apos;_1&quot;, age: 10 }</span> 
-        <span class="orange"> { name: &quot;camperCat&quot;, age: 10 }</span> 
-        <span class="white">];</span>
+      <h3>Color testing block</h3>
+      <pre class="code-block dark_block">
+        const users = ['no color class here'
+        <span class="light-blue">const color = "light-blue"</span> 
+        <span class="blue"> { color: "blue" },</span> 
+        <span class="lime-green"> { color: "lime-green" },</span> 
+        <span class="comment"> { color: "comment" }</span> 
+        <span class="white"> { color: "white" }</span> 
+        <span class="red"> { color: "red" }</span> 
+        <span class="purple"> { color: "purple" }</span> 
+        <span class="orange"> { color: "orange" } ];</span> 
       </pre>
       <hr>
 
     </div>
+    <div class="container">
+      <h2>Dark code block colors</h2>
+      <div class="color-container">
+        <div class="color-box bg-light-blue">light-blue</div>
+        <div class="color-box bg-blue">blue</div>
+        <div class="color-box bg-lime-green">lime-green</div>
+        <div class="color-box bg-comment">comment</div>
+        <div class="color-box bg-red">red</div>
+        <div class="color-box bg-purple">purple</div>
+        <div class="color-box bg-orange">orange</div>
+        <div class="color-box bg-background-color">background-color</div>
+      </div>
+    </div>
+    <!-- section for people with a dark bg website needing a light code block -->
     <div class="dark-bg">
       <div class="container">
         <h2 class="light-text">Code to copy for <em>light</em> code block</h2>
-          <!-- output here: -->
-          <p id="light_block_output" class="light-code light-text"></p>
+        <!-- output here: -->
+        <p id="light_block_output" class="light-code"></p>
 
-          <p class="light-text">Light block example:</p>
-          <pre class="light_block">
-              const users = [
-              <span class="light-blue2">const users = [</span>
-              <span class="dark-blue2"> { name: &quot;John_&amp;_Jane&quot;, age: 34 },</span>
-              <span class="lime-green2"> { name: &quot;Amy_&lt;&gt;_1&quot;, age: 20 },</span>
-              <span class="comment2"> { name: &quot;SINGLE-QUOTE_&apos;_1&quot;, age: 10 }</span>
-              <span class="gray"> { name: &quot;SINGLE-QUOTE_&apos;_1&quot;, age: 10 }</span>
-              <span class="red2"> { name: &quot;SINGLE-QUOTE_&apos;_1&quot;, age: 10 }</span>
-              <span class="purple2"> { name: &quot;SINGLE-QUOTE_&apos;_1&quot;, age: 10 }</span>
-              <span class="orange2"> { name: &quot;camperCat&quot;, age: 10 }</span>
-              <span class="white2">];</span>
-          </pre>
-        </div>
-        <hr>
+        <h3 class="light-text">Light block example:</h3>
+        <pre class="code-block light_block">
+            const users = ['no color class here'
+            <span class="light-blue2">const color = "light-blue2"</span>
+            <span class="blue2"> { color: "blue2" },</span>
+            <span class="green"> { color: "lime-green" },</span>
+            <span class="comment2"> { color: "comment2" }</span>
+            <span class="gray"> { color: "gray" }</span>
+            <span class="red2"> { color: "red2" }</span>
+            <span class="purple2"> { color: "purple2" }</span>
+            <span class="orange2"> { color: "orange2" }</span>
+            <span> { color: "no class, same as body class: #333" } ];</span>
+        </pre>
       </div>
+      <div class="container">
+        <h2 class="light-text">Light code block colors</h2>
+        <div class="color-container">
+          <div class="color-box bg-light-blue2">light-blue2</div>
+          <div class="color-box bg-blue2">blue2</div>
+          <div class="color-box bg-green">green</div>
+          <div class="color-box bg-comment2">comment2</div>
+          <div class="color-box bg-gray">gray</div>
+          <div class="color-box bg-red2">red2</div>
+          <div class="color-box bg-purple2">purple2</div>
+          <div class="color-box bg-orange2">orange2</div>
+          <div class="color-box bg-background-color2">background-color</div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <h3>HTML Template</h3>
+      <pre class="code-block dark_block">
+        <span>&lt;<span class="lime-green">TagName</span> <span class="blue">AttrName</span>=<span
+            class="light-blue">&quot;AttrValue&quot;</span> <span class="blue">AttrName</span><span
+            class="light-blue">=&quot;AttrValue1 AttrValue2&quot;</span><span class="boolean"> BoolAttr</span>&gt;words here&lt;/<span class="lime-green">TagName</span>&gt;</span>
+        
+        <span>&lt;<span class="lime-green">TagName</span> <span class="blue">AttrName</span>=<span
+            class="light-blue">&quot;AttrValue AttrValue&quot;</span> <span class="blue">AttrName</span>=<span
+            class="light-blue">&quot;AttrValue&quot;</span>&gt;</span>
+      </pre>
+      <h3>CSS Template</h3>
+      <pre class="code-block dark_block">
+        <span>
+          <span class="lime-green">TagName</span>,
+          <span class="blue">.class</span> {
+          <span class="lime-green">two-words</span>: <span class="light-blue">'Some Str'</span>, <span
+            class="blue">Value</span>, <span class="blue">value2</span>;
+          <span class="lime-green">background-image</span>: <span class="blue">url</span>(<span class="light-blue">'./somepath/jpg'</span>);
+          <span class="lime-green">font-size</span>: 110<span class="red">%</span>;
+          <span class="lime-green">margin</span>: 1<span class="red">rem</span> <span class="blue">auto</span>;
+          }
+        </span>
+      </pre>
+      <h3>JavaScript Template</h3>
+      <pre class="code-block dark_block">
 
+      </pre>
+      <h3>PHP Template</h3>
+      <pre class="code-block dark_block">
 
+      </pre>
+      <h3>SASS Template</h3>
+      <pre class="code-block dark_block">
 
-    <script src="./js/script.js"></script>
+      </pre>
+    </div>
+    
+
+    <!-- <script src="./js/script.js"></script> -->
     <script src="./js/script2.js"></script>
   </body>
 </html>
