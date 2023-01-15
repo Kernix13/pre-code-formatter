@@ -1,0 +1,12 @@
+[
+    {
+    "Chord": "Maj",
+    "Intervals": ["1", "3", "5"],
+    "steps": [0, 4, 7],
+    "Tendency": ["I", "IV"],
+    "scales": [
+      { "Major Scale": ["1st", " 4th", " 5th"] },
+      { "Minor Pentatonic": ["2nd"] }
+    ]
+  }
+]
