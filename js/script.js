@@ -1,12 +1,12 @@
 const darkBlockOutput = document.getElementById("dark_block_output");
 const lightBlockOutput = document.getElementById("light_block_output");
 
-const classes = ["white", "light-blue", "blue", "lime-green", "comment", "red", "purple", "orange", "black"]
-const jsKeys = ['const', 'function', 'return', 'switch', 'case', 'break', 'default'];
-
-// For now I'm adding lines to an array - need to find something better
-const input = [`<p id="something" class="test" required>words here</p>`, `<title>Code Formatter</title>`, `<img class="test-img" src="./img/file.jpeg">`];
-const codeToConvert = [`<p id="value-one" class="value-one">words here</p>`]
+// span tag color classes
+const classesDark = ["lime-green", "blue", "light-blue", "white", "comment", "red", "purple", "orange"]
+const classesLight = ["green", "blue2", "light-blue2", "gray", "comment2", "red2", "purple2", "orange2", "black"]
+// preliminary keywords by language
+const jsKWs = ['const', 'function', 'return', 'switch', 'case', 'break', 'default', 'class', 'if', 'else', 'new'];
+const phpKWs = ['function', 'class', 'if', 'else', 'AND', 'OR', 'return', 'new']
 
 // HTML Regular Expressions
 const htmlTag = /(?<=&lt;\/*)([\w]*)/g;
@@ -14,6 +14,29 @@ const htmlAttr = /([\w-]*)(?==)/g;
 const htmlBoolAttr = /(\s\w*)(?=&gt;)/g; // need to have it right on > or &gt;
 const dblQuote = /(&quot;[.\w\/:*?-]*\w&quot;)/g;
 
+// CSS Regular Expressions
+
+// SASS/SCSS Regular Expressions
+
+// JavaScript Regular Expressions
+
+// JSX Regular Expressions
+
+// JSON Regular Expressions
+
+// PHP Regular Expressions
+
+// Step 1: the code to convert (need something better)
+const input = [`<p id="something" class="test" required>words here</p>`, `<title>Code Formatter</title>`, `<img class="test-img" src="./img/file.jpeg">`];
+const codeToConvert = [
+`.container {`,
+`  width: 80%;`,
+`  max-width: 1100px;`,
+`  margin: 0 auto;`,
+`}`,
+];
+
+// Step 2: convert reserved characters into HTML entities
 function convertHTML(str) {
   const convertSymbols = {
     "&": "&amp;",
@@ -29,96 +52,64 @@ function convertHTML(str) {
     .join("");
 }
 
-// Convert your code to HTML entities
+// Step 3: Convert your code to HTML entities
 let convertedArr = [];
 input.forEach(line => {
   let convertedLine = convertHTML(line);
   convertedArr.push(`${convertedLine}`);
 });
-// console.log(convertedArr)
 
-/* HTML */
-let result = []; // tags
-let lineArr = [];
-const str1 = `<span class="lime-green"></span>`;
+// Step 4: add span color classes to converted code for the 4 HTML scenarios
+let darkHtmlAttr = []
+let darkHtmlTag = []
+let darkHtmBoollAttr = []
+let darkHtmDblQuotes = []
 
-let result2 = []; // attributes
-let lineArr2 = [];
-const str2 = `<span class="blue"></span>`;
+class htmlCode {
+  constructor(arr, regex, lineArray, index) {
+    this.arr = arr;
+    this.regex = regex;
+    this.lineArray = lineArray;
+    this.index = index;
+  }
 
-let result3 = []; // boolean attributes
-let lineArr3 = [];
+  // How do I use removeDups()? As a get or set?
 
-let result4 = []; // double quotes
-let lineArr4 = [];
-const str4 = `<span class="light-blue"></span>`;
+  findMatches() {
+    this.arr.forEach(line => {
 
-let repeatLen = "";
-let repeatInd = "";
-let preNewLine = "";
-let postNewLine = "";
-let newLine = "";
-let newLineArr = [];
+      const htmlStrings = [`<span class="${classesDark[this.index]}"></span>`, `<span class="${classesDark[this.index]}">${'$1'}</span>`];
+      const result = line.replace(this.regex, htmlStrings[1]);
 
-function htmlOutput(arr) {
-  arr.forEach(line => {
-
-  // Tag styling (getting an extra span.lime-green for lines with 2 tags)
-  result = line.replace(htmlTag, `<span class="${classes[3]}">${'$1'}</span>`);
-  lineArr.push(line.replace(htmlTag, `<span class="${classes[3]}">${'$1'}</span>`));
-
-  // Attribute styling (2 extra span.blue)
-  result2 = line.replace(htmlAttr, `<span class="${classes[2]}">${'$1'}</span>`);
-  lineArr2.push(line.replace(htmlAttr, `<span class="${classes[2]}">${'$1'}</span>`));
-
-  // Boolean Attribute styling
-  result3 = line.replace(htmlBoolAttr, `<span class="${classes[2]}">${'$1'}</span>`);
-  lineArr3.push(line.replace(htmlBoolAttr, `<span class="${classes[2]}">${'$1'}</span>`));
-
-  // Double-quote styling: the only one without an extra & empty span tag
-  result4 = line.replace(dblQuote, `<span class="${classes[1]}">${'$1'}</span>`);
-  lineArr4.push(line.replace(dblQuote, `<span class="${classes[1]}">${'$1'}</span>`));
-
-  // removeDups(lineArr, str1)
-  removeDups(lineArr2, str2)
-
-  // Do I need to actually return these since I am pushing to global vars?
-  return result, result2, result3, result4, lineArr, lineArr2, lineArr3, lineArr4;
-  });
-}
-htmlOutput(convertedArr)
-
-console.log(lineArr2)
-
-function removeDups(arr, str) {
-  arr.forEach(line => {
-    // console.log(line)
-    if (line.includes(str)) {
-      repeatLen = str.length
-      repeatInd = line.indexOf(str)
-      console.log(repeatInd)
-      preNewLine = line.slice(0, repeatInd)
-      postNewLine = line.slice(repeatInd + repeatLen)
-      newLine = `${preNewLine}${postNewLine}`
-    } else {
-      newLine = line;
-    }
-  })
-  newLineArr.push(newLine)
+      return this.lineArray.push(result);
+    })
+  }
 }
 
-newLineArr.forEach(codeLine => {
+// Have to do Attributes first because the span tags have classes
+const myHtmlAttr = new htmlCode(convertedArr, htmlAttr, darkHtmlAttr, 1);
+myHtmlAttr.findMatches();
+
+const myHtmlTags = new htmlCode(darkHtmlAttr, htmlTag, darkHtmlTag, 0);
+myHtmlTags.findMatches();
+
+const myHtmlBoolAttr = new htmlCode(darkHtmlTag, htmlBoolAttr, darkHtmBoollAttr, 1);
+myHtmlBoolAttr.findMatches();
+
+const myHtmlDblQuotes = new htmlCode(darkHtmBoollAttr, dblQuote, darkHtmDblQuotes, 2);
+myHtmlDblQuotes.findMatches();
+
+// Step 5: Output the code to the DOM
+darkHtmDblQuotes.forEach(codeLine => {
   darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
 })
 
-convertedArr.forEach(line => {
-  if (line.match(dblQuote)) {
-    // console.log(line.match(dblQuote))
-    result = line.replace(dblQuote, `<span class="light-blue2">${line.match(dblQuote)}</span>`);
-  } else {
-    result = line;
-  }
+console.log(darkHtmDblQuotes[0].includes(`<span class="lime-green"></span>`))
+console.log(darkHtmDblQuotes[0].includes(`<span class="blue"></span>`))
+console.log(darkHtmDblQuotes[0].includes(`<span class="light-blue"></span>`))
 
-  lightBlockOutput.textContent += '<span>' + `${result2}` + "</span>";
-});
-
+/* 
+Getting EMPTY span.color tags though the output works (my capture groups?)
+My attempt at slicing the dups out but it's only grabbing the last code line 
+-> REMOVED THAT CODE BLOCK, removeDups()
+*/

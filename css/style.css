@@ -34,8 +34,7 @@ pre {
 .code-block {
   padding-top: 0.5em;
   line-height: 1.6;
-  // font-size: 1.065rem;
-  overflow: scroll;
+  overflow: auto;
 }
 
 /* DARK code block */
@@ -48,7 +47,6 @@ pre {
 .light_block {
   background-color: #ddd;
   font-weight: 700;
-  // color: #333;
 }
 .dark-bg {
   background-color: #111519;
@@ -132,7 +130,7 @@ code {
   font-weight: 900;
   font-size: 90%;
   background-color: #ccc;
-  padding: 0.0625em 0.25em;
+  padding: 0 0.25em;
 }
 
 /* color boxes */

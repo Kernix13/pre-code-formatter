@@ -10,7 +10,7 @@
   <body>
     <div class="container">
       <h1>HTML Pre Tag Formatter</h1>
-      <p>Output span tags for use in a pre tag for code blocks in a blog post. The first code block has formatting for a dark background with classes for different languages.
+      <p>Output <code>span</code> tags for use in a <code>pre</code> tag for code blocks in blog posts (dark and light versions, see notes below).</p>
 
       <!-- output here: -->
       <hr>
@@ -41,9 +41,24 @@
         <span>&lt;p id=<span class="light-blue">&quot;something&quot;</span> class=<span class="light-blue">&quot;test&quot;</span> required&gt;words here&lt;/p&gt;</span>
         <span>&lt;title&gt;Code Formatter&lt;/title&gt;</span>
         <span>&lt;img class=<span class="light-blue">&quot;test-img&quot;</span> src=<span class="light-blue">&quot;./img/file.jpeg&quot;</span>&gt;</span>
+
+        <span class="comment">&lt;!-- Working but... (see notes at end) --&gt;</span>
+        <span>&lt;<span class="lime-green">p</span> <span class="blue">id</span><span class="blue"></span>=<span
+            class="light-blue">&quot;something&quot;</span> <span class="blue">class</span><span class="blue"></span>=<span
+            class="light-blue">&quot;test&quot;</span><span class="blue"> required</span>&gt;words here&lt;<span
+            class="lime-green"></span>/<span class="lime-green">p</span>&gt;</span>
+        <span>&lt;<span class="lime-green">title</span>&gt;Code Formatter&lt;<span class="lime-green"></span>/<span
+            class="lime-green">title</span>&gt;</span>
+        <span>&lt;<span class="lime-green">img</span> <span class="blue">class</span><span class="blue"></span>=<span
+            class="light-blue">&quot;test-img&quot;</span> <span class="blue">src</span><span class="blue"></span>=<span
+            class="light-blue">&quot;./img/file.jpeg&quot;</span>&gt;</span>
+
       </pre>   
 
-      <!-- BREAK -->
+      <!-- Paste code in here so the <li> tags break to a new line  -->
+
+      <!-- End pasted code -->
+
       <h3>Color testing block</h3>
       <pre class="code-block dark_block">
         const users = ['no color class here'
@@ -113,15 +128,17 @@
       <pre class="code-block dark_block">
         <span>&lt;<span class="lime-green">TagName</span> <span class="blue">AttrName</span>=<span
             class="light-blue">&quot;AttrValue&quot;</span> <span class="blue">AttrName</span><span
-            class="light-blue">=&quot;AttrValue1 AttrValue2&quot;</span><span class="boolean"> BoolAttr</span>&gt;words here&lt;/<span class="lime-green">TagName</span>&gt;</span>
-        
+            class="light-blue">=&quot;AttrValue1 AttrValue2&quot;</span><span class="boolean"> BoolAttr</span>&gt;words here&lt;/<span class="lime-green">TagName</span>&gt;</span>  
         <span>&lt;<span class="lime-green">TagName</span> <span class="blue">AttrName</span>=<span
             class="light-blue">&quot;AttrValue AttrValue&quot;</span> <span class="blue">AttrName</span>=<span
             class="light-blue">&quot;AttrValue&quot;</span>&gt;</span>
       </pre>
+      <hr>
       <h3>CSS Template</h3>
       <pre class="code-block dark_block">
         <span>
+          <span class="comment">// CSS comment type one</span>
+          <span class="comment">/* CSS comment type two */</span>
           <span class="lime-green">TagName</span>,
           <span class="blue">.class</span> {
             <span class="lime-green">two-words</span>: <span class="light-blue">'Some Str'</span>, <span
@@ -132,22 +149,50 @@
           }
         </span>
       </pre>
+      <p>My CSS units (<code>em</code>, <code>rem</code>, <code>px</code>, <code>%</code>, etc.) are red in my VS Code theme, but I will probably let them default to white/black.</p>
+      <hr>
       <h3>JavaScript Template</h3>
       <pre class="code-block dark_block">
 
       </pre>
+      <hr>
       <h3>PHP Template</h3>
       <pre class="code-block dark_block">
 
       </pre>
+      <hr>
       <h3>SASS Template</h3>
       <pre class="code-block dark_block">
 
       </pre>
+      <hr>
       <h3>JSON Template</h3>
       <pre class="code-block dark_block">
 
       </pre>
+      <hr>
+      <h3>JSX Template</h3>
+      <pre class="code-block dark_block">
+
+      </pre>
+      <hr>
+      <h2>NOTES</h2>
+      <ul>
+        <h3>How to use this</h3>
+        <li>So as not to duplicate the JS, if you have a light code block, then do a find for <code>classesDark</code> and replace it with <code>classesLight</code></li>
+        <li>At this point, you have to add your code <code>script.js</code> in backticks to an array called <code>input</code> or <code>codeToConvert</code>. I do not like this approach. I want to 1) add a <code>textarea</code> to use to grab the code, or ideally 2) grab the code out of a file (markdown <code>frontmatter</code>?)</li>
+        <li>Then save and copy the code under <em>Code to copy for dark code block</em>.</li>
+        <li>Paste that code into your HTML file so the <code>li</code> tags break to a new line. Then remove the opening and closing <code>li</code> tags and paste the remaining code into your <code>pre</code> block - DONE!</li>
+      </ul>
+      <ul>
+        <h3>Issues, problems, and To-Do items</h3>
+        <li>As of <date>January 16th, 2023,</date> I'm getting empty <code>span.color</code> tags. They don't affect the display in the <code>pre</code> block, but they should not be there. I will begin debugging the code to get rid of them. I assume it's my RegEx capture groups.</li>
+        <li>I need a better way than using an array to grab the code.</li>
+        <li>The code for HTML is ~ 75 lines and that is all I have at this time. This file will be huge for every language so I will eventually have separate files</li>
+        <li>How is my <code>code</code> CSS styling? Let me know if you have something better</li>
+        <li>CSS RegEx and JavaScript next!</li>
+        <li>Finally, this goes without saying, but change the span color classes to your liking.</li>
+      </ul>
     </div>
     
 
