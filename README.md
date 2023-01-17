@@ -29,8 +29,8 @@ I am using regualr expressions to wrap parts of a language syntax in span tags w
 
 - [x] HTML
 - [x] CSS
-- [] SASS/SCSS
-- [] JavaScript
+- [ ] SASS/SCSS
+- [ ] JavaScript
 - [ ] JSX
 - [ ] JSON
 - [ ] PHP

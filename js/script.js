@@ -2,8 +2,8 @@ const darkBlockOutput = document.getElementById("dark_block_output");
 const lightBlockOutput = document.getElementById("light_block_output");
 
 // span tag color classes
-const classesDark = ["lime-green", "blue", "light-blue", "white", "comment", "red", "purple", "orange"]
-const classesLight = ["green", "blue2", "light-blue2", "gray", "comment2", "red2", "purple2", "orange2", "black"]
+const classesDark = ["green", "blue", "light-blue", "white", "comment", "red", "purple", "orange"]
+const classesLight = ["green2", "blue2", "light-blue2", "gray", "comment2", "red2", "purple2", "orange2", "black"]
 // preliminary keywords by language
 const jsKWs = ['const', 'function', 'return', 'switch', 'case', 'break', 'default', 'class', 'if', 'else', 'new'];
 const phpKWs = ['function', 'class', 'if', 'else', 'AND', 'OR', 'return', 'new']
@@ -112,7 +112,7 @@ darkHtmlDblQuotes.forEach(codeLine => {
   darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
 })
 
-console.log(darkHtmlDblQuotes[0].includes(`<span class="lime-green"></span>`))
+console.log(darkHtmlDblQuotes[0].includes(`<span class="green"></span>`))
 console.log(darkHtmlDblQuotes[0].includes(`<span class="blue"></span>`))
 console.log(darkHtmlDblQuotes[0].includes(`<span class="light-blue"></span>`))
 

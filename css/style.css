@@ -63,7 +63,7 @@ pre {
 .blue, .boolean {
   color: rgb(100, 206, 255);
 }
-.lime-green {
+.green {
   color: rgb(119, 237, 22);
 }
 .comment {
@@ -92,7 +92,7 @@ pre {
 .blue2, .boolean2 {
   color: rgb(40, 55, 188);
 }
-.green {
+.green2 {
   color: rgb(0, 177, 50);
 }
 .comment2 {
@@ -159,7 +159,7 @@ code {
 .bg-blue {
   background-color: rgb(100, 206, 255);
 }
-.bg-lime-green {
+.bg-green {
   background-color: rgb(119, 237, 22);
 }
 .bg-comment {
@@ -190,7 +190,7 @@ code {
   background-color: rgb(40, 55, 188);
   color: white;
 }
-.bg-green {
+.bg-green2 {
   background-color: rgb(0, 177, 50);
   color: white;
 }
