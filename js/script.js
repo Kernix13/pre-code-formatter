@@ -13,6 +13,7 @@ const htmlTag = /(?<=&lt;\/*)([\w]*)/g;
 const htmlAttr = /([\w-]*)(?==)/g;
 const htmlBoolAttr = /(\s\w*)(?=&gt;)/g; // need to have it right on > or &gt;
 const dblQuote = /(&quot;[.\w\/:*?-]*\w&quot;)/g;
+const htmlComment = /(&lt;!--\s[\w\s]*\s--&gt;)/g;
 
 // CSS Regular Expressions
 
@@ -27,7 +28,7 @@ const dblQuote = /(&quot;[.\w\/:*?-]*\w&quot;)/g;
 // PHP Regular Expressions
 
 // Step 1: the code to convert (need something better)
-const input = [`<p id="something" class="test" required>words here</p>`, `<title>Code Formatter</title>`, `<img class="test-img" src="./img/file.jpeg">`];
+const input = [`<p id="something" class="test" required>words here</p>`, `<title>Code Formatter</title>`, `<img class="test-img" src="./img/file.jpeg">`, `<!-- Example comment goes here -->`, ];
 const codeToConvert = [
 `.container {`,
 `  width: 80%;`,
@@ -60,10 +61,11 @@ input.forEach(line => {
 });
 
 // Step 4: add span color classes to converted code for the 4 HTML scenarios
-let darkHtmlAttr = []
-let darkHtmlTag = []
-let darkHtmBoollAttr = []
-let darkHtmDblQuotes = []
+let darkHtmlAttr = [];
+let darkHtmlTag = [];
+let darkHtmlBoollAttr = [];
+let darkHtmlDblQuotes = [];
+let darkHtmlComment = [];
 
 class htmlCode {
   constructor(arr, regex, lineArray, index) {
@@ -90,23 +92,29 @@ class htmlCode {
 const myHtmlAttr = new htmlCode(convertedArr, htmlAttr, darkHtmlAttr, 1);
 myHtmlAttr.findMatches();
 
-const myHtmlTags = new htmlCode(darkHtmlAttr, htmlTag, darkHtmlTag, 0);
+const myHtmlComment = new htmlCode(darkHtmlAttr, htmlComment, darkHtmlComment, 4);
+myHtmlComment.findMatches();
+
+const myHtmlTags = new htmlCode(darkHtmlComment, htmlTag, darkHtmlTag, 0);
 myHtmlTags.findMatches();
 
-const myHtmlBoolAttr = new htmlCode(darkHtmlTag, htmlBoolAttr, darkHtmBoollAttr, 1);
+const myHtmlBoolAttr = new htmlCode(darkHtmlTag, htmlBoolAttr, darkHtmlBoollAttr, 1);
 myHtmlBoolAttr.findMatches();
 
-const myHtmlDblQuotes = new htmlCode(darkHtmBoollAttr, dblQuote, darkHtmDblQuotes, 2);
+const myHtmlDblQuotes = new htmlCode(darkHtmlBoollAttr, dblQuote, darkHtmlDblQuotes, 2);
 myHtmlDblQuotes.findMatches();
 
+// NOT WORKING? RUN SECOND?
+
+
 // Step 5: Output the code to the DOM
-darkHtmDblQuotes.forEach(codeLine => {
+darkHtmlDblQuotes.forEach(codeLine => {
   darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
 })
 
-console.log(darkHtmDblQuotes[0].includes(`<span class="lime-green"></span>`))
-console.log(darkHtmDblQuotes[0].includes(`<span class="blue"></span>`))
-console.log(darkHtmDblQuotes[0].includes(`<span class="light-blue"></span>`))
+console.log(darkHtmlDblQuotes[0].includes(`<span class="lime-green"></span>`))
+console.log(darkHtmlDblQuotes[0].includes(`<span class="blue"></span>`))
+console.log(darkHtmlDblQuotes[0].includes(`<span class="light-blue"></span>`))
 
 /* 
 Getting EMPTY span.color tags though the output works (my capture groups?)

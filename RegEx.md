@@ -8,6 +8,12 @@ But how many colors would you need? You can try to recreate your own code editor
 
 Since I am adding span tags with a color class around every RegEx match, I would like to have only enough colors to make the code readable and have differentiation between different languages.
 
+Links:
+
+1. [Regular-expressions.info](https://www.regular-expressions.info/)
+1. [Lookarounds](https://www.regular-expressions.info/lookaround.html)
+1. [Zero-Length Regex Matches](https://www.regular-expressions.info/zerolength.html)
+
 ## Colors and classes
 
 I do not want to add span tags around characters like `(){}[],;:`, etc. Therefore, all code not wrapped in a `span.color` tag will be white for dark code bloacks, and black for light code blocks.
@@ -22,8 +28,8 @@ I am going to use either the colors I see in VS Code or the colors in language c
 
 Right now in my editor I see 8 colors: 2 blues, 1 gray, 1 white, 1 green/lime green, 1 orange, 1 red, and 1 purple. That is from html, css, js, jsx, md, and php code.
 
-1. HTML: white, green, light-blue, blue, gray
-1. CSS: HTM + red
+1. HTML: white, green, light-blue, blue, and gray (comments)
+1. CSS: HTML colors + red
 1. SASS/SCSS: CSS + orange
 1. JAVASCRIPT & PHP: white, light-blue, blue, gray, red, orange, purple,
 1. JSX: JS + green, or JS + HTML
@@ -34,14 +40,17 @@ Right now in my editor I see 8 colors: 2 blues, 1 gray, 1 white, 1 green/lime gr
 
 ## HTML RegEx and colors
 
-**NOTE**: the HTML atttribute RegEx has to be run first or else it will wrap tags around `span.blue` tags added for other scans of the code.
+**NOTE**: the HTML atttribute RegEx has to be run first or else it will wrap tags around `span.blue` tags added for other scans of the code. Then the comments RegEx must run second, or at least before the RegEx for tags.
 
-| Name         | RegEx                             | Color      |
-| :----------- | :-------------------------------- | :--------- |
-| htmlAttr     | `/([\w-]*)(?==)/g`                | blue       |
-| htmlTag      | `(?<=&lt;\/*)([\w]*)`             | lime-green |
-| htmlBoolAttr | `/(\s\w*)(?=&gt;)/g`              | blue       |
-| dblQuote     | `/(&quot;[.\w\/:*?-]*\w&quot;)/g` | light-blue |
+| Name         | RegEx                             | Color class |
+| :----------- | :-------------------------------- | :---------- |
+| htmlAttr     | `/([\w-]*)(?==)/g`                | blue        |
+| `*`htmlTag   | `(?<=&lt;\/*)([\w]*)`             | lime-green  |
+| htmlBoolAttr | `/(\s\w*)(?=&gt;)/g`              | blue        |
+| dblQuote     | `/(&quot;[.\w\/:*?-]*\w&quot;)/g` | light-blue  |
+| htmlComment  | `/(&lt;!--\s[\w\s]*\s--&gt;)/g`   | comment     |
+
+> `*` Why don't I have `&gt;` for that RegEx?
 
 ```html
 <!-- Comment -->
@@ -53,6 +62,9 @@ Right now in my editor I see 8 colors: 2 blues, 1 gray, 1 white, 1 green/lime gr
     <li><a href="/contact">Contact</a></li>
   </ul>
 </nav>
+
+<!-- example of the only red in HTML (in VS Code only) -->
+<span class="comment">&lt;!-- Comment here --&gt;</span>
 ```
 
 ### Misc HTML regex
@@ -64,21 +76,21 @@ Right now in my editor I see 8 colors: 2 blues, 1 gray, 1 white, 1 green/lime gr
 
 ## CSS RegEx and colors
 
-Colors: In VS Code I have the HTML colors + red for units of measure (px, em, rem, vh, etc.) On Githubfor CSS language blocks I see the HTML colors, no red for units of measure, but light purple for _functions_ like `url`, `rgb`, `hsl`, etc. I also see a different for CSS language blocks in this markdown file. I'm going to combine all of that into something easy to build and easy to read.
+Colors: In VS Code I have the HTML colors + red for units of measure: `px`, `em`, `rem`, `vh`, etc. On Github for CSS language blocks I see the HTML colors, no red for units of measure, but light purple for _functions_ like `url`, `rgb`, `hsl`, etc. I also see a difference for CSS language blocks in this markdown file. I'm going to combine all of that into something easy to build and easy to read.
 
-Links:
+<!-- Links:
 
 1. [Regular-expressions.info](https://www.regular-expressions.info/)
 1. [Lookarounds](https://www.regular-expressions.info/lookaround.html)
-1. [Zero-Length Regex Matches](https://www.regular-expressions.info/zerolength.html)
+1. [Zero-Length Regex Matches](https://www.regular-expressions.info/zerolength.html) -->
 
-| Name          | RegEx | Color |
-| :------------ | :---- | :---- |
-| comments      | `//g` |       |
-| selectIdClass | `//g` |       |
-| selectHtmlEl  | `//g` |       |
-|               | `//g` |       |
-|               | `//g` |       |
+| Name          | RegEx | Color class |
+| :------------ | :---- | :---------- |
+| comments      | `//g` |             |
+| selectIdClass | `//g` |             |
+| selectHtmlEl  | `//g` |             |
+|               | `//g` |             |
+|               | `//g` |             |
 
 ```css
 /* Comment type 1 */
@@ -110,13 +122,13 @@ blockquote,
 
 ## SASS and SCSS RegEx and colors
 
-| Name          | RegEx | Color |
-| :------------ | :---- | :---- |
-| comments      | `//g` |       |
-| selectIdClass | `//g` |       |
-| selectHtmlEl  | `//g` |       |
-|               | `//g` |       |
-|               | `//g` |       |
+| Name          | RegEx | Color class |
+| :------------ | :---- | :---------- |
+| comments      | `//g` |             |
+| selectIdClass | `//g` |             |
+| selectHtmlEl  | `//g` |             |
+|               | `//g` |             |
+|               | `//g` |             |
 
 ```scss
 /* Comment type 1 */
@@ -173,13 +185,13 @@ header {
 
 `*BT` = backtick symbol - a backtick RegEx for JavaScript will have to be able to grab anything that is ever put in between backticks in JS, meaning everything!
 
-| Name        | RegEx                             | Color |
-| :---------- | :-------------------------------- | :---- |
-| singleQt    | `/(&apos;[.\w\/:*?-]*\w&apos;)/g` |       |
-| `*backTick` | `/(BT[.\w\/:*?-]\*\wBT)/g`        |       |
-|             | `/BT([.\w\/:*?-]\*\w)BT/g`        |       |
-|             | `//g`                             |       |
-|             | `//g`                             |       |
+| Name        | RegEx                             | Color class |
+| :---------- | :-------------------------------- | :---------- |
+| singleQt    | `/(&apos;[.\w\/:*?-]*\w&apos;)/g` |             |
+| `*backTick` | `/(BT[.\w\/:*?-]\*\wBT)/g`        |             |
+|             | `/BT([.\w\/:*?-]\*\w)BT/g`        |             |
+|             | `//g`                             |             |
+|             | `//g`                             |             |
 
 ```js
 /* Comment type 1 */
@@ -215,13 +227,13 @@ removeDups(darkHtmDblQuotes, str3);
 
 The regular expressions and colors used here I believe will also work for Astro files, as well as Vue.js and Angular. The colors used in VS Code are basically a combination of JavaScript with HTML.
 
-| Name         | RegEx                             | Color |
-| :----------- | :-------------------------------- | :---- |
-| dblQuote     | `/(&quot;[.\w\/:*?-]*\w&quot;)/g` |       |
-| htmlBoolAttr | `/(\s\w*)(?=&gt;)/g`              |       |
-| htmlAttr     | `/([\w-]*)(?==)/g`                |       |
-| htmlTag      | `(?<=&lt;\/*)([\w]*)`             |       |
-|              | `//g`                             |       |
+| Name         | RegEx                             | Color class |
+| :----------- | :-------------------------------- | :---------- |
+| dblQuote     | `/(&quot;[.\w\/:*?-]*\w&quot;)/g` |             |
+| htmlBoolAttr | `/(\s\w*)(?=&gt;)/g`              |             |
+| htmlAttr     | `/([\w-]*)(?==)/g`                |             |
+| htmlTag      | `(?<=&lt;\/*)([\w]*)`             |             |
+|              | `//g`                             |             |
 
 ```jsx
 // Comment
@@ -292,10 +304,10 @@ function Config_FR() {
 
 ## JSON RegEx and colors
 
-| Name | RegEx | Color |
-| :--- | :---- | :---- |
-|      | `//g` |       |
-|      | `//g` |       |
+| Name | RegEx | Color class |
+| :--- | :---- | :---------- |
+|      | `//g` |             |
+|      | `//g` |             |
 
 ```json
 [
@@ -314,10 +326,10 @@ function Config_FR() {
 
 ## PHP RegEx and colors
 
-| Name | RegEx | Color |
-| :--- | :---- | :---- |
-|      | `//g` |       |
-|      | `//g` |       |
+| Name | RegEx | Color class |
+| :--- | :---- | :---------- |
+|      | `//g` |             |
+|      | `//g` |             |
 
 ```php
 <?php
@@ -347,10 +359,10 @@ $wordCountAndTimePlugin = new WordCountAndTimePlugin();
 
 ## Markdown RegEx and colors
 
-| Name | RegEx | Color |
-| :--- | :---- | :---- |
-|      | `//g` |       |
-|      | `//g` |       |
+| Name | RegEx | Color class |
+| :--- | :---- | :---------- |
+|      | `//g` |             |
+|      | `//g` |             |
 
 ```markdown
 <!-- Later... -->
