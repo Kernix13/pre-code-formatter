@@ -156,6 +156,7 @@ p,
 li > a,
 .card *,
 div + img,
+ul > li[class='a'],
 div ~ img,
 blockquote,
 li {
