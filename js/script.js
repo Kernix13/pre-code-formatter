@@ -8,14 +8,21 @@ const classesLight = ["green2", "blue2", "light-blue2", "gray", "comment2", "red
 const jsKWs = ['const', 'function', 'return', 'switch', 'case', 'break', 'default', 'class', 'if', 'else', 'new'];
 const phpKWs = ['function', 'class', 'if', 'else', 'AND', 'OR', 'return', 'new']
 
+// Global Regular Expressions
+const dblQuote = /(&quot;[.\w\/:*?-]*\w&quot;)/g;
+const singleQt = /(&apos;[.\w\/:*?-]*\w&apos;)/g;
+const backTicks = /(`[.\w\/:*?-]*\w`)/g;
+const comments = /(\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\/)|(\/\/.*)/g;
+
 // HTML Regular Expressions
 const htmlTag = /(?<=&lt;\/*)([\w]*)/g;
 const htmlAttr = /([\w-]*)(?==)/g;
 const htmlBoolAttr = /(\s\w*)(?=&gt;)/g; // need to have it right on > or &gt;
-const dblQuote = /(&quot;[.\w\/:*?-]*\w&quot;)/g;
 const htmlComment = /(&lt;!--\s[\w\s]*\s--&gt;)/g;
 
 // CSS Regular Expressions
+const idClassSelector = /([#\.][^\d][a-zA-Z_-\d]*)/g;
+const tagSelector = /[]/g;
 
 // SASS/SCSS Regular Expressions
 
