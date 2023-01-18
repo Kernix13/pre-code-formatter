@@ -10,9 +10,9 @@ Since I am adding span tags with a color class around every RegEx match, I would
 
 ## Table of Contents
 
-1. [RegEx](#regex)
 1. [Colors and classes](#colors-and-classes)
 1. [VS Code colors](#vs-code-colors)
+1. [Global RegEx and colors](#global-regex-and-colors)
 1. [HTML RegEx and colors](#html-regex-and-colors)
 1. [CSS RegEx and colors](#css-regex-and-colors)
 1. [SASS and SCSS RegEx and colors](#SASS and SCSS regex-and-colors)
@@ -22,37 +22,6 @@ Since I am adding span tags with a color class around every RegEx match, I would
 1. [PHP RegEx and colors](#PHP regex-and-colors)
 1. [Markdown RegEx and colors](#Markdown regex-and-colors)
 1. [Other languages RegEx and colors](#Other languages regex-and-colors)
-
-## RegEx
-
-Links:
-
-1. [Regular-expressions.info](https://www.regular-expressions.info/)
-1. [Lookarounds](https://www.regular-expressions.info/lookaround.html)
-1. [Zero-Length Regex Matches](https://www.regular-expressions.info/zerolength.html)
-
-Brief notes:
-
-1. Special regex chaers: `\^$.|?*+()[{` (why not `]` and `}`)
-1. Non-Printable Characters: `\t` for TAB, `\r` and/or `\n` for ENTER/RETURN
-1. Character Classes: e.g. `[a-z]` - A character class matches only one out of several characters
-1. Capture Groups: `(^[a-z])`
-
-Special chars:
-
-1. Typing a caret (`^`) after the opening square bracket of a character class negates the character class
-1. Shorthand Character Classes: `\d` for all numbers, `\w` for alphanumeric chars including `_`, `\s` for spaces including tabs and line breaks,
-1. The dot `.` matches a single character, except line break characters. Use the dot sparingly. Often, a character class or negated character class is faster and more precise
-1. **Anchors** do not match any characters. They match a **position**: `^` matches at the start of the string, and `$` matches at the end of the string. \b matches at a word boundary. A word boundary is a position between a character that can be matched by \w and a character that cannot be matched by \w.
-1. **Achors 2**: `\b` also matches at the start and/or end of the string if the first and/or last characters in the string are word characters. `\B` matches at every position where `\b` cannot match
-1. **Alternatives**: `|` is an or statement and must be in a capture group `(x|y)`
-1. **Repetition**: `?` The question mark makes the preceding token in the regular expression optional, the asterisk `*` tells the engine to attempt to match the preceding token _zero_ or more times. The plus `+` tells the engine to attempt to match the preceding token _once_ or more
-1. **Repetition 2**: Use curly braces to specify a specific amount of repetition, `{2,4}` ???
-1. Lazy vs Greedy - The repetition operators or quantifiers are greedy - use `?` to match just first occurrence I think
-
-Grouping and capturing:
-
-1. Place parentheses around multiple tokens to group them together
 
 ## Colors and classes
 
@@ -78,17 +47,33 @@ Right now in my editor I see 8 colors: 2 blues, 1 gray, 1 white, 1 green/lime gr
 1. POWERSHELL: HTML - green
 1. SHELL: HTML - green + purple
 
+## Global RegEx and colors
+
+| Name     | RegEx                             | Color class |
+| :------- | :-------------------------------- | :---------- |
+| dblQuote | `/(&quot;[.\w\/:*?-]*\w&quot;)/g` | light-blue  |
+| singleQt | `/(&apos;[.\w/:*?-]*\w&apos;)/g`  | light-blue  |
+| comments | See notes below                   | light-blue  |
+
+Comments regex: `/(\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\/)|(\/\/.*)/g`
+
+The comments regex is global for me by being used CSS, SASS, JavaScript, and PHP. I assume other languages may use `//` and `/* */` as well, but other languages use other syntax such as `# `.
+
+1. comment type 1 and multi-line: `/\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/g`
+1. comment type 2: `/\/\/.*/g`
+1. both: `/(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)|(//.*)/g` or better
+   1. `/(\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\/)|(\/\/.*)/g`
+
 ## HTML RegEx and colors
 
 **NOTE**: the HTML atttribute RegEx has to be run first or else it will wrap tags around `span.blue` tags added for other scans of the code. Then the comments RegEx must run second, or at least before the RegEx for tags.
 
-| Name         | RegEx                             | Color class |
-| :----------- | :-------------------------------- | :---------- |
-| htmlAttr     | `/([\w-]*)(?==)/g`                | blue        |
-| `*`htmlTag   | `(?<=&lt;\/*)([\w]*)`             | lime-green  |
-| htmlBoolAttr | `/(\s\w*)(?=&gt;)/g`              | blue        |
-| dblQuote     | `/(&quot;[.\w\/:*?-]*\w&quot;)/g` | light-blue  |
-| htmlComment  | `/(&lt;!--\s[\w\s]*\s--&gt;)/g`   | comment     |
+| Name         | RegEx                           | Color class |
+| :----------- | :------------------------------ | :---------- |
+| htmlAttr     | `/([\w-]*)(?==)/g`              | blue        |
+| `*`htmlTag   | `(?<=&lt;\/*)([\w]*)`           | lime-green  |
+| htmlBoolAttr | `/(\s\w*)(?=&gt;)/g`            | blue        |
+| htmlComment  | `/(&lt;!--\s[\w\s]*\s--&gt;)/g` | comment     |
 
 > `*` Why don't I have `&gt;` for that RegEx?
 
@@ -118,11 +103,14 @@ Right now in my editor I see 8 colors: 2 blues, 1 gray, 1 white, 1 green/lime gr
 
 Colors: In VS Code I have the HTML colors + red for units of measure: `px`, `em`, `rem`, `vh`, etc. On Github for CSS language blocks I see the HTML colors, no red for units of measure, but light purple for _functions_ like `url`, `rgb`, `hsl`, etc. I also see a difference for CSS language blocks in this markdown file. I'm going to combine all of that into something easy to build and easy to read.
 
-I'm going with:
+I'm going with GitHub CSS language blocks for CSS:
 
 1. HTML selectors: green
-1. ID and class selectors: blue
-1. single or double quotes: light-blue ()
+1. ID and class selectors AND properties: blue
+1. single or double quotes: light-blue
+1. numbers and hex colors: light-blue
+1. functions purple, e.g.: rgb, hsl, url, anything before `(`
+1. everything else white
 
 <!--
 Links:
@@ -132,22 +120,25 @@ Links:
 1. [Zero-Length Regex Matches](https://www.regular-expressions.info/zerolength.html)
 -->
 
-1. Units of measure: px, ex, em, rem, %, vw, vh, vmin, vmax, ch, and for print: (cm, mm, in, pt, pc)
+1. Units of measure: px, ex, em, rem, %, vw, vh, vmin, vmax, ch
+   1. and for print: (cm, mm, in, pt, pc)
 1. RegEx for hex colors: `/#[0-9a-fA-F]*/g`
 
-| Name          | RegEx | Color class |
-| :------------ | :---- | :---------- |
-| comments      | `//g` |             |
-| selectIdClass | `//g` |             |
-| selectHtmlEl  | `//g` |             |
-|               | `//g` |             |
-|               | `//g` |             |
+| Name            | RegEx     | Color class |
+| :-------------- | :-------- | :---------- |
+| idClassSelector | see below | blue        |
+| tagSelector     | `//g`     | green       |
+| cssProp         | `//g`     |             |
+| cssFunctionName | `//g`     |             |
 
-1. comment type 1 and multi-line: `/\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/g`
-1. comment type 2: `/\/\/.*/g`
-1. both: `/(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)|(//.*)/g` or better
-   1. `/(\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\/)|(\/\/.*)/g`
-1. ID and class:
+1. idClassSelector: `/([#\.][^\d][a-zA-Z_-\d]*)/g`
+   1. regex101: `/(?<=[#\.])[^\d\/][a-zA-Z0-9_-]*([^\r\n])[^;]$/g`
+1. tagSelector: `/([\w-]*)(?={?)(?=[,\.\s])/g` almost but
+   1. or `/([a-z1-6]*)(?=[,.\s])/g` also not total
+   1. or `/([a-z1-6]*)(?=[,.])/g` also not total
+1. cssProp: `/[a-z-:]*/g` not quite
+1. cssFunctionName: can I use includes or `(`
+1. `cssNumValue` and `cssStrValue` are not needed
 
 ```css
 /* Comment type 1 */
@@ -158,10 +149,16 @@ Links:
   box-sizing: border-box;
 }
 
+h1 p,
+p.class,
+p,
+.bem__class--name1,
+li > a,
+.card *,
+div + img,
+div ~ img,
 blockquote,
-.class,
-#id,
-.bem__class--name {
+li {
   font-family: 'Trebuchet MS', Arial, sans-serif;
   background-image: url('./images/filename.jpg');
   font-size: 1rem;
@@ -250,13 +247,11 @@ header {
 
 `*BT` = backtick symbol - a backtick RegEx for JavaScript will have to be able to grab anything that is ever put in between backticks in JS, meaning everything!
 
-| Name        | RegEx                             | Color class |
-| :---------- | :-------------------------------- | :---------- |
-| singleQt    | `/(&apos;[.\w\/:*?-]*\w&apos;)/g` |             |
-| `*backTick` | `/(BT[.\w\/:*?-]\*\wBT)/g`        |             |
-|             | `/BT([.\w\/:*?-]\*\w)BT/g`        |             |
-|             | `//g`                             |             |
-|             | `//g`                             |             |
+| Name      | RegEx         | Color class |
+| :-------- | :------------ | :---------- |
+| backTicks | /\`(.\*?)\`/g | light-blue  |
+|           | `//g`         |             |
+|           | `//g`         |             |
 
 ```js
 /* Comment type 1 */

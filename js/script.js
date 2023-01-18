@@ -5,13 +5,13 @@ const lightBlockOutput = document.getElementById("light_block_output");
 const classesDark = ["green", "blue", "light-blue", "white", "comment", "red", "purple", "orange"]
 const classesLight = ["green2", "blue2", "light-blue2", "gray", "comment2", "red2", "purple2", "orange2", "black"]
 // preliminary keywords by language
+const cssUOMs = [`px`, `ex`, `em`, `rem`, `%`, `vw`, `vh`, `vmin`, `vmax`, `ch`];
 const jsKWs = ['const', 'function', 'return', 'switch', 'case', 'break', 'default', 'class', 'if', 'else', 'new'];
 const phpKWs = ['function', 'class', 'if', 'else', 'AND', 'OR', 'return', 'new']
 
 // Global Regular Expressions
-const dblQuote = /(&quot;[.\w\/:*?-]*\w&quot;)/g;
-const singleQt = /(&apos;[.\w\/:*?-]*\w&apos;)/g;
-const backTicks = /(`[.\w\/:*?-]*\w`)/g;
+const dblQuote = /(&quot;[.\w/:*?-]*\w&quot;)/g;
+const singleQt = /(&apos;[.\w/:*?-]*\w&apos;)/g;
 const comments = /(\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\/)|(\/\/.*)/g;
 
 // HTML Regular Expressions
@@ -21,12 +21,17 @@ const htmlBoolAttr = /(\s\w*)(?=&gt;)/g; // need to have it right on > or &gt;
 const htmlComment = /(&lt;!--\s[\w\s]*\s--&gt;)/g;
 
 // CSS Regular Expressions
-const idClassSelector = /([#\.][^\d][a-zA-Z_-\d]*)/g;
-const tagSelector = /[]/g;
+const idClassSelector = /([#\.][^\d][a-zA-Z_-\d]*)/g; // DONE
+const tagSelector = /([a-z1-6]*)(?=[,.\s])/g; // almost
+const cssProp = /[]/g;
+const cssFunctionName = /[]/g;
+// const cssStrValue = /[]/g;
+// const cssNumValue = /[]/g;
 
 // SASS/SCSS Regular Expressions
 
 // JavaScript Regular Expressions
+const backTicks = /`(.*?)`/g;
 
 // JSX Regular Expressions
 
@@ -37,11 +42,9 @@ const tagSelector = /[]/g;
 // Step 1: the code to convert (need something better)
 const input = [`<p id="something" class="test" required>words here</p>`, `<title>Code Formatter</title>`, `<img class="test-img" src="./img/file.jpeg">`, `<!-- Example comment goes here -->`, ];
 const codeToConvert = [
-`.container {`,
-`  width: 80%;`,
-`  max-width: 1100px;`,
-`  margin: 0 auto;`,
-`}`,
+`blockquote,`,
+`h1 {`,
+`  font-family: 'Times New Roman', Times, serif;`
 ];
 
 // Step 2: convert reserved characters into HTML entities
@@ -67,12 +70,20 @@ input.forEach(line => {
   convertedArr.push(`${convertedLine}`);
 });
 
+let convertedArr2 = [];
+codeToConvert.forEach(line => {
+  let convertedLine = convertHTML(line);
+  convertedArr2.push(`${convertedLine}`);
+});
+console.log(convertedArr2)
+
 // Step 4: add span color classes to converted code for the 4 HTML scenarios
 let darkHtmlAttr = [];
 let darkHtmlTag = [];
 let darkHtmlBoollAttr = [];
 let darkHtmlDblQuotes = [];
 let darkHtmlComment = [];
+let css = [];
 
 class htmlCode {
   constructor(arr, regex, lineArray, index) {
@@ -111,11 +122,15 @@ myHtmlBoolAttr.findMatches();
 const myHtmlDblQuotes = new htmlCode(darkHtmlBoollAttr, dblQuote, darkHtmlDblQuotes, 2);
 myHtmlDblQuotes.findMatches();
 
-// NOT WORKING? RUN SECOND?
-
+// CSS
+const cssTry = new htmlCode(convertedArr2, tagSelector, css, 0);
+cssTry.findMatches();
 
 // Step 5: Output the code to the DOM
-darkHtmlDblQuotes.forEach(codeLine => {
+// darkHtmlDblQuotes.forEach(codeLine => {
+//   darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
+// })
+css.forEach(codeLine => {
   darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
 })
 
