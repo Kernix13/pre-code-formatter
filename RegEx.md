@@ -138,9 +138,18 @@ Links:
 1. tagSelector: `/([\w-]*)(?={?)(?=[,\.\s])/g` almost but
    1. or `/([a-z1-6]*)(?=[,.\s])/g` also not total
    1. or `/([a-z1-6]*)(?=[,.])/g` also not total
+   1. Github also has the following green: `+-n`
+   1. `([a-z1-6]*)([.\s:])`
+   1. to select values from the : use `/(:.*)/g` to select the property without : use `/([a-z-]*)(?=:)/g`, together: `/([a-z-]*)(?=:)(:\s.*\s)/g`
+   1. so selecting properties and values so need to negate that
 1. cssProp: `/([a-z-]*)(?=:)/g` or `/([a-z-]*):/g`
 1. cssFunctionName: `/([\w]{3})(?=\()/g` or `/([\w]{3})\(/g`
 1. `cssNumValue` and `cssStrValue` are not needed
+1. cssUnits: `/(?<=\d)(em|rem|vh|vw|px|%|ch|ex|vmin|vmax)/g`
+1. cssAtRules: media, supports, import, namespace, container, keyframes and others
+
+(^|[{}\\s])[^{}\\s](<?:[^{};"'\s]|\s+(?![\s{])|(?:"(?:(?:\r\n|[\s\S])|[^"\r\n])*"|'(?:(?:\r\n|[\s\S])|[^'\r\n])*')>)_(?=\\s_\\{)
+(^|[{}\\s])[^{}\\s](<?:[^{};"'\s]|\s+(?![\s{])|>)_(?=\\s_\\{)
 
 ```css
 /* Comment type 1 */
@@ -160,9 +169,12 @@ li > a,
 .card *,
 div + img,
 ul > li[class='a'],
+li:nth-child(-n + 3),
+a:hover,
 div ~ img,
 blockquote,
-li:nth-child(-n + 3) li {
+li:nth-child(-n + 3),
+li {
   font-family: 'Trebuchet MS', Arial, sans-serif;
   background-image: url('./images/filename.jpg');
   font-size: 1rem;
@@ -176,6 +188,31 @@ li:nth-child(-n + 3) li {
 
 ::selection {
   color: blue;
+}
+
+@media (min-width: 450px) {
+  .hero-text p {
+    padding-right: 0.75em;
+  }
+}
+
+@keyframes slidein {
+  from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+@import 'custom.css';
+
+:root {
+  --main-bg-color: #333;
+}
+
+.card {
+  background-color: var(--main-bg-color);
 }
 ```
 

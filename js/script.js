@@ -22,7 +22,7 @@ const htmlRegEx = [htmlAttr, htmlComment, htmlTag, htmlBoolAttr, dblQuote];
 const cssIdClass = /(?<=[#\.])([^\d][a-zA-Z_-\d]*)/g; // DONE
 const cssProp = /([a-z-]*):/g; // DONE
 const cssFxName = /([\w]{3})(?=\()/g; // DONE
-const cssUnits = /(em|rem|vh|vw|px|%|ch|vmin|vmax|ex)/g; // DONE
+const cssUnits = /(?<=\d)(em|rem|vh|vw|px|%|ch|ex|vmin|vmax)/g; // DONE
 const cssTag = /([a-z1-6]*)(?=[,.\s])/g; // almost
 const cssRegEx = [cssIdClass, cssProp, cssFxName, cssUnits, cssTag, dblQuote, singleQt]
 
