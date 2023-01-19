@@ -8,6 +8,8 @@ But how many colors would you need? You can try to recreate your own code editor
 
 Since I am adding span tags with a color class around every RegEx match, I would like to have only enough colors to make the code readable and have differentiation between different languages.
 
+> Prism.js: Very easy to define new languages. The only thing you need is **a good understanding of regular expressions**.
+
 ## Table of Contents
 
 1. [Colors and classes](#colors-and-classes)
@@ -62,7 +64,7 @@ The comments regex is global for me by being used CSS, SASS, JavaScript, and PHP
 1. comment type 1 and multi-line: `/\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/g`
 1. comment type 2: `/\/\/.*/g`
 1. both: `/(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)|(//.*)/g` or better
-   1. `/(\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\/)|(\/\/.*)/g`
+   1. -> `/(\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\/)|(\/\/.*)/g`
 
 ## HTML RegEx and colors
 
@@ -124,20 +126,20 @@ Links:
    1. and for print: (cm, mm, in, pt, pc)
 1. RegEx for hex colors: `/#[0-9a-fA-F]*/g`
 
-| Name            | RegEx     | Color class |
-| :-------------- | :-------- | :---------- |
-| idClassSelector | see below | blue        |
-| tagSelector     | `//g`     | green       |
-| cssProp         | `//g`     |             |
-| cssFunctionName | `//g`     |             |
+| Name            | RegEx                               | Color class |
+| :-------------- | :---------------------------------- | :---------- |
+| idClassSelector | `/(?<=[#\.])([^\d][a-zA-Z_-\d]*)/g` | blue        |
+| tagSelector     | `//g`                               | green       |
+| cssProp         | `//g`                               |             |
+| cssFunctionName | `//g`                               |             |
 
-1. idClassSelector: `/([#\.][^\d][a-zA-Z_-\d]*)/g`
+1. idClassSelector: `/(?<=[#\.])([^\d][a-zA-Z_-\d]*)/g`
    1. regex101: `/(?<=[#\.])[^\d\/][a-zA-Z0-9_-]*([^\r\n])[^;]$/g`
 1. tagSelector: `/([\w-]*)(?={?)(?=[,\.\s])/g` almost but
    1. or `/([a-z1-6]*)(?=[,.\s])/g` also not total
    1. or `/([a-z1-6]*)(?=[,.])/g` also not total
-1. cssProp: `/[a-z-:]*/g` not quite
-1. cssFunctionName: can I use includes or `(`
+1. cssProp: `/([a-z-]*)(?=:)/g` or `/([a-z-]*):/g`
+1. cssFunctionName: `/([\w]{3})(?=\()/g` or `/([\w]{3})\(/g`
 1. `cssNumValue` and `cssStrValue` are not needed
 
 ```css
@@ -148,10 +150,11 @@ Links:
 *:after {
   box-sizing: border-box;
 }
-
+/* `ex`, `vmin`, `vmax` */
 h1 p,
 p.class,
-p,
+p:first-child,
+a:hover,
 .bem__class--name1,
 li > a,
 .card *,
@@ -159,15 +162,16 @@ div + img,
 ul > li[class='a'],
 div ~ img,
 blockquote,
-li {
+li:nth-child(-n + 3) li {
   font-family: 'Trebuchet MS', Arial, sans-serif;
   background-image: url('./images/filename.jpg');
   font-size: 1rem;
-  height: 100vh;
+  height: 500vh;
+  width: 100vw;
   color: #f1f5f9;
   color: rgb(255, 0, 0);
   color: hsl(0, 100%, 50%);
-  border: 1px solid black;
+  border: 1px solid black !important;
 }
 
 ::selection {
@@ -245,6 +249,12 @@ header {
 ```
 
 ## JavaScript RegEx and colors
+
+Prism.js regex for template string:
+
+```js
+/`(?:\\.|\$\{[^{}]*\}|(?!\$\{)[^\\`])*`/;
+```
 
 `*BT` = backtick symbol - a backtick RegEx for JavaScript will have to be able to grab anything that is ever put in between backticks in JS, meaning everything!
 
@@ -365,6 +375,10 @@ function Config_FR() {
 
 ## JSON RegEx and colors
 
+1. Properties in quotes: green
+1. String values: light-blue
+1. Boolean values: blue
+
 | Name | RegEx | Color class |
 | :--- | :---- | :---------- |
 |      | `//g` |             |
@@ -383,6 +397,35 @@ function Config_FR() {
     ]
   }
 ]
+```
+
+Prism.js regular expressions for JSON:
+
+```js
+Prism.languages.json = {
+  property: {
+    pattern: /(^|[^\\])"(?:\\.|[^\\"\r\n])*"(?=\s*:)/,
+    lookbehind: true,
+    greedy: true,
+  },
+  string: {
+    pattern: /(^|[^\\])"(?:\\.|[^\\"\r\n])*"(?!\s*:)/,
+    lookbehind: true,
+    greedy: true,
+  },
+  comment: {
+    pattern: /\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/,
+    greedy: true,
+  },
+  number: /-?\b\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/i,
+  punctuation: /[{}[\],]/,
+  operator: /:/,
+  boolean: /\b(?:false|true)\b/,
+  null: {
+    pattern: /\bnull\b/,
+    alias: 'keyword',
+  },
+};
 ```
 
 ## PHP RegEx and colors

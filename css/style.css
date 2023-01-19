@@ -34,7 +34,9 @@ pre {
 .code-block {
   padding-top: 0.5em;
   line-height: 1.6;
-  overflow: auto;
+  // overflow: auto;
+  overflow-x: auto;
+  white-space: pre-wrap;
 }
 
 /* DARK code block */
@@ -127,10 +129,10 @@ p.dark-code, p.light-code {
 /* inline code element */
 code {
   display: inline-block;
-  font-weight: 900;
-  font-size: 90%;
-  background-color: #ccc;
-  padding: 0 0.25em;
+  font-weight: 600;
+  font-size: 110%;
+  color: #000;
+  color: rgb(56, 58, 163);
 }
 
 blockquote,
