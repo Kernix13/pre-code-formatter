@@ -4,24 +4,81 @@
   box-sizing: border-box;
 }
 
+:root {
+  --dark: hsl(0, 0%, 20%);
+  --white: hsl(0, 0%, 100%);
+
+  /* DARK code block variables */
+  --bg-dark_block: hsl(210, 19%, 8%);
+  --light-text: hsl(210, 40%, 96%);
+  --light-blue: hsl(199, 95%, 85%);
+  --blue: hsl(199, 100%, 70%);
+  --green: hsl(93, 86%, 51%);
+  --comment: hsl(0, 0%, 67%);
+  --red: hsl(0, 97%, 71%);
+  --purple: hsl(283, 100%, 85%);
+  --orange: hsl(41, 100%, 51%);
+
+  /* LIGHT code block variables (added '2' prefix because I'm not interested in using a light code block but these colors look good) */
+  --bg-light_block: hsl(0, 0%, 87%);
+  --light-blue2: hsl(229, 100%, 72%);
+  --blue2: hsl(198, 100%, 33%);
+  // --blue2: hsl(234, 64%, 57%);
+  --green2: hsl(137, 100%, 30%);
+  --comment2: hsl(0, 0%, 60%);
+  --gray: #6e6e6e;
+  --maroon: hsl(327, 100%, 30%);
+  --purple2: hsl(283, 100%, 66%);
+  --orange2: hsl(26, 100%, 51%);
+}
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1rem;
-  color: #333;
+  color: var(--dark);
   padding: 0;
   margin: 0;
 }
 
 p {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
 }
 
 code,
 kbd,
-tt,
-var,
+samp,
+var {
+  font-family: "Lucida Console", Monaco, monospace;
+  font-weight: 600;
+}
+
+var {
+  font-size: 75%;
+  font-style: oblique;
+  // font-style: italic;
+}
+
 pre {
-  font-family: "Courier New", Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+kbd {
+  display: inline-block;
+  font-size: 87.5%;
+  line-height: 1;
+
+  // background-color: #d9edfe;
+  background-color: #e1ebf5;
+  color: #555;
+
+  padding: 0.0625em 0.1875em;
+  border: 1px solid #888;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+}
+
+.notes {
+  margin-bottom: 3em;
 }
 
 .container {
@@ -30,123 +87,99 @@ pre {
   margin: 0 auto;
 }
 
-/* dark and light code blocks */
+/* DARK and LIGHT code blocks */
 .code-block {
-  padding-top: 0.5em;
-  line-height: 1.6;
+  /* Why do I need a padding-top? The line-height? */
+  padding-top: 1.5em;
+  line-height: 1.5;
   // overflow: auto;
+  // overflow: scroll;
   overflow-x: auto;
-  white-space: pre-wrap;
+  // white-space: pre-wrap;
 }
 
 /* DARK code block */
 .dark_block {
-  background-color: #111519;
-  color: #fff;
+  background-color: var(--bg-dark_block);
+  color: var(--white);
 }
 
-/* LIGHT code block */
+/* LIGHT code block and section */
 .light_block {
-  background-color: #ddd;
+  background-color: var(--bg-light_block);
   font-weight: 700;
 }
 .dark-bg {
-  background-color: #111519;
+  background-color: var(--bg-dark_block);
   padding: 2em 0;
 }
 .light-text {
-  color: #f1f5f9;
+  color: var(--light-text);
 }
 
 /* DARK code block language colors */
 .light-blue {
-  color: rgb(179, 229, 253);
+  color: var(--light-blue);
 }
 .blue, .boolean {
-  color: rgb(100, 206, 255);
+  color: var(--blue);
 }
 .green {
-  color: rgb(119, 237, 22);
+  color: var(--green);
 }
 .comment {
-  color: #aaa;
+  color: var(--comment);
 }
 .white {
-  color: #fff;
+  color: var(--white);
 }
 .red {
-  color: rgb(250, 120, 120);
+  color: var(--red);
 }
 .purple {
-  color: rgb(233, 177, 255);
+  color: var(--purple);
 }
 .orange {
-  color: rgb(255, 176, 5);
-}
-.black {
-  color: #333;
+  color: var(--orange);
 }
 
 /* LIGHT code block language colors */
 .light-blue2 {
-  color: rgb(83, 113, 247);
+  color: var(--light-blue2);
 }
 .blue2, .boolean2 {
-  color: rgb(40, 55, 188);
+  color: var(--blue2);
 }
 .green2 {
-  color: rgb(0, 177, 50);
+  color: var(--green2);
 }
 .comment2 {
-  color: #999;
+  color: var(--comment2);
 }
 .gray {
-  color: #777;
+  color: var(--gray);
 }
-.red2 {
-  color: rgb(255, 110, 110);
+.maroon {
+  color: var(--maroon);
 }
 .purple2 {
-  color: rgb(207, 84, 255);
+  color: var(--purple2);
 }
 .orange2 {
-  color: rgb(255, 113, 5);
+  color: var(--orange2);
 }
 
-/* The output you need to copy */
+/* The output you need to copy to paste into your <pre> block */
 p.dark-code, p.light-code {
-  background-color: #ddd;
-  font-size: 90%;
-  font-weight: 700;
+  background-color: var(--bg-light_block);
+  font-size: 1rem;
   line-height: 1.6;
   overflow: auto;
   padding: 1em;
   margin: 0 auto;
-  width: 80%;
+  width: 90%;
+  border: 1px solid #555;
   // max-width: 800px;
-}
-
-/* inline code element */
-code {
-  display: inline-block;
-  font-weight: 600;
-  font-size: 110%;
-  color: #000;
-  color: rgb(56, 58, 163);
-}
-
-blockquote,
-.class,
-#id,
-.bem__class--name {
-  font-family: 'Trebuchet MS', Arial, sans-serif;
-  background-image: url('./images/filename.jpg');
-  font-size: 1rem;
-  height: 100vh;
-  color: #333;
-  color: rgb(255, 0, 0);
-  color: hsl(0, 100%, 50%);
-  border: 1px solid black;
 }
 
 /* color boxes */
@@ -162,82 +195,85 @@ blockquote,
   width: 110px;
   height: 110px;
   text-align: center;
-  align-self: center;
 }
-// Dark code block
-// WTF? Why isn't this one working? for some reason the first declaration does not apply?????
-.bg-blue22 {
-  border: 1px solid red;
-}
+// Dark code block examples
+
+// Why isn't .bg-light-blue working? for some reason the first rule does not apply? I had to create the phony .bg-blue22 to fix that, or use the empty div above .bg-light-blue
+
+// .bg-blue22 {
+//   border: 1px solid red;
+// }
 .bg-light-blue {
-  background-color: rgb(165, 224, 251);
+  background-color: var(--light-blue);
 }
 .bg-blue {
-  background-color: rgb(100, 206, 255);
+  background-color: var(--blue);
 }
 .bg-green {
-  background-color: rgb(119, 237, 22);
+  background-color: var(--green);
 }
 .bg-comment {
-  background-color: #bbb;
+  background-color: var(--comment);
 }
 .bg-red {
-  background-color: rgb(254, 85, 85);
+  background-color: var(--red);
 }
 .bg-purple {
-  background-color: rgb(233, 177, 255);
+  background-color: var(--purple);
 }
 .bg-orange {
-  background-color: rgb(255, 176, 5);
+  background-color: var(--orange);
 }
 .bg-background-color {
-  background-color: #111519;
-  color: white;
+  background-color: var(--bg-dark_block);
+  color: var(--white);
 }
-// Light code block
+
+/* Light code block */
 .bg-blue22 {
   border: 1px solid red;
 }
 .bg-light-blue2 {
-  background-color: rgb(83, 113, 247);
-  color: white;
+  background-color: var(--light-blue2);
+  color: var(--white);
 }
 .bg-blue2 {
-  background-color: rgb(40, 55, 188);
-  color: white;
+  background-color: var(--blue2);
+  color: var(--white);
 }
 .bg-green2 {
-  background-color: rgb(0, 177, 50);
-  color: white;
+  background-color: var(--green2);
+  color: var(--white);
 }
 .bg-comment2 {
-  background-color: #999;
-  color: white;
+  background-color: var(--comment2);
+  color: var(--white);
 }
 .bg-gray {
-  background-color: #777;
-  color: white;
+  background-color: var(--gray);
+  color: var(--white);
 }
-.bg-red2 {
-  background-color: rgb(255, 110, 110);
-  color: white;
+.bg-maroon {
+  background-color: var(--maroon);
+  color: var(--white);
 }
 .bg-purple2 {
-  background-color: rgb(207, 84, 255);
-  color: white;
+  background-color: var(--purple2);
+  color: var(--white);
 }
 .bg-orange2 {
-  background-color: rgb(255, 113, 5);
-  color: white;
+  background-color: var(--orange2);
+  color: var(--white);
 }
 .bg-background-color2 {
-  background-color: #ddd;
+  background-color: var(--bg-light_block);
+  color: var(--dark);
 }
 
 /* code for line numbers in pre code blocks
 
 pre {
-  font-family: "Courier New", Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
   line-height: 1.4;
   overflow: auto;
   counter-reset: line;
@@ -256,4 +292,5 @@ pre span::before {
   // uncomment below if you are using a light code block 
   // color: #000;
 }
+
 */

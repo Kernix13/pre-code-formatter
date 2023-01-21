@@ -10,7 +10,7 @@
   <body>
     <div class="container">
       <h1>HTML Pre Tag Formatter</h1>
-      <p>Output <code>span</code> tags for use in a <code>pre</code> tag for code blocks in blog posts (dark and light versions, see notes below).</p>
+      <p>Output <code class="code-text">span</code> tags for use in a <code>pre</code> tag for code blocks in blog posts (dark and light versions, see notes below). Testing: <code>kbd</code> element: <kbd>ENTER</kbd>, and <code>var</code> element: <var>a<sup> 2</sup> + b<sup>2</sup> = c<sup>2</sup></var>.</p>
 
       <!-- output here: -->
       <hr>
@@ -56,13 +56,6 @@
             class="light-blue">&quot;test-img&quot;</span> <span class="blue">src</span><span class="blue"></span>=<span
             class="light-blue">&quot;./img/file.jpeg&quot;</span>&gt;</span>
         <span><span class="comment">&lt;<span class="green"></span>!-- Example comment goes here --&gt;</span></span>
-
-        <span><span class="green">blockquote</span><span class="green"></span>,</span>
-        <span><span class="green">h1</span><span class="green"></span> {</span>
-        <span><span class="green"></span> <span class="green"></span> font-family:<span class="green"></span> &apos;T<span
-            class="green">imes</span><span class="green"></span> N<span class="green">ew</span><span class="green"></span>
-          Roman&apos;<span class="green"></span>,<span class="green"></span> T<span class="green">imes</span><span
-            class="green"></span>,<span class="green"></span> serif;</span>
       </pre>   
 
       <!-- Paste code in here so the <li> tags break to a new line  -->
@@ -71,7 +64,7 @@
 
       <h3>Color testing block</h3>
       <pre class="code-block dark_block">
-        const users = ['no color class here'
+        const users = ['default color for the dark color block'
         <span class="light-blue">const color = "light-blue"</span> 
         <span class="blue"> { color: "blue" },</span> 
         <span class="green"> { color: "green" },</span> 
@@ -87,6 +80,7 @@
     <div class="container">
       <h2>Dark code block colors</h2>
       <div class="color-container">
+        <div></div>
         <div class="color-box bg-light-blue">light-blue</div>
         <div class="color-box bg-blue">blue</div>
         <div class="color-box bg-green">green</div>
@@ -106,27 +100,39 @@
 
         <h3 class="light-text">Light block example:</h3>
         <pre class="code-block light_block">
-            const users = ['no color class here'
+            const users = ['default color for the light color block'
             <span class="light-blue2">const color = "light-blue2"</span>
             <span class="blue2"> { color: "blue2" },</span>
             <span class="green2"> { color: "green2" },</span>
             <span class="comment2"> { color: "comment2" }</span>
             <span class="gray"> { color: "gray" }</span>
-            <span class="red2"> { color: "red2" }</span>
+            <span class="maroon"> { color: "maroon" }</span>
             <span class="purple2"> { color: "purple2" }</span>
             <span class="orange2"> { color: "orange2" }</span>
             <span> { color: "no class, same as body class: #333" } ];</span>
+
+            <span class="comment2">&lt;!-- Working but with 1 problem (see notes at end) --&gt;</span>
+            <span>&lt;<span class="maroon">p</span> <span class="green2">id</span><span class="green2"></span>=<span
+                class="light-blue2">&quot;something&quot;</span> <span class="green2">class</span><span class="green2"></span>=<span
+                class="light-blue2">&quot;test&quot;</span><span class="green2"> required</span>&gt;words here&lt;<span
+                class="maroon"></span>/<span class="maroon">p</span>&gt;</span>
+            <span>&lt;<span class="maroon">title</span>&gt;Code Formatter&lt;<span class="maroon"></span>/<span
+                class="maroon">title</span>&gt;</span>
+            <span>&lt;<span class="maroon">img</span> <span class="green2">class</span><span class="green2"></span>=<span
+                class="light-blue2">&quot;test-img&quot;</span> <span class="green2">src</span><span class="green2"></span>=<span
+                class="light-blue2">&quot;./img/file.jpeg&quot;</span>&gt;</span>
+            <span><span class="comment2">&lt;<span class="green2"></span>!-- Example comment goes here --&gt;</span></span>
         </pre>
       </div>
       <div class="container">
         <h2 class="light-text">Light code block colors</h2>
-        <div class="color-container">
+        <div class="color-container light-container">
           <div class="color-box bg-light-blue2">light-blue2</div>
           <div class="color-box bg-blue2">blue2</div>
           <div class="color-box bg-green2">green2</div>
           <div class="color-box bg-comment2">comment2</div>
           <div class="color-box bg-gray">gray</div>
-          <div class="color-box bg-red2">red2</div>
+          <div class="color-box bg-maroon">maroon</div>
           <div class="color-box bg-purple2">purple2</div>
           <div class="color-box bg-orange2">orange2</div>
           <div class="color-box bg-background-color2">background-color</div>
@@ -151,15 +157,13 @@
           <span class="comment">/* CSS comment type two */</span>
           <span class="green">TagName</span>,
           <span class="blue">.class</span> {
-            <span class="green">two-words</span>: <span class="light-blue">'Some Str'</span>, <span
-              class="blue">Value</span>, <span class="blue">value2</span>;
-            <span class="green">background-image</span>: <span class="blue">url</span>(<span class="light-blue">'./somepath/jpg'</span>);
+            <span class="green">two-words</span>: <span class="light-blue">'Some Str'</span>, Value, value2;
+            <span class="green">background-image</span>: <span class="blue">url</span>(<span class="light-blue">'./somepath/name.jpg'</span>);
             <span class="green">font-size</span>: 110<span class="red">%</span>;
-            <span class="green">margin</span>: 1<span class="red">rem</span> <span class="blue">auto</span>;
+            <span class="green">margin</span>: 1<span class="red">rem</span> auto;
           }
         </span>
       </pre>
-      <p>My CSS units (<code>em</code>, <code>rem</code>, <code>px</code>, <code>%</code>, etc.) are red in my VS Code theme, but I will probably let them default to white/black.</p>
       <hr>
       <h3>JavaScript Template</h3>
       <pre class="code-block dark_block">
@@ -186,23 +190,23 @@
 
       </pre>
       <hr>
-      <h2>NOTES</h2>
-      <ul>
-        <h3>How to use this</h3>
-        <li>So as not to duplicate the JS, if you have a light code block, then do a find for <code>classesDark</code> and replace it with <code>classesLight</code></li>
-        <li>At this point, you have to add your code <code>script.js</code> in backticks to an array called <code>input</code> or <code>codeToConvert</code>. I do not like this approach. I want to 1) add a <code>textarea</code> to use to grab the code, or ideally 2) grab the code out of a file (markdown <code>frontmatter</code>?)</li>
-        <li>Then save and copy the code under <em>Code to copy for dark code block</em>.</li>
-        <li>Paste that code into your HTML file so the <code>li</code> tags break to a new line. Then remove the opening and closing <code>li</code> tags and paste the remaining code into your <code>pre</code> block - DONE!</li>
-      </ul>
-      <ul>
-        <h3>Issues, problems, and To-Do items</h3>
-        <li>As of <date>January 16th, 2023,</date> I'm getting empty <code>span.color</code> tags. They don't affect the display in the <code>pre</code> block, but they should not be there. I will begin debugging the code to get rid of them. I assume it's my RegEx capture groups.</li>
-        <li>I need a better way than using an array to grab the code.</li>
-        <li>The code for HTML is ~ 75 lines and that is all I have at this time. This file will be huge for every language so I will eventually have separate files</li>
-        <li>How is my <code>code</code> CSS styling? Let me know if you have something better</li>
-        <li>CSS RegEx and JavaScript next!</li>
-        <li>Finally, this goes without saying, but change the span color classes to your liking.</li>
-      </ul>
+      <div class="notes">
+        <h2>NOTES</h2>
+        <ul>
+          <h3>How to use this</h3>
+          <li>At this point, you have to add your code to <code>script.js</code> in backticks to an array called <code>input</code> or <code>codeToConvert</code>. I do not like this approach.</li>
+          <li>Then save <code>script.js</code> and copy the code under <em>Code to copy for dark code block</em>.</li>
+          <li>Paste that code <em>anywhere</em> into your HTML file so the <code>li</code> tags break to a new line. Then remove the opening and closing <code>li</code> tags and paste the remaining code into your <code>pre</code> block - DONE! The code in the <code>pre</code> tag will look funky but you should not have to touch it after pasting it.</li>
+        </ul>
+        <ul>
+          <h3>Issues, problems, and To-Do items</h3>
+          <li>As of <date>January 20th, 2023,</date> I'm getting empty <code>span.color</code> tags. They don't affect the display in the <code>pre</code> block, but they should not be there. I will begin debugging the code to get rid of them. I assume it's my RegEx capture groups or the <code>replace()</code> method.</li>
+          <li>I need a better way than using an array to grab the code. I want to either <strong>1)</strong> add a <code>textarea</code> to paste the code and then grab it with JavaScript, or ideally <strong>2)</strong>
+          grab the code out of a file using the <em>FileReader API</em>.</li>
+          <li>As of January 15th I switched from a functional approach to using Classes.</li>
+          <li>How is my <code>code</code>, <code>kbd</code>, and <code>var</code> CSS styling? Let me know if you have something better</li>
+        </ul>
+      </div>
     </div>
     
 

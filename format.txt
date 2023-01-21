@@ -1,8 +1,10 @@
-` `,
-``,
-``,
-``,
-``,
-``,
-``,
-``,
+<div class="container">
+  <h2 class="light-text">Light code block colors</h2>
+  <div class="color-container light-container">
+    <div class="color-box bg-light-blue2">light-blue2</div>
+      <ul>
+        <li><a href="#"></a></li>
+      </ul>
+    <div class="color-box bg-blue2">blue2</div>
+  </div>
+</div>

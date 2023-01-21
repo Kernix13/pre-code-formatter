@@ -73,11 +73,12 @@ The comments regex is global for me by being used CSS, SASS, JavaScript, and PHP
 | Name         | RegEx                           | Color class |
 | :----------- | :------------------------------ | :---------- |
 | htmlAttr     | `/([\w-]*)(?==)/g`              | blue        |
-| `*`htmlTag   | `(?<=&lt;\/*)([\w]*)`           | lime-green  |
+| htmlTag      | `(?<=&lt;\/*)([\w]*)`           | lime-green  |
+|              | BETTER: see below               | lime-green  |
 | htmlBoolAttr | `/(\s\w*)(?=&gt;)/g`            | blue        |
 | htmlComment  | `/(&lt;!--\s[\w\s]*\s--&gt;)/g` | comment     |
 
-> `*` Why don't I have `&gt;` for that RegEx?
+> Add `|!` to grab DOCTYPE: `(?<=&lt;\/*|!)([a-zA-Z1-6]*) `
 
 ```html
 <!-- Comment -->
@@ -102,6 +103,8 @@ The comments regex is global for me by being used CSS, SASS, JavaScript, and PHP
 1. CLOSING html tag: `/<\/.*?>/g`
 
 ## CSS RegEx and colors
+
+PrismJS CSS light and dark interesting: https://prismjs.com/examples.html
 
 Colors: In VS Code I have the HTML colors + red for units of measure: `px`, `em`, `rem`, `vh`, etc. On Github for CSS language blocks I see the HTML colors, no red for units of measure, but light purple for _functions_ like `url`, `rgb`, `hsl`, etc. I also see a difference for CSS language blocks in this markdown file. I'm going to combine all of that into something easy to build and easy to read.
 
@@ -135,21 +138,61 @@ Links:
 
 1. idClassSelector: `/(?<=[#\.])([^\d][a-zA-Z_-\d]*)/g`
    1. regex101: `/(?<=[#\.])[^\d\/][a-zA-Z0-9_-]*([^\r\n])[^;]$/g`
-1. tagSelector: `/([\w-]*)(?={?)(?=[,\.\s])/g` almost but
-   1. or `/([a-z1-6]*)(?=[,.\s])/g` also not total
-   1. or `/([a-z1-6]*)(?=[,.])/g` also not total
-   1. Github also has the following green: `+-n`
-   1. `([a-z1-6]*)([.\s:])`
-   1. to select values from the : use `/(:.*)/g` to select the property without : use `/([a-z-]*)(?=:)/g`, together: `/([a-z-]*)(?=:)(:\s.*\s)/g`
-   1. so selecting properties and values so need to negate that
-1. cssProp: `/([a-z-]*)(?=:)/g` or `/([a-z-]*):/g`
+1. cssProp: `/([a-z-]*)(?=:)/g` or `/([a-z-]*):/g` or
+   1. `/(?:[-\w]|\$[-\w]|#\{\$[-\w]+\})+(?=\s*:)/g`
 1. cssFunctionName: `/([\w]{3})(?=\()/g` or `/([\w]{3})\(/g`
 1. `cssNumValue` and `cssStrValue` are not needed
 1. cssUnits: `/(?<=\d)(em|rem|vh|vw|px|%|ch|ex|vmin|vmax)/g`
-1. cssAtRules: media, supports, import, namespace, container, keyframes and others
+1. cssAtRules: media, supports, import, container, keyframes,... `/([@][a-z-]*)/g` **DONE**
+1. cssVariable: `/([-]{2}[a-z-]*)/g` **DONE**
 
-(^|[{}\\s])[^{}\\s](<?:[^{};"'\s]|\s+(?![\s{])|(?:"(?:(?:\r\n|[\s\S])|[^"\r\n])*"|'(?:(?:\r\n|[\s\S])|[^'\r\n])*')>)_(?=\\s_\\{)
-(^|[{}\\s])[^{}\\s](<?:[^{};"'\s]|\s+(?![\s{])|>)_(?=\\s_\\{)
+> how does prismjs match css selectors and https://prismjs.com/
+
+At this point, you have to do your CSS selectors as a batch run, and then run everything else and then patch the two together
+
+1. tagSelector: `/([a-z1-6]*)(?={?)(?=[:,\.\s])/g` almost but also grabbing classes and IDs
+   1. or `/([a-z1-6]*)(?=[:,.\s])/g` almost but also grabbing classes and IDs
+   1. or `/([a-z1-6]*)(?=[:,.])/g` also with problems worse than above
+   1. Github also has the following green: `+-n`
+
+```
+A. https://github.com/PrismJS/prism/blob/master/components/prism-css-extras.js
+
+
+B. https://github.com/PrismJS/prism/blob/master/components/prism-css.js
+pattern: /(\bselector\s*\(\s*(?![\s)]))(?:[^()\s]|\s+(?![\s)])|\((?:[^()]|\([^()]*\))*\))+(?=\s*\))/,
+
+var string = /(?:"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n])*')/;
+		'selector': {
+			pattern: RegExp('(^|[{}\\s])[^{}\\s](?:[^{};"\'\\s]|\\s+(?![\\s{])|' + string.source + ')*(?=\\s*\\{)'),
+
+C. https://github.com/PrismJS/prism/blob/master/components/prism-scss.js
+	// CSS selector regex is not appropriate for Sass
+	// since there can be lot more things (var, @ directive, nesting..)
+	// a selector must start at the end of a property or after a brace (end of other rules or nesting)
+	// it can contain some characters that aren't used for defining rules or end of selector, & (parent selector), or interpolated variable
+	// the end of a selector is found when there is no rules in it ( {} or {\s}) or if there is a property (because an interpolated var
+	// can "pass" as a selector- e.g: proper#{$erty})
+	// this one was hard to do, so please be careful if you edit this one :)
+
+(?=\S)[^@;{}()]?(?:[^@;{}()\s]|\s+(?!\s)|#\{\$[-\w]+\})+(?=\s*\{(?:\}|\s|[^}][^:{}]*[:{][^}]))
+1. (?=\S) = positive lokahead to match non-whitespace
+2. [^@;{}()]? = do not match those chars if they occur
+3. (?:[^@;{}()\s]|\s+(?!\s)|#\{\$[-\w]+\})+ =
+   4. (?: = Non-capturing group
+      5. [^@;{}()\s] do not match those chars or spaces - OR statement...
+      6. \s+ = match 1 or more whitespace
+      7. (?!\s) = negative lookahead for a space - OR
+      8. #\{\$[-\w]+\})+ =
+9. (?=\s*\{(?:\}|\s|[^}][^:{}]*[:{][^}]))
+   10.
+
+			'placeholder': /%[-\w]+/,
+			'variable': /\$[-\w]+|#\{\$[-\w]+\}/
+
+D. https://github.com/PrismJS/prism/blob/master/components/prism-sass.js
+^([ \t]*)\S(?:,[^,\r\n]+|[^,\r\n]*)(?:,[^,\r\n]+)*(?:,(?:\r?\n|\r)\1[ \t]+\S(?:,[^,\r\n]+|[^,\r\n]*)(?:,[^,\r\n]+)*)*
+```
 
 ```css
 /* Comment type 1 */
@@ -216,12 +259,30 @@ li {
 }
 ```
 
-```
-#[0-9a-fA-F]*
+Prism.js css
 
-color: #ff0000;
-background-color: #fff;
-color: #89f5a2;
+```js
+var string = /(?:"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n])*')/;
+
+			'pseudo-element': /:(?:after|before|first-letter|first-line|selection)|::[-\w]+/,
+			'pseudo-class': /:[-\w]+/,
+			'class': /\.[-\w]+/,
+			'id': /#[-\w]+/,
+			'attribute': {
+				pattern: RegExp('\\[(?:[^[\\]"\']|' + string.source + ')*\\]'),
+				greedy: true,
+        					'attr-name': {
+						pattern: /^(\s*)(?:(?!\s)[-\w\xA0-\uFFFF])+/,
+						lookbehind: true
+					},
+					'attr-value': [
+						string,
+						{
+							pattern: /(=\s*)(?:(?!\s)[-\w\xA0-\uFFFF])+(?=\s*$)/,
+							lookbehind: true
+						}
+					],
+					'operator': /[|~*^$]?=/
 ```
 
 ## SASS and SCSS RegEx and colors
@@ -262,7 +323,7 @@ header {
   background-color: $headerBgClr;
   color: $headerClr;
 
-  .header-container {
+  .header-container h1 {
     margin: 0 auto;
     width: 80%;
     max-width: 1100px;
@@ -283,6 +344,94 @@ header {
     }
   }
 }
+```
+
+1. Prismscss: https://github.com/PrismJS/prism/blob/master/components/prism-scss.js
+1. examples for `@`: https://prismjs.com/examples.html
+
+```js
+Prism.languages.scss = Prism.languages.extend('css', {
+  comment: {
+    pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|\/\/.*)/,
+    lookbehind: true,
+  },
+  atrule: {
+    pattern: /@[\w-](?:\([^()]+\)|[^()\s]|\s+(?!\s))*?(?=\s+[{;])/,
+    inside: {
+      rule: /@[\w-]+/,
+      // See rest below
+    },
+  },
+  // url, compassified
+  url: /(?:[-a-z]+-)?url(?=\()/i,
+  // CSS selector regex is not appropriate for Sass
+  // since there can be lot more things (var, @ directive, nesting..)
+  // a selector must start at the end of a property or after a brace (end of other rules or nesting)
+  // it can contain some characters that aren't used for defining rules or end of selector, & (parent selector), or interpolated variable
+  // the end of a selector is found when there is no rules in it ( {} or {\s}) or if there is a property (because an interpolated var
+  // can "pass" as a selector- e.g: proper#{$erty})
+  // this one was hard to do, so please be careful if you edit this one :)
+  selector: {
+    // Initial look-ahead is used to prevent matching of blank selectors
+    pattern:
+      /(?=\S)[^@;{}()]?(?:[^@;{}()\s]|\s+(?!\s)|#\{\$[-\w]+\})+(?=\s*\{(?:\}|\s|[^}][^:{}]*[:{][^}]))/,
+    inside: {
+      parent: {
+        pattern: /&/,
+        alias: 'important',
+      },
+      placeholder: /%[-\w]+/,
+      variable: /\$[-\w]+|#\{\$[-\w]+\}/,
+    },
+  },
+  property: {
+    pattern: /(?:[-\w]|\$[-\w]|#\{\$[-\w]+\})+(?=\s*:)/,
+    inside: {
+      variable: /\$[-\w]+|#\{\$[-\w]+\}/,
+    },
+  },
+});
+
+Prism.languages.insertBefore('scss', 'atrule', {
+  keyword: [
+    /@(?:content|debug|each|else(?: if)?|extend|for|forward|function|if|import|include|mixin|return|use|warn|while)\b/i,
+    {
+      pattern: /( )(?:from|through)(?= )/,
+      lookbehind: true,
+    },
+  ],
+});
+
+Prism.languages.insertBefore('scss', 'important', {
+  // var and interpolated vars
+  variable: /\$[-\w]+|#\{\$[-\w]+\}/,
+});
+
+Prism.languages.insertBefore('scss', 'function', {
+  'module-modifier': {
+    pattern: /\b(?:as|hide|show|with)\b/i,
+    alias: 'keyword',
+  },
+  placeholder: {
+    pattern: /%[-\w]+/,
+    alias: 'selector',
+  },
+  statement: {
+    pattern: /\B!(?:default|optional)\b/i,
+    alias: 'keyword',
+  },
+  boolean: /\b(?:false|true)\b/,
+  null: {
+    pattern: /\bnull\b/,
+    alias: 'keyword',
+  },
+  operator: {
+    pattern: /(\s)(?:[-+*\/%]|[=!]=|<=?|>=?|and|not|or)(?=\s)/,
+    lookbehind: true,
+  },
+});
+
+Prism.languages.scss['atrule'].inside.rest = Prism.languages.scss;
 ```
 
 ## JavaScript RegEx and colors
@@ -330,6 +479,8 @@ removeDups(darkHtmDblQuotes, str1);
 removeDups(darkHtmDblQuotes, str2);
 removeDups(darkHtmDblQuotes, str3);
 ```
+
+1. Prism javascript: https://github.com/PrismJS/prism/blob/master/components/prism-javascript.js
 
 ## JSX RegEx and colors
 
@@ -416,10 +567,10 @@ function Config_FR() {
 1. String values: light-blue
 1. Boolean values: blue
 
-| Name | RegEx | Color class |
-| :--- | :---- | :---------- |
-|      | `//g` |             |
-|      | `//g` |             |
+| Name      | RegEx                                  | Color class |
+| :-------- | :------------------------------------- | :---------- |
+| property  | `/(&quot;[.\w\/:*\{\s?-]*\w&quot;):/g` | green       |
+| dblQuotes | see Global                             | light-blue  |
 
 ```json
 [
@@ -431,6 +582,21 @@ function Config_FR() {
     "scales": [
       { "Major Scale": ["1st", " 4th", " 5th"] },
       { "Minor Pentatonic": ["2nd"] }
+    ]
+  }
+]
+```
+
+```
+[
+  {
+    &quot;Chord&quot;: &quot;Maj&quot;,
+    &quot;Intervals&quot;: [&quot;1&quot;, &quot;3&quot;, &quot;5&quot;],
+    &quot;steps&quot;: [0, 4, 7],
+    &quot;Tendency&quot;: [&quot;I&quot;, &quot;IV&quot;],
+    &quot;scales&quot;: [
+      { &quot;Major Scale&quot;: [&quot;1st&quot;, &quot; 4th&quot;, &quot; 5th&quot;] },
+      { &quot;Minor Pentatonic&quot;: [&quot;2nd&quot;] }
     ]
   }
 ]
