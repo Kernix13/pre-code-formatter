@@ -1,5 +1,7 @@
 # Regular expressions used for this app
 
+> **NOTE**: This is basically a sketchpad of sorts. I used the language code blocks on this page, the files in this project, and files from my other projects to determine the colors I want to use.
+
 When it comes to code blocks in a `pre` tag on a docs page or a blog post, you can have the entire code block in a single color. If it is a dark code block, then the code will be white or light gray, and if it's a light code block it will be black or dark gray.
 
 That's fine. However, a code block with color syntax highlighting not only looks good, but it is easier to read. As a result, a syntax highlighted code block will make your blog posts look better and hopefully lead to higher results in t he SERPs.
@@ -27,7 +29,7 @@ Since I am adding span tags with a color class around every RegEx match, I would
 
 ## Colors and classes
 
-I do not want to add span tags around characters like `(){}[],;:`, etc. Therefore, all code not wrapped in a `span.color` tag will be white for dark code bloacks, and black for light code blocks.
+I do not want to add span tags around puctuation like `(){}[],;:`, etc. Therefore, all code not wrapped in a `span.color` tag will be white for dark code bloacks, and black for light code blocks.
 
 All languages seem to use light-blue for anything inside single-quotes, double-quotes, and backticks so I will use RegEx to add a `span.light-blue` around those symbols and their contents.
 
@@ -37,7 +39,7 @@ I am going to use either the colors I see in VS Code or the colors in language c
 
 > Note: I am using a dark theme in VS Code
 
-Right now in my editor I see 8 colors: 2 blues, 1 gray, 1 white, 1 green/lime green, 1 orange, 1 red, and 1 purple. That is from html, css, js, jsx, md, and php code.
+Right now in my editor I see 8 colors: 2 blues, 1 gray, 1 white, 1 green/lime green, 1 orange, 1 red, and 1 purple. That is from html, css, js, jsx, md, json, and php code.
 
 1. HTML: white, green, light-blue, blue, and gray (comments)
 1. CSS: HTML colors + red
@@ -55,11 +57,11 @@ Right now in my editor I see 8 colors: 2 blues, 1 gray, 1 white, 1 green/lime gr
 | :------- | :-------------------------------- | :---------- |
 | dblQuote | `/(&quot;[.\w\/:*?-]*\w&quot;)/g` | light-blue  |
 | singleQt | `/(&apos;[.\w/:*?-]*\w&apos;)/g`  | light-blue  |
-| comments | See notes below                   | light-blue  |
+| comments | See below                         | light-blue  |
 
 Comments regex: `/(\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\/)|(\/\/.*)/g`
 
-The comments regex is global for me by being used CSS, SASS, JavaScript, and PHP. I assume other languages may use `//` and `/* */` as well, but other languages use other syntax such as `# `.
+The comments regex is global for me by being used in CSS, SASS, JavaScript, and PHP. I assume other languages may use `//` and `/* */` as well, but other languages use other syntax such as `# `.
 
 1. comment type 1 and multi-line: `/\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/g`
 1. comment type 2: `/\/\/.*/g`
@@ -203,6 +205,7 @@ D. https://github.com/PrismJS/prism/blob/master/components/prism-sass.js
   box-sizing: border-box;
 }
 /* `ex`, `vmin`, `vmax` */
+/* @import url(&apos;https://fonts.googleapis.com/css?family=Inter:400,600&apos;); */
 h1 p,
 p.class,
 p:first-child,
@@ -257,6 +260,21 @@ li {
 .card {
   background-color: var(--main-bg-color);
 }
+/* start here for testing */
+@import url('https://fonts.googleapis.com/css?family=Inter:400,600');
+:root {
+  --white: hsl(0, 0%, 100%);
+}
+body,
+h1,
+.dark_block,
+#myid > a:hover {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-image: url('./images/pic.jpg');
+  font-size: 1rem;
+  color: var(--white);
+  border: 1px solid red !important;
+}
 ```
 
 Prism.js css
@@ -297,14 +315,39 @@ var string = /(?:"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|'(?:\\(?:\r\n|[\s\S])|[^'\\
 
 ```scss
 /* Comment type 1 */
-// Just examples
-
+// components (button, card, nav)
+@use './components/card';
 @use 'variables';
 @use 'base';
+@use 'sass:map';
 
+$primary: #326dee !default;
+$base-font-size: 1rem;
 $bgBody: #f9f9f9;
 $fontColor: #333;
+$colors: (
+  'primary': $primary,
+  'secondary': $secondary,
+  'blue': #1919e6,
+);
+$layout-values: flex-start, flex-end, center, space-between, space-around,
+  space-evenly;
 
+@each $val in $layout-values {
+  .justify-#{$val} {
+    justify-content: $val;
+  }
+}
+@include breakpoints.lg {
+  @for $i from 1 through $grid-columns {
+    .col-#{$i}-lg {
+      box-sizing: border-box;
+      flex-grow: 0;
+      width: math.div($i * 100%, $grid-columns);
+    }
+  }
+}
+// Keywords: from, through, in,
 body {
   font-family: 'Trebuchet MS', Arial, sans-serif;
 }
@@ -343,6 +386,18 @@ header {
       color: $orange;
     }
   }
+}
+.navbar {
+  @extend %flex-layout;
+  padding: variables.$base-padding variables.$base-padding * 2;
+  box-shadow: variables.$base-box-shadow;
+}
+%flex-layout {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
 }
 ```
 
@@ -578,6 +633,7 @@ function Config_FR() {
     "Chord": "Maj",
     "Intervals": ["1", "3", "5"],
     "steps": [0, 4, 7],
+    "test": true,
     "Tendency": ["I", "IV"],
     "scales": [
       { "Major Scale": ["1st", " 4th", " 5th"] },

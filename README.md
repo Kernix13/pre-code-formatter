@@ -1,65 +1,67 @@
 # Pre and Code tag formatter
 
-Output code symbols/syntax for display in a pre tag code block.
+A JavaScript program to output different languages with `span.color` classes for syntax highlighting. This is a manual process, as opposed to using PrismJS.
 
 Things I need:
 
 1. Convert html entities (**DONE**)
-1. Use RegEx to add span with color classes for various parts of the code for _**EVERY**_ language - DONE HTML
+1. Use RegEx to add span with color classes for various parts of the code for _**EVERY**_ language (ongoing)
 
 Nice to have and To-dos:
 
 1. Have each line of code break to a new line for easier copy/paste for DOM `textContent`
-1. How to grab the code from a code file or ...
-1. from a form with a textarea element,
+1. How to grab the code from a textarea element
 1. A select list for the language you want to use for styling,
 1. And a submit button that runs the JS code and outputs the code back onto the page (async/await?)
 
-> Why are there so many _user agent stylesheet_ styles?
+> Why are there so many _user agent stylesheet_ styles for my `pre` block?
 
 ## How to use
 
-1. At this point, you have to add your code to `script.js` in backticks to an array called `input` or `codeToConvert` (I do not like this approach).
-1. Then save `script.js` and copy the code under _Code to copy for dark code block_.
-1. Paste that code anywhere into your HTML file so the `li` tags break to a new line. Then remove the opening and closing `li` tags and paste the remaining code into your `pre` block - DONE!
+1. At this point, you have to paste your code to a variable named `inputText` in backticks into `js/input.js`.
+1. That string is brought into `js/script.js` as a variable named `myText` and then split on `\n`. You can duplicate `inputText` and `myText` to be language specific and then run `convertCode(arr)` for each array (see example in `input.js`). That is good for organization but it unnecessary IMO.
 
-The code in the `pre` tag will look funky but you should not have to touch it after pasting it.
+> This project is for personal use so I had to add `js/input.js` in the HTML file because I am using Live Server and you need HTTPS for modules. I just want the code to add to my blog posts.
+
+1. Then save `script.js` and copy the code under _Code to copy for dark code block_.
+1. Paste that code anywhere into your HTML file so the `li` tags break to a new line. Then remove the opening and closing `li` tags.
+1. Finally, cat and paste the remaining code into your `pre` block - DONE! You may need to <kbd>TAB</kbd> the entire code block to be only 1 <kbd>TAB</kbd> indented in from your `pre` tag.
+
+The code in the `pre` tag will look funky but you should not have to touch it after pasting it. I have noticed some exceptions though, so you may need to adjust some of the `span` tags.
 
 If you have a dark website and you want a light code block, comment out the first `classes` variable and uncomment the one that is commented out. Also change `darkBlockOutput` to `lightBlockOutput` that uses `textContent` to write the finished code to the DOM.
 
 > WTF: `user agent stylesheet`?
 
-### Alternatives to adding code to an array
+### SUMMARY OF MANUAL STEPS ON YOUR PART
 
-Read text from a file line by line (markdown, txt or csv?):
-
-1. Readline API provided by Node.js: have a blank file where you add your code to. Check out [How To Read a File Line by Line in JavaScript](https://levelup.gitconnected.com/how-to-read-a-file-line-by-line-in-javascript-48d9a688fe49)
-1. Use the [FileReader API](https://developer.mozilla.org/en-US/docs/Web/API/FileReader). Look at [stackoverflow filereader](https://stackoverflow.com/questions/23331546/how-to-use-javascript-to-read-local-text-file-and-read-line-by-line)
-1. Another [FileReader API article](https://linuxhint.com/read-file-line-line-javascript/) by linuxhunt
-
-> Search term: `use javascript to grab lines of code from any file`
-
-Split each line entered in a textarea element:
-
-1. use a `<textarea>` element: `document.getElementById('mytextarea').value.split('\n');` - check out [Stackoverflow](https://stackoverflow.com/questions/60498186/get-text-from-textarea-and-storing-each-line-in-a-separate-variable)
-1. [second textarea article](https://www.encodedna.com/javascript/get-textarea-values-with-line-breaks-using-javascript.htm)
-
->
+1. Paste your code into `js/input.js` then save that file
+1. Open `index.html` and copy the code
+1. Paste the code into a blank area in `index.html` so that the `<li>` tags break to a new line
+1. Remove all opening and closing `li` tags
+1. Cut and paste that code into your `pre` tag
+1. Adjust the <kbd>TAB</kbd> spacing if necessary.
 
 ## RegEx and languages and color
 
-I am using regualr expressions to wrap parts of a language syntax in span tags with a color class for that part of the syntax. Languages I will be covering and ones I am done:
+I am using regualr expressions to wrap parts of a language in span tags with a color class. Here is a list of the languages I will be covering and ones I am done:
 
 - [x] HTML
-- [x] CSS (except HYML selectors)
+- [x] CSS (_except HTML selectors_)
 - [ ] SASS/SCSS
 - [ ] JavaScript
 - [ ] JSX
 - [x] JSON
 - [ ] PHP
 
-I don't like the colors for the light block. I need to change the html tags from green to red/maroon, attributes to green, and values to blue.
+I have different colors for both a dark code block and a light code block, even though I personally will only be using the dark code block colors. Remove all the CSS and JavaScript for the code block you will be using.
+
+<!-- ### Notes by Language
+
+CSS:
+
+1. I want to remove the check for double-quotes (Regex: `dblQuotes`), so make sure your quotes are only single-quotes, e.g. `url`, `content` and/or some font families. -->
 
 ## Contributing
 
-I have not created a license yet which I understand is a requirement before people will contribute to a repo. I'll eventually add a license, but open an issue if you would like to help.
+I only have languages that I use. If you would like to contribute to this repo for additional languages, then open an issue or fork the repo and create a Pull Request. Hopefully, you are good with regular expressions.

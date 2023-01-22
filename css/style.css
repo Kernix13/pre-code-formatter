@@ -12,12 +12,12 @@
   --bg-dark_block: hsl(210, 19%, 8%);
   --light-text: hsl(210, 40%, 96%);
   --light-blue: hsl(199, 95%, 85%);
-  --blue: hsl(199, 100%, 70%);
+  --blue: hsl(199, 100%, 74%);
   --green: hsl(93, 86%, 51%);
   --comment: hsl(0, 0%, 67%);
-  --red: hsl(0, 97%, 71%);
+  --red: hsl(0, 97%, 75%);
   --purple: hsl(283, 100%, 85%);
-  --orange: hsl(41, 100%, 51%);
+  --orange: hsl(41, 98%, 57%);
 
   /* LIGHT code block variables (added '2' prefix because I'm not interested in using a light code block but these colors look good) */
   --bg-light_block: hsl(0, 0%, 87%);
@@ -53,7 +53,7 @@ var {
 }
 
 var {
-  font-size: 75%;
+  font-size: 87.5%;
   font-style: oblique;
   // font-style: italic;
 }
@@ -92,9 +92,9 @@ kbd {
   /* Why do I need a padding-top? The line-height? */
   padding-top: 1.5em;
   line-height: 1.5;
-  // overflow: auto;
+  overflow: auto;
   // overflow: scroll;
-  overflow-x: auto;
+  // overflow-x: auto;
   // white-space: pre-wrap;
 }
 
@@ -178,7 +178,7 @@ p.dark-code, p.light-code {
   padding: 1em;
   margin: 0 auto;
   width: 90%;
-  border: 1px solid #555;
+  border: 1px solid #999;
   // max-width: 800px;
 }
 
@@ -198,11 +198,12 @@ p.dark-code, p.light-code {
 }
 // Dark code block examples
 
-// Why isn't .bg-light-blue working? for some reason the first rule does not apply? I had to create the phony .bg-blue22 to fix that, or use the empty div above .bg-light-blue
+// Why isn't .bg-light-blue working? for some reason the first rule does not apply? I had to create the phony .bg-blue22 to fix that, or use the empty div above div.bg-light-blue - THAT MAKES NO SENSE
 
 // .bg-blue22 {
 //   border: 1px solid red;
 // }
+
 .bg-light-blue {
   background-color: var(--light-blue);
 }
@@ -270,7 +271,16 @@ p.dark-code, p.light-code {
   color: var(--dark);
 }
 
-/* code for line numbers in pre code blocks
+.file-reader {
+  margin-bottom: 3em;
+}
+
+textarea {
+  width: 50%;
+  height: 15rem;
+}
+
+/* OPTIONAL: code for line numbers in pre code blocks
 
 pre {
   font-family: 'Courier New', Courier, monospace;
