@@ -1,10 +1,5 @@
 const inputText = 
 `/* multi-line comment */
-// single line comment
-@import url('https://fonts.googleapis.com/css?family=Inter:400,600');
-:root {
-  --white: hsl(0, 0%, 100%);
-}
 body,
 h1,
 .dark_block,
@@ -30,7 +25,19 @@ const inputJS =
 ``;
 
 const inputJSON =
-``;
+`[
+  {
+    "Chord": "Maj",
+    "Intervals": ["1", "3", "5"],
+    "steps": [0, 4, 7],
+    "test": true,
+    "Tendency": ["I", "IV"],
+    "scales": [
+      { "Major Scale": ["1st", " 4th", " 5th"] },
+      { "Minor Pentatonic": ["2nd"] }
+    ]
+  }
+]`;
 
 const inputPHP =
 ``;

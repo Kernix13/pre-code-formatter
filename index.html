@@ -40,52 +40,75 @@
           <span class="blue">border</span>: 1<span class="red">px</span> solid red <span class="red">!important</span>;
         }
 
+        <span class="comment">&lt;!-- Working but with 1 problem (see notes at end) --&gt;</span>
+
         <span class="comment">&lt;!-- RegEx: ALL OF THEM, 1ST RUN, MOVE VARIABLES TO BE 1ST --&gt;</span>
-        <span>/* start here for testing */</span>
-        <span>@import url(&apos;https://fonts.googleapis.com/css?<span class="blue">family</span><span
-            class="blue"></span>=Inter:400,600&apos;);</span>
-        <span>:root {</span>
-        <span> --white: hsl(0, 0%, 100%);</span>
-        <span>}</span>
+
+   
+
+        <span class="comment">&lt;!-- RegEx: cssProp --&gt;</span>
+        <span>/* multi-line comment */</span>
+        <span>// single line comment</span>
+        <span>@import url(&apos;https://fonts.googleapis.com/css?family=Inter:400,600&apos;);</span>
         <span>body,</span>
         <span>h1,</span>
         <span>.dark_block,</span>
         <span>.bem__Class--name,</span>
-        <span>#myid<span class="blue"> </span>&gt; a:hover {</span>
-        <span> font-family: &apos;Segoe UI&apos;, Tahoma, Geneva, Verdana, sans-serif;</span>
-        <span> background-image: url(<span class="light-blue">&apos;./images/pic.jpg&apos;</span>);</span>
-        <span> font-size: 1rem;</span>
-        <span> color: var(--white);</span>
-        <span> border: 1px solid red !<span class="green">important</span>;</span>
+        <span>#myid &gt; a:hover {</span>
+        <span> <span class="blue">font-family</span>: &apos;Segoe UI&apos;, Tahoma, Geneva, Verdana, sans-serif;</span>
+        <span> <span class="blue">background-image</span>: url(&apos;./images/pic.jpg&apos;);</span>
+        <span> <span class="blue">font-size</span>: 1rem;</span>
+        <span> <span class="blue">color</span>: var(--white);</span>
+        <span> <span class="blue">border</span>: 1px solid red !important;</span>
         <span>}</span>
-        <span><span class="comment">/* start here for testing */</span></span>
-        <span><span class="red">@import</span> <span class="purple">url</span>(&apos;<span class="blue">https</span><span
-            class="blue">span</span> class="comment"></span></span>
-        <span><span class="blue"></span><span class="blue">oot</span> {</span>
-        <span> <span class="blue"><span class="orange">--white</span></span><span class="blue">hsl</span>(0, 0<span
-            class="red">%</span>, 100<span class="red">%</span>);</span>
-        <span>}</span>
+        
+        <span class="comment">&lt;!-- RegEx: comments --&gt;</span>
+        <span><span class="comment">/* multi-line comment */</span></span>
+        <span>@import url(&apos;https:<span class="comment"></span></span>
         <span>body,</span>
         <span>h1,</span>
-        <span>.<span class="blue">ark_block</span>,</span>
-        <span>.<span class="blue">em__Class<span class="orange">--name</span></span>,</span>
-        <span>#<span class="blue">yid</span> &gt; <span class="blue">a</span><span class="blue">over</span> {</span>
-        <span> <span class="blue">font-family</span><span class="blue">&apos</span>;Segoe UI&apos;, Tahoma, Geneva, Verdana,
-          sans-serif;</span>
-        <span> <span class="blue">background-image</span><span class="blue">url</span>(&apos;.<span
-            class="blue">images</span>/pic.<span class="blue">pg</span>&apos;);</span>
-        <span> <span class="blue">font-size</span> 1<span class="red">rem</span>;</span>
-        <span> <span class="blue">color</span><span class="blue">var</span>(<span class="orange">--white</span>);</span>
-        
-        <span> <span class="blue">border</span> 1<span class="red">px</span> solid red <span
-            class="red">!important</span>;</span>
+        <span>.dark_block,</span>
+        <span>.bem__Class--name,</span>
+        <span>#myid &gt; a:hover {</span>
+        <span> <span class="blue">font-family</span>: &apos;Segoe UI&apos;, Tahoma, Geneva, Verdana, sans-serif;</span>
+        <span> <span class="blue">background-image</span>: url(&apos;./images/pic.jpg&apos;);</span>
+        <span> <span class="blue">font-size</span>: 1rem;</span>
+        <span> <span class="blue">color</span>: var(--white);</span>
+        <span> <span class="blue">border</span>: 1px solid red !important;</span>
         <span>}</span>
-        
-        <span class="comment">&lt;!-- RegEx: cssClassId --&gt;</span>
 
-        <span class="comment">&lt;!-- RegEx: cssProp --&gt;</span>
+        <span class="comment">&lt;!-- RegEx: cssClassId --&gt;</span>
+        <span><span class="comment">/* multi-line comment */</span></span>
+        <span>@import url(&apos;https:<span class="blue">
+            <span< /span> class="comment">
+          </span></span>
+        <span>body,</span>
+        <span>h1,</span>
+        <span>.<span class="blue">dark_block</span>,</span>
+        <span>.<span class="blue">bem__Class--name</span>,</span>
+        <span>#<span class="blue">myid</span> &gt; a:<span class="blue">hover</span> {</span>
+        <span> <span class="blue">font-family</span>:<span class="blue"> &apos</span>;Segoe UI&apos;, Tahoma, Geneva,
+          Verdana, sans-serif;</span>
+        <span> <span class="blue">background-image</span>:<span class="blue"> url</span>(&apos;.<span
+            class="blue">/images</span>/pic.<span class="blue">jpg</span>&apos;);</span>
+        <span> <span class="blue">font-size</span>: 1rem;</span>
+        <span> <span class="blue">color</span>:<span class="blue"> var</span>(--white);</span>
+        <span> <span class="blue">border</span>: 1px solid red !important;</span>
+        <span>}</span>
 
         <span class="comment">&lt;!-- RegEx: cssFxName --&gt;</span>
+        <span><span class="comment">/* multi-line comment */</span></span>
+        <span>body,</span>
+        <span>h1,</span>
+        <span>.dark_block,</span>
+        <span>.bem__Class--name,</span>
+        <span>#myid &gt; a:hover {</span>
+        <span> <span class="blue">font-family</span>: &apos;Segoe UI&apos;, Tahoma, Geneva, Verdana, sans-serif;</span>
+        <span> <span class="blue">background-image</span>: <span class="purple">url</span>(&apos;./images/pic.jpg&apos;);</span>
+        <span> <span class="blue">font-size</span>: 1rem;</span>
+        <span> <span class="blue">color</span>: <span class="purple">var</span>(--white);</span>
+        <span> <span class="blue">border</span>: 1px solid red !important;</span>
+        <span>}</span>
 
         <span class="comment">&lt;!-- RegEx: cssUnits --&gt;</span>
 
@@ -97,72 +120,7 @@
 
         <span class="comment">&lt;!-- RegEx: singleQt --&gt;</span>
         
-
-        <span class="comment">&lt;!-- Working but with 1 problem (see notes at end) --&gt;</span>
         
-
-        <span>&lt;div <span class="blue">class</span><span class="blue"></span>=&quot;container&quot;&gt;</span>
-        <span> &lt;h2 <span class="blue">class</span><span class="blue"></span>=&quot;light-text&quot;&gt;Light code block
-          colors&lt;/h2&gt;</span>
-        <span> &lt;div <span class="blue">class</span><span class="blue"></span>=&quot;color-container
-          light-container&quot;&gt;</span>
-        <span> &lt;div <span class="blue">class</span><span class="blue"></span>=&quot;color-box
-          bg-light-blue2&quot;&gt;light-blue2&lt;/div&gt;</span>
-        <span> &lt;ul&gt;</span>
-        <span> &lt;li&gt;&lt;a <span class="blue">href</span><span
-            class="blue"></span>=&quot;#&quot;&gt;&lt;/a&gt;&lt;/li&gt;</span>
-        <span> &lt;/ul&gt;</span>
-        <span> &lt;div <span class="blue">class</span><span class="blue"></span>=&quot;color-box
-          bg-blue2&quot;&gt;blue2&lt;/div&gt;</span>
-        <span> &lt;/div&gt;</span>
-        <span>&lt;/div&gt;</span>
-        <span>&lt;div class=&quot;container&quot;&gt;</span>
-        <span> &lt;h2 class=&quot;light-text&quot;&gt;Light code block colors&lt;/h2&gt;</span>
-        <span> &lt;div class=&quot;color-container light-container&quot;&gt;</span>
-        <span> &lt;div class=&quot;color-box bg-light-blue2&quot;&gt;light-blue2&lt;/div&gt;</span>
-        <span> &lt;ul&gt;</span>
-        <span> &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;/a&gt;&lt;/li&gt;</span>
-        <span> &lt;/ul&gt;</span>
-        <span> &lt;div class=&quot;color-box bg-blue2&quot;&gt;blue2&lt;/div&gt;</span>
-        <span> &lt;/div&gt;</span>
-        <span>&lt;/div&gt;</span>
-        <span>&lt;<span class="green">div</span> class=&quot;container&quot;&gt;</span>
-        <span> &lt;<span class="green">h2</span> class=&quot;light-text&quot;&gt;Light code block colors&lt;<span
-            class="green"></span>/<span class="green">h2</span>&gt;</span>
-        <span> &lt;<span class="green">div</span> class=&quot;color-container light-container&quot;&gt;</span>
-        <span> &lt;<span class="green">div</span> class=&quot;color-box bg-light-blue2&quot;&gt;light-blue2&lt;<span
-            class="green"></span>/<span class="green">div</span>&gt;</span>
-        <span> &lt;<span class="green">ul</span>&gt;</span>
-        <span> &lt;<span class="green">li</span>&gt;&lt;<span class="green">a</span> href=&quot;#&quot;&gt;&lt;<span
-            class="green"></span>/<span class="green">a</span>&gt;&lt;<span class="green"></span>/<span
-            class="green">li</span>&gt;</span>
-        <span> &lt;<span class="green"></span>/<span class="green">ul</span>&gt;</span>
-        <span> &lt;<span class="green">div</span> class=&quot;color-box bg-blue2&quot;&gt;blue2&lt;<span
-            class="green"></span>/<span class="green">div</span>&gt;</span>
-        <span> &lt;<span class="green"></span>/<span class="green">div</span>&gt;</span>
-        <span>&lt;<span class="green"></span>/<span class="green">div</span>&gt;</span>
-        <span>&lt;div class=&quot;container&quot;&gt;</span>
-        <span> &lt;h2 class=&quot;light-text&quot;&gt;Light code block colors&lt;/h2&gt;</span>
-        <span> &lt;div class=&quot;color-container light-container&quot;&gt;</span>
-        <span> &lt;div class=&quot;color-box bg-light-blue2&quot;&gt;light-blue2&lt;/div&gt;</span>
-        <span> &lt;ul&gt;</span>
-        <span> &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;/a&gt;&lt;/li&gt;</span>
-        <span> &lt;/ul&gt;</span>
-        <span> &lt;div class=&quot;color-box bg-blue2&quot;&gt;blue2&lt;/div&gt;</span>
-        <span> &lt;/div&gt;</span>
-        <span>&lt;/div&gt;</span>
-        <span>&lt;div class=<span class="light-blue">&quot;container&quot;</span>&gt;</span>
-        <span> &lt;h2 class=<span class="light-blue">&quot;light-text&quot;</span>&gt;Light code block
-          colors&lt;/h2&gt;</span>
-        <span> &lt;div class=<span class="light-blue">&quot;color-container light-container&quot;</span>&gt;</span>
-        <span> &lt;div class=<span class="light-blue">&quot;color-box
-            bg-light-blue2&quot;</span>&gt;light-blue2&lt;/div&gt;</span>
-        <span> &lt;ul&gt;</span>
-        <span> &lt;li&gt;&lt;a href=<span class="light-blue">&quot;#&quot;</span>&gt;&lt;/a&gt;&lt;/li&gt;</span>
-        <span> &lt;/ul&gt;</span>
-        <span> &lt;div class=<span class="light-blue">&quot;color-box bg-blue2&quot;</span>&gt;blue2&lt;/div&gt;</span>
-        <span> &lt;/div&gt;</span>
-        <span>&lt;/div&gt;</span>
       </pre>   
 
       <!-- Paste code in here so the <li> tags break to a new line  -->

@@ -19,12 +19,11 @@ const htmlBoolAttr = /(\s\w*)(?=&gt;)/g; // need to have it right on > or &gt;
 const htmlRegEx = [htmlAttr, htmlComment, htmlTag, htmlBoolAttr, dblQuote];
 
 // CSS Regular Expressions
+const cssProp = /(?<![;=\w])([a-z-]*)(?=:\s)/g;
 // const cssClassId = /(?<=[#\.])([^\d][a-zA-Z_-\d]*)/g;
-const cssClassId = /(?<=[#\.:])[^:]([^\d][a-zA-Z_-\d]*)/g;
+const cssClassId = /(?<=[#\.:])([^:][^\d][a-zA-Z_-\d]*)/g;
 const cssAtRules = /([@][a-z-]*|!important)/g;
 const cssVariables = /([\s\(?][-]{2}[a-zA-Z-]*)/g;
-// const cssProp = /([a-z-]*)(?=:)/g;
-const cssProp = /(?<![;=\w])([a-z-]*):/g;
 const cssFxName = /([\w]{3})(?=\()/g;
 const cssUnits = /(?<=\d)(em|rem|vh|vw|px|%|ch|ex|vmin|vmax)/g;
 const cssTag = /[]/g; // CAN'T GET THIS!
@@ -42,14 +41,16 @@ const jsRegEx = [];
 
 // JSON Regular Expressions
 const jsonProp = /(&quot;[.\w\/:*\{\s?-]*\w&quot;):/g;
-const jsonNum = /[]/g;
-const jsonBool = /[]/g;
-const jsonRegEx = [jsonProp, dblQuote];
+const jsonValDblQt = /(&quot;[.\s\w\/*#?-]*&quot;)([^:][,]*)/g;
+// const jsonValDblQt = /(&quot;[.\s\w\/*#?-]*&quot;)[^:]/g;
+const jsonNumBool = /([\d]*|true|false|null)(?=[,\]])/g;
+const jsonRegEx = [jsonProp, jsonValDblQt, jsonNumBool];
 
 // PHP Regular Expressions
 
 // Step 1: Get your code added to a backtick string in input.js
 const myText = inputText.split(/[\n]/);
+// const myJson = inputJSON.split(/[\n]/);
 
 // Step 2: Fx to convert reserved characters into HTML entities
 function convertReservedChars(str) {
@@ -78,12 +79,12 @@ function convertCode(arr) {
 }
 // convertCode(input);
 convertCode(myText);
+// convertCode(myJson);
 
-// Step 3b: Output the HTML entities if you want to stop here
+// Step 3b: Output the HTML entities if you want to stop there
 convertedCode.forEach(codeLine => {
-  htmlEntities.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
+  htmlEntities.textContent += '<li>' + `${codeLine}` + "</li>";
 })
-
 
 // Step 4: add span color classes to converted code for the RegEx scenarios
 /* HOW DO I DO THIS DIFFERENTLY? Nester map, recursion? */
@@ -100,8 +101,6 @@ class htmlCode {
     this.lineArray = lineArray;
     this.index = index;
   }
-
-  // Can I use removeDups()? As a get or set?
 
   findMatches() {
     this.arr.map(line => {
@@ -129,7 +128,7 @@ const myHtmlDblQuotes = new htmlCode(HtmlBoollClass, dblQuote, DblQuotesClass, 2
 myHtmlDblQuotes.findMatches();
 /* End HTML classes */
 
-// Step 5: Output the code to the DOM
+// Step 5: Output the HTML code to the DOM
 // DblQuotesClass.forEach(codeLine => {
 //   darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
 // })
@@ -139,9 +138,11 @@ const myCssProp = new htmlCode(convertedCode, cssProp, cssPropClass, 1);
 myCssProp.findMatches();
 const mCssComments = new htmlCode(cssPropClass, comments, commentsClass, 4);
 mCssComments.findMatches();
-const myCssClassId = new htmlCode(commentsClass, cssClassId, cssClassIdClass, 1);
-myCssClassId.findMatches();
-const myCssFx = new htmlCode(cssClassIdClass, cssFxName, cssFxNameClass, 6);
+// const myCssClassId = new htmlCode(commentsClass, cssClassId, cssClassIdClass, 1);
+// myCssClassId.findMatches();
+// const myCssFx = new htmlCode(cssClassIdClass, cssFxName, cssFxNameClass, 6);
+// myCssFx.findMatches();
+const myCssFx = new htmlCode(commentsClass, cssFxName, cssFxNameClass, 6);
 myCssFx.findMatches();
 const myCssUnits = new htmlCode(cssFxNameClass, cssUnits, cssUnitsClass, 5);
 myCssUnits.findMatches();
@@ -155,14 +156,35 @@ const mySingleQt = new htmlCode(DblQuotesClass, singleQt, singleQtClass, 2);
 mySingleQt.findMatches();
 /* End CSS classes */
 
-// Step 5: Output the code to the DOM
-singleQtClass.forEach(codeLine => {
-  darkBlockOutput.textContent += '<li>' + `${codeLine}` + "</li>";
-  // darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
+// Step 5: Output the CSS code to the DOM
+cssFxNameClass.forEach(codeLine => {
+  darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
 })
 
+/* Start SASS/SCSS classes */
 
-/* for this block to be correct, I need to use the classes constant that is commented out
+/* End SASS/SCSS classes */
+
+// Step 5: Output the SASS code to the DOM
+// enterArrNameHere.forEach(codeLine => {
+//   darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
+// })
+
+/* Start JavaScript classes */
+
+/* End JavaScript classes */
+
+/* Start JSON classes */
+
+/* End JSON classes */
+
+/* Start PHP classes */
+
+/* End PHP classes */
+
+
+/* for LIGHT code block, you need to use the classes constant that is commented out and comment out the other one */
+/*
 DblQuotesClass.forEach(codeLine => {
   lightBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
 })
@@ -171,5 +193,6 @@ DblQuotesClass.forEach(codeLine => {
 /* 
 Getting EMPTY span.color tags though the output works (my capture groups?)
 My attempt at slicing the dups out but it's only grabbing the last code line 
--> REMOVED THAT CODE BLOCK, removeDups()
+-> REMOVED THAT BLOCK Of CODE: removeDups()
 */
+// Can I use removeDups()? As a get or set?

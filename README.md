@@ -19,23 +19,27 @@ Nice to have and To-dos:
 ## How to use
 
 1. At this point, you have to paste your code to a variable named `inputText` in backticks into `js/input.js`.
-1. That string is brought into `js/script.js` as a variable named `myText` and then split on `\n`. You can duplicate `inputText` and `myText` to be language specific and then run `convertCode(arr)` for each array (see example in `input.js`). That is good for organization but it unnecessary IMO.
+2. That string is brought into `js/script.js` as a variable named `myText` and then split on `\n`. You can duplicate `inputText` and `myText` to be language specific and then run `convertCode(arr)` for each array (see example in `input.js`). That is good for organization but it unnecessary IMO.
 
 > This project is for personal use so I had to add `js/input.js` in the HTML file because I am using Live Server and you need HTTPS for modules. I just want the code to add to my blog posts.
 
-1. Then save `script.js` and copy the code under _Code to copy for dark code block_.
-1. Paste that code anywhere into your HTML file so the `li` tags break to a new line. Then remove the opening and closing `li` tags.
-1. Finally, cat and paste the remaining code into your `pre` block - DONE! You may need to <kbd>TAB</kbd> the entire code block to be only 1 <kbd>TAB</kbd> indented in from your `pre` tag.
+**IMPORTANT**: Each language hava a `new` class instance for each regular expression. The coutput array name for the final class instance is used in a `forEach` to output the code via `darkBlockOutput.textContent`. For exmple, for the HTML block the array `DblQuotesClass` is the array in the `forEach` dorectly below. So:
+
+3. Make sure the `forEach` for the language you are converting is not commented out, and others are commented out.
+4. Then save `script.js` and copy the code under _Code to copy for dark code block_.
+5. Paste that code anywhere into your HTML file so the `li` tags break to a new line. Then remove the opening and closing `li` tags.
+6. Finally, cut and paste the remaining code into your `pre` block - DONE! You may need to <kbd>TAB</kbd> the entire code block to be only 1 <kbd>TAB</kbd> indented in from your `pre` tag.
 
 The code in the `pre` tag will look funky but you should not have to touch it after pasting it. I have noticed some exceptions though, so you may need to adjust some of the `span` tags.
 
 If you have a dark website and you want a light code block, comment out the first `classes` variable and uncomment the one that is commented out. Also change `darkBlockOutput` to `lightBlockOutput` that uses `textContent` to write the finished code to the DOM.
 
-> WTF: `user agent stylesheet`?
+<!-- > WTF: `user agent stylesheet` is creating problems? -->
 
 ### SUMMARY OF MANUAL STEPS ON YOUR PART
 
-1. Paste your code into `js/input.js` then save that file
+1. Paste your code into `js/input.js` and save
+1. Make sure the `forEach` block that has `darkBlockOutput.textContent` is the only block not commented out for the language you want
 1. Open `index.html` and copy the code
 1. Paste the code into a blank area in `index.html` so that the `<li>` tags break to a new line
 1. Remove all opening and closing `li` tags
@@ -52,17 +56,19 @@ I am using regualr expressions to wrap parts of a language in span tags with a c
 - [x] CSS (_except HTML selectors_)
 - [ ] SASS/SCSS
 - [ ] JavaScript
-- [ ] JSX
 - [x] JSON
 - [ ] PHP
+- [ ] JSX
 
 I have different colors for both a dark code block and a light code block, even though I personally will only be using the dark code block colors. Remove all the CSS and JavaScript for the code block you will be using.
 
-<!-- ### Notes by Language
+### Notes by Language
 
 CSS:
 
-1. I want to remove the check for double-quotes (Regex: `dblQuotes`), so make sure your quotes are only single-quotes, e.g. `url`, `content` and/or some font families. -->
+1. I want to remove the check for double-quotes (Regex: `dblQuotes`), so make sure your quotes are only single-quotes, e.g. `url`, `content` and/or some font families.
+1. Comment type `/* */` works, but `//` does not output for some reason so only use the 1st kind
+1. I can't seem to escape `//` so using web urls like Google fonts also creates a problem so don't use them until I fix that
 
 ## Contributing
 

@@ -649,6 +649,7 @@ function Config_FR() {
     &quot;Chord&quot;: &quot;Maj&quot;,
     &quot;Intervals&quot;: [&quot;1&quot;, &quot;3&quot;, &quot;5&quot;],
     &quot;steps&quot;: [0, 4, 7],
+    &quot;test&quot;: true,
     &quot;Tendency&quot;: [&quot;I&quot;, &quot;IV&quot;],
     &quot;scales&quot;: [
       { &quot;Major Scale&quot;: [&quot;1st&quot;, &quot; 4th&quot;, &quot; 5th&quot;] },
