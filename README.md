@@ -42,6 +42,8 @@ If you have a dark website and you want a light code block, comment out the firs
 1. Cut and paste that code into your `pre` tag
 1. Adjust the <kbd>TAB</kbd> spacing if necessary.
 
+**NOTE**: IF you only want the code that has the reserved characters converted to HTML entities, then that _Cody to copy_ is at the bottom of `index.html`.
+
 ## RegEx and languages and color
 
 I am using regualr expressions to wrap parts of a language in span tags with a color class. Here is a list of the languages I will be covering and ones I am done:
