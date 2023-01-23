@@ -4,19 +4,17 @@ A JavaScript program to output different languages with `span.color` classes for
 
 Things I need:
 
-1. Convert html entities (**DONE**)
 1. Use RegEx to add span with color classes for various parts of the code for _**EVERY**_ language (ongoing)
-
-Nice to have and To-dos:
-
 1. Have each line of code break to a new line for easier copy/paste for DOM `textContent`
-1. How to grab the code from a textarea element
+1. Grab the code from a textarea element
 1. A select list for the language you want to use for styling,
 1. And a submit button that runs the JS code and outputs the code back onto the page (async/await?)
 
 > Why are there so many _user agent stylesheet_ styles for my `pre` block?
 
 ## How to use
+
+> STOPPED
 
 1. At this point, you have to paste your code to a variable named `inputText` in backticks into `js/input.js`.
 2. That string is brought into `js/script.js` as a variable named `myText` and then split on `\n`. You can duplicate `inputText` and `myText` to be language specific and then run `convertCode(arr)` for each array (see example in `input.js`). That is good for organization but it unnecessary IMO.

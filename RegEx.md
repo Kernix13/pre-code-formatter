@@ -19,8 +19,8 @@ Since I am adding span tags with a color class around every RegEx match, I would
 1. [Global RegEx and colors](#global-regex-and-colors)
 1. [HTML RegEx and colors](#html-regex-and-colors)
 1. [CSS RegEx and colors](#css-regex-and-colors)
-1. [SASS and SCSS RegEx and colors](#SASS and SCSS regex-and-colors)
-1. [JavaScript RegEx and colors](#JavaScript regex-and-colors)
+1. [SASS and SCSS RegEx and colors](#sass-and-scss-regex-and-colors)
+1. [JavaScript RegEx and colors](#javascript-regex-and-colors)
 1. [JSX RegEx and colors](#JSX regex-and-colors)
 1. [JSON RegEx and colors](#JSON regex-and-colors)
 1. [PHP RegEx and colors](#PHP regex-and-colors)
@@ -492,7 +492,7 @@ Prism.languages.scss['atrule'].inside.rest = Prism.languages.scss;
 
 ## JavaScript RegEx and colors
 
-Prism.js regex for template string:
+Prism.js regex for template string is way better than mine:
 
 ```js
 /`(?:\\.|\$\{[^{}]*\}|(?!\$\{)[^\\`])*`/;
@@ -534,9 +534,22 @@ function removeDups(arr, str) {
 removeDups(darkHtmDblQuotes, str1);
 removeDups(darkHtmDblQuotes, str2);
 removeDups(darkHtmDblQuotes, str3);
+
+const add = 1 + 2;
+const sqrt = Math.sqrt(154);
+const divide = 5 / 15;
+const subtract = 2 - 3;
+let mult = 5 * 5;
 ```
 
 1. Prism javascript: https://github.com/PrismJS/prism/blob/master/components/prism-javascript.js
+
+Colors
+
+1. only 5 colors in GitHub js files: red, white, purple, blue and light-blue
+1. dd
+1. dd
+1. dd
 
 ## JSX RegEx and colors
 

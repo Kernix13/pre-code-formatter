@@ -37,7 +37,8 @@ const sassVars = /([$]{1}[\w-]*)/g;
 const sassRegEx = [sassProp, comments, cssFxName, cssUnits, cssAtRules, sassVars, singleQt];
 
 // JavaScript Regular Expressions
-const backTicks = /`(.*?)`/g;
+// const backTicks = /`(.*?)`/g;
+const backTicks = /`(?:\\.|\$\{[^{}]*\}|(?!\$\{)[^\\`])*`/g;
 const jsRegEx = [];
 
 // JSX Regular Expressions
@@ -59,11 +60,11 @@ const input =
     <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
   </ul>
 </nav>`;
-const myInput = input.split(/[\n]/);
+// const myInput = input.split(/[\n]/);
 // const myText = inputText.split(/[\n]/);
 // const myHtml = inputHTML.split(/[\n]/);
 // const myJson = inputJSON.split(/[\n]/);
-// const myCss = inputCSS.split(/[\n]/);
+const myCss = inputCSS.split(/[\n]/);
 // const mySass = inputSASS.split(/[\n]/);
 
 // Step 2: Fx to convert reserved characters into HTML entities
@@ -91,10 +92,10 @@ function convertCode(arr) {
     convertedCode.push(`${convertedLine}`);
   })
 }
-convertCode(myInput);
+// convertCode(myInput);
 // convertCode(myText);
 // convertCode(myJson);
-// convertCode(myCss);
+convertCode(myCss);
 // convertCode(mySass);
 
 // Step 3b: Output the HTML entities if you want to stop there
