@@ -77,25 +77,6 @@
         <span> <span class="blue">border</span>: 1px solid red !important;</span>
         <span>}</span>
 
-        <span class="comment">&lt;!-- RegEx: cssClassId --&gt;</span>
-        <span><span class="comment">/* multi-line comment */</span></span>
-        <span>@import url(&apos;https:<span class="blue">
-            <span< /span> class="comment">
-          </span></span>
-        <span>body,</span>
-        <span>h1,</span>
-        <span>.<span class="blue">dark_block</span>,</span>
-        <span>.<span class="blue">bem__Class--name</span>,</span>
-        <span>#<span class="blue">myid</span> &gt; a:<span class="blue">hover</span> {</span>
-        <span> <span class="blue">font-family</span>:<span class="blue"> &apos</span>;Segoe UI&apos;, Tahoma, Geneva,
-          Verdana, sans-serif;</span>
-        <span> <span class="blue">background-image</span>:<span class="blue"> url</span>(&apos;.<span
-            class="blue">/images</span>/pic.<span class="blue">jpg</span>&apos;);</span>
-        <span> <span class="blue">font-size</span>: 1rem;</span>
-        <span> <span class="blue">color</span>:<span class="blue"> var</span>(--white);</span>
-        <span> <span class="blue">border</span>: 1px solid red !important;</span>
-        <span>}</span>
-
         <span class="comment">&lt;!-- RegEx: cssFxName --&gt;</span>
         <span><span class="comment">/* multi-line comment */</span></span>
         <span>body,</span>
@@ -111,16 +92,103 @@
         <span>}</span>
 
         <span class="comment">&lt;!-- RegEx: cssUnits --&gt;</span>
+        <span><span class="comment">/* multi-line comment */</span></span>
+        <span>body,</span>
+        <span>h1,</span>
+        <span>.dark_block,</span>
+        <span>.bem__Class--name,</span>
+        <span>#myid &gt; a:hover {</span>
+        <span> <span class="blue">font-family</span>: &apos;Segoe UI&apos;, Tahoma, Geneva, Verdana, sans-serif;</span>
+        <span> <span class="blue">background-image</span>: <span class="purple">url</span>(&apos;./images/pic.jpg&apos;);</span>
+        <span> <span class="blue">font-size</span>: 1<span class="red">rem</span>;</span>
+        <span> <span class="blue">color</span>: <span class="purple">var</span>(--white);</span>
+        <span> <span class="blue">border</span>: 1<span class="red">px</span> solid red !important;</span>
+        <span>}</span>
 
         <span class="comment">&lt;!-- RegEx: cssAtRules --&gt;</span>
+        <span><span class="comment">/* multi-line comment */</span></span>
+        <span><span class="red">@import</span> &apos;custom.css&apos;;</span>
+        <span>body,</span>
+        <span>h1,</span>
+        <span>.dark_block,</span>
+        <span>.bem__Class--name,</span>
+        <span>#myid &gt; a:hover {</span>
+        <span> <span class="blue">font-family</span>: &apos;Segoe UI&apos;, Tahoma, Geneva, Verdana, sans-serif;</span>
+        <span> <span class="blue">background-image</span>: <span class="purple">url</span>(&apos;./images/pic.jpg&apos;);</span>
+        <span> <span class="blue">font-size</span>: 1<span class="red">rem</span>;</span>
+        <span> <span class="blue">color</span>: <span class="purple">var</span>(--white);</span>
+        <span> <span class="blue">border</span>: 1<span class="red">px</span> solid red <span
+            class="red">!important</span>;</span>
+        <span>}</span>
 
         <span class="comment">&lt;!-- RegEx: cssVariables --&gt;</span>
-
-        <span class="comment">&lt;!-- RegEx: dblQuote --&gt;</span>
+        <span><span class="comment">/* multi-line comment */</span></span>
+        <span><span class="red">@import</span> &apos;custom.css&apos;;</span>
+        <span>body,</span>
+        <span>h1,</span>
+        <span>.dark_block,</span>
+        <span>.bem__Class--name,</span>
+        <span>#myid &gt; a:hover {</span>
+        <span> <span class="blue">font-family</span>: &apos;Segoe UI&apos;, Tahoma, Geneva, Verdana, sans-serif;</span>
+        <span> <span class="blue">background-image</span>: <span class="purple">url</span>(&apos;./images/pic.jpg&apos;);</span>
+        <span> <span class="blue">font-size</span>: 1<span class="red">rem</span>;</span>
+        <span> <span class="blue">color</span>: <span class="purple">var</span><span class="orange">(--text-main</span>);</span>
+        <span> <span class="blue">border</span>: 1<span class="red">px</span> solid red <span
+            class="red">!important</span>;</span>
+        <span>}</span>
 
         <span class="comment">&lt;!-- RegEx: singleQt --&gt;</span>
+        <span><span class="comment">/* multi-line comment */</span></span>
+        <span><span class="red">@import</span> <span class="light-blue">&apos;custom.css&apos;</span>;</span>
+        <span>body,</span>
+        <span>h1,</span>
+        <span>.dark_block,</span>
+        <span>.bem__Class--name,</span>
+        <span>#myid &gt; a:hover {</span>
+        <span> <span class="blue">font-family</span>: <span class="light-blue">&apos;Segoe UI&apos;</span>, Tahoma, Geneva,
+          Verdana, sans-serif;</span>
+        <span> <span class="blue">background-image</span>: <span class="purple">url</span>(<span
+            class="light-blue">&apos;./images/pic.jpg&apos;</span>);</span>
+        <span> <span class="blue">font-size</span>: 1<span class="red">rem</span>;</span>
+        <span> <span class="blue">color</span>: <span class="purple">var</span><span class="orange">(--text-main</span>);</span>
+        <span> <span class="blue">border</span>: 1<span class="red">px</span> solid red <span
+            class="red">!important</span>;</span>
+        <span>}</span>
         
+        <span class="comment">&lt;!-- RegEx: cssClassId (DOT REMOVED THEN ADDED BACK FOR NON-CLASSES (numbers excluded)) --&gt;</span>
+        <span><span class="comment">/* multi-line comment */</span></span>
+        <span><span class="red">@import</span> <span class="light-blue">&apos;custom.css&apos;</span>;</span>
+        <span>body,</span>
+        <span>h1,</span>
+        <span>.<span class="blue">dark_block</span>,</span>
+        <span>.<span class="blue">bem__Class--name</span>,</span>
+        <span>#<span class="blue">myid</span> &gt; a:<span class="blue">hover</span> {</span>
+        <span> <span class="blue">font-family</span>:<span class="light-blue">&apos;Segoe UI&apos;</span>, Tahoma, Geneva, Verdana, sans-serif;</span>
+        <span> <span class="blue">background-image</span>: <span class="purple">url</span>(<span
+            class="light-blue">&apos;./images/pic.jpg&apos;</span>);</span>
+        <span> <span class="blue">font-size</span>: 1.5<span class="red">rem</span>;</span>
+        <span> <span class="blue">color</span>: <span class="purple">var</span><span class="orange">(--text-main</span>);</span>
+        <span> <span class="blue">border</span>: 1<span class="red">px</span> solid red <span
+            class="red">!important</span>;</span>
+        <span>}</span>
         
+        <span class="comment">&lt;!-- RegEx: json ALL --&gt;</span>
+        <span>{</span>
+        <span> <span class="blue">&quot;Chord&quot;</span>: &quot;Maj&quot;<span class="blue"></span>,</span>
+        <span> <span class="blue">&quot;Intervals&quot;</span>: [&quot;1&quot;<span class="blue"></span>, &quot;3&quot;<span
+            class="blue"></span>, &quot;5&quot;<span class="blue"></span>]<span class="blue"></span>,</span>
+        <span> <span class="blue">&quot;steps&quot;</span>: [<span class="blue">0</span><span class="blue"></span>, <span
+            class="blue">4</span><span class="blue"></span>, <span class="blue">7</span><span class="blue"></span>]<span
+            class="blue"></span>,</span>
+        <span> <span class="blue">&quot;test&quot;</span>: <span class="blue">true</span><span class="blue"></span>,</span>
+        <span> <span class="blue">&quot;Tendency&quot;</span>: [&quot;I&quot;<span class="blue"></span>, &quot;IV&quot;<span
+            class="blue"></span>]<span class="blue"></span>,</span>
+        <span> <span class="blue">&quot;scales&quot;</span>: [</span>
+        <span>    { <span class="blue">&quot;Major Scale&quot;</span>: [&quot;1st&quot;<span class="blue"></span>, &quot; 4th&quot;<span class="blue"></span>, &quot; 5th&quot;<span class="blue"></span>] }<span class="blue"></span>,</span>
+        <span>    { <span class="blue">&quot;Minor Pentatonic&quot;</span>: [&quot;2nd&quot;<span class="blue"></span>]
+          }</span>
+        <span> <span class="blue"></span>]</span>
+        <span>}</span>
       </pre>   
 
       <!-- Paste code in here so the <li> tags break to a new line  -->

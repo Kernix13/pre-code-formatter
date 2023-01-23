@@ -64,11 +64,22 @@ I have different colors for both a dark code block and a light code block, even 
 
 ### Notes by Language
 
-CSS:
+**HTML**: All good!
 
-1. I want to remove the check for double-quotes (Regex: `dblQuotes`), so make sure your quotes are only single-quotes, e.g. `url`, `content` and/or some font families.
+**CSS**:
+
+1. I removed the check for double-quotes (Regex: `dblQuotes`, `&quot;`), so make sure your quotes are only single-quotes, e.g. `url`, `content`, `@import` and/or some font families.
 1. Comment type `/* */` works, but `//` does not output for some reason so only use the 1st kind
 1. I can't seem to escape `//` so using web urls like Google fonts also creates a problem so don't use them until I fix that
+1. I can match and replace variable names in `var()` but not the declaration
+1. My regular expression for Classes and Ids (`.#`) works but it also selects file or url with a . in it. So either don't use `@import`, `url`, etc., or remove the period and add it back as the last step. It also breaks for pseudo-classes like `nth-child`
+1. HTML tag selectors have to be done by themselves. That should not be a problem UNLESS you have a lot of them or they are part of a media query.
+
+That's some serious using for CSS, and I have not tested out all the various combinators, pseudo-classes, pseudo-selectors, and other edge cases. So it would be better to manually add the classes for the problem lines of code, rather than include those lines and have to clean up the bad code. REGEX -> !?!?!
+
+**JSON**:
+
+1. The little there is to do is done except for light-blue for the double-quotes values.
 
 ## Contributing
 

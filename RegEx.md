@@ -156,6 +156,7 @@ At this point, you have to do your CSS selectors as a batch run, and then run ev
    1. or `/([a-z1-6]*)(?=[:,.\s])/g` almost but also grabbing classes and IDs
    1. or `/([a-z1-6]*)(?=[:,.])/g` also with problems worse than above
    1. Github also has the following green: `+-n`
+   1. also `/([a-z1-6]*)(?=[:,.\s])/g`
 
 ```
 A. https://github.com/PrismJS/prism/blob/master/components/prism-css-extras.js
@@ -628,19 +629,17 @@ function Config_FR() {
 | dblQuotes | see Global                             | light-blue  |
 
 ```json
-[
-  {
-    "Chord": "Maj",
-    "Intervals": ["1", "3", "5"],
-    "steps": [0, 4, 7],
-    "test": true,
-    "Tendency": ["I", "IV"],
-    "scales": [
-      { "Major Scale": ["1st", " 4th", " 5th"] },
-      { "Minor Pentatonic": ["2nd"] }
-    ]
-  }
-]
+{
+  "Chord": "Maj",
+  "Intervals": ["1", "3", "5"],
+  "steps": [0, 4, 7],
+  "test": true,
+  "Tendency": ["I", "IV"],
+  "scales": [
+    { "Major Scale": ["1st", " 4th", " 5th"] },
+    { "Minor Pentatonic": ["2nd"] }
+  ]
+}
 ```
 
 ```
