@@ -77,6 +77,12 @@ kbd {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
 }
 
+.small {
+  font-size: 1rem;
+  font-weight: lighter;
+  color: #555;
+}
+
 .notes {
   margin-bottom: 3em;
 }
@@ -170,7 +176,7 @@ kbd {
 }
 
 /* The output you need to copy to paste into your <pre> block */
-p.dark-code, p.light-code {
+p.dark-code, p.light-code, p.html-entities {
   background-color: var(--bg-light_block);
   font-size: 1rem;
   line-height: 1.6;

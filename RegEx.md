@@ -84,12 +84,12 @@ The comments regex is global for me by being used in CSS, SASS, JavaScript, and 
 
 ```html
 <!-- Comment -->
-<h3>JavaScript Template</h3>
+<h3>HTML Example</h3>
 <pre class="code-block dark_block">
-<nav>
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/contact">Contact</a></li>
+<nav class="main-nav">
+  <ul class="nav-list">
+    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+    <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
   </ul>
 </nav>
 

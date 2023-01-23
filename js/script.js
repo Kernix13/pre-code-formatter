@@ -21,19 +21,20 @@ const htmlRegEx = [htmlAttr, htmlComment, htmlTag, htmlBoolAttr, dblQuote];
 
 // CSS Regular Expressions
 const cssProp = /(?<![;=\w])([a-z-]*)(?=:\s)/g;
-// const cssClassId = /(?<=[#\.:])[^:]([^\d][a-zA-Z_-\d]*)/g;
-const cssClassId = /(?<=[#\.:])([^\d][a-zA-Z_-\d]*)/g; // problems
-// const cssClassId = /(?<=[#\.:])([^:][^\d][a-zA-Z_-\d]*)/g;
-const cssAtRules = /([@][a-z-]*|!important)/g;
-const cssVariables = /([\s\(?][-]{2}[a-zA-Z-]*)/g;
-const cssFxName = /([\w]{3})(?=\()/g;
+const cssFxName = /([\w-]{3,})(?=\()/g;
 const cssUnits = /(?<=\d)(em|rem|vh|vw|px|%|ch|ex|vmin|vmax)/g;
-const cssTag = /[]/g; // CAN'T GET THIS!
-const cssRegEx = [comments, cssClassId, cssProp, cssFxName, cssUnits, cssAtRules, cssVariables, dblQuote, singleQt];
+const cssAtRules = /([@][a-z-]*|!important|!default)/g;
+const cssVariables = /([\s\(?][-]{2}[a-zA-Z-]*)/g;
+// const cssClassId = /(?<=[#\.:])([^\d][a-zA-Z_-\d]*)/g; // problems
+// const cssTag = /[]/g; // CAN'T GET THIS!
+const cssRegEx = [cssProp, comments, cssFxName, cssUnits, cssAtRules, cssVariables, singleQt];
 
 // SASS/SCSS Regular Expressions
-
-const scssRegex = [comments]
+const sassProp = /(?<![;=\w$-])([a-z-]*)(?=:\s)/g;
+// const sassProp = /(?<=[%\.:])([^;\s\d][a-zA-Z_-\d]*)/g;
+const sassVars = /([$]{1}[\w-]*)/g;
+// const sassClass = /(?<=[%\.:])[^;\s\d]([^\d][a-zA-Z_-\d]*)/g;
+const sassRegEx = [sassProp, comments, cssFxName, cssUnits, cssAtRules, sassVars, singleQt];
 
 // JavaScript Regular Expressions
 const backTicks = /`(.*?)`/g;
@@ -42,17 +43,27 @@ const jsRegEx = [];
 // JSX Regular Expressions
 
 // JSON Regular Expressions
+const jsonValDblQt = /(&quot;[.\s\w/*#?-]*&quot;)(?!:)/g;
 const jsonProp = /(&quot;[.\w\/:*\{\s?-]*\w&quot;)(?=:\s)/g;
-// const jsonValDblQt = /(&quot;[.\s\w\/*#?-]*&quot;)([^:][,]*)/g;
-const jsonValDblQt = /(&quot;[.\s\w\/*#?-]*&quot;)([^:])/g;
 const jsonNumBool = /([\d]*|true|false|null)(?=[,\]])/g;
-const jsonRegEx = [jsonProp, jsonValDblQt, jsonNumBool];
+const jsonRegEx = [jsonValDblQt, jsonProp, jsonNumBool];
 
 // PHP Regular Expressions
 
-// Step 1: Get your code added to a backtick string in input.js
-const myText = inputText.split(/[\n]/);
-const myJson = inputJSON.split(/[\n]/);
+// Step 1: Get your code added to a backtick string in input.js or from input in this file
+const input =
+`<h3>HTML Example</h3>
+<nav class="main-nav">
+  <ul class="nav-list">
+    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+    <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+  </ul>
+</nav>`;
+const myInput = input.split(/[\n]/);
+// const myText = inputText.split(/[\n]/);
+// const myHtml = inputHTML.split(/[\n]/);
+// const myJson = inputJSON.split(/[\n]/);
+const mySass = inputSASS.split(/[\n]/);
 
 // Step 2: Fx to convert reserved characters into HTML entities
 function convertReservedChars(str) {
@@ -79,10 +90,10 @@ function convertCode(arr) {
     convertedCode.push(`${convertedLine}`);
   })
 }
-// convertCode(input);
+// convertCode(myInput);
 // convertCode(myText);
-// console.log(convertedCode)
-convertCode(myJson);
+// convertCode(myJson);
+convertCode(mySass);
 
 // Step 3b: Output the HTML entities if you want to stop there
 convertedCode.forEach(codeLine => {
@@ -90,12 +101,14 @@ convertedCode.forEach(codeLine => {
 })
 
 // Step 4: add span color classes to converted code for the RegEx scenarios
-/* HOW DO I DO THIS DIFFERENTLY? Nester map, recursion? */
+/* HOW DO I DO THIS DIFFERENTLY? Nested map, nested for loop, recursion? */
 let DblQuotesClass = []; let singleQtClass = []; let commentsClass = [];
 
 let HtmlAttrClass = []; let HtmlCommentClass = []; let HtmlTagClass = []; let HtmlBoollClass = [];
 
-let cssClassIdClass = []; let cssPropClass = []; let cssFxNameClass = []; let cssUnitsClass = []; let cssAtRulesClass = []; let cssVarsClass = [];
+let cssPropClass = []; let cssFxNameClass = []; let cssUnitsClass = []; let cssAtRulesClass = []; let cssVarsClass = []; let cssClassIdClass = []; let cssTagClass = [];
+
+let sassPropClass = []; let sassVarsClass = []; let sassClassClass = [];
 
 let jsonPropClass = []; let jsonValDblQtClass = []; let jsonNumBoolClass = [];
 
@@ -110,7 +123,7 @@ class htmlCode {
   findMatches() {
     this.arr.map(line => {
 
-      // Change the 6 span tags to code then fix the css file for code
+      // The 1st string will be used to remove empty span.color tags
       const htmlStrings = [`<span class="${classes[this.index]}"></span>`, `<span class="${classes[this.index]}">${'$1'}</span>`];
 
       const result = line.replace(this.regex, htmlStrings[1]);
@@ -121,16 +134,16 @@ class htmlCode {
 }
 
 /* Start HTML classes */
-const myHtmlAttr = new htmlCode(convertedCode, htmlAttr, HtmlAttrClass, 1);
-myHtmlAttr.findMatches();
-const myHtmlComment = new htmlCode(HtmlAttrClass, htmlComment, HtmlCommentClass, 4);
-myHtmlComment.findMatches();
-const myHtmlTags = new htmlCode(HtmlCommentClass, htmlTag, HtmlTagClass, 0);
-myHtmlTags.findMatches();
-const myHtmlBoolAttr = new htmlCode(HtmlTagClass, htmlBoolAttr, HtmlBoollClass, 1);
-myHtmlBoolAttr.findMatches();
-const myHtmlDblQuotes = new htmlCode(HtmlBoollClass, dblQuote, DblQuotesClass, 2);
-myHtmlDblQuotes.findMatches();
+// const myHtmlAttr = new htmlCode(convertedCode, htmlAttr, HtmlAttrClass, 1);
+// myHtmlAttr.findMatches();
+// const myHtmlComment = new htmlCode(HtmlAttrClass, htmlComment, HtmlCommentClass, 4);
+// myHtmlComment.findMatches();
+// const myHtmlTags = new htmlCode(HtmlCommentClass, htmlTag, HtmlTagClass, 0);
+// myHtmlTags.findMatches();
+// const myHtmlBoolAttr = new htmlCode(HtmlTagClass, htmlBoolAttr, HtmlBoollClass, 1);
+// myHtmlBoolAttr.findMatches();
+// const myHtmlDblQuotes = new htmlCode(HtmlBoollClass, dblQuote, DblQuotesClass, 2);
+// myHtmlDblQuotes.findMatches();
 /* End HTML classes */
 
 // Step 5: Output the HTML code to the DOM
@@ -139,39 +152,53 @@ myHtmlDblQuotes.findMatches();
 // })
 
 /* Start CSS classes */
-const myCssProp = new htmlCode(convertedCode, cssProp, cssPropClass, 1);
-myCssProp.findMatches();
-const mCssComments = new htmlCode(cssPropClass, comments, commentsClass, 4);
-mCssComments.findMatches();
-// const myCssFx = new htmlCode(cssClassIdClass, cssFxName, cssFxNameClass, 6);
+// const myCssProp = new htmlCode(convertedCode, cssProp, cssPropClass, 1);
+// myCssProp.findMatches();
+// const mCssComments = new htmlCode(cssPropClass, comments, commentsClass, 4);
+// mCssComments.findMatches();
+// const myCssFx = new htmlCode(commentsClass, cssFxName, cssFxNameClass, 6);
 // myCssFx.findMatches();
-const myCssFx = new htmlCode(commentsClass, cssFxName, cssFxNameClass, 6);
-myCssFx.findMatches();
-const myCssUnits = new htmlCode(cssFxNameClass, cssUnits, cssUnitsClass, 5);
-myCssUnits.findMatches();
-const myCssAt = new htmlCode(cssUnitsClass, cssAtRules, cssAtRulesClass, 5);
-myCssAt.findMatches();
-const myCssVars = new htmlCode(cssAtRulesClass, cssVariables, cssVarsClass, 7);
-myCssVars.findMatches();
-const mySingleQt = new htmlCode(cssVarsClass, singleQt, singleQtClass, 2);
-mySingleQt.findMatches();
-const myCssClassId = new htmlCode(singleQtClass, cssClassId, cssClassIdClass, 1);
-myCssClassId.findMatches();
+// const myCssUnits = new htmlCode(cssFxNameClass, cssUnits, cssUnitsClass, 5);
+// myCssUnits.findMatches();
+// const myCssAt = new htmlCode(cssUnitsClass, cssAtRules, cssAtRulesClass, 5);
+// myCssAt.findMatches();
+// const myCssVars = new htmlCode(cssAtRulesClass, cssVariables, cssVarsClass, 7);
+// myCssVars.findMatches();
+// const mySingleQt = new htmlCode(cssVarsClass, singleQt, singleQtClass, 2);
+// mySingleQt.findMatches();
+// const myCssClassId = new htmlCode(singleQtClass, cssClassId, cssClassIdClass, 1);
+// myCssClassId.findMatches();
 /* End CSS classes */
 
 // Step 5: Output the CSS code to the DOM
-// cssClassIdClass.forEach(codeLine => {
+// singleQtClass.forEach(codeLine => {
 //   darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
 // })
 
+// const classes = ["green", "blue", "light-blue", "white", "comment", "red", "purple", "orange"]
 /* Start SASS/SCSS classes */
-
+const mySassProp = new htmlCode(convertedCode, sassProp, sassPropClass, 1);
+mySassProp.findMatches();
+const mySassComments = new htmlCode(sassPropClass, comments, commentsClass, 4);
+mySassComments.findMatches();
+const mySassFx = new htmlCode(commentsClass, cssFxName, cssFxNameClass, 6);
+mySassFx.findMatches();
+const mySassUnits = new htmlCode(cssFxNameClass, cssUnits, cssUnitsClass, 5);
+mySassUnits.findMatches();
+const mySassAt = new htmlCode(cssUnitsClass, cssAtRules, cssAtRulesClass, 5);
+mySassAt.findMatches();
+const mySassVars = new htmlCode(cssAtRulesClass, sassVars, sassVarsClass, 7);
+mySassVars.findMatches();
+const mySingleQt = new htmlCode(sassVarsClass, singleQt, singleQtClass, 2);
+mySingleQt.findMatches();
+// const mySassClass = new htmlCode(singleQtClass, sassClass, sassClassClass, 2);
+// mySassClass.findMatches();
 /* End SASS/SCSS classes */
 
 // Step 5: Output the SASS code to the DOM
-// enterArrNameHere.forEach(codeLine => {
-//   darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
-// })
+singleQtClass.forEach(codeLine => {
+  darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
+})
 
 /* Start JavaScript classes */
 
@@ -180,20 +207,18 @@ myCssClassId.findMatches();
 /* Start JSON classes */
 // const jsonRegEx = [jsonProp, jsonValDblQt, jsonNumBool];
 // let jsonPropClass = []; let jsonValDblQtClass = []; let jsonNumBoolClass = [];
-const myjsonProp = new htmlCode(convertedCode, jsonProp, jsonPropClass, 1);
-myjsonProp.findMatches();
-const myjsonValDblQt = new htmlCode(jsonPropClass, jsonValDblQt, jsonValDblQtClass, 1);
+const myjsonValDblQt = new htmlCode(convertedCode, jsonValDblQt, jsonValDblQtClass, 2);
 myjsonValDblQt.findMatches();
+const myjsonProp = new htmlCode(jsonValDblQtClass, jsonProp, jsonPropClass, 1);
+myjsonProp.findMatches();
 const myjsonNumBool = new htmlCode(jsonPropClass, jsonNumBool, jsonNumBoolClass, 1);
 myjsonNumBool.findMatches();
-
-
 /* End JSON classes */
 
 // Step 5: Output the CSS code to the DOM
-jsonNumBoolClass.forEach(codeLine => {
-  darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
-})
+// jsonNumBoolClass.forEach(codeLine => {
+//   darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
+// })
 
 /* Start PHP classes */
 

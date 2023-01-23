@@ -28,7 +28,7 @@ Nice to have and To-dos:
 3. Make sure the `forEach` for the language you are converting is not commented out, and others are commented out.
 4. Then save `script.js` and copy the code under _Code to copy for dark code block_.
 5. Paste that code anywhere into your HTML file so the `li` tags break to a new line. Then remove the opening and closing `li` tags.
-6. Finally, cut and paste the remaining code into your `pre` block - DONE! You may need to <kbd>TAB</kbd> the entire code block to be only 1 <kbd>TAB</kbd> indented in from your `pre` tag.
+6. Finally, cut and paste the remaining code into your `pre` block - DONE! You will need to <kbd>TAB</kbd> the entire code block to be only 1 <kbd>TAB</kbd> indented in from your `pre` tag, and/or use <kbd>SPACEBAR</kbd> for nested/indented lines.
 
 The code in the `pre` tag will look funky but you should not have to touch it after pasting it. I have noticed some exceptions though, so you may need to adjust some of the `span` tags.
 
@@ -53,8 +53,8 @@ If you have a dark website and you want a light code block, comment out the firs
 I am using regualr expressions to wrap parts of a language in span tags with a color class. Here is a list of the languages I will be covering and ones I am done:
 
 - [x] HTML
-- [x] CSS (_except HTML selectors_)
-- [ ] SASS/SCSS
+- [x] CSS (_except HTML selectors AND CLASSES_)
+- [x] SASS/SCSS (_except HTML selectors AND CLASSES_)
 - [ ] JavaScript
 - [x] JSON
 - [ ] PHP

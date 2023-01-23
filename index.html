@@ -10,7 +10,7 @@
   <body>
     <div class="container">
       <h1>HTML Pre Tag Formatter</h1>
-      <p>Output <code class="code-text">span</code> tags for use in a <code>pre</code> tag for code blocks in blog posts (dark and light versions, see <a href="#notes">notes</a> below). Testing: <code>kbd</code> element: <kbd>ENTER</kbd>, and <code>var</code> element: <var>a<sup> 2</sup> + b<sup>2</sup> = c<sup>2</sup></var>.</p>
+      <p>Output <code class="code-text">span</code> tags for use in a <code>pre</code> tag for code blocks in blog posts (dark and light versions, see <a href="#notes">notes</a> below).</p>
 
       <!-- output here: -->
       <hr>
@@ -19,13 +19,16 @@
 
       <h3>Dark block example:</h3>
       <pre class="code-block dark_block">
+        <span class="comment">&lt;!-- Next: SASS --&gt;</span>
+        <span class="comment">&lt;!-- RegEx: ??? --&gt;</span>
+
         <span class="comment">&lt;!-- Manually added span color classes: --&gt;</span>
         <span class="comment">/* start here for testing */</span>
         <span class="comment">// comment type 2</span>
         <span class="red">@import</span> <span class="purple">url</span>(<span
-          class="light-blue">&apos;https://fonts.googleapis.com/css?family=Inter:400,600&apos;</span>);
+        class="light-blue">&apos;https://fonts.googleapis.com/css?family=Inter:400,600&apos;</span>);
         :<span class="blue">root</span> {
-        <span class="orange">--white</span>: <span class="purple">hsl</span>(0, 0<span class="red">%</span>, 100<span
+          <span class="orange">--white</span>: <span class="purple">hsl</span>(0, 0<span class="red">%</span>, 100<span
           class="red">%</span>);
         }
         <span class="green">body</span>,
@@ -40,155 +43,7 @@
           <span class="blue">border</span>: 1<span class="red">px</span> solid red <span class="red">!important</span>;
         }
 
-        <span class="comment">&lt;!-- Working but with 1 problem (see notes at end) --&gt;</span>
 
-        <span class="comment">&lt;!-- RegEx: ALL OF THEM, 1ST RUN, MOVE VARIABLES TO BE 1ST --&gt;</span>
-
-   
-
-        <span class="comment">&lt;!-- RegEx: cssProp --&gt;</span>
-        <span>/* multi-line comment */</span>
-        <span>// single line comment</span>
-        <span>@import url(&apos;https://fonts.googleapis.com/css?family=Inter:400,600&apos;);</span>
-        <span>body,</span>
-        <span>h1,</span>
-        <span>.dark_block,</span>
-        <span>.bem__Class--name,</span>
-        <span>#myid &gt; a:hover {</span>
-        <span> <span class="blue">font-family</span>: &apos;Segoe UI&apos;, Tahoma, Geneva, Verdana, sans-serif;</span>
-        <span> <span class="blue">background-image</span>: url(&apos;./images/pic.jpg&apos;);</span>
-        <span> <span class="blue">font-size</span>: 1rem;</span>
-        <span> <span class="blue">color</span>: var(--white);</span>
-        <span> <span class="blue">border</span>: 1px solid red !important;</span>
-        <span>}</span>
-        
-        <span class="comment">&lt;!-- RegEx: comments --&gt;</span>
-        <span><span class="comment">/* multi-line comment */</span></span>
-        <span>@import url(&apos;https:<span class="comment"></span></span>
-        <span>body,</span>
-        <span>h1,</span>
-        <span>.dark_block,</span>
-        <span>.bem__Class--name,</span>
-        <span>#myid &gt; a:hover {</span>
-        <span> <span class="blue">font-family</span>: &apos;Segoe UI&apos;, Tahoma, Geneva, Verdana, sans-serif;</span>
-        <span> <span class="blue">background-image</span>: url(&apos;./images/pic.jpg&apos;);</span>
-        <span> <span class="blue">font-size</span>: 1rem;</span>
-        <span> <span class="blue">color</span>: var(--white);</span>
-        <span> <span class="blue">border</span>: 1px solid red !important;</span>
-        <span>}</span>
-
-        <span class="comment">&lt;!-- RegEx: cssFxName --&gt;</span>
-        <span><span class="comment">/* multi-line comment */</span></span>
-        <span>body,</span>
-        <span>h1,</span>
-        <span>.dark_block,</span>
-        <span>.bem__Class--name,</span>
-        <span>#myid &gt; a:hover {</span>
-        <span> <span class="blue">font-family</span>: &apos;Segoe UI&apos;, Tahoma, Geneva, Verdana, sans-serif;</span>
-        <span> <span class="blue">background-image</span>: <span class="purple">url</span>(&apos;./images/pic.jpg&apos;);</span>
-        <span> <span class="blue">font-size</span>: 1rem;</span>
-        <span> <span class="blue">color</span>: <span class="purple">var</span>(--white);</span>
-        <span> <span class="blue">border</span>: 1px solid red !important;</span>
-        <span>}</span>
-
-        <span class="comment">&lt;!-- RegEx: cssUnits --&gt;</span>
-        <span><span class="comment">/* multi-line comment */</span></span>
-        <span>body,</span>
-        <span>h1,</span>
-        <span>.dark_block,</span>
-        <span>.bem__Class--name,</span>
-        <span>#myid &gt; a:hover {</span>
-        <span> <span class="blue">font-family</span>: &apos;Segoe UI&apos;, Tahoma, Geneva, Verdana, sans-serif;</span>
-        <span> <span class="blue">background-image</span>: <span class="purple">url</span>(&apos;./images/pic.jpg&apos;);</span>
-        <span> <span class="blue">font-size</span>: 1<span class="red">rem</span>;</span>
-        <span> <span class="blue">color</span>: <span class="purple">var</span>(--white);</span>
-        <span> <span class="blue">border</span>: 1<span class="red">px</span> solid red !important;</span>
-        <span>}</span>
-
-        <span class="comment">&lt;!-- RegEx: cssAtRules --&gt;</span>
-        <span><span class="comment">/* multi-line comment */</span></span>
-        <span><span class="red">@import</span> &apos;custom.css&apos;;</span>
-        <span>body,</span>
-        <span>h1,</span>
-        <span>.dark_block,</span>
-        <span>.bem__Class--name,</span>
-        <span>#myid &gt; a:hover {</span>
-        <span> <span class="blue">font-family</span>: &apos;Segoe UI&apos;, Tahoma, Geneva, Verdana, sans-serif;</span>
-        <span> <span class="blue">background-image</span>: <span class="purple">url</span>(&apos;./images/pic.jpg&apos;);</span>
-        <span> <span class="blue">font-size</span>: 1<span class="red">rem</span>;</span>
-        <span> <span class="blue">color</span>: <span class="purple">var</span>(--white);</span>
-        <span> <span class="blue">border</span>: 1<span class="red">px</span> solid red <span
-            class="red">!important</span>;</span>
-        <span>}</span>
-
-        <span class="comment">&lt;!-- RegEx: cssVariables --&gt;</span>
-        <span><span class="comment">/* multi-line comment */</span></span>
-        <span><span class="red">@import</span> &apos;custom.css&apos;;</span>
-        <span>body,</span>
-        <span>h1,</span>
-        <span>.dark_block,</span>
-        <span>.bem__Class--name,</span>
-        <span>#myid &gt; a:hover {</span>
-        <span> <span class="blue">font-family</span>: &apos;Segoe UI&apos;, Tahoma, Geneva, Verdana, sans-serif;</span>
-        <span> <span class="blue">background-image</span>: <span class="purple">url</span>(&apos;./images/pic.jpg&apos;);</span>
-        <span> <span class="blue">font-size</span>: 1<span class="red">rem</span>;</span>
-        <span> <span class="blue">color</span>: <span class="purple">var</span><span class="orange">(--text-main</span>);</span>
-        <span> <span class="blue">border</span>: 1<span class="red">px</span> solid red <span
-            class="red">!important</span>;</span>
-        <span>}</span>
-
-        <span class="comment">&lt;!-- RegEx: singleQt --&gt;</span>
-        <span><span class="comment">/* multi-line comment */</span></span>
-        <span><span class="red">@import</span> <span class="light-blue">&apos;custom.css&apos;</span>;</span>
-        <span>body,</span>
-        <span>h1,</span>
-        <span>.dark_block,</span>
-        <span>.bem__Class--name,</span>
-        <span>#myid &gt; a:hover {</span>
-        <span> <span class="blue">font-family</span>: <span class="light-blue">&apos;Segoe UI&apos;</span>, Tahoma, Geneva,
-          Verdana, sans-serif;</span>
-        <span> <span class="blue">background-image</span>: <span class="purple">url</span>(<span
-            class="light-blue">&apos;./images/pic.jpg&apos;</span>);</span>
-        <span> <span class="blue">font-size</span>: 1<span class="red">rem</span>;</span>
-        <span> <span class="blue">color</span>: <span class="purple">var</span><span class="orange">(--text-main</span>);</span>
-        <span> <span class="blue">border</span>: 1<span class="red">px</span> solid red <span
-            class="red">!important</span>;</span>
-        <span>}</span>
-        
-        <span class="comment">&lt;!-- RegEx: cssClassId (DOT REMOVED THEN ADDED BACK FOR NON-CLASSES (numbers excluded)) --&gt;</span>
-        <span><span class="comment">/* multi-line comment */</span></span>
-        <span><span class="red">@import</span> <span class="light-blue">&apos;custom.css&apos;</span>;</span>
-        <span>body,</span>
-        <span>h1,</span>
-        <span>.<span class="blue">dark_block</span>,</span>
-        <span>.<span class="blue">bem__Class--name</span>,</span>
-        <span>#<span class="blue">myid</span> &gt; a:<span class="blue">hover</span> {</span>
-        <span> <span class="blue">font-family</span>:<span class="light-blue">&apos;Segoe UI&apos;</span>, Tahoma, Geneva, Verdana, sans-serif;</span>
-        <span> <span class="blue">background-image</span>: <span class="purple">url</span>(<span
-            class="light-blue">&apos;./images/pic.jpg&apos;</span>);</span>
-        <span> <span class="blue">font-size</span>: 1.5<span class="red">rem</span>;</span>
-        <span> <span class="blue">color</span>: <span class="purple">var</span><span class="orange">(--text-main</span>);</span>
-        <span> <span class="blue">border</span>: 1<span class="red">px</span> solid red <span
-            class="red">!important</span>;</span>
-        <span>}</span>
-        
-        <span class="comment">&lt;!-- RegEx: json ALL --&gt;</span>
-        <span>{</span>
-        <span> <span class="blue">&quot;Chord&quot;</span>: &quot;Maj&quot;<span class="blue"></span>,</span>
-        <span> <span class="blue">&quot;Intervals&quot;</span>: [&quot;1&quot;<span class="blue"></span>, &quot;3&quot;<span
-            class="blue"></span>, &quot;5&quot;<span class="blue"></span>]<span class="blue"></span>,</span>
-        <span> <span class="blue">&quot;steps&quot;</span>: [<span class="blue">0</span><span class="blue"></span>, <span
-            class="blue">4</span><span class="blue"></span>, <span class="blue">7</span><span class="blue"></span>]<span
-            class="blue"></span>,</span>
-        <span> <span class="blue">&quot;test&quot;</span>: <span class="blue">true</span><span class="blue"></span>,</span>
-        <span> <span class="blue">&quot;Tendency&quot;</span>: [&quot;I&quot;<span class="blue"></span>, &quot;IV&quot;<span
-            class="blue"></span>]<span class="blue"></span>,</span>
-        <span> <span class="blue">&quot;scales&quot;</span>: [</span>
-        <span>    { <span class="blue">&quot;Major Scale&quot;</span>: [&quot;1st&quot;<span class="blue"></span>, &quot; 4th&quot;<span class="blue"></span>, &quot; 5th&quot;<span class="blue"></span>] }<span class="blue"></span>,</span>
-        <span>    { <span class="blue">&quot;Minor Pentatonic&quot;</span>: [&quot;2nd&quot;<span class="blue"></span>]
-          }</span>
-        <span> <span class="blue"></span>]</span>
-        <span>}</span>
       </pre>   
 
       <!-- Paste code in here so the <li> tags break to a new line  -->
@@ -273,87 +128,208 @@
       </div>
     </div>
     <div class="container">
-      <h3>HTML Template</h3>
+      <h3>HTML Example</h3>
       <pre class="code-block dark_block">
-        <span>&lt;<span class="green">TagName</span> <span class="blue">AttrName</span>=<span
-            class="light-blue">&quot;AttrValue&quot;</span> <span class="blue">AttrName</span><span
-            class="light-blue">=&quot;AttrValue1 AttrValue2&quot;</span><span class="boolean"> BoolAttr</span>&gt;words here&lt;/<span class="green">TagName</span>&gt;</span>  
-        <span>&lt;<span class="green">TagName</span> <span class="blue">AttrName</span>=<span
-            class="light-blue">&quot;AttrValue AttrValue&quot;</span> <span class="blue">AttrName</span>=<span
-            class="light-blue">&quot;AttrValue&quot;</span>&gt;</span>
+        <span class="comment">&lt;!-- RegEx order: 1. htmlAttr, 2. htmlComment, 3. htmlTag, --&gt;</span>
+        <span class="comment">&lt;!--              4. htmlBoolAttr, 5. dblQuote --&gt;</span>
+
+        <span>&lt;<span class="green">h3</span>&gt;HTML Example&lt;<span class="green"></span>/<span
+            class="green">h3</span>&gt;</span>
+        <span>&lt;<span class="green">nav</span> <span class="blue">class</span><span class="blue"></span>=<span
+            class="light-blue">&quot;main-nav&quot;</span>&gt;</span>
+         <span> &lt;<span class="green">ul</span> <span class="blue">class</span><span class="blue"></span>=<span
+            class="light-blue">&quot;nav-list&quot;</span>&gt;</span>
+           <span> &lt;<span class="green">li</span> <span class="blue">class</span><span class="blue"></span>=<span
+            class="light-blue">&quot;nav-item&quot;</span>&gt;&lt;<span class="green">a</span> <span
+            class="blue">class</span><span class="blue"></span>=<span class="light-blue">&quot;nav-link&quot;</span> <span
+            class="blue">href</span><span class="blue"></span>=<span class="light-blue">&quot;/&quot;</span>&gt;Home&lt;<span
+            class="green"></span>/<span class="green">a</span>&gt;&lt;<span class="green"></span>/<span
+            class="green">li</span>&gt;</span>
+           <span> &lt;<span class="green">li</span> <span class="blue">class</span><span class="blue"></span>=<span
+            class="light-blue">&quot;nav-item&quot;</span>&gt;&lt;<span class="green">a</span> <span
+            class="blue">class</span><span class="blue"></span>=<span class="light-blue">&quot;nav-link&quot;</span> <span
+            class="blue">href</span><span class="blue"></span>=<span
+            class="light-blue">&quot;/contact&quot;</span>&gt;Contact&lt;<span class="green"></span>/<span
+            class="green">a</span>&gt;&lt;<span class="green"></span>/<span class="green">li</span>&gt;</span>
+         <span> &lt;<span class="green"></span>/<span class="green">ul</span>&gt;</span>
+        <span>&lt;<span class="green"></span>/<span class="green">nav</span>&gt;</span>
       </pre>
       <hr>
-      <h3>CSS Template</h3>
+      <h3>CSS Example</h3>
       <pre class="code-block dark_block">
-        <span>
-          <span class="comment">// CSS comment type one</span>
-          <span class="comment">/* CSS comment type two */</span>
-          <span class="green">TagName</span>,
-          <span class="blue">.class</span> {
-            <span class="green">two-words</span>: <span class="light-blue">'Some Str'</span>, Value, value2;
-            <span class="green">background-image</span>: <span class="blue">url</span>(<span class="light-blue">'./somepath/name.jpg'</span>);
-            <span class="green">font-size</span>: 110<span class="red">%</span>;
-            <span class="green">margin</span>: 1<span class="red">rem</span> auto;
-          }
-        </span>
+        <span class="comment">&lt;!-- RegEx order: 1. cssProp, 2. comments, 3. cssFxName, 4. cssUnits, --&gt;</span>
+        <span class="comment">&lt;!--              5. cssAtRules, 6. cssVariables, 7. singleQt --&gt;</span>
+        <span class="comment">&lt;!-- NOTE: I manually added the classes for the
+             Google font, custom.css, and the HTML tag selectors --&gt;</span>
+
+        <span><span class="comment">/* multi
+            line
+            comment */</span></span>
+        <span><span class="comment">/* Single line comment. The CSS below is just an example: */</span></span>
+        <span class="red">@import</span> <span class="purple">url</span>(<span
+          class="light-blue">&apos;https://fonts.googleapis.com/css?family=Inter:400,600&apos;</span>);
+        <span><span class="red">@import</span> <span class="light-blue">&apos;custom.css&apos;</span>;</span>
+        <span><span class="green">body</span>,</span>
+        <span><span class="green">h1</span>,</span>
+        <span>.<span class="blue">dark_block</span>,</span>
+        <span>.<span class="blue">bem__Class--name</span>,</span>
+        <span>#<span class="blue">myid</span> &gt; a:<span class="blue">hover</span> {</span>
+         <span> <span class="blue">font-family</span>: <span class="light-blue">&apos;Segoe UI&apos;</span>, Tahoma, Geneva, Verdana, sans-serif;</span>
+         <span> <span class="blue">background-image</span>: <span class="purple">url</span>(<span
+            class="light-blue">&apos;./images/pic.jpg&apos;</span>);</span>
+         <span> <span class="blue">font-size</span>: 1<span class="red">rem</span>;</span>
+         <span> <span class="blue">color</span>: <span class="purple">var</span><span class="orange">(--text-main</span>);</span>
+         <span> <span class="blue">border</span>: 1<span class="red">px</span> solid red <span
+            class="red">!important</span>;</span>
+        <span>}</span>
       </pre>
+      <p><strong>NOTE</strong>: I have not figured out how to select HTML selectors so use <em>Emmet: Wrap with Abbreviation</em> to manually add the <code>span.color</code> classes. I also am not including my match for ID and Class selectors because of URLS with a period (.) are also selected. If you do not have an <code>import</code> or a <code>url()</code> in your CSS, then the RegEx <em>cssClassId</em> and associated code works. You can make the edits in the JavaScript file to turn that part back on.</p>
       <hr>
-      <h3>JavaScript Template</h3>
+      <h3>SASS Example</h3>
+      <pre class="code-block dark_block">
+        <span class="comment">&lt;!-- RegEx order: 1. sassProp , 2. comments, 3. cssFxName,   --&gt;</span>
+        <span class="comment">&lt;!-- 4. cssUnits, 5. sassProp , 6. sassVars, 7. singleQt --&gt;</span>
+
+        <span><span class="red">@use</span> <span class="light-blue">&apos;/components/card&apos;</span>;</span>
+        <span><span class="red">@use</span> <span class="light-blue">&apos;base&apos;</span>;</span>
+        <span><span class="orange">$primary</span>: #326dee <span class="red">!default</span>;</span>
+        <span><span class="orange">$base-font-size</span>: 1<span class="red">rem</span>;</span>
+        <span><span class="orange">$bgBody</span>: #f9f9f9;</span>
+        <span><span class="orange">$colors</span>: (</span>
+         <span> <span class="light-blue">&apos;primary&apos;</span>: <span class="orange">$primary</span>,</span>
+         <span> <span class="light-blue">&apos;secondary&apos;</span>: <span class="orange">$secondary</span>,</span>
+         <span> <span class="light-blue">&apos;blue&apos;</span>: #1919e6,</span>
+        <span>);</span>
+        <span><span class="orange">$layout-values</span>: flex-start, flex-end, center, space-between, space-around, space-evenly;</span>
+        <span></span>
+        <span><span class="red">@each</span> <span class="orange">$val</span> in <span class="orange">$layout-values</span> {</span>
+         <span> .justify-#{<span class="orange">$val</span>} {</span>
+           <span> <span class="blue">justify-content</span>: <span class="orange">$val</span>;</span>
+         <span> }</span>
+        <span>}</span>
+        <span>::placeholder {</span>
+         <span> <span class="blue">color</span>: <span class="purple">rgba</span>(0, 0, 0, 0.5);</span>
+        <span>}</span>
+        <span>header {</span>
+         <span> <span class="blue">background-color</span>: <span class="orange">$headerBgClr</span>;</span>
+         <span> <span class="blue">color</span>: <span class="orange">$headerClr</span>;</span>
+        <span></span>
+         <span> .header-container h1 {</span>
+           <span> <span class="blue">margin</span>: 0 auto;</span>
+           <span> <span class="blue">width</span>: 80<span class="red">%</span>;</span>
+           <span> <span class="blue">max-width</span>: 1100<span class="red">px</span>;</span>
+           <span> <span class="blue">display</span>: flex;</span>
+           <span> <span class="blue">justify-content</span>: space-between;</span>
+           <span> <span class="blue">align-items</span>: center;</span>
+         <span> }</span>
+        <span></span>
+        <span> a {</span>
+          <span> <span class="blue">color</span>: <span class="orange">$headerClr</span>;</span>
+          <span> <span class="blue">font-size</span>: 1.125<span class="red">rem</span>;</span>
+        <span></span>
+        <span> &amp;:hover {</span>
+          <span> <span class="blue">text-decoration</span>: underline;</span>
+          <span> <span class="blue">color</span>: <span class="orange">$orange</span>;</span>
+         <span> }</span>
+        <span> }</span>
+        <span>}</span>
+        <span>.navbar {</span>
+         <span> <span class="red">@extend</span> %flex-layout;</span>
+         <span> <span class="blue">padding</span>: variables<span class="orange">$base-padding</span> variables<span
+            class="orange">$base-padding</span> * 2;</span>
+         <span> <span class="blue">box-shadow</span>: variables<span class="orange">$base-box-shadow</span>;</span>
+        <span>}</span>
+        <span>%flex-layout {</span>
+         <span> <span class="blue">width</span>: 100<span class="red">%</span>;</span>
+         <span> <span class="blue">display</span>: flex;</span>
+         <span> <span class="blue">align-items</span>: center;</span>
+         <span> <span class="blue">justify-content</span>: space-between;</span>
+         <span> <span class="blue">box-sizing</span>: border-box;</span>
+        <span>}</span>
+        <span><span class="comment">/* Comment */</span></span>
+      </pre>
+      <p><strong>NOTE</strong>: This code block example is huge and is only a fraction of potential syntax in a SASS/SCSS file. Once again, selecting classes (<code>.</code>, <code>%</code>, <code>:</code>, and <code>::</code>) is proving difficult. I do not know all the edge cases and specific syntax for everything SASS offers. For now, this is the best I can do and I am leaving classes out. You will have to manually add classes for HTML element selectors and all classes.</p>
+      <hr>
+      <h3>JavaScript Example</h3>
       <pre class="code-block dark_block">
 
       </pre>
+
       <hr>
-      <h3>PHP Template</h3>
+
+      <h3>JSON Example</h3>
+      <pre class="code-block dark_block">
+        <span class="comment">&lt;!-- RegEx order: 1. jsonValDblQt, 2. jsonProp, 3. jsonNumBool --&gt;</span>
+        <span>{</span>
+        <span> <span class="blue">&quot;Chord&quot;</span>: <span class="light-blue">&quot;Maj&quot;</span><span
+            class="blue"></span>,</span>
+        <span> <span class="blue">&quot;Intervals&quot;</span>: [<span class="light-blue">&quot;1&quot;</span><span
+            class="blue"></span>, <span class="light-blue">&quot;3&quot;</span><span class="blue"></span>, <span
+            class="light-blue">&quot;5&quot;</span><span class="blue"></span>]<span class="blue"></span>,</span>
+        <span> <span class="blue">&quot;steps&quot;</span>: [<span class="blue">0</span><span class="blue"></span>, <span
+            class="blue">4</span><span class="blue"></span>, <span class="blue">7</span><span class="blue"></span>]<span
+            class="blue"></span>,</span>
+        <span> <span class="blue">&quot;test&quot;</span>: <span class="blue">true</span><span class="blue"></span>,</span>
+        <span> <span class="blue">&quot;Tendency&quot;</span>: [<span class="light-blue">&quot;I&quot;</span><span
+            class="blue"></span>, <span class="light-blue">&quot;IV&quot;</span><span class="blue"></span>]<span
+            class="blue"></span>,</span>
+        <span> <span class="blue">&quot;scales&quot;</span>: [</span>
+          <span> { <span class="blue">&quot;Major Scale&quot;</span>: [<span class="light-blue">&quot;1st&quot;</span><span
+              class="blue"></span>, <span class="light-blue">&quot; 4th&quot;</span><span class="blue"></span>, <span
+              class="light-blue">&quot; 5th&quot;</span><span class="blue"></span>] }<span class="blue"></span>,</span>
+          <span> { <span class="blue">&quot;Minor Pentatonic&quot;</span>: [<span class="light-blue">&quot;2nd&quot;</span><span
+              class="blue"></span>] }</span>
+        <span> <span class="blue"></span>]</span>
+        <span>}</span>
+      </pre>
+      <hr>
+      <h3>PHP Example</h3>
+      <pre class="code-block dark_block">
+            
+      </pre>
+      <hr>
+      <!-- <h3>JSX Example</h3>
       <pre class="code-block dark_block">
 
       </pre>
-      <hr>
-      <h3>SASS Template</h3>
-      <pre class="code-block dark_block">
-
-      </pre>
-      <hr>
-      <h3>JSON Template</h3>
-      <pre class="code-block dark_block">
-
-      </pre>
-      <hr>
-      <h3>JSX Template</h3>
-      <pre class="code-block dark_block">
-
-      </pre>
-      <hr>
+      <hr> -->
       <div id="notes" class="notes">
         <h2>NOTES</h2>
         <ul>
           <h3>How to use this</h3>
-          <li>At this point, you have to add your code to <code>script.js</code> in backticks to an array called <code>input</code> or <code>codeToConvert</code>. I do not like this approach.</li>
-          <li>Then save <code>script.js</code> and copy the code under <em>Code to copy for dark code block</em>.</li>
-          <li>Paste that code <em>anywhere</em> into your HTML file so the <code>li</code> tags break to a new line. Then remove the opening and closing <code>li</code> tags and paste the remaining code into your <code>pre</code> block - DONE! The code in the <code>pre</code> tag will look funky but you should not have to touch it after pasting it.</li>
+          <li>In the CodePen version, you have to add your code in backticks to an array called <code>input</code>. That is only for testing.</li>
+          <li>Once you do that, copy the code under <em>Code to copy for dark code block</em>.</li>
+          <li>Paste that code <em>anywhere</em> into your HTML file so the <code>li</code> tags break to a new line. Then remove the opening and closing <code>li</code> tags and paste the remaining code into your <code>pre</code> block - DONE! The code in the <code>pre</code> tag will look funky but you should not have to touch it after pasting it except for using <kbd>TAB</kbd> and/or <kbd>SPACEBAR</kbd> to align things.</li>
         </ul>
         <ul>
           <h3>Issues, problems, and To-Do items</h3>
-          <li>As of <date>January 21st, 2023,</date> I'm getting empty <code>span.color</code> tags. They don't affect the display in the <code>pre</code> block, but they should not be there. I will begin debugging the code to get rid of them. I assume it's my RegEx capture groups or the <code>replace()</code> method.</li>
-          <li>I need a better way than using an array to grab the code. I want to either <strong>1)</strong> add a <code>textarea</code> to paste the code and then grab it with JavaScript, or ideally <strong>2)</strong>
+          <li>As of <date>January 21st, 2023,</date> I'm getting empty <code>span.color</code> tags. They don't affect the display in the <code>pre</code> block, but they should not be there. I will begin debugging the code to get rid of them when I am done the regular expressions for all the languages I want to cover. I assume it's my RegEx capture groups or the <code>replace()</code> method.</li>
+          <li>A better way than using an array to grab the code: I want to either <strong>1)</strong> add a <code>textarea</code> to paste the code and then grab it with JavaScript, or ideally <strong>2)</strong>
           grab the code out of a file using the <em>FileReader API</em>.</li>
-          <li>As of January 21st I am using another JavaScript file to get the code.</li>
+          <li>As of January 21st I am using another JavaScript file (<code>input.js</code>) to get the code (see repo).</li>
           <li>As of January 15th I switched from a functional approach to using Classes.</li>
-          <li>My JavaScript code is <em>UGLY</em>! I suck at recursion, and nested <code>map()</code> methods are not working to run each line against each regular expression for each language. I am going to try a nester <code>for</code> loop.</li>
-          <li>How is my <code>code</code>, <code>kbd</code>, and <code>var</code> CSS styling? Let me know if you have something better</li>
-          <li></li>
+          <li>My JavaScript code is <em>UGLY</em> and is an example of code that is not <strong>DRY</strong>! I suck at recursion, and nested <code>map()</code> methods are not working to run each line against each regular expression for each language. I am going to try a nester <code>for</code> loop next and maybe revisit the nested map approach.</li>
+          <li>I'm open to any suggestions for the styling of my <code>code</code>, <code>kbd</code>, and <code>var</code> tags.</li>
         </ul>
-      </div>
-      <div class="file-reader">
+        <h3>Code, KBD, and Var element testing</h3>
+        <p>Testing: the <code>kbd</code> element: <kbd>ENTER</kbd>, and the <code>var</code> element: <var>a<sup> 2</sup> +
+            b<sup>2</sup> =
+            c<sup>2</sup></var>. The strings <em>kbd</em>, and <em>var</em> are in a &lt;code&gt; tag</p>
+        <p>Check out my GitHub repo <a href="https://github.com/Kernix13/pre-code-formatter"
+            target="_blank">pre-code-formatter</a> to see the updated code and full description in my <code>README.md</code>
+          file.</p>
         <h2>Code to copy for HTML entity conversion stage only</h2>
-        <p id="html_entities" class="dark-code"></p>
-        <h3>Get code from <code>textarea</code> (not functional at this time)</h3>
+        <p id="html_entities" class="html-entities"></p>
+      </div>
+      <hr>
+      <div class="file-reader">
+        <h3>Get code from <code>textarea</code> (<span class="small">not functional at this time</span>)</h3>
         <form>
           <!-- <input type="file" name="readfile" id="readfile" /> -->
           <!-- <input onchange="readFile(this)" type="file"> -->
           <textarea id="mytextarea"></textarea>
           <input type="submit" value="Submit">
         </form>
-        <p>Check out my repo <a href="https://github.com/Kernix13/pre-code-formatter" target="_blank">pre-code-formatter</a> to see the updated code and full description in my <code>README.md</code> file on GitHub.</p>
       </div>
     </div>
     
