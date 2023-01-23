@@ -261,3 +261,4 @@ My attempt at slicing the dups out but it's only grabbing the last code line
 -> REMOVED THAT BLOCK Of CODE: removeDups()
 */
 // Can I use removeDups()? As a get or set?
+const sqrt = Math.sqrt(154);
