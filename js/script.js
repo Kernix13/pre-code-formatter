@@ -4,11 +4,9 @@ const lightBlockOutput = document.getElementById("light_block_output");
 
 // span tag color classes, and keywords
 const classes = ["green", "blue", "light-blue", "white", "comment", "red", "purple", "orange"]
-// const classes = ["maroon", "blue2", "green2", "light-blue2", "gray", "comment2", "red2", "purple2", "orange2", "black"];
 
 // Global Regular Expressions
 const dblQuote = /(&quot;[.\s\w\/:*#?-]*&quot;)/g;
-// const singleQt = /(&apos;[=,.\w\s/:*?-]*\w&apos;)/g;
 const singleQt = /(&apos;[=,.\w\s/:*?-]*&apos;)/g;
 const comments = /(\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\/)|(\/\/.*)/g;
 
@@ -26,23 +24,16 @@ const cssUnits = /(?<=\d)(em|rem|vh|vw|px|%|ch|ex|vmin|vmax)/g;
 const cssAtRules = /([@][a-z-]*|!important|!default)/g;
 const cssVariables = /([\s\(?][-]{2}[a-zA-Z-]*)/g;
 const cssClassId = /(?<=[\.:])([^\d][a-zA-Z_-\d]*)/g; // problems
-// const cssTag = /[]/g; // CAN'T GET THIS!
 const cssRegEx = [cssProp, comments, cssFxName, cssUnits, cssAtRules, cssVariables, singleQt];
 
 // SASS/SCSS Regular Expressions
 const sassProp = /(?<![;=\w$-])([a-z-]*)(?=:\s)/g;
-// const sassProp = /(?<=[%\.:])([^;\s\d][a-zA-Z_-\d]*)/g;
 const sassVars = /([$]{1}[\w-]*)/g;
-// const sassClass = /(?<=[%\.:])[^;\s\d]([^\d][a-zA-Z_-\d]*)/g;
 const sassRegEx = [sassProp, comments, cssFxName, cssUnits, cssAtRules, sassVars, singleQt];
 
 // JavaScript Regular Expressions
-// const backTicks = /`(.*?)`/g;
 const backTicks = /`(?:\\.|\$\{[^{}]*\}|(?!\$\{)[^\\`])*`/g;
-// There are more keywords, but these are the only ones I have currently used
-// the positive lookbehind then lookahead covers scenarios like forEach with the keeyword for but not if you have a keyword in a string with a space on either side
-// const jsKeywords = /(?<=[\s?\()])(async|await|break|case|catch|class|const|default|delete|do|else|extends|for|from|function|get|if|import|in|let|new|of|return|switch|trow|try|while)(?=\s)/g;
-const jsKeywords = /(?<=\(?)(typeof|async|await|break|case|catch|class|const|default|delete|do|else|extends|for|from|function|get|if|import|in|let|new|of|return|switch|trow|try|while)(?=\s)/g;
+const jsKeywords = /(?<=\(?)(typeof|async|await|break|case|catch|class|const|default|delete|do|else|extends|for|from|function|get|if|import|in|let|new|of|return|set|switch|throw|try|while)(?=\s)/g;
 const jsRegEx = [backTicks, jsKeywords, comments, dblQuote, singleQt];
 
 // JSX Regular Expressions
@@ -64,14 +55,6 @@ const input =
     <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
   </ul>
 </nav>`;
-/* I think the split regex should be /[\n\r]|[\n]/g */
-// const myInput = input.split(/[\n]/);
-// const myText = inputText.split(/[\n]/);
-// const myHtml = inputHTML.split(/[\n]/);
-// const myJson = inputJSON.split(/[\n]/);
-// const myCss = inputCSS.split(/[\n\r]|[\n]/g);
-// const mySass = inputSASS.split(/[\n]/);
-const myJs = inputJS.split(/[\n\r]|[\n]/g);
 
 // Step 2: Fx to convert reserved characters into HTML entities
 function convertReservedChars(str) {
@@ -89,7 +72,12 @@ function convertReservedChars(str) {
     .join("");
 }
 
-// Step 3a: Run your code through convertReservedChars() 
+// Step 3a: Run your code through convertReservedChars()
+
+/* I think the split regex should be /[\n\r]|[\n]/g */
+
+// const myInput = input.split(/[\n]/);
+const myJs = inputJS.split(/[\n\r]|[\n]/g);
 let convertedCode = [];
 
 function convertCode(arr) {
@@ -99,10 +87,7 @@ function convertCode(arr) {
   })
 }
 // convertCode(myInput);
-// convertCode(myText);
-// convertCode(myJson);
 convertCode(myJs);
-// convertCode(mySass);
 
 // Step 3b: Output the HTML entities if you want to stop there
 convertedCode.forEach(codeLine => {
@@ -134,7 +119,7 @@ class htmlCode {
   findMatches() {
     this.arr.map(line => {
 
-      // The 1st string will be used to remove empty span.color tags
+      // The 1st string is to remove empty span.color tags (removeDups())
       const htmlStrings = [`<span class="${classes[this.index]}"></span>`, `<span class="${classes[this.index]}">${'$1'}</span>`];
 
       const result = line.replace(this.regex, htmlStrings[1]);

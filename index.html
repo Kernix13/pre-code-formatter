@@ -19,28 +19,29 @@
 
       <h3>Dark block example:</h3>
       <pre class="code-block dark_block">
-        <span class="comment">&lt;!-- Next: JavaScript --&gt;</span>
-        <span>const str = &apos;string&apos;;</span>
-        <span>const num = 1.618;</span>
-        <span>let bool = true;</span>
-        <span>const arr1 = [1, 12.36, &apos;word&apos;];</span>
-        <span>const obj = {</span>
+        <span class="comment">&lt;!-- RegEx: jsKeywords  --&gt;</span>
+        <span><span class="red">const</span> str = &apos;string for&apos;;</span>
+        <span><span class="red">const</span> num = 1.618;</span>
+        <span><span class="red">let</span> bool = true;</span>
+        <span><span class="red">for</span> (<span class="red">let</span> item <span class="red">of</span> arr)</span>
+        <span><span class="red">const</span> arr1 = [1, 12.36, &apos;word while&apos;];</span>
+        <span><span class="red">const</span> obj = {</span>
         <span> a: &apos;word&apos;,</span>
         <span> b: 42,</span>
         <span>};</span>
-        <span>async <span class="red">function</span> fxName(arr) {</span>
+        <span><span class="red">async</span> <span class="red">function</span> fxName(arr) {</span>
         <span> <span class="red">const</span> output = <span class="red">await</span> arr.forEach(item =&gt; {</span>
-        <span> console.log(typeof item);</span>
+        <span> console.log(<span class="red">typeof</span> item);</span>
         <span> });</span>
         <span> <span class="red">return</span> output;</span>
         <span>}</span>
         <span>fxName(arr1);</span>
-        <span>if (bool) {</span>
+        <span><span class="red">if</span> (bool) {</span>
         <span> console.log(&apos;True&apos;);</span>
         <span>} <span class="red">else</span> {</span>
         <span> console.log(&apos;False&apos;);</span>
         <span>}</span>
-        <span>const someNum = Math.random() * 10;</span>
+        <span><span class="red">const</span> someNum = Math.random() * 10;</span>
 
         <span class="comment">&lt;!-- RegEx: ??? --&gt;</span>
 
@@ -356,7 +357,7 @@
     
 
     <script src="./js/input.js"></script>
-    <!-- <script src="./js/script.js"></script> -->
-    <script src="./js/script2.js"></script>
+    <script src="./js/script.js"></script>
+    <!-- <script src="./js/script2.js"></script> -->
   </body>
 </html>

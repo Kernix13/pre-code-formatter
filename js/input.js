@@ -23,11 +23,11 @@ const inputSASS =
 ``;
 
 const inputJS =
-`const str = 'string for of';
+`const str = 'string for';
 const num = 1.618;
 let bool = true;
 for (let item of arr)
-const arr1do = [1, 12.36, 'word while for'];
+const arr1 = [1, 12.36, 'word while'];
 const obj = {
   a: 'word',
   b: 42,

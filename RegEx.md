@@ -525,6 +525,7 @@ if (bool) {
   console.log('False');
 }
 const someNum = Math.random() * 10;
+const today = new Date().getFullYear();
 ```
 
 ```

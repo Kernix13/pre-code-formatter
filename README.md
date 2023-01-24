@@ -60,6 +60,23 @@ I am using regualr expressions to wrap parts of a language in span tags with a c
 
 I have different colors for both a dark code block and a light code block, even though I personally will only be using the dark code block colors. I will be tweaking those colors as I go.
 
+Here is the color array you should use and of course remove the suffix of `2` and do the same in the CSS file:
+
+```js
+const classes = [
+  'maroon',
+  'blue2',
+  'green2',
+  'light-blue2',
+  'gray',
+  'comment2',
+  'red2',
+  'purple2',
+  'orange2',
+  'black',
+];
+```
+
 ### Notes by Language
 
 **HTML**: All good!
@@ -82,7 +99,19 @@ That's some serious issues for CSS, and I have not tested out all the various co
 1. All the same issues as with CSS.
 1. Since there is a lot more unique syntax for SASS, I have only tested the most common. I'm going to need help testing all the syntax and figuring out the regular expressions.
 
-**JavaScript**: Starting it now (Jan 23, 2023 8:00PM).
+**JavaScript**:
+
+1. I have a selected list of keywords - the ones I use. Here is the complete list. Also, I had to put `typeof` before `of` because my RegEx chops are intermediate at best:
+
+```js
+// There are more keywords, but these are the only ones I have currently used
+// the positive lookbehind then lookahead covers scenarios like forEach with the keeyword for but not if you have a keyword in a string with a space on either side
+// I left off null and undefined
+const jsKeywords =
+  /(?<=\(?)(typeof|as|assert|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|of|package|private|protected|public|return|set|static|super|switch|throw|try|var|void|whilewith|yield)(?=\s)/g;
+```
+
+2. single quote vs double quote
 
 ## Contributing
 
