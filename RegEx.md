@@ -503,24 +503,28 @@ Prism.js regex for template string is way better than mine:
 Test js:
 
 ```js
-const str = 'string';
+const str = 'string for';
 const num = 1.618;
+const isNull = null;
+const isUndefined = undefined;
 let bool = true;
-const arr1 = [1, 12.36, 'word'];
+for (let item of arr)
+const arr1 = [1, 12.36, 'word while'];
 const obj = {
   a: 'word',
   b: 42,
+  firstName: "Jim",
+  test: false
 };
 async function fxName(arr) {
   const output = await arr.forEach(item => {
-    console.log(item);
+    console.log(typeof item);
   });
   return output;
 }
 fxName(arr1);
 if (bool) {
   console.log('True');
-  console.log(typeof arr);
 } else {
   console.log('False');
 }

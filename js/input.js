@@ -25,12 +25,16 @@ const inputSASS =
 const inputJS =
 `const str = 'string for';
 const num = 1.618;
+const isNull = null;
+const isUndefined = undefined;
 let bool = true;
 for (let item of arr)
 const arr1 = [1, 12.36, 'word while'];
 const obj = {
   a: 'word',
   b: 42,
+  firstName: "Jim",
+  test: false
 };
 async function fxName(arr) {
   const output = await arr.forEach(item => {
@@ -44,7 +48,8 @@ if (bool) {
 } else {
   console.log('False');
 }
-const someNum = Math.random() * 10;`;
+const someNum = Math.random() * 10;
+const today = new Date().getFullYear();`;
 
 const inputJSON =
 ``;
