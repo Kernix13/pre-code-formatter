@@ -183,6 +183,8 @@ myCssClassId.findMatches();
 
 cssClassIdClass.forEach(codeLine => {
   darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
+  // If you want to see how the code looks, try the line below:
+  // darkBlockOutput.innerHTML += '<li><span>' + `${codeLine}` + "</span></li>";
 })
 
 

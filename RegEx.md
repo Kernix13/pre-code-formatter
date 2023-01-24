@@ -26,6 +26,8 @@ Since I am adding span tags with a color class around every RegEx match, I would
 1. [PHP RegEx and colors](#PHP regex-and-colors)
 1. [Markdown RegEx and colors](#Markdown regex-and-colors)
 1. [Other languages RegEx and colors](#Other languages regex-and-colors)
+   1. [Git and Git Bash](#git-and-git-bash)
+   1. [Node and NPM](#node-and-npm)
 
 ## Colors and classes
 
@@ -506,6 +508,8 @@ Prism.js regex for template string is way better than mine:
 |           | `//g`         |             |
 |           | `//g`         |             |
 
+> https://github.com/PrismJS/prism/blob/master/components/prism-javascript.js
+
 ```js
 /* Comment type 1 */
 // My attempt at getting rid of the empty span tags (SUX!)
@@ -540,13 +544,44 @@ const sqrt = Math.sqrt(154);
 const divide = 5 / 15;
 const subtract = 2 - 3;
 let mult = 5 * 5;
+
+env.content + '</' + env.tag + '>'
+import { foo as bar } from "file.js"
+
+// attribute / DOM
+/on(?:abort|blur|change|click|composition(?:end|start|update)|dblclick|error|focus(?:in|out)?|key(?:down|up)|load|mouse(?:down|enter|leave|move|out|over|up)|reset|resize|scroll|select|slotchange|submit|unload|wheel)/
+
+// template-string
+/`(?:\\[\s\S]|\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}|(?!\$\{)[^\\`])*`/
+// hashbang or shebang
+/^#!.*/
+// They use uFFFF as some sort of hidden value
+// keyword:
+/(^|[^.]|\.\.\.\s*)\b(?:as|assert(?=\s*\{)|async(?=\s*(?:function\b|\(|[$\w\xA0-\uFFFF]|$))|await|break|case|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally(?=\s*(?:\{|$))|for|from(?=\s*(?:['"]|$))|function|(?:get|set)(?=\s*(?:[#\[$\w\xA0-\uFFFF]|$))|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)\b/
+
+// Allow for all non-ASCII characters (See http://stackoverflow.com/a/2008444)
+/#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*(?:\.\s*(?:apply|bind|call)\s*)?\()/
+
+// number, what is this: /(^|[^\w$])/.source +
+/NaN|Infinity/
+/(?:\d+(?:_\d+)*(?:\.(?:\d+(?:_\d+)*)?)?|\.\d+(?:_\d+)*)(?:[Ee][+-]?\d+(?:_\d+)*)?/
+// operator
+/--|\+\+|\*\*=?|=>|&&=?|\|\|=?|[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?\?=?|\?\.?|[~:]/
+
+// Prism.languages.javascript['class-name'][0].pattern = /(\b(?:class|extends|implements|instanceof|interface|new)\s+)[\w.\\]+/;
+// parameter
+/(\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\)\s*=>)/
+// and ...
+/((?:\b|\s|^)(?!(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)(?![$\w\xA0-\uFFFF]))(?:(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*\s*)\(\s*|\]\s*\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\)\s*\{)/
 ```
+
+Keywords: as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield - how do you handle the 2 and 3 let KWs if they appear in your variable names?
 
 1. Prism javascript: https://github.com/PrismJS/prism/blob/master/components/prism-javascript.js
 
 Colors
 
-1. only 5 colors in GitHub js files: red, white, purple, blue and light-blue
+1. 6 colors in GitHub js files: red, white, purple, orange, blue and light-blue
 1. dd
 1. dd
 1. dd
