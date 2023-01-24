@@ -39,7 +39,11 @@ const sassRegEx = [sassProp, comments, cssFxName, cssUnits, cssAtRules, sassVars
 // JavaScript Regular Expressions
 // const backTicks = /`(.*?)`/g;
 const backTicks = /`(?:\\.|\$\{[^{}]*\}|(?!\$\{)[^\\`])*`/g;
-const jsRegEx = [];
+// There are more keywords, but these are the only ones I have currently used
+// the positive lookbehind then lookahead covers scenarios like forEach with the keeyword for but not if you have a keyword in a string with a space on either side
+// const jsKeywords = /(?<=[\s?\()])(async|await|break|case|catch|class|const|default|delete|do|else|extends|for|from|function|get|if|import|in|let|new|of|return|switch|trow|try|while)(?=\s)/g;
+const jsKeywords = /(?<=\(?)(typeof|async|await|break|case|catch|class|const|default|delete|do|else|extends|for|from|function|get|if|import|in|let|new|of|return|switch|trow|try|while)(?=\s)/g;
+const jsRegEx = [backTicks, jsKeywords, comments, dblQuote, singleQt];
 
 // JSX Regular Expressions
 
@@ -60,12 +64,14 @@ const input =
     <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
   </ul>
 </nav>`;
+/* I think the split regex should be /[\n\r]|[\n]/g */
 // const myInput = input.split(/[\n]/);
 // const myText = inputText.split(/[\n]/);
 // const myHtml = inputHTML.split(/[\n]/);
 // const myJson = inputJSON.split(/[\n]/);
-const myCss = inputCSS.split(/[\n]/);
+// const myCss = inputCSS.split(/[\n\r]|[\n]/g);
 // const mySass = inputSASS.split(/[\n]/);
+const myJs = inputJS.split(/[\n\r]|[\n]/g);
 
 // Step 2: Fx to convert reserved characters into HTML entities
 function convertReservedChars(str) {
@@ -95,7 +101,7 @@ function convertCode(arr) {
 // convertCode(myInput);
 // convertCode(myText);
 // convertCode(myJson);
-convertCode(myCss);
+convertCode(myJs);
 // convertCode(mySass);
 
 // Step 3b: Output the HTML entities if you want to stop there
@@ -114,6 +120,8 @@ let cssPropClass = []; let cssFxNameClass = []; let cssUnitsClass = []; let cssA
 let sassPropClass = []; let sassVarsClass = []; let sassClassClass = [];
 
 let jsonPropClass = []; let jsonValDblQtClass = []; let jsonNumBoolClass = [];
+
+let jsKeywordsClass = [];
 
 class htmlCode {
   constructor(arr, regex, lineArray, index) {
@@ -151,15 +159,8 @@ myHtmlDblQuotes.findMatches();
 */
 /* End HTML classes */
 
-// Step 5: Output the HTML code to the DOM
-/*
-DblQuotesClass.forEach(codeLine => {
-  darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
-})
-*/
-
 /* Start CSS classes */
-
+/* 
 const myCssProp = new htmlCode(convertedCode, cssProp, cssPropClass, 1);
 myCssProp.findMatches();
 const mCssComments = new htmlCode(cssPropClass, comments, commentsClass, 4);
@@ -176,17 +177,8 @@ const mySingleQt = new htmlCode(cssVarsClass, singleQt, singleQtClass, 2);
 mySingleQt.findMatches();
 const myCssClassId = new htmlCode(singleQtClass, cssClassId, cssClassIdClass, 1);
 myCssClassId.findMatches();
-
+*/
 /* End CSS classes */
-
-// Step 5: Output the CSS code to the DOM
-
-cssClassIdClass.forEach(codeLine => {
-  darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
-  // If you want to see how the code looks, try the line below:
-  // darkBlockOutput.innerHTML += '<li><span>' + `${codeLine}` + "</span></li>";
-})
-
 
 /* Start SASS/SCSS classes */
 /* 
@@ -209,58 +201,53 @@ mySingleQt.findMatches();
 */
 /* End SASS/SCSS classes */
 
-// Step 5: Output the SASS code to the DOM
-/*
-singleQtClass.forEach(codeLine => {
-  darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
-})
-*/
-
 /* Start JavaScript classes */
-
+const myjsKeywords = new htmlCode(convertedCode, jsKeywords, jsKeywordsClass, 5);
+myjsKeywords.findMatches();
 /* End JavaScript classes */
-
-// Step 5: Output the JavaScript code to the DOM
-/*
-jsonNumBoolClass.forEach(codeLine => {
-  darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
-})
-*/
 
 /* Start JSON classes */
 /*
 const myjsonValDblQt = new htmlCode(convertedCode, jsonValDblQt, jsonValDblQtClass, 2);
 myjsonValDblQt.findMatches();
-const myjsonProp = new htmlCode(jsonValDblQtClass, jsonProp, jsonPropClass, 1);
+const myjsonProp = new htmlCode(jsonValDblQtClass, jsonProp, jsonPropClass, 0);
 myjsonProp.findMatches();
 const myjsonNumBool = new htmlCode(jsonPropClass, jsonNumBool, jsonNumBoolClass, 1);
 myjsonNumBool.findMatches();
 */
 /* End JSON classes */
 
-// Step 5: Output the JSON code to the DOM
-/*
-jsonNumBoolClass.forEach(codeLine => {
-  darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
-})
-*/
 
 /* Start PHP classes */
 
 /* End PHP classes */
 
 
-/* for LIGHT code block, you need to use the classes constant that is commented out and comment out the other one */
+/* Start Markdown classes */
+
+/* End Markdown classes */
+
+/* Step 5: Output your code to the DOM - I will need a switch statement here
+   to attach the final output array for  
+*/
+jsKeywordsClass.forEach(codeLine => {
+  darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
+
+    /* Use the line below as a visual check for the colors before doing all the work to format the final code for your pre block: */
+
+  // darkBlockOutput.innerHTML += '<li><span>' + `${codeLine}` + "</span></li>";
+})
+
+/* 
+*
+ for LIGHT code block, you need to use the classes constant 
+ that is commented out and comment out the other one 
+ and use lightBlockOutput as your output point to the DOM
+*
+*/
+
 /*
 DblQuotesClass.forEach(codeLine => {
   lightBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
 })
 */ 
-
-/* 
-Getting EMPTY span.color tags though the output works (my capture groups?)
-My attempt at slicing the dups out but it's only grabbing the last code line 
--> REMOVED THAT BLOCK Of CODE: removeDups()
-*/
-// Can I use removeDups()? As a get or set?
-const sqrt = Math.sqrt(154);

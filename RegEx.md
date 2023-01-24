@@ -500,7 +500,56 @@ Prism.js regex for template string is way better than mine:
 /`(?:\\.|\$\{[^{}]*\}|(?!\$\{)[^\\`])*`/;
 ```
 
-`*BT` = backtick symbol - a backtick RegEx for JavaScript will have to be able to grab anything that is ever put in between backticks in JS, meaning everything!
+Test js:
+
+```js
+const str = 'string';
+const num = 1.618;
+let bool = true;
+const arr1 = [1, 12.36, 'word'];
+const obj = {
+  a: 'word',
+  b: 42,
+};
+async function fxName(arr) {
+  const output = await arr.forEach(item => {
+    console.log(item);
+  });
+  return output;
+}
+fxName(arr1);
+if (bool) {
+  console.log('True');
+  console.log(typeof arr);
+} else {
+  console.log('False');
+}
+const someNum = Math.random() * 10;
+```
+
+```
+const str = &apos;string&apos;;
+const num = 1.618;
+let bool = true;
+const arr1 = [1, 12.36, &apos;word&apos;];
+const obj = {
+  a: &apos;word&apos;,
+  b: 42,
+};
+async function fxName(arr) {
+  const output = await arr.forEach(item =&gt; {
+  console.log(item);
+  });
+  return output;
+}
+fxName(arr1);
+if (bool) {
+  console.log(&apos;True&apos;);
+} else {
+  console.log(&apos;False&apos;);
+}
+const someNum = Math.random() * 10;
+```
 
 | Name      | RegEx         | Color class |
 | :-------- | :------------ | :---------- |
@@ -517,6 +566,8 @@ let newLineArr = [];
 const str1 = `<span class="lime-green"></span>`;
 const str2 = `<span class="blue"></span>`;
 const str3 = `<span class="light-blue"></span>`;
+const rand = Math.random()
+const today = new Date().getFullYear()
 
 function removeDups(arr, str) {
   arr.forEach(line => {
@@ -671,10 +722,13 @@ function Config_FR() {
 1. String values: light-blue
 1. Boolean values: blue
 
-| Name      | RegEx                                  | Color class |
-| :-------- | :------------------------------------- | :---------- |
-| property  | `/(&quot;[.\w\/:*\{\s?-]*\w&quot;):/g` | green       |
-| dblQuotes | see Global                             | light-blue  |
+| Name         | RegEx                                        | Color class |
+| :----------- | :------------------------------------------- | :---------- |
+| jsonProp     | `/(&quot;[.\w\/:*\{\s?-]*\w&quot;)(?=:\s)/g` | green       |
+| jsonValDblQt | `/(&quot;[.\s\w/*#?-]*&quot;)(?!:)/g`        | light-blue  |
+| jsonNumBool  | see below                                    | blue        |
+
+jsonNumBool = `/([\d]*|true|false|null)(?=[,\]])/g`
 
 ```json
 {
@@ -737,6 +791,10 @@ Prism.languages.json = {
 
 ## PHP RegEx and colors
 
+> https://github.com/PrismJS/prism/blob/master/components/prism-php.js
+
+> https://github.com/PrismJS/prism/blob/master/components/prism-php-extras.js
+
 | Name | RegEx | Color class |
 | :--- | :---- | :---------- |
 |      | `//g` |             |
@@ -769,6 +827,8 @@ $wordCountAndTimePlugin = new WordCountAndTimePlugin();
 ```
 
 ## Markdown RegEx and colors
+
+> https://github.com/PrismJS/prism/blob/master/components/prism-markdown.js
 
 | Name | RegEx | Color class |
 | :--- | :---- | :---------- |

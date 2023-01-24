@@ -2,7 +2,7 @@
 
 A JavaScript program to output different languages with `span.color` classes for syntax highlighting. This is a manual process, as opposed to using PrismJS.
 
-Things I need:
+Things I need or want:
 
 1. Use RegEx to add span with color classes for various parts of the code for _**EVERY**_ language (ongoing)
 1. Have each line of code break to a new line for easier copy/paste for DOM `textContent`

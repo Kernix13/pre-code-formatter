@@ -20,6 +20,27 @@
       <h3>Dark block example:</h3>
       <pre class="code-block dark_block">
         <span class="comment">&lt;!-- Next: JavaScript --&gt;</span>
+        <span>const str = &apos;string&apos;;</span>
+        <span>const num = 1.618;</span>
+        <span>let bool = true;</span>
+        <span>const arr1 = [1, 12.36, &apos;word&apos;];</span>
+        <span>const obj = {</span>
+        <span> a: &apos;word&apos;,</span>
+        <span> b: 42,</span>
+        <span>};</span>
+        <span>async <span class="red">function</span> fxName(arr) {</span>
+        <span> <span class="red">const</span> output = <span class="red">await</span> arr.forEach(item =&gt; {</span>
+        <span> console.log(typeof item);</span>
+        <span> });</span>
+        <span> <span class="red">return</span> output;</span>
+        <span>}</span>
+        <span>fxName(arr1);</span>
+        <span>if (bool) {</span>
+        <span> console.log(&apos;True&apos;);</span>
+        <span>} <span class="red">else</span> {</span>
+        <span> console.log(&apos;False&apos;);</span>
+        <span>}</span>
+        <span>const someNum = Math.random() * 10;</span>
 
         <span class="comment">&lt;!-- RegEx: ??? --&gt;</span>
 
@@ -236,23 +257,23 @@
       <pre class="code-block dark_block">
         <span class="comment">&lt;!-- RegEx order: 1. jsonValDblQt, 2. jsonProp, 3. jsonNumBool --&gt;</span>
         <span>{</span>
-        <span> <span class="blue">&quot;Chord&quot;</span>: <span class="light-blue">&quot;Maj&quot;</span><span
+        <span> <span class="green">&quot;Chord&quot;</span>: <span class="light-blue">&quot;Maj&quot;</span><span
             class="blue"></span>,</span>
-        <span> <span class="blue">&quot;Intervals&quot;</span>: [<span class="light-blue">&quot;1&quot;</span><span
+        <span> <span class="green">&quot;Intervals&quot;</span>: [<span class="light-blue">&quot;1&quot;</span><span
             class="blue"></span>, <span class="light-blue">&quot;3&quot;</span><span class="blue"></span>, <span
             class="light-blue">&quot;5&quot;</span><span class="blue"></span>]<span class="blue"></span>,</span>
-        <span> <span class="blue">&quot;steps&quot;</span>: [<span class="blue">0</span><span class="blue"></span>, <span
+        <span> <span class="green">&quot;steps&quot;</span>: [<span class="blue">0</span><span class="blue"></span>, <span
             class="blue">4</span><span class="blue"></span>, <span class="blue">7</span><span class="blue"></span>]<span
             class="blue"></span>,</span>
-        <span> <span class="blue">&quot;test&quot;</span>: <span class="blue">true</span><span class="blue"></span>,</span>
-        <span> <span class="blue">&quot;Tendency&quot;</span>: [<span class="light-blue">&quot;I&quot;</span><span
+        <span> <span class="green">&quot;test&quot;</span>: <span class="blue">true</span><span class="blue"></span>,</span>
+        <span> <span class="green">&quot;Tendency&quot;</span>: [<span class="light-blue">&quot;I&quot;</span><span
             class="blue"></span>, <span class="light-blue">&quot;IV&quot;</span><span class="blue"></span>]<span
             class="blue"></span>,</span>
-        <span> <span class="blue">&quot;scales&quot;</span>: [</span>
-          <span> { <span class="blue">&quot;Major Scale&quot;</span>: [<span class="light-blue">&quot;1st&quot;</span><span
+        <span> <span class="green">&quot;scales&quot;</span>: [</span>
+          <span> { <span class="green">&quot;Major Scale&quot;</span>: [<span class="light-blue">&quot;1st&quot;</span><span
               class="blue"></span>, <span class="light-blue">&quot; 4th&quot;</span><span class="blue"></span>, <span
               class="light-blue">&quot; 5th&quot;</span><span class="blue"></span>] }<span class="blue"></span>,</span>
-          <span> { <span class="blue">&quot;Minor Pentatonic&quot;</span>: [<span class="light-blue">&quot;2nd&quot;</span><span
+          <span> { <span class="green">&quot;Minor Pentatonic&quot;</span>: [<span class="light-blue">&quot;2nd&quot;</span><span
               class="blue"></span>] }</span>
         <span> <span class="blue"></span>]</span>
         <span>}</span>
@@ -271,6 +292,19 @@
       <pre class="code-block dark_block">
             
       </pre>
+      <hr>
+
+      <h3>Markdown Example</h3>
+      <pre class="code-block dark_block">
+            
+      </pre>
+      <hr>
+
+      <h3>Other Code Examples</h3>
+      <p>I am considering adding syntax/languages like <em>Git</em> and <em>Git Bash</em>, <em>NPM</em> commands, <em>SQL</em>, <em>React/JSX</em> and <em>Astro</em>, <em>YAML</em>, <em>Apache</em>, and any other language or syntax that I come in contact with on my Front End journey.</p>
+      <p>However, there is not much syntax highlighting with Git commands, and I believe all NPM commands in the terminal are white. Also, the number of lines for a code block of Git or NPM commands are small and I could just add my color classes line by line for the few snippets that have color highlighting.</p>
+      <p>JSX like syntax seems to add the coloring for HTML and JavaScript together, so once I finish JavaScript, I should have what I need for Astro and JSX files.</p>
+      <p>Apache syntax highlighting would be good for <code>.htaccess</code> code, so that is one I will do. And it appears I can use the HTML regular expressions for Apache. I would be interested in YAML only for GitHub actions, however I have no idea how to use Actions.</p>
       <hr>
 
       <!-- <h3>JSX Example</h3>
@@ -322,7 +356,7 @@
     
 
     <script src="./js/input.js"></script>
-    <script src="./js/script.js"></script>
-    <!-- <script src="./js/script2.js"></script> -->
+    <!-- <script src="./js/script.js"></script> -->
+    <script src="./js/script2.js"></script>
   </body>
 </html>
