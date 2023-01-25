@@ -10,7 +10,7 @@
   <body>
     <div class="container">
       <h1>HTML Pre Tag Formatter</h1>
-      <p>Output <code class="code-text">span</code> tags for use in a <code>pre</code> tag for code blocks in blog posts (dark and light versions, see <a href="#notes">notes</a> below). The <code>span</code> tags have color classes based on the specific language and syntax.</p>
+      <p>Output <code>&lt;<span class="green">span</span>&gt;</code> tags for use in a <code>&lt;<span class="green">pre</span>&gt;</code> tag for code blocks in blog posts (dark and light versions, see <a href="#notes">notes</a> below). The <code>&lt;<span class="green">span</span>&gt;</code> tags have color classes based on the specific language and syntax.</p>
 
       <!-- output here: -->
       <hr>
@@ -21,9 +21,6 @@
       <pre class="code-block dark_block">
       
         <span class="comment">&lt;!-- RegEx: ??? --&gt;</span>
-
-
-
 
         <span class="comment">&lt;!-- Manually added span color classes: --&gt;</span>
 
@@ -164,7 +161,7 @@
             class="red">!important</span>;</span>
         <span>}</span>
       </pre>
-      <p><strong>NOTE</strong>: I have not figured out how to select HTML selectors so use <em>Emmet: Wrap with Abbreviation</em> to manually add the <code>span.color</code> classes. I also considered not including my match for Class selectors because of URLs with a period (.) which are also selected. I added it back. If you do have an <code>import</code> or a <code>url()</code> in your CSS, then remove the dot, or for Google font imports, substitute the actual URL with a dummy string and replace the URL at the end. And I can only select CSS variables as a value, not the declaration. Also note that if you have a period in yout comment(s), then it will get wrapped in <code>span.blue</code> - classes and HTML selectors require advanced regular expressions.</p>
+      <p><strong>NOTE</strong>: I have not figured out how to select HTML selectors so use <em>Emmet: Wrap with Abbreviation</em> to manually add the <code>span.color</code> classes. I also considered not including my match for Class selectors because of URLs with a period (.) which are also selected. I added it back. If you do have an <code><span class="red">@import</span></code> or a <code><span class="purple">url</span>()</code> in your CSS, then remove the dot, or for Google font imports, substitute the actual URL with a dummy string and replace the URL at the end. And I can only select CSS variables as a value, not the declaration. Also note that if you have a period in yout comment(s), then it will get wrapped in <code>span.blue</code> - classes and HTML selectors require advanced regular expressions.</p>
       <hr>
 
       <h3>SASS Example</h3>
@@ -304,7 +301,7 @@
             class="purple"></span>();</span>
         <span><span class="comment">/* Start JavaScript classes */</span></span>
       </pre>
-      <p><strong>NOTE</strong>: For now this part is done but I am expecting errors when I start converting JS. I would prefer to be more positive but I do not think my expressions are ideal, plus my brain is getting fried. I wanted to make all numbers blue but running that part of the code added a huge number of empty span.blue tags (<em>It's almost always </em><code>class="blue"</code>). I also was not able to escape a backtick to test my <code>backtick</code> RegEx. However, everything else worked and I only had to adjust a few lines and some indentations.</p>
+      <p><strong>NOTE</strong>: For now this part is done but I am expecting errors when I start converting JS. I would prefer to be more positive but I do not think my expressions are ideal, plus my brain is getting fried. I wanted to make all numbers blue but running that part of the code added a huge number of empty span.blue tags (<em>It's almost always </em><code><span class="blue">class</span>=<span class="light-blue">&quot;blue&quot;</span></code>). I also was not able to escape a backtick to test my <code>backtick</code> RegEx. However, everything else worked and I only had to adjust a few lines and some indentations.</p>
       <hr>
 
       <h3>PHP Example</h3>
@@ -364,7 +361,7 @@
             class="purple">esc_html_e</span><span class="purple"></span>(<span class="light-blue">&apos;Latest Articles&apos;</span>, <span class="light-blue">&apos;tower&apos;</span>) ?&gt;&lt;<span class="green"></span>/<span
             class="green">h3</span>&gt;</span>
       </pre>
-      <p><strong>NOTE</strong>: I had some issues with the RegEx here. First, my comments RegEx did not grab my comment so I manually added <code>span.comment</code>. It did not take because it was on multiple lines, so it was split that way. Second, I was able to grab the custom function but not the <code>new</code> instance of it. The new instance took on the color of functions (purple), so I manually changed it to <code>span.orange</code>. Third, I was not able to grab the closing <code>?</code> for the php tag, so I manually added <code>span.green</code>. Lastly, I did not try to grab the <code>$</code> prefix to <code>this</code>, so I manually added <code>span.blue</code>. I'll work on that one later.</p>
+      <p><strong>NOTE</strong>: I had some issues with the RegEx here. First, my comments RegEx did not grab my comment so I manually added <code>span.comment</code>. It did not take because it was on multiple lines, so it was split that way. Second, I was able to grab the custom function but not the <code><span class="red">new</span></code> instance of it. The new instance took on the color of functions (purple), so I manually changed it to <code>span.orange</code>. Third, I was not able to grab the closing <code><span class="green">?</span></code> for the php tag, so I manually added <code>span.green</code>. Lastly, I did not try to grab the <code><span class="light-blue">$</span></code> prefix to <code>this</code>, so I manually added <code>span.blue</code>. I'll work on that one later.</p>
       <hr>
 
       <h3>Markdown Example</h3>
@@ -392,20 +389,20 @@
           <h3>How to use this</h3>
           <li>In the CodePen version, you have to add your code in backticks to an array called <code>input</code>. That is only for anyone who wants to test this out before cloning my repo.</li>
           <li>Once you do that, copy the code under <em>Code to copy for dark code block</em>.</li>
-          <li>Paste that code <em>anywhere</em> into your HTML file so the <code>li</code> tags break to a new line. Then remove the opening and closing <code>li</code> tags and paste the remaining code into your <code>pre</code> block - DONE! The code in the <code>pre</code> tag will look funky but you should not have to touch it after pasting it except for using <kbd>TAB</kbd> and/or <kbd>SPACEBAR</kbd> to align things.</li>
+          <li>Paste that code <em>anywhere</em> into your HTML file so the <code>&lt;<span class="green">li</span>&gt;</code> tags break to a new line. Then remove the opening and closing <code>&lt;<span class="green">li</span>&gt;</code> tags and paste the remaining code into your <code>&lt;<span class="green">pre</span>&gt;</code> block - DONE! The code in the <code>&lt;<span class="green">pre</span>&gt;</code> tag will look funky but you should not have to touch it after pasting it except for using <kbd>TAB</kbd> and/or <kbd>SPACEBAR</kbd> to align things.</li>
         </ul>
         <ul>
           <h3>Issues, problems, and To-Do items</h3>
-          <li>As of <date>January 21st, 2023,</date> I'm getting empty <code>span.color</code> tags. They don't affect the display in the <code>pre</code> block, but they should not be there. I will begin debugging the code to get rid of them when I am done the regular expressions for all the languages I want to cover. I assume it's my RegEx capture groups or the <code>replace()</code> method.</li>
-          <li>A better way than using an array to grab the code: I want to either <strong>1)</strong> add a <code>textarea</code> to paste the code and then grab it, or ideally <strong>2)</strong>
+          <li>As of <date>January 21st, 2023,</date> I'm getting empty <code>span.color</code> tags. They don't affect the display in the <code>&lt;<span class="green">pre</span>&gt;</code> block, but they should not be there. I will begin debugging the code to get rid of them when I am done the regular expressions for all the languages I want to cover. I assume it's my RegEx capture groups or the <code><span class="purple">replace</span>()</code> method.</li>
+          <li>A better way than using an array to grab the code: I want to either <strong>1)</strong> add a <code>&lt;<span class="green">textarea</span>&gt;</code> to paste the code and then grab it, or ideally <strong>2)</strong>
           grab the code out of a file using the <em>FileReader API</em>.</li>
           <li>As of January 21st I am using another JavaScript file (<code>input.js</code>) to get the code (see repo).</li>
           <li>As of January 15th I switched from a functional approach to using Classes.</li>
-          <li>My JavaScript code is <em>UGLY</em> and is an example of code that is not <strong>DRY</strong>! I suck at recursion, and nested <code>map()</code> methods are not working to run each code line against each regular expression for each language. I am going to try a nester <code>for</code> loop next and maybe revisit the nested map approach.</li>
-          <li>I'm open to any suggestions for the styling of my <code>code</code>, <code>kbd</code>, and <code>var</code> tags.</li>
+          <li>My JavaScript code is <em>UGLY</em> and is an example of code that is not <strong>DRY</strong>! I suck at recursion, and nested <code><span class="purple">map</span>()</code> methods are not working to run each code line against each regular expression for each language. I am going to try a nester <code><span class="red">for</span></code> loop next and maybe revisit the nested map approach.</li>
+          <li>I'm open to any suggestions for the styling of my <code>&lt;<span class="green">code</span>&gt;</code>, <code>&lt;<span class="green">kbd</span>&gt;</code>, and <code>&lt;<span class="green">var</span>&gt;</code> tags.</li>
         </ul>
         <h3>Code, KBD, and Var element testing</h3>
-        <p>Testing: the <code>kbd</code> element: <kbd>ENTER</kbd>, and the <code>var</code> element: <var>a<sup> 2</sup> +
+        <p>Testing: the <code>&lt;<span class="green">kbd</span>&gt;</code> element: <kbd>ENTER</kbd>, and the <code>&lt;<span class="green">var</span>&gt;</code> element: <var>a<sup> 2</sup> +
             b<sup>2</sup> =
             c<sup>2</sup></var>. The strings <em>kbd</em>, and <em>var</em> are in a &lt;code&gt; tag</p>
         <p>Check out my GitHub repo <a href="https://github.com/Kernix13/pre-code-formatter"
@@ -417,7 +414,7 @@
       </div>
       <hr>
       <div class="file-reader">
-        <h3>Get code from <code>textarea</code> (<span class="small">not functional at this time</span>)</h3>
+        <h3>Get code from <code>&lt;<span class="green">textarea</span>&gt;</code> (<span class="small">not functional at this time</span>)</h3>
         <form>
           <!-- <input type="file" name="readfile" id="readfile" /> -->
           <!-- <input onchange="readFile(this)" type="file"> -->

@@ -44,12 +44,25 @@ p {
   font-size: 1.125rem;
 }
 
-code,
 kbd,
 samp,
 var {
   font-family: "Lucida Console", Monaco, monospace;
   font-weight: 600;
+}
+
+code {
+  font-family: "Lucida Console", Monaco, monospace;
+  // font-weight: 600;
+  font-size: 90%;
+  line-height: 1.5;
+  padding: 0.15em 0.2em 0.05em;
+  // tab-size: 4;
+  border-radius: 0.3em;
+  // text-align: left;
+  // box-shadow: black 1px 1px 0.3em -0.1em inset;
+  background-color: var(--bg-dark_block);
+  color: var(--white);
 }
 
 var {

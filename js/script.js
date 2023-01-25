@@ -56,6 +56,8 @@ const phpRegEx = [htmlAttr, phpCustonFx, phpHtmlTag, phpKeywords, jsFx, singleQt
 // JSX Regular Expressions
 
 // Markdown Regular Expressions
+const mdHeadings = /([#]{1,6}[\s]{1}[\s\w]*)(?<!\n)/g;
+const mdRegEx = [htmlAttr, mdHeadings, htmlComment, htmlTag, singleQt, dblQuote,];
 
 // Step 1: Get your code added to a backtick string in input.js or from input in this file
 const input =
@@ -89,7 +91,8 @@ function convertReservedChars(str) {
 
 // const myInput = input.split(/[\n]/);
 // const myJs = inputJS.split(/[\n\r]|[\n]/g);
-const myPhp = inputPHP.split(/[\n\r]|[\n]/g);
+// const myPhp = inputPHP.split(/[\n\r]|[\n]/g);
+const myMd = inputMD.split(/[\n\r]|[\n]/g);
 let convertedCode = [];
 
 function convertCode(arr) {
@@ -99,7 +102,7 @@ function convertCode(arr) {
   })
 }
 // convertCode(myInput);
-convertCode(myPhp);
+convertCode(myMd);
 
 // Step 3b: Output the HTML entities if you want to stop there
 convertedCode.forEach(codeLine => {
@@ -121,6 +124,9 @@ let jsonPropClass = []; let jsonValDblQtClass = []; let jsonNumBoolClass = [];
 let jsKeywordsClass = []; let jsNumClass = []; let jsFxClass = []; let jsNumDateClass = []; let jsObjPropClass = []; let jsBoolClass = []; let jsEqualClass = []; let backTicksClass = [];
 
 let phpCustonFxClass = []; let phpHtmlTagClass = []; let phpKeywordsClass = [];
+
+// const mdRegEx = [htmlAttr, mdHeadings, htmlComment, htmlTag, singleQt, dblQuote,];
+let mdHeadingsClass = [];
 
 class htmlCode {
   constructor(arr, regex, lineArray, index) {
@@ -238,6 +244,7 @@ myjsonNumBool.findMatches();
 
 
 /* Start PHP classes */
+/*
 // const phpRegEx = [comments, jsBool];
 const myHtmlAttr = new htmlCode(convertedCode, htmlAttr, HtmlAttrClass, 1);
 myHtmlAttr.findMatches();
@@ -257,22 +264,26 @@ const myjsBool = new htmlCode(DblQuotesClass, jsBool, jsBoolClass, 1);
 myjsBool.findMatches();
 // const myjsComments = new htmlCode(jsBoolClass, comments, commentsClass, 4);
 // myjsComments.findMatches();
-
+*/
 /* End PHP classes */
 
 /* Start Markdown classes */
+// const mdRegEx = [htmlAttr, mdHeadings, htmlComment, htmlTag, singleQt, dblQuote,];
+const myHtmlAttr = new htmlCode(convertedCode, htmlAttr, HtmlAttrClass, 1);
+myHtmlAttr.findMatches();
 
 /* End Markdown classes */
 
 /* Step 5: Output your code to the DOM - I will need a switch statement here
    to attach the final output array for  
 */
-jsBoolClass.forEach(codeLine => {
-  darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
+myHtmlAttr.forEach(codeLine => {
+  // darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
+  darkBlockOutput.innerText += '<li><span>' + `${codeLine}` + "</span></li>";
 
   /* Use the line below as a visual check for the colors before doing all the work to format the final code for your pre block: */
 
-  // darkBlockOutput.innerHTML += '<li><span>' + `${codeLine}` + "</span></li>";
+  darkBlockOutput.innerHTML += '<li><span>' + `${codeLine}` + "</span></li>";
 })
 
 /* 

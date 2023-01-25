@@ -866,6 +866,24 @@ $wordCountAndTimePlugin = new WordCountAndTimePlugin();
 
 ## Markdown RegEx and colors
 
+1. Blue:
+   1. titles `DONE`
+   1. inline code
+1. Light Blue:
+   1. link text,
+   1. optional,
+   1. image alt,
+   1. `x` in task lists,
+1. Green:
+   1. blockguotes,
+   1. HTML tags
+   1. `+` diff lines
+1. Orange:
+   1. orderedlist style characters and
+   1. unordered list style characters,
+1. Red:
+   1. `-` diff lines
+
 > https://github.com/PrismJS/prism/blob/master/components/prism-markdown.js
 
 | Name | RegEx | Color class |
@@ -884,6 +902,7 @@ Looks like I'll need to use HTML expressions for the valid HTML tags
 [Link](https://example.com)
 [Link text](URL 'Optional link title')
 [Strike thru section](#strike-thru-section)
+![picture alt text](https://url.com/images/filename.png 'Title is optional')
 
 Some other important footnote.[^2]
 
@@ -907,7 +926,7 @@ Use this for where you want the link: `[^1]`
 
 > > Indented blockquote
 
-> `img` tags **display** as block level _unless_ nested in table cells or `<span>` tags
+> img tags **display** as block level _unless_ nested in table cells or `<span>` tags
 
 ## ~~A Literal~~ <ins>Table</ins> of _Contents_
 
@@ -937,6 +956,46 @@ a {
 
 ![picture alt text](https://images/pic.jpg 'Title is optional')
 
+```
+# MARKDOWN CHEAT SHEET
+## ~~A Literal~~ &lt;ins&gt;Table&lt;/ins&gt; of _Contents_
+#### How about H4 as a comparison
+### h3
+
+[Link](https://example.com)
+[Link text](URL &apos;Optional link title&apos;)
+![picture alt text](https://url.com/images/filename.png &apos;Title is optional&apos;)
+[Strike thru section](#strike-thru-section)
+&lt;span&gt;&lt;img alt=&quot;alt&quot; src=&quot;https://url.com&quot;&gt;&lt;/span&gt;
+&lt;div align=&quot;right&quot;&gt;&amp;#8673; &lt;a href=&quot;#back-to-top&quot; title=&quot;Title&quot;&gt;Back
+  to Top&lt;/a&gt;&lt;/div&gt;
+Some other important footnote.[^2]
+[^1]: This is footnote number one.
+[^2]: Here is the second footnote.
+
+- [ ] Incomplete _task_
+- [x] Completed **task**
+
+1. list item
+1. Ordered item 2
+  1. Child item 1
+
+- bullet point
+- List item 2
+  - Child item 1
+&gt; Blockquote
+&gt; &gt; Indented blockquote
+&gt; img tags **display** as block level _unless_ nested in table cells or &lt;span&gt; tags
+---
+**two asterisks**
+_one asterisk_
+_one underscore_
+**_2 asterisks and and 1 underscore_**
+~~double tildes~~
+- this code or text is the old version
++ this is what it was changed to
+```
+
 ### Math (SKIP)
 
 |               Category | Element                   | Accepts styles? |
@@ -949,7 +1008,7 @@ a {
 <span><img alt="alt" src="https://url.com"></span>
 
 <div id="back-to-top"></div>
-<div align="right">&#8673; <a href="#back-to-top" title="Table of Contents">Back to Top</a></div>
+<div align="right">&#8673; <a href="#back-to-top" title="Title">Back to Top</a></div>
 <kbd>ENTER</kbd>
 <ins>on hover</ins>
 <br>

@@ -55,30 +55,44 @@ const today = new Date().getFullYear();
 const inputJSON =
 ``;
 
+const inputMD =
+`<!-- Markdown comment the same as for HTML -->
+# MARKDOWN CHEAT SHEET
+## ~~A Literal~~ <ins>Table</ins> of _Contents_
+#### How about H4 as a comparison
+### h3
+
+[Link](https://example.com)
+[Link text](URL 'Optional link title')
+![picture alt text](https://url.com/images/filename.png 'Title is optional')
+[Strike thru section](#strike-thru-section)
+<span><img alt="alt" src="https://url.com/images/filename.jpg"></span>
+<div align="right">&#8673; <a href="#back-to-top" title="Title">Back to Top</a></div>
+Some other important footnote.[^2]
+[^1]: This is footnote number one.
+[^2]: Here is the second footnote.
+
+- [ ] Incomplete _task_
+- [x] Completed **task**
+
+1. list item
+1. Ordered item 2
+   1. Child item 1
+
+- bullet point
+- List item 2
+  - Child item 1
+> Blockquote
+> > Indented blockquote
+> img tags **display** as block level _unless_ nested in table cells or <span> tags
+---
+**two asterisks**
+_one asterisk_
+_one underscore_
+**_2 asterisks and and 1 underscore_**
+~~double tildes~~
+- this code or text is the old version
++ this is what it was changed to`;
+
 const inputPHP =
-`<?php
-
-/*
-  Plugin Name: Word Count Plugin
-  Description: Plugin to display read time, character & word count for posts
-  Version: 1.0.0
-*/
-
-class WordCountAndTimePlugin {
-  function __construct() {
-    add_action('admin_menu', array($this, 'adminPage'));
-    add_action('admin_init', array($this, 'settings'));
-    add_filter('the_content', array($this, 'ifWrap'));
-  }
-
-  function settings() {
-    add_settings_section('wcp_first_section', null, null, 'word-count-settings-page');
-
-    add_settings_field('wcp_location', 'Display Location', array($this, 'locationHTML'), 'word-count-settings-page', 'wcp_first_section');
-    register_setting('wordcountplugin', 'wcp_location', array('sanitize_callback' => array($this, 'sanitizeLocation'), 'default' => '0'));
-  }
-}
-$wordCountAndTimePlugin = new WordCountAndTimePlugin();
-?>
-<div class="container">
-  <h3 class="custom-title"><?php esc_html_e('Latest Articles ', 'tower') ?></h3>`;
+``;
