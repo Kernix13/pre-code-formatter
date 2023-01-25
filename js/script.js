@@ -33,15 +33,13 @@ const sassRegEx = [sassProp, comments, cssFxName, cssUnits, cssAtRules, sassVars
 
 // JavaScript Regular Expressions
 const backTicks = /`(?:\\.|\$\{[^{}]*\}|(?!\$\{)[^\\`])*`/g;
-const jsKeywords = /(?<=\(?)(typeof|async|await|break|case|catch|class|const|default|delete|do|else|extends|for|from|function|get|if|import|in|let|new|of|return|set|switch|throw|try|while)(?=\s)/g;
 const jsFx = /([\w]*)(?=\()/g;
 const jsNumDate = /(Math|Date|Number|BigInt)(?=\(|\.)/g;
 const jsObjProp = /([\w]*)(?=:)/g;
 const jsBool = /(true|false|null|undefined)/g;
 const jsEqual = /(=&gt;|=|!=|!==|==|===|\+=|\*=|\/=|-=)/g;
-const jsRegEx = [backTicks, jsKeywords, comments, dblQuote, singleQt];
-
-// JSX Regular Expressions
+const jsKeywords = /(?<=\(?)(typeof|async|await|break|case|catch|class|const|default|delete|do|else|extends|for|from|function|get|if|import|in|let|new|of|return|set|switch|throw|try|while)(?=\s)/g;
+const jsRegEx = [jsEqual, jsNumDate, jsBool, jsObjProp, jsKeywords, jsFx, backTicks, dblQuote, comments];
 
 // JSON Regular Expressions
 const jsonValDblQt = /(&quot;[.\s\w/*#?-]*&quot;)(?!:)/g;
@@ -50,6 +48,14 @@ const jsonNumBool = /([\d]*|true|false|null)(?=[,\]])/g;
 const jsonRegEx = [jsonValDblQt, jsonProp, jsonNumBool];
 
 // PHP Regular Expressions
+const phpCustonFx = /(?!\))([\w]*)(?=\s\{)/g; // canst isolate new instance
+const phpHtmlTag = /(?<=&lt;\/*|!)([a-zA-Z1-6?]*)/g; // not getting closing ?
+const phpKeywords = /(?<=\(?)(while|new|array|echo|endwhile|else|elseif|class|function|return|break|catch|continue|default|endfor|endforeach|enum|eval|exit|extends|final|finally|foreach|instanceof|insteadof|match|namespace|require|static|switch|throw|try)(?=\s)/g;
+const phpRegEx = [htmlAttr, phpCustonFx, phpHtmlTag, phpKeywords, jsFx, singleQt, dblQuote, comments];
+
+// JSX Regular Expressions
+
+// Markdown Regular Expressions
 
 // Step 1: Get your code added to a backtick string in input.js or from input in this file
 const input =
@@ -113,6 +119,8 @@ let sassPropClass = []; let sassVarsClass = []; let sassClassClass = [];
 let jsonPropClass = []; let jsonValDblQtClass = []; let jsonNumBoolClass = [];
 
 let jsKeywordsClass = []; let jsNumClass = []; let jsFxClass = []; let jsNumDateClass = []; let jsObjPropClass = []; let jsBoolClass = []; let jsEqualClass = []; let backTicksClass = [];
+
+let phpCustonFxClass = []; let phpHtmlTagClass = []; let phpKeywordsClass = [];
 
 class htmlCode {
   constructor(arr, regex, lineArray, index) {
@@ -193,6 +201,7 @@ mySingleQt.findMatches();
 /* End SASS/SCSS classes */
 
 /* Start JavaScript classes */
+/*
 const myjsEqual = new htmlCode(convertedCode, jsEqual, jsEqualClass, 1);
 myjsEqual.findMatches();
 const myjsNumDate = new htmlCode(jsEqualClass, jsNumDate, jsNumDateClass, 7);
@@ -211,16 +220,10 @@ const mybackTicks = new htmlCode(singleQtClass, backTicks, backTicksClass, 2);
 mybackTicks.findMatches();
 const myHtmlDblQuotes = new htmlCode(backTicksClass, dblQuote, DblQuotesClass, 2);
 myHtmlDblQuotes.findMatches();
-
+const myjsComments = new htmlCode(DblQuotesClass, comments, commentsClass, 4);
+myjsComments.findMatches();
+*/
 /* End JavaScript classes */
-
-DblQuotesClass.forEach(codeLine => {
-  darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
-
-  /* Use the line below as a visual check for the colors before doing all the work to format the final code for your pre block: */
-
-  // darkBlockOutput.innerHTML += '<li><span>' + `${codeLine}` + "</span></li>";
-})
 
 /* Start JSON classes */
 /*
@@ -235,9 +238,27 @@ myjsonNumBool.findMatches();
 
 
 /* Start PHP classes */
+// const phpRegEx = [comments, jsBool];
+const myHtmlAttr = new htmlCode(convertedCode, htmlAttr, HtmlAttrClass, 1);
+myHtmlAttr.findMatches();
+const myphpCustonFx = new htmlCode(HtmlAttrClass, phpCustonFx, phpCustonFxClass, 7);
+myphpCustonFx.findMatches();
+const myphpHtmlTag = new htmlCode(phpCustonFxClass, phpHtmlTag, phpHtmlTagClass, 0);
+myphpHtmlTag.findMatches();
+const myphpKeywords = new htmlCode(phpHtmlTagClass, phpKeywords, phpKeywordsClass, 5);
+myphpKeywords.findMatches();
+const myjsFx = new htmlCode(phpKeywordsClass, jsFx, jsFxClass, 6);
+myjsFx.findMatches();
+const mysingleQt = new htmlCode(jsFxClass, singleQt, singleQtClass, 2);
+mysingleQt.findMatches();
+const myHtmlDblQuotes = new htmlCode(singleQtClass, dblQuote, DblQuotesClass, 2);
+myHtmlDblQuotes.findMatches();
+const myjsBool = new htmlCode(DblQuotesClass, jsBool, jsBoolClass, 1);
+myjsBool.findMatches();
+// const myjsComments = new htmlCode(jsBoolClass, comments, commentsClass, 4);
+// myjsComments.findMatches();
 
 /* End PHP classes */
-
 
 /* Start Markdown classes */
 
@@ -246,7 +267,13 @@ myjsonNumBool.findMatches();
 /* Step 5: Output your code to the DOM - I will need a switch statement here
    to attach the final output array for  
 */
+jsBoolClass.forEach(codeLine => {
+  darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
 
+  /* Use the line below as a visual check for the colors before doing all the work to format the final code for your pre block: */
+
+  // darkBlockOutput.innerHTML += '<li><span>' + `${codeLine}` + "</span></li>";
+})
 
 /* 
 *

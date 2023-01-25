@@ -829,78 +829,39 @@ class WordCountAndTimePlugin {
   }
 }
 $wordCountAndTimePlugin = new WordCountAndTimePlugin();
-
-<?php
-/**
- * The template for displaying all pages
- *
- * @package Tower
- */
-
-get_header( 'front-page' );
 ?>
+```
 
+```
+&lt;?php
 
-	<main id="primary" class="front-main" role="main">
-			<?php
-			// Show the selected front page content.
-			if ( have_posts() ) :
-			while ( have_posts() ) :
-			the_post();
-				get_template_part( 'template-parts/content', 'front-page' ); ?>
-			<!-- make sure to check for if has_thumbnail and if has_excerpt, etc. -->
-			<aside class="bgcolor4">
-				<div class="container">
-					<h3 class="custom-title"><?php esc_html_e('Latest Articles ', 'tower') ?></h3>
-					<div class="row">
-						<?php
+/*
+  Plugin Name: Word Count Plugin
+  Description: Plugin to display read time, character &amp; word count for posts
+  Version: 1.0.0
+*/
 
-						$query = new WP_Query( [
-							'post__not_in' => get_option( 'sticky_posts'),
-							'post_type'	=> 'post',
-							// 'category_name' => 'code',
-							'posts_per_page'	=> 3,
-						] );
+class WordCountAndTimePlugin {
+  function __construct() {
+  add_action(&apos;admin_menu&apos;, array($this, &apos;adminPage&apos;));
+  add_action(&apos;admin_init&apos;, array($this, &apos;settings&apos;));
+  add_filter(&apos;the_content&apos;, array($this, &apos;ifWrap&apos;));
+  }
 
-						if ($query->have_posts()) {
-							while ($query->have_posts()) {
-								$query->the_post(); ?>
+  function settings() {
+  add_settings_section(&apos;wcp_first_section&apos;, null, null, &apos;word-count-settings-page&apos;);
 
-								<div class="recent-row">
-									<?php the_post_thumbnail() ?>
-									<a class="recent-posts-link" href="<?php the_permalink(); ?>" rel="bookmark"><h4><?php the_title(); ?></h4></a>
-
-									<?php get_template_part( 'template-parts/content', 'author' ); ?>
-
-									<!-- <span><?php the_excerpt(); ?></span> -->
-									<div class="excerpt"><?php echo wp_trim_words(get_the_excerpt(), 28); ?></div>
-									<div class="recent-post-widget">
-										<a class="recent-posts-button" href="<?php the_permalink(); ?>">Read more...</a>
-									</div>
-								</div>
-
-								<?php
-							}
-						}
-						wp_reset_postdata();
-						?>
-					</div>
-				</div>
-			</aside>
-
-			<?php
-			endwhile;
-			else :
-				get_template_part( 'template-parts/post/content', 'none' );
-			endif;
-
-			?>
-
-	</main><!-- #main -->
-
-<?php
-
-get_footer();
+  add_settings_field(&apos;wcp_location&apos;, &apos;Display Location&apos;, array($this, &apos;locationHTML&apos;),
+  &apos;word-count-settings-page&apos;, &apos;wcp_first_section&apos;);
+  register_setting(&apos;wordcountplugin&apos;, &apos;wcp_location&apos;, array(&apos;sanitize_callback&apos; =&gt;
+  array($this, &apos;sanitizeLocation&apos;), &apos;default&apos; =&gt; &apos;0&apos;));
+  }
+}
+$wordCountAndTimePlugin = new WordCountAndTimePlugin();
+?&gt;
+&lt;div class=&quot;container&quot;&gt;
+  &lt;h3 class=&quot;custom-title&quot;&gt;&lt;?php esc_html_e(&apos;Latest Articles &apos;, &apos;tower&apos;)
+  ?&gt;&lt;/h3&gt;
 ```
 
 ## Markdown RegEx and colors
@@ -912,14 +873,88 @@ get_footer();
 |      | `//g` |             |
 |      | `//g` |             |
 
-```markdown
-<!-- Later... -->
+Looks like I'll need to use HTML expressions for the valid HTML tags
+
+<!-- Markdown comment-->
+
+# MARKDOWN CHEAT SHEET
+
+#### How about H4 as a comparison
 
 [Link](https://example.com)
+[Link text](URL 'Optional link title')
+[Strike thru section](#strike-thru-section)
+
+Some other important footnote.[^2]
+
+Use this for where you want the link: `[^1]`
+
+[^1]: This is footnote number one.
+[^2]: Here is the second footnote.
+
+- [ ] Incomplete _task_
+- [x] Completed **task**
 
 1. list item
+1. Ordered item 2
+   1. Child item 1
 
-- ggg
+- bullet point
+- List item 2
+  - Child item 1
+
+> Blockquote
+
+> > Indented blockquote
+
+> `img` tags **display** as block level _unless_ nested in table cells or `<span>` tags
+
+## ~~A Literal~~ <ins>Table</ins> of _Contents_
+
+---
+
+**two asterisks**
+_one asterisk_
+_one underscore_
+**_2 asterisks and and 1 underscore_**
+~~double tildes~~
+inline `code` with backticks
+
+```css
+a {
+  text-decoration: none;
+}
+```
+
+```php
+<?php the_content(); ?>
+```
+
+```diff
+- this code or text is the old version
++ this is what it was changed to
+```
+
+![picture alt text](https://images/pic.jpg 'Title is optional')
+
+### Math (SKIP)
+
+|               Category | Element                   | Accepts styles? |
+| ---------------------: | :------------------------ | :-------------: |
+| **[Basics](#basics)**: | [Paragraphs](#paragraphs) |     **Yes**     |
+|               `&copy;` | &copy;                    |    Copyright    |
+
+<!-- HTML tags in markdown -->
+
+<span><img alt="alt" src="https://url.com"></span>
+
+<div id="back-to-top"></div>
+<div align="right">&#8673; <a href="#back-to-top" title="Table of Contents">Back to Top</a></div>
+<kbd>ENTER</kbd>
+<ins>on hover</ins>
+<br>
+<hr>
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg" alt="bootstrap" width="40" height="40"/>
 ```
 
 ## Other languages RegEx and colors

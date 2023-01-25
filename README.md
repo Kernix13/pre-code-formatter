@@ -114,6 +114,12 @@ const jsKeywords =
 2. single quote vs double quote
 3. How to add template literals inside the template literals for your code
 
+**PHP**:
+
+1. Having problems grabbing `$` as a prefix to this
+1. Having problems grabbing custom classes
+1. For some reason comments are not geing grabbed???
+
 ## Contributing
 
 I only have regular expressions for languages that I use. If you would like to contribute to this repo for additional languages, then open an issue or fork the repo and create a Pull Request. Hopefully, you are good with regular expressions. Or feel free to improve the current state of the JavaScript (and it needs improvement).

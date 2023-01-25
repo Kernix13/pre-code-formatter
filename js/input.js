@@ -49,7 +49,8 @@ if (bool !== true) {
   console.log(false);
 }
 const someNum = Math.random() * 10;
-const today = new Date().getFullYear();`;
+const today = new Date().getFullYear();
+/* Start JavaScript classes */`;
 
 const inputJSON =
 ``;
@@ -77,4 +78,7 @@ class WordCountAndTimePlugin {
     register_setting('wordcountplugin', 'wcp_location', array('sanitize_callback' => array($this, 'sanitizeLocation'), 'default' => '0'));
   }
 }
-$wordCountAndTimePlugin = new WordCountAndTimePlugin();`;
+$wordCountAndTimePlugin = new WordCountAndTimePlugin();
+?>
+<div class="container">
+  <h3 class="custom-title"><?php esc_html_e('Latest Articles ', 'tower') ?></h3>`;

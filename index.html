@@ -264,7 +264,8 @@
 
       <h3>JavaScript Example</h3>
       <pre class="code-block dark_block">
-        <span class="comment">&lt;!-- RegEx Order: SKIP --&gt;</span>
+        <span class="comment">&lt;!-- RegEx Order: 1. jsEqual, 2. jsNumDate, 3. jsBool, 4. jsObjProp,  --&gt;</span>
+        <span class="comment">&lt;!-- 5. jsKeywords, 6. jsFx, 7. backTicks, 8. dblQuote, 9. comments --&gt;</span>
         <span><span class="red">const</span> str <span class="blue">=</span> <span class="light-blue">&apos;string for&apos;</span>;</span>
         <span><span class="red">const</span> num <span class="blue">=</span> 1.618;</span>
         <span><span class="red">const</span> isNull <span class="blue">=</span> <span class="blue">null</span>;</span>
@@ -301,43 +302,75 @@
         <span><span class="red">const</span> today <span class="blue">=</span> <span class="red">new</span> <span
             class="orange">Date</span><span class="purple"></span>().<span class="purple">getFullYear</span><span
             class="purple"></span>();</span>
+        <span><span class="comment">/* Start JavaScript classes */</span></span>
       </pre>
       <p><strong>NOTE</strong>: For now this part is done but I am expecting errors when I start converting JS. I would prefer to be more positive but I do not think my expressions are ideal, plus my brain is getting fried. I wanted to make all numbers blue but running that part of the code added a huge number of empty span.blue tags (<em>It's almost always </em><code>class="blue"</code>). I also was not able to escape a backtick to test my <code>backtick</code> RegEx. However, everything else worked and I only had to adjust a few lines and some indentations.</p>
       <hr>
 
-      <h3>Markdown Example</h3>
-      <pre class="code-block dark_block">
-        
-      </pre>
-      <hr>
-
       <h3>PHP Example</h3>
       <pre class="code-block dark_block">
-        <span class="comment">&lt;!-- Manually added the span.color classes --&gt;</span>
-        &lt;<span class="green">?php</span>
-        
-        <span class="comment">/*
-        Plugin Name: Word Count Plugin
-        Description: Plugin to display read time, character &amp; word count for posts
-        Version: 1.0.0 (just a portion of the code)
+        <span class="comment">&lt;!-- RegEx order: 1. htmlAttr, 2. phpCustonFx, 3. phpHtmlTag, --&gt;</span>
+        <span class="comment">&lt;!-- 4. phpKeywords, 5. jsFx, 6. singleQt, 7. dblQuote, 8. jsBool --&gt;</span>
+        <span>&lt;<span class="green">?php</span></span>
+        <span></span>
+        <span><span class="comment">/*
+         Plugin Name: Word Count Plugin
+         Description: Plugin to display read time, character &amp; word count for posts
+         Version: 1.0.0
         */</span>
-        
-        <span class="red">class</span> <span class="orange">WordCountAndTimePlugin</span> {
-        <span class="red">function</span> <span class="purple">__construct</span>() {
-          add_action(<span class="light-blue">&apos;admin_menu&apos;</span>, <span class="purple">array</span>(<span class="light-blue">$</span>this, <span class="light-blue">&apos;adminPage&apos;</span>));
-          add_action(<span class="light-blue">&apos;admin_init&apos;</span>, <span class="purple">array</span>(<span class="light-blue">$</span>this, <span class="light-blue">&apos;settings&apos;</span>));
-          add_filter(<span class="light-blue">&apos;the_content&apos;</span>, <span class="purple">array</span>(<span class="light-blue">$</span>this, <span class="light-blue">&apos;ifWrap&apos;</span>));
-        }
-        
-        <span class="red">function</span> <span class="purple">settings</span>() {
-          add_settings_section(<span class="light-blue">&apos;wcp_first_section&apos;</span>, <span class="blue">null</span>, <span class="blue">null</span>, <span class="light-blue">&apos;word-count-settings-page&apos;</span>);
-        
-          register_setting(<span class="light-blue">&apos;wordcountplugin&apos;</span>, <span class="light-blue">&apos;wcp_location&apos;</span>, <span class="purple">array</span>(<span class="light-blue">&apos;sanitize_callback&apos; =&gt;</span> 
-          array(<span class="light-blue">$</span>this, <span class="light-blue">&apos;sanitizeLocation&apos;</span>), <span class="light-blue">&apos;default&apos;</span> <span class="light-blue">=&gt;</span> <span class="light-blue">&apos;0&apos;</span>));
-        }
-        <span class="light-blue">$</span>wordCountAndTimePlugin = <span class="red">new</span> <span class="orange">WordCountAndTimePlugin</span>();
+        <span></span>
+        <span><span class="red">class</span> <span class="orange">WordCountAndTimePlugin</span><span class="orange"></span> {</span>
+        <span> <span class="red">function</span> <span class="purple">__construct</span><span class="purple"></span>()<span
+            class="orange"></span> {</span>
+        <span> <span class="purple">add_action</span><span class="purple"></span>(<span
+            class="light-blue">&apos;admin_menu&apos;</span>, <span class="purple">array</span><span
+            class="purple"></span>(<span class="blue">$</span>this, <span class="light-blue">&apos;adminPage&apos;</span>));</span>
+        <span> <span class="purple">add_action</span><span class="purple"></span>(<span
+            class="light-blue">&apos;admin_init&apos;</span>, <span class="purple">array</span><span
+            class="purple"></span>(<span class="blue">$</span>this, <span class="light-blue">&apos;settings&apos;</span>));</span>
+        <span> <span class="purple">add_filter</span><span class="purple"></span>(<span
+            class="light-blue">&apos;the_content&apos;</span>, <span class="purple">array</span><span
+            class="purple"></span>(<span class="blue">$</span>this, <span class="light-blue">&apos;ifWrap&apos;</span>));</span>
+        <span> }</span>
+        <span></span>
+        <span> <span class="red">function</span> <span class="purple">settings</span><span class="purple"></span>()<span
+            class="orange"></span> {</span>
+        <span> <span class="purple">add_settings_section</span><span class="purple"></span>(<span
+            class="light-blue">&apos;wcp_first_section&apos;</span>, <span class="blue">null</span>, <span
+            class="blue">null</span>, <span class="light-blue">&apos;word-count-settings-page&apos;</span>);</span>
+        <span></span>
+        <span> <span class="purple">add_settings_field</span><span class="purple"></span>(<span
+            class="light-blue">&apos;wcp_location&apos;</span>, <span class="light-blue">&apos;Display Location&apos;</span>,
+          <span class="purple">array</span><span class="purple"></span>(<span class="blue">$</span>this, <span
+            class="light-blue">&apos;locationHTML&apos;</span>), <span
+            class="light-blue">&apos;word-count-settings-page&apos;</span>, <span
+            class="light-blue">&apos;wcp_first_section&apos;</span>);</span>
+        <span> <span class="purple">register_setting</span><span class="purple"></span>(<span
+            class="light-blue">&apos;wordcountplugin&apos;</span>, <span class="light-blue">&apos;wcp_location&apos;</span>,
+          <span class="purple">array</span><span class="purple"></span>(<span
+            class="light-blue">&apos;sanitize_callback&apos;</span> <span class="blue"></span>=&gt; <span
+            class="purple">array</span><span class="purple"></span>(<span class="blue">$</span>this, <span
+            class="light-blue">&apos;sanitizeLocation&apos;</span>), <span class="light-blue">&apos;default&apos;</span> <span
+            class="blue"></span>=&gt; <span class="light-blue">&apos;0&apos;</span>));</span>
+        <span> }</span>
+        <span>}</span>
+        <span>$wordCountAndTimePlugin <span class="blue"></span>= <span class="red">new</span> <span
+            class="orange">WordCountAndTimePlugin</span><span class="purple"></span>();</span>
+        <span><span class="green">?</span>&gt;</span>
+        <span>&lt;<span class="green">div</span> <span class="blue">class</span><span class="blue"></span>=<span
+            class="light-blue">&quot;container&quot;</span>&gt;</span>
+        <span> &lt;<span class="green">h3</span> <span class="blue">class</span><span class="blue"></span>=<span
+            class="light-blue">&quot;custom-title&quot;</span>&gt;&lt;<span class="green">?php</span> <span
+            class="purple">esc_html_e</span><span class="purple"></span>(<span class="light-blue">&apos;Latest Articles&apos;</span>, <span class="light-blue">&apos;tower&apos;</span>) ?&gt;&lt;<span class="green"></span>/<span
+            class="green">h3</span>&gt;</span>
       </pre>
-      <p><strong>NOTE</strong>: I'm going to skip PHP even though I could do it rather fast, for WordPress PHP that is. I can use all the HTML expressions, and add JavaScript expressions with a few tweaks. But I just do not expect to do a lot of PHP code blog posts. The few that I will do I'll just manually add the classes after converting the code to HTML entities.</p>
+      <p><strong>NOTE</strong>: I had some issues with the RegEx here. First, my comments RegEx did not grab my comment so I manually added <code>span.comment</code>. It did not take because it was on multiple lines, so it was split that way. Second, I was able to grab the custom function but not the <code>new</code> instance of it. The new instance took on the color of functions (purple), so I manually changed it to <code>span.orange</code>. Third, I was not able to grab the closing <code>?</code> for the php tag, so I manually added <code>span.green</code>. Lastly, I did not try to grab the <code>$</code> prefix to <code>this</code>, so I manually added <code>span.blue</code>. I'll work on that one later.</p>
+      <hr>
+
+      <h3>Markdown Example</h3>
+      <pre class="code-block dark_block">
+      
+      </pre>
       <hr>
 
       <h3>Other Code Examples</h3>
