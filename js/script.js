@@ -34,6 +34,11 @@ const sassRegEx = [sassProp, comments, cssFxName, cssUnits, cssAtRules, sassVars
 // JavaScript Regular Expressions
 const backTicks = /`(?:\\.|\$\{[^{}]*\}|(?!\$\{)[^\\`])*`/g;
 const jsKeywords = /(?<=\(?)(typeof|async|await|break|case|catch|class|const|default|delete|do|else|extends|for|from|function|get|if|import|in|let|new|of|return|set|switch|throw|try|while)(?=\s)/g;
+const jsFx = /([\w]*)(?=\()/g;
+const jsNumDate = /(Math|Date|Number|BigInt)(?=\(|\.)/g;
+const jsObjProp = /([\w]*)(?=:)/g;
+const jsBool = /(true|false|null|undefined)/g;
+const jsEqual = /(=&gt;|=|!=|!==|==|===|\+=|\*=|\/=|-=)/g;
 const jsRegEx = [backTicks, jsKeywords, comments, dblQuote, singleQt];
 
 // JSX Regular Expressions
@@ -77,7 +82,8 @@ function convertReservedChars(str) {
 /* I think the split regex should be /[\n\r]|[\n]/g */
 
 // const myInput = input.split(/[\n]/);
-const myJs = inputJS.split(/[\n\r]|[\n]/g);
+// const myJs = inputJS.split(/[\n\r]|[\n]/g);
+const myPhp = inputPHP.split(/[\n\r]|[\n]/g);
 let convertedCode = [];
 
 function convertCode(arr) {
@@ -87,7 +93,7 @@ function convertCode(arr) {
   })
 }
 // convertCode(myInput);
-convertCode(myJs);
+convertCode(myPhp);
 
 // Step 3b: Output the HTML entities if you want to stop there
 convertedCode.forEach(codeLine => {
@@ -106,7 +112,7 @@ let sassPropClass = []; let sassVarsClass = []; let sassClassClass = [];
 
 let jsonPropClass = []; let jsonValDblQtClass = []; let jsonNumBoolClass = [];
 
-let jsKeywordsClass = [];
+let jsKeywordsClass = []; let jsNumClass = []; let jsFxClass = []; let jsNumDateClass = []; let jsObjPropClass = []; let jsBoolClass = []; let jsEqualClass = []; let backTicksClass = [];
 
 class htmlCode {
   constructor(arr, regex, lineArray, index) {
@@ -187,9 +193,34 @@ mySingleQt.findMatches();
 /* End SASS/SCSS classes */
 
 /* Start JavaScript classes */
-const myjsKeywords = new htmlCode(convertedCode, jsKeywords, jsKeywordsClass, 5);
+const myjsEqual = new htmlCode(convertedCode, jsEqual, jsEqualClass, 1);
+myjsEqual.findMatches();
+const myjsNumDate = new htmlCode(jsEqualClass, jsNumDate, jsNumDateClass, 7);
+myjsNumDate.findMatches();
+const myjsBool = new htmlCode(jsNumDateClass, jsBool, jsBoolClass, 1);
+myjsBool.findMatches();
+const myjsObjProp = new htmlCode(jsBoolClass, jsObjProp, jsObjPropClass, 1);
+myjsObjProp.findMatches();
+const myjsKeywords = new htmlCode(jsObjPropClass, jsKeywords, jsKeywordsClass, 5);
 myjsKeywords.findMatches();
+const myjsFx = new htmlCode(jsKeywordsClass, jsFx, jsFxClass, 6);
+myjsFx.findMatches();
+const mySingleQt = new htmlCode(jsFxClass, singleQt, singleQtClass, 2);
+mySingleQt.findMatches();
+const mybackTicks = new htmlCode(singleQtClass, backTicks, backTicksClass, 2);
+mybackTicks.findMatches();
+const myHtmlDblQuotes = new htmlCode(backTicksClass, dblQuote, DblQuotesClass, 2);
+myHtmlDblQuotes.findMatches();
+
 /* End JavaScript classes */
+
+DblQuotesClass.forEach(codeLine => {
+  darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
+
+  /* Use the line below as a visual check for the colors before doing all the work to format the final code for your pre block: */
+
+  // darkBlockOutput.innerHTML += '<li><span>' + `${codeLine}` + "</span></li>";
+})
 
 /* Start JSON classes */
 /*
@@ -215,13 +246,7 @@ myjsonNumBool.findMatches();
 /* Step 5: Output your code to the DOM - I will need a switch statement here
    to attach the final output array for  
 */
-jsKeywordsClass.forEach(codeLine => {
-  darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
 
-    /* Use the line below as a visual check for the colors before doing all the work to format the final code for your pre block: */
-
-  // darkBlockOutput.innerHTML += '<li><span>' + `${codeLine}` + "</span></li>";
-})
 
 /* 
 *

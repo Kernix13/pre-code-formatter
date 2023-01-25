@@ -32,9 +32,9 @@ for (let item of arr)
 const arr1 = [1, 12.36, 'word while'];
 const obj = {
   a: 'word',
-  b: 42,
+  b: '42',
   firstName: "Jim",
-  test: false
+  "test": false
 };
 async function fxName(arr) {
   const output = await arr.forEach(item => {
@@ -43,10 +43,10 @@ async function fxName(arr) {
   return output;
 }
 fxName(arr1);
-if (bool) {
-  console.log('True');
+if (bool !== true) {
+  console.log(true);
 } else {
-  console.log('False');
+  console.log(false);
 }
 const someNum = Math.random() * 10;
 const today = new Date().getFullYear();`;
@@ -55,4 +55,26 @@ const inputJSON =
 ``;
 
 const inputPHP =
-``;
+`<?php
+
+/*
+  Plugin Name: Word Count Plugin
+  Description: Plugin to display read time, character & word count for posts
+  Version: 1.0.0
+*/
+
+class WordCountAndTimePlugin {
+  function __construct() {
+    add_action('admin_menu', array($this, 'adminPage'));
+    add_action('admin_init', array($this, 'settings'));
+    add_filter('the_content', array($this, 'ifWrap'));
+  }
+
+  function settings() {
+    add_settings_section('wcp_first_section', null, null, 'word-count-settings-page');
+
+    add_settings_field('wcp_location', 'Display Location', array($this, 'locationHTML'), 'word-count-settings-page', 'wcp_first_section');
+    register_setting('wordcountplugin', 'wcp_location', array('sanitize_callback' => array($this, 'sanitizeLocation'), 'default' => '0'));
+  }
+}
+$wordCountAndTimePlugin = new WordCountAndTimePlugin();`;

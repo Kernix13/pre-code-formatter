@@ -19,36 +19,11 @@
 
       <h3>Dark block example:</h3>
       <pre class="code-block dark_block">
-        <span class="comment">&lt;!-- RegEx: jsKeywords  --&gt;</span>
-        <span><span class="red">const</span> str = &apos;string for&apos;;</span>
-        <span><span class="red">const</span> num = 1.618;</span>
-        <span><span class="red">const</span> isNull = null;</span>
-        <span><span class="red">const</span> isUndefined = undefined;</span>
-        <span><span class="red">let</span> bool = true;</span>
-        <span><span class="red">for</span> (<span class="red">let</span> item <span class="red">of</span> arr)</span>
-        <span><span class="red">const</span> arr1 = [1, 12.36, &apos;word while&apos;];</span>
-        <span><span class="red">const</span> obj = {</span>
-        <span> a: &apos;word&apos;,</span>
-        <span> b: 42,</span>
-        <span> firstName: &quot;Jim&quot;,</span>
-        <span> test: false</span>
-        <span>};</span>
-        <span><span class="red">async</span> <span class="red">function</span> fxName(arr) {</span>
-        <span> <span class="red">const</span> output = <span class="red">await</span> arr.forEach(item =&gt; {</span>
-        <span> console.log(<span class="red">typeof</span> item);</span>
-        <span> });</span>
-        <span> <span class="red">return</span> output;</span>
-        <span>}</span>
-        <span>fxName(arr1);</span>
-        <span><span class="red">if</span> (bool) {</span>
-        <span> console.log(&apos;True&apos;);</span>
-        <span>} <span class="red">else</span> {</span>
-        <span> console.log(&apos;False&apos;);</span>
-        <span>}</span>
-        <span><span class="red">const</span> someNum = Math.random() * 10;</span>
-        <span><span class="red">const</span> today = <span class="red">new</span> Date().getFullYear();</span>
-
+      
         <span class="comment">&lt;!-- RegEx: ??? --&gt;</span>
+
+
+
 
         <span class="comment">&lt;!-- Manually added span color classes: --&gt;</span>
 
@@ -289,21 +264,80 @@
 
       <h3>JavaScript Example</h3>
       <pre class="code-block dark_block">
-      
+        <span class="comment">&lt;!-- RegEx Order: SKIP --&gt;</span>
+        <span><span class="red">const</span> str <span class="blue">=</span> <span class="light-blue">&apos;string for&apos;</span>;</span>
+        <span><span class="red">const</span> num <span class="blue">=</span> 1.618;</span>
+        <span><span class="red">const</span> isNull <span class="blue">=</span> <span class="blue">null</span>;</span>
+        <span><span class="red">const</span> isUndefined <span class="blue">=</span> <span class="blue">undefined</span>;</span>
+        <span><span class="red">let</span> bool <span class="blue">=</span> <span class="blue">true</span>;</span>
+        <span><span class="red">for</span> <span class="purple"></span>(<span class="red">let</span> item <span
+            class="red">of</span> arr)</span>
+        <span><span class="red">const</span> arr1 <span class="blue">=</span> [1, 12.36, <span class="light-blue">&apos;word while&apos;</span>];</span>
+        <span><span class="red">const</span> obj <span class="blue">=</span> {</span>
+         <span> <span class="blue">a</span><span class="blue"></span>: <span class="light-blue">&apos;word&apos;</span>,</span>
+         <span> <span class="blue">b</span><span class="blue"></span>: <span class="light-blue">&apos;42&apos;</span>,</span>
+         <span> <span class="blue">firstName</span><span class="blue"></span>: <span
+            class="light-blue">&quot;Jim&quot;</span>,</span>
+         <span> <span class="light-blue">&quot;test&quot;</span><span class="blue"></span>: <span
+            class="blue">false</span></span>
+        <span>};</span>
+        <span><span class="red">async</span> <span class="red">function</span> <span class="purple">fxName</span><span
+            class="purple"></span>(arr) {</span>
+         <span> <span class="red">const</span> output <span class="blue">=</span> <span class="red">await</span> arr.<span
+            class="purple">forEach</span><span class="purple"></span>(item <span class="blue">=&gt;</span> {</span>
+         <span> console.<span class="purple">log</span><span class="purple"></span>(<span class="red">typeof</span> item);</span>
+         <span> });</span>
+         <span> <span class="red">return</span> output;</span>
+        <span>}</span>
+        <span><span class="purple">fxName</span><span class="purple"></span>(arr1);</span>
+        <span><span class="red">if</span> <span class="purple"></span>(bool <span class="blue">!=</span><span
+            class="blue">=</span> <span class="blue">true</span>) {</span>
+         <span> console.<span class="purple">log</span><span class="purple"></span>(<span class="blue">true</span>);</span>
+        <span>} <span class="red">else</span> {</span>
+         <span> console.<span class="purple">log</span><span class="purple"></span>(<span class="blue">false</span>);</span>
+        <span>}</span>
+        <span><span class="red">const</span> someNum <span class="blue">=</span> <span class="orange">Math</span>.<span
+            class="purple">random</span><span class="purple"></span>() * 10;</span>
+        <span><span class="red">const</span> today <span class="blue">=</span> <span class="red">new</span> <span
+            class="orange">Date</span><span class="purple"></span>().<span class="purple">getFullYear</span><span
+            class="purple"></span>();</span>
       </pre>
-      
-      <hr>
-
-      <h3>PHP Example</h3>
-      <pre class="code-block dark_block">
-            
-      </pre>
+      <p><strong>NOTE</strong>: For now this part is done but I am expecting errors when I start converting JS. I would prefer to be more positive but I do not think my expressions are ideal, plus my brain is getting fried. I wanted to make all numbers blue but running that part of the code added a huge number of empty span.blue tags (<em>It's almost always </em><code>class="blue"</code>). I also was not able to escape a backtick to test my <code>backtick</code> RegEx. However, everything else worked and I only had to adjust a few lines and some indentations.</p>
       <hr>
 
       <h3>Markdown Example</h3>
       <pre class="code-block dark_block">
-            
+        
       </pre>
+      <hr>
+
+      <h3>PHP Example</h3>
+      <pre class="code-block dark_block">
+        <span class="comment">&lt;!-- Manually added the span.color classes --&gt;</span>
+        &lt;<span class="green">?php</span>
+        
+        <span class="comment">/*
+        Plugin Name: Word Count Plugin
+        Description: Plugin to display read time, character &amp; word count for posts
+        Version: 1.0.0 (just a portion of the code)
+        */</span>
+        
+        <span class="red">class</span> <span class="orange">WordCountAndTimePlugin</span> {
+        <span class="red">function</span> <span class="purple">__construct</span>() {
+          add_action(<span class="light-blue">&apos;admin_menu&apos;</span>, <span class="purple">array</span>(<span class="light-blue">$</span>this, <span class="light-blue">&apos;adminPage&apos;</span>));
+          add_action(<span class="light-blue">&apos;admin_init&apos;</span>, <span class="purple">array</span>(<span class="light-blue">$</span>this, <span class="light-blue">&apos;settings&apos;</span>));
+          add_filter(<span class="light-blue">&apos;the_content&apos;</span>, <span class="purple">array</span>(<span class="light-blue">$</span>this, <span class="light-blue">&apos;ifWrap&apos;</span>));
+        }
+        
+        <span class="red">function</span> <span class="purple">settings</span>() {
+          add_settings_section(<span class="light-blue">&apos;wcp_first_section&apos;</span>, <span class="blue">null</span>, <span class="blue">null</span>, <span class="light-blue">&apos;word-count-settings-page&apos;</span>);
+        
+          register_setting(<span class="light-blue">&apos;wordcountplugin&apos;</span>, <span class="light-blue">&apos;wcp_location&apos;</span>, <span class="purple">array</span>(<span class="light-blue">&apos;sanitize_callback&apos; =&gt;</span> 
+          array(<span class="light-blue">$</span>this, <span class="light-blue">&apos;sanitizeLocation&apos;</span>), <span class="light-blue">&apos;default&apos;</span> <span class="light-blue">=&gt;</span> <span class="light-blue">&apos;0&apos;</span>));
+        }
+        <span class="light-blue">$</span>wordCountAndTimePlugin = <span class="red">new</span> <span class="orange">WordCountAndTimePlugin</span>();
+      </pre>
+      <p><strong>NOTE</strong>: I'm going to skip PHP even though I could do it rather fast, for WordPress PHP that is. I can use all the HTML expressions, and add JavaScript expressions with a few tweaks. But I just do not expect to do a lot of PHP code blog posts. The few that I will do I'll just manually add the classes after converting the code to HTML entities.</p>
       <hr>
 
       <h3>Other Code Examples</h3>
