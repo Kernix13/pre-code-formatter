@@ -20,7 +20,7 @@
       <h3>Dark block example:</h3>
       <pre class="code-block dark_block">
       
-        <span class="comment">&lt;!-- RegEx: ??? --&gt;</span>
+
 
         <span class="comment">&lt;!-- Manually added span color classes: --&gt;</span>
 
@@ -30,7 +30,7 @@
 
       <!-- End pasted code -->
 
-      <h3>Color testing block</h3>
+      <h3>Color testing block &#8628;</h3>
       <pre class="code-block dark_block">
         const users = ['default color for the dark color block'
         <span class="light-blue">const color = "light-blue"</span> 
@@ -366,8 +366,52 @@
 
       <h3>Markdown Example</h3>
       <pre class="code-block dark_block">
-      
+        <span class="comment">&lt;!-- RegEx order: 1. htmlAttr, 2. htmlComment, 3. htmlTag, 4. htmlEntity, --&gt;</span>
+        <span class="comment">&lt;!-- 5. singleQt, 6. dblQuote, 7. mdHeadings, 8. mdLinks,  --&gt;</span>
+        <span class="comment">&lt;!-- 9. mdBlockQt, 10. mdDiffMinus, 11. mdDiffPlus, 12. mdLists  --&gt;</span>
+
+        <span class="comment">&lt;<span class="green"></span>!<span class="green"></span>-- Markdown comment the same as for HTML --&gt;</span>
+        <span class="blue"># MARKDOWN CHEAT SHEET</span>
+        <span class="blue">#### How about H4 as a comparison</span>
+        
+        [<span class="light-blue">Link</span><span class="light-blue"></span>](https://example.com)
+        [<span class="light-blue">Link text</span><span class="light-blue"></span>](URL <span class="light-blue">&apos;Optional link title&apos;</span>)
+        !<span class="green"></span>[<span class="light-blue">picture alt text</span><span
+          class="light-blue"></span>](https://url.com/images/filename.png <span class="light-blue">&apos;Title is optional&apos;</span>)
+        [<span class="light-blue">Strike thru section</span><span class="light-blue"></span>](#strike-thru-section)
+
+        &lt;<span class="green">span</span>&gt;&lt;<span class="green">img</span> <span class="blue">alt</span><span
+          class="blue"></span>=<span class="light-blue">&quot;alt&quot;</span> <span class="blue">src</span><span
+          class="blue"></span>=<span class="light-blue">&quot;https://url.com/images/filename.jpg&quot;</span>&gt;&lt;<span
+          class="green"></span>/<span class="green">span</span>&gt;
+        &lt;<span class="green">div</span> <span class="blue">align</span><span class="blue"></span>=<span
+          class="light-blue">&quot;right&quot;</span>&gt;<span class="red">&amp;#8673;</span> &lt;<span class="green">a</span> <span class="blue">href</span><span class="blue"></span>=<span class="light-blue">&quot;#back-to-top&quot;</span> <span class="blue">title</span><span class="blue"></span>=<span class="light-blue">&quot;Title&quot;</span>&gt;Back to Top&lt;<span class="green"></span>/<span class="green">a</span>&gt;&lt;<span class="green"></span>/<span
+          class="green">div</span>&gt;
+        
+        Some other important footnote.[<span class="light-blue">^2</span><span class="light-blue"></span>]
+        [<span class="light-blue">^1</span><span class="light-blue"></span>]: This is footnote number one.
+        [<span class="light-blue">^2</span><span class="light-blue"></span>]: Here is the second footnote.
+        
+        - [<span class="light-blue"> </span><span class="light-blue"></span>] Incomplete _task_
+        - [<span class="light-blue">x</span><span class="light-blue"></span>] Completed **task**
+        
+        <span class="orange">1.</span> list item
+        <span class="orange">1.</span> Ordered item 2
+          <span class="orange">1.</span> Child item 1
+        
+        <span class="orange">-</span> bullet point
+        <span class="orange">-</span> List item 2
+          <span class="orange">-</span> Child item 1
+        
+        <span class="green">&gt; Blockquote</span>
+        <span class="green">&gt; &gt; Indented blockquote</span>
+        <span class="green">&gt; img tags as block level _unless_ nested in table cells</span>
+        
+        <span class="red">- this code or text is the old version</span>
+        <span class="red"><span class="green">+ this is what it was changed to</span></span>
+  
       </pre>
+      <p><strong>NOTE</strong>: Everything was relatively good until I got to lists and diff code blocks. I have to add <code>span.orange</code> for unordered lists, and <code>span.red</code> for the minus line in a diff code block. Also, blockquotes will only output as green if they do not have symbols other than alphanumeric and underscore.</p>
       <hr>
 
       <h3>Other Code Examples</h3>
@@ -401,6 +445,7 @@
           <li>My JavaScript code is <em>UGLY</em> and is an example of code that is not <strong>DRY</strong>! I suck at recursion, and nested <code><span class="purple">map</span>()</code> methods are not working to run each code line against each regular expression for each language. I am going to try a nester <code><span class="red">for</span></code> loop next and maybe revisit the nested map approach.</li>
           <li>I'm open to any suggestions for the styling of my <code>&lt;<span class="green">code</span>&gt;</code>, <code>&lt;<span class="green">kbd</span>&gt;</code>, and <code>&lt;<span class="green">var</span>&gt;</code> tags.</li>
         </ul>
+        <p>I am now going to work on doing a nested map in my class, remove empty duplicate span tags, and then create a <code>light.html</code> and <code>dark.html</code> files with a language select list.</p>
         <h3>Code, KBD, and Var element testing</h3>
         <p>Testing: the <code>&lt;<span class="green">kbd</span>&gt;</code> element: <kbd>ENTER</kbd>, and the <code>&lt;<span class="green">var</span>&gt;</code> element: <var>a<sup> 2</sup> +
             b<sup>2</sup> =

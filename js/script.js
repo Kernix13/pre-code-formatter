@@ -15,7 +15,8 @@ const htmlAttr = /([\w-]*)(?==)/g;
 const htmlComment = /(&lt;!--\s[\w\s\W]*\s--&gt;)/g;
 const htmlTag = /(?<=&lt;\/*|!)([a-zA-Z1-6]*)/g;
 const htmlBoolAttr = /(\s\w*)(?=&gt;)/g; // need to have it right on > or &gt;
-const htmlRegEx = [htmlAttr, htmlComment, htmlTag, htmlBoolAttr, dblQuote];
+const htmlEntity = /(&amp;#[\d]*;)/g;
+const htmlRegEx = [htmlAttr, htmlComment, htmlTag, htmlBoolAttr, htmlEntity, dblQuote];
 
 // CSS Regular Expressions
 const cssProp = /(?<![;=\w])([a-z-]*)(?=:\s)/g;
@@ -57,7 +58,12 @@ const phpRegEx = [htmlAttr, phpCustonFx, phpHtmlTag, phpKeywords, jsFx, singleQt
 
 // Markdown Regular Expressions
 const mdHeadings = /([#]{1,6}[\s]{1}[\s\w]*)(?<!\n)/g;
-const mdRegEx = [htmlAttr, mdHeadings, htmlComment, htmlTag, singleQt, dblQuote,];
+const mdLinks = /(?!\[)([\w\s?\^?]*)(?=\])/g;
+const mdBlockQt = /(^&gt;(?:[\t ]*&gt;)*[\w\s]*)/gm;
+const mdDiffMinus = /(\+\s[\w\s]*)/gm // (-\s[\w\s]*)(?=\+)
+const mdDiffPlus = /(\+\s[\w\s]*)/g
+const mdLists = /([\d]\.)/g;
+const mdRegEx = [htmlAttr, htmlComment, htmlTag, htmlEntity, singleQt, dblQuote, mdHeadings, mdLinks, mdBlockQt, mdDiffMinus, mdDiffPlus, mdLists];
 
 // Step 1: Get your code added to a backtick string in input.js or from input in this file
 const input =
@@ -90,9 +96,8 @@ function convertReservedChars(str) {
 /* I think the split regex should be /[\n\r]|[\n]/g */
 
 // const myInput = input.split(/[\n]/);
-// const myJs = inputJS.split(/[\n\r]|[\n]/g);
-// const myPhp = inputPHP.split(/[\n\r]|[\n]/g);
 const myMd = inputMD.split(/[\n\r]|[\n]/g);
+
 let convertedCode = [];
 
 function convertCode(arr) {
@@ -113,7 +118,7 @@ convertedCode.forEach(codeLine => {
 /* HOW DO I DO THIS DIFFERENTLY? Nested map, nested for loop, recursion? */
 let DblQuotesClass = []; let singleQtClass = []; let commentsClass = [];
 
-let HtmlAttrClass = []; let HtmlCommentClass = []; let HtmlTagClass = []; let HtmlBoollClass = [];
+let HtmlAttrClass = []; let HtmlCommentClass = []; let HtmlTagClass = []; let HtmlBoollClass = []; let htmlEntityClass = [];
 
 let cssPropClass = []; let cssFxNameClass = []; let cssUnitsClass = []; let cssAtRulesClass = []; let cssVarsClass = []; let cssClassIdClass = []; let cssTagClass = [];
 
@@ -123,10 +128,10 @@ let jsonPropClass = []; let jsonValDblQtClass = []; let jsonNumBoolClass = [];
 
 let jsKeywordsClass = []; let jsNumClass = []; let jsFxClass = []; let jsNumDateClass = []; let jsObjPropClass = []; let jsBoolClass = []; let jsEqualClass = []; let backTicksClass = [];
 
-let phpCustonFxClass = []; let phpHtmlTagClass = []; let phpKeywordsClass = [];
+let phpCustonFxClass = []; let phpHtmlTagClass = []; let phpKeywordsClass = []; let mdListsClass = [];
 
 // const mdRegEx = [htmlAttr, mdHeadings, htmlComment, htmlTag, singleQt, dblQuote,];
-let mdHeadingsClass = [];
+let mdHeadingsClass = []; let mdLinksClass = []; let mdBlockQtClass = []; let mdDiffPlusClass = []; let mdDiffMinusClass = [];
 
 class htmlCode {
   constructor(arr, regex, lineArray, index) {
@@ -159,7 +164,9 @@ const myHtmlTags = new htmlCode(HtmlCommentClass, htmlTag, HtmlTagClass, 0);
 myHtmlTags.findMatches();
 const myHtmlBoolAttr = new htmlCode(HtmlTagClass, htmlBoolAttr, HtmlBoollClass, 1);
 myHtmlBoolAttr.findMatches();
-const myHtmlDblQuotes = new htmlCode(HtmlBoollClass, dblQuote, DblQuotesClass, 2);
+const myHtmlEntity = new htmlCode(HtmlBoollClass, htmlEntity, htmlEntityClass, 5);
+myHtmlEntity.findMatches();
+const myHtmlDblQuotes = new htmlCode(htmlEntityClass, dblQuote, DblQuotesClass, 2);
 myHtmlDblQuotes.findMatches();
 */
 /* End HTML classes */
@@ -268,22 +275,43 @@ myjsBool.findMatches();
 /* End PHP classes */
 
 /* Start Markdown classes */
-// const mdRegEx = [htmlAttr, mdHeadings, htmlComment, htmlTag, singleQt, dblQuote,];
+// const mdRegEx = [mdHeadings, htmlComment, htmlTag, singleQt, dblQuote,];
 const myHtmlAttr = new htmlCode(convertedCode, htmlAttr, HtmlAttrClass, 1);
 myHtmlAttr.findMatches();
+const myHtmlComment = new htmlCode(HtmlAttrClass, htmlComment, HtmlCommentClass, 4);
+myHtmlComment.findMatches();
+const myHtmlTags = new htmlCode(HtmlCommentClass, htmlTag, HtmlTagClass, 0);
+myHtmlTags.findMatches();
+const myHtmlEntity = new htmlCode(HtmlTagClass, htmlEntity, htmlEntityClass, 5);
+myHtmlEntity.findMatches();
+const mysingleQt = new htmlCode(htmlEntityClass, singleQt, singleQtClass, 2);
+mysingleQt.findMatches();
+const myHtmlDblQuotes = new htmlCode(singleQtClass, dblQuote, DblQuotesClass, 2);
+myHtmlDblQuotes.findMatches();
+const myMdHeadings = new htmlCode(DblQuotesClass, mdHeadings, mdHeadingsClass, 1);
+myMdHeadings.findMatches();
+const myMdLinks = new htmlCode(mdHeadingsClass, mdLinks, mdLinksClass, 2);
+myMdLinks.findMatches();
+const myMdBlockQt = new htmlCode(mdLinksClass, mdBlockQt, mdBlockQtClass, 0);
+myMdBlockQt.findMatches();
+const myMdDiffMinus = new htmlCode(mdBlockQtClass, mdDiffMinus, mdDiffMinusClass, 5);
+myMdDiffMinus.findMatches();
+const myMdDiffPlus = new htmlCode(mdDiffMinusClass, mdDiffPlus, mdDiffPlusClass, 0);
+myMdDiffPlus.findMatches();
+const myMdLists = new htmlCode(mdDiffPlusClass, mdLists, mdListsClass, 7);
+myMdLists.findMatches();
 
 /* End Markdown classes */
 
 /* Step 5: Output your code to the DOM - I will need a switch statement here
-   to attach the final output array for  
-*/
-myHtmlAttr.forEach(codeLine => {
-  // darkBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
-  darkBlockOutput.innerText += '<li><span>' + `${codeLine}` + "</span></li>";
+   to attach the final output array for */
+mdListsClass.forEach(codeLine => {
+  darkBlockOutput.textContent += '<li>' + `${codeLine}` + "</li>";
 
   /* Use the line below as a visual check for the colors before doing all the work to format the final code for your pre block: */
 
-  darkBlockOutput.innerHTML += '<li><span>' + `${codeLine}` + "</span></li>";
+  // darkBlockOutput.innerHTML += '<li>' + `${codeLine}` + "</li>";
+  
 })
 
 /* 

@@ -58,9 +58,7 @@ const inputJSON =
 const inputMD =
 `<!-- Markdown comment the same as for HTML -->
 # MARKDOWN CHEAT SHEET
-## ~~A Literal~~ <ins>Table</ins> of _Contents_
 #### How about H4 as a comparison
-### h3
 
 [Link](https://example.com)
 [Link text](URL 'Optional link title')
@@ -82,15 +80,11 @@ Some other important footnote.[^2]
 - bullet point
 - List item 2
   - Child item 1
+
 > Blockquote
 > > Indented blockquote
-> img tags **display** as block level _unless_ nested in table cells or <span> tags
----
-**two asterisks**
-_one asterisk_
-_one underscore_
-**_2 asterisks and and 1 underscore_**
-~~double tildes~~
+> img tags as block level _unless_ nested in table cells
+
 - this code or text is the old version
 + this is what it was changed to`;
 

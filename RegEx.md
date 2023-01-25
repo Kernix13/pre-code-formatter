@@ -867,22 +867,25 @@ $wordCountAndTimePlugin = new WordCountAndTimePlugin();
 ## Markdown RegEx and colors
 
 1. Blue:
-   1. titles `DONE`
-   1. inline code
+   1. titles `half DONE`
+   1. HTML attributes `DONE`
+   1. inline code (`Has to be done manually`)
 1. Light Blue:
-   1. link text,
-   1. optional,
-   1. image alt,
-   1. `x` in task lists,
+   1. HTML tag attribute value `DONE`
+   1. link text, image alt, `DONE`
+   1. optional link and/or image title `DONE`
+   1. `x` in task lists, `DONE`
+   1. values in footnote brackets `DONE but with 1 issue for all []`
 1. Green:
-   1. blockguotes,
-   1. HTML tags
+   1. blockguotes, `DONE`
+   1. HTML tags `DONE`
    1. `+` diff lines
 1. Orange:
    1. orderedlist style characters and
    1. unordered list style characters,
 1. Red:
    1. `-` diff lines
+   1. html non-reserved character entites `DONE`
 
 > https://github.com/PrismJS/prism/blob/master/components/prism-markdown.js
 
@@ -900,7 +903,7 @@ Looks like I'll need to use HTML expressions for the valid HTML tags
 #### How about H4 as a comparison
 
 [Link](https://example.com)
-[Link text](URL 'Optional link title')
+[Link text](https://example.com 'Optional link title')
 [Strike thru section](#strike-thru-section)
 ![picture alt text](https://url.com/images/filename.png 'Title is optional')
 
