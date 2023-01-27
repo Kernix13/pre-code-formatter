@@ -120,26 +120,24 @@
         <span class="comment">&lt;!-- RegEx order: 1. htmlAttr, 2. htmlComment, 3. htmlTag, --&gt;</span>
         <span class="comment">&lt;!--              4. htmlBoolAttr, 5. dblQuote --&gt;</span>
 
-        <span>&lt;<span class="green">h3</span>&gt;HTML Example&lt;<span class="green"></span>/<span
+        <span data-line="1">&lt;<span class="green">h3</span>&gt;HTML Example&lt;<span class="green"></span>/<span
             class="green">h3</span>&gt;</span>
-        <span>&lt;<span class="green">nav</span> <span class="blue">class</span><span class="blue"></span>=<span
+        <span data-line="2">&lt;<span class="green">nav</span> <span class="blue">class</span><span class="blue"></span>=<span
             class="light-blue">&quot;main-nav&quot;</span>&gt;</span>
-          <span> &lt;<span class="green">ul</span> <span class="blue">class</span><span class="blue"></span>=<span
-              class="light-blue">&quot;nav-list&quot;</span>&gt;</span>
-            <span> &lt;<span class="green">li</span> <span class="blue">class</span><span class="blue"></span>=<span
-                class="light-blue">&quot;nav-item&quot;</span>&gt;&lt;<span class="green">a</span> <span
-                class="blue">class</span><span class="blue"></span>=<span class="light-blue">&quot;nav-link&quot;</span> <span
-                class="blue">href</span><span class="blue"></span>=<span class="light-blue">&quot;/&quot;</span>&gt;Home&lt;<span
-                class="green"></span>/<span class="green">a</span>&gt;&lt;<span class="green"></span>/<span
-                class="green">li</span>&gt;</span>
-            <span> &lt;<span class="green">li</span> <span class="blue">class</span><span class="blue"></span>=<span
-                class="light-blue">&quot;nav-item&quot;</span>&gt;&lt;<span class="green">a</span> <span
-                class="blue">class</span><span class="blue"></span>=<span class="light-blue">&quot;nav-link&quot;</span> <span
-                class="blue">href</span><span class="blue"></span>=<span
-                class="light-blue">&quot;/contact&quot;</span>&gt;Contact&lt;<span class="green"></span>/<span
-                class="green">a</span>&gt;&lt;<span class="green"></span>/<span class="green">li</span>&gt;</span>
-          <span> &lt;<span class="green"></span>/<span class="green">ul</span>&gt;</span>
-        <span>&lt;<span class="green"></span>/<span class="green">nav</span>&gt;</span>
+          <span data-line="3"> &lt;<span class="green">ul</span> <span class="blue">class</span><span class="blue"></span>=<span
+            class="light-blue">&quot;nav-list&quot;</span>&gt;</span>
+            <span data-line="4"> &lt;<span class="green">li</span> <span class="blue">class</span><span class="blue"></span>=<span
+            class="light-blue">&quot;nav-item&quot;</span>&gt;&lt;<span class="green">a</span> <span class="blue">class</span><span class="blue"></span>=<span class="light-blue">&quot;nav-link&quot;</span> <span
+            class="blue">href</span><span class="blue"></span>=<span class="light-blue">&quot;/&quot;</span>&gt;Home&lt;<span
+            class="green"></span>/<span class="green">a</span>&gt;&lt;<span class="green"></span>/<span
+            class="green">li</span>&gt;</span>
+            <span data-line="5"> &lt;<span class="green">li</span> <span class="blue">class</span><span class="blue"></span>=<span
+            class="light-blue">&quot;nav-item&quot;</span>&gt;&lt;<span class="green">a</span> <span class="blue">class</span><span class="blue"></span>=<span class="light-blue">&quot;nav-link&quot;</span> <span
+            class="blue">href</span><span class="blue"></span>=<span
+            class="light-blue">&quot;/contact&quot;</span>&gt;Contact&lt;<span class="green"></span>/<span
+            class="green">a</span>&gt;&lt;<span class="green"></span>/<span class="green">li</span>&gt;</span>
+          <span data-line="6"> &lt;<span class="green"></span>/<span class="green">ul</span>&gt;</span>
+        <span data-line="7">&lt;<span class="green"></span>/<span class="green">nav</span>&gt;</span>
       </pre>
       <p><strong>NOTE</strong>: The HTML part works without any problems!</p>
       <hr>
@@ -151,7 +149,23 @@
         <span class="comment">&lt;!-- NOTE: I manually added the classes for the HTML tag selectors --&gt;</span>
         <span class="comment">&lt;!-- and manually added the dot before /images --&gt;</span>
 
-        
+        <span data-line="1"><span class="comment">/* The CSS below does not make sense, it&apos;s just an example */</span></span>
+        <span data-line="2">body,</span>
+        <span data-line="3">h1,</span>
+        <span data-line="4">.<span class="blue">dark_block</span>,</span>
+        <span data-line="5">.<span class="blue">bem__Class--name</span>,</span>
+        <span data-line="6">a:<span class="blue">hover</span> {</span>
+          <span data-line="7"> <span class="blue">font-family</span>:<span class="blue"> </span><span
+            class="light-blue">&apos;Segoe UI&apos;</span>, Tahoma, Geneva, Verdana, sans-serif;</span>
+          <span data-line="8"> <span class="blue">background-image</span>:<span class="blue"> </span><span
+            class="purple">url</span>(<span class="light-blue">&apos;/images/picjpg&apos;</span>);</span>
+          <span data-line="9"> <span class="blue">font-size</span>:<span class="blue"> 1</span><span
+            class="red">rem</span>;</span>
+          <span data-line="10"> <span class="blue">background-color</span>:<span class="blue"> </span>#333;</span>
+          <span data-line="11"> <span class="blue">color</span>:<span class="blue"> </span><span class="purple">var</span><span
+            class="orange">(--text-main</span>);</span>
+          <span data-line="12"> <span class="blue">border</span>:<span class="blue"> 1</span><span class="red">px</span> solid red <span class="red">!important</span>;</span>
+        <span data-line="13">}</span>
       </pre>
       <p><strong>NOTE</strong>: I have not figured out how to select HTML selectors so use <em>Emmet: Wrap with Abbreviation</em> to manually add the <code>span.color</code> classes. I also considered not including my match for Class selectors because of URLs with a period (.) which are also selected. I added it back. If you do have an <code><span class="red">@import</span></code> or a <code><span class="purple">url</span>()</code> in your CSS, then remove the dot, or for Google font imports, substitute the actual URL with a dummy string and replace the URL at the end. And I can only select CSS variables as a value, not the declaration. Also note that if you have a period in yout comment(s), then it will get wrapped in <code>span.blue</code> - classes and HTML selectors require advanced regular expressions.</p>
       <hr>
@@ -162,63 +176,73 @@
         <span class="comment">&lt;!-- 4. cssUnits, 5. sassProp , 6. sassVars, 7. singleQt --&gt;</span>
         <span class="comment">&lt;!-- I manually added span.color tags for all the classes and HTML selectors --&gt;</span>
 
-        <span><span class="red">@use</span> <span class="light-blue">&apos;./components/card&apos;</span>;</span>
-        <span><span class="red">@use</span> <span class="light-blue">&apos;base&apos;</span>;</span>
-        <span><span class="orange">$primary</span>: #326dee <span class="red">!default</span>;</span>
-        <span><span class="orange">$base-font-size</span>: 1<span class="red">rem</span>;</span>
-        <span><span class="orange">$bgBody</span>: #f9f9f9;</span>
-        <span><span class="orange">$colors</span>: (</span>
-         <span> <span class="light-blue">&apos;primary&apos;</span>: <span class="orange">$primary</span>,</span>
-         <span> <span class="light-blue">&apos;secondary&apos;</span>: <span class="orange">$secondary</span>,</span>
-         <span> <span class="light-blue">&apos;blue&apos;</span>: #1919e6,</span>
-        <span>);</span>
-        <span><span class="orange">$layout-values</span>: flex-start, flex-end, center, space-between, space-around, space-evenly;</span>
-        <span></span>
-        <span><span class="red">@each</span> <span class="orange">$val</span> in <span class="orange">$layout-values</span> {</span>
-         <span> .<span class="blue">justify-</span>#{<span class="orange">$val</span>} {</span>
-           <span> <span class="blue">justify-content</span>: <span class="orange">$val</span>;</span>
-         <span> }</span>
-        <span>}</span>
-        <span>::<span class="blue">placeholder</span> {</span>
-         <span> <span class="blue">color</span>: <span class="purple">rgba</span>(0, 0, 0, 0.5);</span>
-        <span>}</span>
-        <span><span class="green">header</span> {</span>
-         <span> <span class="blue">background-color</span>: <span class="orange">$headerBgClr</span>;</span>
-         <span> <span class="blue">color</span>: <span class="orange">$headerClr</span>;</span>
-        <span></span>
-         <span> .<span class="blue">header-container</span> <span class="green">h1</span> {</span>
-           <span> <span class="blue">margin</span>: 0 auto;</span>
-           <span> <span class="blue">width</span>: 80<span class="red">%</span>;</span>
-           <span> <span class="blue">max-width</span>: 1100<span class="red">px</span>;</span>
-           <span> <span class="blue">display</span>: flex;</span>
-           <span> <span class="blue">justify-content</span>: space-between;</span>
-           <span> <span class="blue">align-items</span>: center;</span>
-         <span> }</span>
-        <span></span>
-        <span> <span class="green">a</span> {</span>
-          <span> <span class="blue">color</span>: <span class="orange">$headerClr</span>;</span>
-          <span> <span class="blue">font-size</span>: 1.125<span class="red">rem</span>;</span>
-        <span></span>
-        <span> <span class="green">&amp;</span>:<span class="blue">hover</span> {</span>
-          <span> <span class="blue">text-decoration</span>: underline;</span>
-          <span> <span class="blue">color</span>: <span class="orange">$orange</span>;</span>
-         <span> }</span>
-        <span> }</span>
-        <span>}</span>
-        <span>.<span class="blue">navbar</span> {</span>
-         <span> <span class="red">@extend</span> %<span class="blue">flex-layout</span>;</span>
-         <span> <span class="blue">padding</span>: variables.<span class="orange">$base-padding</span> variables.<span
-            class="orange">$base-padding</span> * 2;</span>
-         <span> <span class="blue">box-shadow</span>: variables.<span class="orange">$base-box-shadow</span>;</span>
-        <span>}</span>
-        <span>%<span class="blue">flex-layout</span> {</span>
-         <span> <span class="blue">width</span>: 100<span class="red">%</span>;</span>
-         <span> <span class="blue">display</span>: flex;</span>
-         <span> <span class="blue">align-items</span>: center;</span>
-         <span> <span class="blue">justify-content</span>: space-between;</span>
-         <span> <span class="blue">box-sizing</span>: border-box;</span>
-        <span>}</span>
-        <span><span class="comment">/* Comment */</span></span>
+        <span data-line="2"><span class="red">@use</span> <span class="light-blue">&apos;./components/card&apos;</span>;</span>
+        <span data-line="3"><span class="red">@use</span> <span class="light-blue">&apos;base&apos;</span>;</span>
+        <span data-line="4"><span class="orange">$primary</span>: #326dee <span class="red">!default</span>;</span>
+        <span data-line="5"><span class="orange">$base-font-size</span>: 1<span class="red">rem</span>;</span>
+        <span data-line="6"><span class="orange">$bgBody</span>: #f9f9f9;</span>
+        <span data-line="7"><span class="orange">$colors</span>: (</span>
+         <span data-line="8"> <span class="light-blue">&apos;primary&apos;</span>: <span class="orange">$primary</span>,</span>
+         <span data-line="9"> <span class="light-blue">&apos;secondary&apos;</span>: <span
+            class="orange">$secondary</span>,</span>
+         <span data-line="10"> <span class="light-blue">&apos;blue&apos;</span>: #1919e6,</span>
+        <span data-line="11">);</span>
+        <span data-line="12"><span class="orange">$layout-values</span>: flex-start, flex-end, center, space-between,
+          space-around, space-evenly;</span>
+        <span data-line="13"></span>
+        <span data-line="14"><span class="red">@each</span> <span class="orange">$val</span> in <span
+            class="orange">$layout-values</span> {</span>
+         <span data-line="15"> .<span class="blue">justify-</span>#{<span class="orange">$val</span>} {</span>
+           <span data-line="16"> <span class="blue">justify-content</span>: <span class="orange">$val</span>;</span>
+         <span data-line="17"> }</span>
+        <span data-line="18">}</span>
+        <span data-line="19">::<span class="blue">placeholder</span> {</span>
+         <span data-line="20"> <span class="blue">color</span>: <span class="purple">rgba</span>(0, 0, 0, 0.5);</span>
+        <span data-line="21">}</span>
+        <span data-line="22"><span class="green">header</span> {</span>
+         <span data-line="23"> <span class="blue">background-color</span>: <span class="orange">$headerBgClr</span>;</span>
+         <span data-line="24"> <span class="blue">color</span>: <span class="orange">$headerClr</span>;</span>
+          <span data-line="25"></span>
+         <span data-line="26"> <span class="green">p</span> {</span>
+          <span data-line="27"> <span class="blue">color</span>: <span class="orange">$headerBgClr</span>;</span>
+         <span data-line="28"> <span class="green">img</span> {</span>
+          <span data-line="29"> <span class="blue">width</span></span>: 100<span class="red">%</span>;</span>
+         <span data-line="30"> }</span>
+        <span data-line="31"> }</span>
+        <span data-line="32"> .<span class="blue">header-container</span> <span class="green">h1</span> {</span>
+          <span data-line="34"> <span class="blue">margin</span>: 0 auto;</span>
+          <span data-line="35"> <span class="blue">width</span>: 80<span class="red">%</span>;</span>
+          <span data-line="36"> <span class="blue">max-width</span>: 1100<span class="red">px</span>;</span>
+          <span data-line="37"> <span class="blue">display</span>: flex;</span>
+          <span data-line="38"> <span class="blue">justify-content</span>: space-between;</span>
+          <span data-line="39"> <span class="blue">align-items</span>: center;</span>
+        <span data-line="40"> }</span>
+        <span data-line="41"></span>
+        <span data-line="42"> <span class="green">a</span> {</span>
+          <span data-line="43"> <span class="blue">color</span>: <span class="orange">$headerClr</span>;</span>
+          <span data-line="44"> <span class="blue">font-size</span>: 1.125<span class="red">rem</span>;</span>
+        <span data-line="45"></span>
+        <span data-line="46"> <span class="green">&amp;</span>:<span class="blue">hover</span> {</span>
+          <span data-line="47"> <span class="blue">text-decoration</span>: underline;</span>
+          <span data-line="48"> <span class="blue">color</span>: <span class="orange">$orange</span>;</span>
+          <span data-line="49"> }</span>
+        <span data-line="50"> }</span>
+        <span data-line="51">}</span>
+        <span data-line="52">.<span class="blue">navbar</span> {</span>
+          <span data-line="53"> <span class="red">@extend</span> <span class="blue">%flex-layout</span>;</span>
+          <span data-line="54"> <span class="blue">padding</span>: variables.<span class="orange">$base-padding</span> variables.<span class="orange">$base-padding</span> * 2;</span>
+          <span data-line="55"> <span class="blue">box-shadow</span>: variables.<span
+            class="orange">$base-box-shadow</span>;</span>
+        <span data-line="56">}</span>
+        <span data-line="57"><span class="blue">%flex-layout</span> {</span>
+          <span data-line="58"> <span class="blue">width</span>: 100<span class="red">%</span>;</span>
+          <span data-line="59"> <span class="blue">display</span>: flex;</span>
+          <span data-line="60"> <span class="blue">align-items</span>: center;</span>
+          <span data-line="61"> <span class="blue">justify-content</span>: space-between;</span>
+          <span data-line="62"> <span class="blue">box-sizing</span>: border-box;</span>
+        <span data-line="63">}</span>
+        <span data-line="64"><span class="comment">/* Comment */</span></span>
+        
       </pre>
       <p><strong>NOTE</strong>: This code block example is huge and is only a fraction of syntax variations in a SASS/SCSS file. Once again, selecting classes (<code>.</code>, <code>%</code>, <code>:</code>, and <code>::</code>) is proving difficult. I do not know all the edge cases and specific syntax for everything SASS offers. For now, this is the best I can do and I am leaving classes out. You will have to manually add <code>span.color</code> tags for HTML element selectors and all classes. I also added back the dot (.) before <code>/components</code> and each occurrence of <code>variables</code>, though I did not make <code>variables</code> orange.</p>
       <hr>
@@ -226,27 +250,29 @@
       <h3>JSON Example</h3>
       <pre class="code-block dark_block">
         <span class="comment">&lt;!-- RegEx order: 1. jsonValDblQt, 2. jsonProp, 3. jsonNumBool --&gt;</span>
-        <span>{</span>
-        <span> <span class="green">&quot;Chord&quot;</span>: <span class="light-blue">&quot;Maj&quot;</span><span
+        <span data-line="1">{</span>
+        <span data-line="2"> <span class="green">&quot;Chord&quot;</span>: <span class="light-blue">&quot;&quot;</span><span
             class="blue"></span>,</span>
-        <span> <span class="green">&quot;Intervals&quot;</span>: [<span class="light-blue">&quot;1&quot;</span><span
-            class="blue"></span>, <span class="light-blue">&quot;3&quot;</span><span class="blue"></span>, <span
+        <span data-line="3"> <span class="green">&quot;Intervals&quot;</span>: [<span
+            class="light-blue">&quot;1&quot;</span><span class="blue"></span>, <span
+            class="light-blue">&quot;3&quot;</span><span class="blue"></span>, <span
             class="light-blue">&quot;5&quot;</span><span class="blue"></span>]<span class="blue"></span>,</span>
-        <span> <span class="green">&quot;steps&quot;</span>: [<span class="blue">0</span><span class="blue"></span>, <span
-            class="blue">4</span><span class="blue"></span>, <span class="blue">7</span><span class="blue"></span>]<span
+        <span data-line="4"> <span class="green">&quot;steps&quot;</span>: [<span class="blue">0</span><span
+            class="blue"></span>, <span class="blue">4</span><span class="blue"></span>, <span class="blue">7</span><span
+            class="blue"></span>]<span class="blue"></span>,</span>
+        <span data-line="5"> <span class="green">&quot;test&quot;</span>: <span class="blue">true</span><span
             class="blue"></span>,</span>
-        <span> <span class="green">&quot;test&quot;</span>: <span class="blue">true</span><span class="blue"></span>,</span>
-        <span> <span class="green">&quot;Tendency&quot;</span>: [<span class="light-blue">&quot;I&quot;</span><span
-            class="blue"></span>, <span class="light-blue">&quot;IV&quot;</span><span class="blue"></span>]<span
-            class="blue"></span>,</span>
-        <span> <span class="green">&quot;scales&quot;</span>: [</span>
-          <span> { <span class="green">&quot;Major Scale&quot;</span>: [<span class="light-blue">&quot;1st&quot;</span><span
-              class="blue"></span>, <span class="light-blue">&quot; 4th&quot;</span><span class="blue"></span>, <span
-              class="light-blue">&quot; 5th&quot;</span><span class="blue"></span>] }<span class="blue"></span>,</span>
-          <span> { <span class="green">&quot;Minor Pentatonic&quot;</span>: [<span class="light-blue">&quot;2nd&quot;</span><span
-              class="blue"></span>] }</span>
-        <span> <span class="blue"></span>]</span>
-        <span>}</span>
+        <span data-line="6"> <span class="green">&quot;Tendency&quot;</span>: [<span
+            class="light-blue">&quot;I&quot;</span><span class="blue"></span>, <span
+            class="light-blue">&quot;IV&quot;</span><span class="blue"></span>]<span class="blue"></span>,</span>
+        <span data-line="7"> <span class="green">&quot;scales&quot;</span>: [</span>
+          <span data-line="8"> { <span class="green">&quot;Major Scale&quot;</span>: [<span
+            class="light-blue">&quot;1st&quot;</span><span class="blue"></span>, <span class="light-blue">&quot; 4th&quot;</span><span class="blue"></span>, <span class="light-blue">&quot; 5th&quot;</span><span
+            class="blue"></span>] }<span class="blue"></span>,</span>
+          <span data-line="9"> { <span class="green">&quot;Minor Pentatonic&quot;</span>: [<span
+            class="light-blue">&quot;2nd&quot;</span><span class="blue"></span>] }</span>
+        <span data-line="10"> <span class="blue"></span>]</span>
+        <span data-line="11">}</span>
       </pre>
       <p><strong>NOTE</strong>: The JSON part works without any problems!</p>
       <hr>
@@ -255,43 +281,46 @@
       <pre class="code-block dark_block">
         <span class="comment">&lt;!-- RegEx Order: 1. jsEqual, 2. jsNumDate, 3. jsBool, 4. jsObjProp,  --&gt;</span>
         <span class="comment">&lt;!-- 5. jsKeywords, 6. jsFx, 7. backTicks, 8. dblQuote, 9. comments --&gt;</span>
-        <span><span class="red">const</span> str <span class="blue">=</span> <span class="light-blue">&apos;string for&apos;</span>;</span>
-        <span><span class="red">const</span> num <span class="blue">=</span> 1.618;</span>
-        <span><span class="red">const</span> isNull <span class="blue">=</span> <span class="blue">null</span>;</span>
-        <span><span class="red">const</span> isUndefined <span class="blue">=</span> <span class="blue">undefined</span>;</span>
-        <span><span class="red">let</span> bool <span class="blue">=</span> <span class="blue">true</span>;</span>
-        <span><span class="red">for</span> <span class="purple"></span>(<span class="red">let</span> item <span
-            class="red">of</span> arr)</span>
-        <span><span class="red">const</span> arr1 <span class="blue">=</span> [1, 12.36, <span class="light-blue">&apos;word while&apos;</span>];</span>
-        <span><span class="red">const</span> obj <span class="blue">=</span> {</span>
-         <span> <span class="blue">a</span><span class="blue"></span>: <span class="light-blue">&apos;word&apos;</span>,</span>
-         <span> <span class="blue">b</span><span class="blue"></span>: <span class="light-blue">&apos;42&apos;</span>,</span>
-         <span> <span class="blue">firstName</span><span class="blue"></span>: <span
+        <span data-line="1"><span class="red">const</span> str <span class="blue">=</span>span> <span class="light-blue">&apos;string for&apos;</span>;</span>
+        <span data-line="2"><span class="red">const</span> num <span class="blue">=</span> 1.618;</span>
+        <span data-line="3"><span class="red">const</span> isNull <span class="blue">=</span> <span
+            class="blue">null</span>;</span>
+        <span data-line="4"><span class="red">const</span> isUndefined <span class="blue">=</span> <span
+            class="blue">undefined</span>;</span>
+        <span data-line="5"><span class="red">let</span> bool <span class="blue">=</span> <span class="blue">true</span>;</span>
+        <span data-line="6"><span class="red">for</span> (<span class="red">let</span> item <span class="red">of</span> arr)</span>
+        <span data-line="7"><span class="red">const</span> arr1 <span class="blue">=</span> [1, 12.36, <span
+            class="light-blue">&apos;word while&apos;</span>];</span>
+        <span data-line="8"><span class="red">const</span> obj <span class="blue">=</span> {</span>
+         <span data-line="9"> <span class="blue">a</span><span class="blue"></span>: <span
+            class="light-blue">&apos;word&apos;</span>,</span>
+         <span data-line="10"> <span class="blue">b</span><span class="blue"></span>: <span
+            class="light-blue">&apos;42&apos;</span>,</span>
+         <span data-line="11"> <span class="blue">firstName</span><span class="blue"></span>: <span
             class="light-blue">&quot;Jim&quot;</span>,</span>
-         <span> <span class="light-blue">&quot;test&quot;</span><span class="blue"></span>: <span
+         <span data-line="12"> <span class="light-blue">&quot;test&quot;</span><span class="blue"></span>: <span
             class="blue">false</span></span>
-        <span>};</span>
-        <span><span class="red">async</span> <span class="red">function</span> <span class="purple">fxName</span><span
-            class="purple"></span>(arr) {</span>
-         <span> <span class="red">const</span> output <span class="blue">=</span> <span class="red">await</span> arr.<span
-            class="purple">forEach</span><span class="purple"></span>(item <span class="blue">=&gt;</span> {</span>
-         <span> console.<span class="purple">log</span><span class="purple"></span>(<span class="red">typeof</span> item);</span>
-         <span> });</span>
-         <span> <span class="red">return</span> output;</span>
-        <span>}</span>
-        <span><span class="purple">fxName</span><span class="purple"></span>(arr1);</span>
-        <span><span class="red">if</span> <span class="purple"></span>(bool <span class="blue">!=</span><span
-            class="blue">=</span> <span class="blue">true</span>) {</span>
-         <span> console.<span class="purple">log</span><span class="purple"></span>(<span class="blue">true</span>);</span>
-        <span>} <span class="red">else</span> {</span>
-         <span> console.<span class="purple">log</span><span class="purple"></span>(<span class="blue">false</span>);</span>
-        <span>}</span>
-        <span><span class="red">const</span> someNum <span class="blue">=</span> <span class="orange">Math</span>.<span
-            class="purple">random</span><span class="purple"></span>() * 10;</span>
-        <span><span class="red">const</span> today <span class="blue">=</span> <span class="red">new</span> <span
-            class="orange">Date</span><span class="purple"></span>().<span class="purple">getFullYear</span><span
-            class="purple"></span>();</span>
-        <span><span class="comment">/* Start JavaScript classes */</span></span>
+        <span data-line="13">};</span>
+        <span data-line="14"><span class="red">async</span> <span class="red">function</span> <span
+            class="purple">fxName</span>(arr) {</span>
+         <span data-line="15"> <span class="red">const</span> output <span class="blue">=</span> <span class="red">await</span>
+          arr.<span class="purple">forEach</span>(item <span class="blue">=&gt;</span> {</span>
+          <span data-line="16"> console.<span class="purple">log</span>(<span class="red">typeof</span> item);</span>
+         <span data-line="17"> });</span>
+        <span data-line="18"> <span class="red">return</span> output;</span>
+        <span data-line="19">}</span>
+        <span data-line="20"><span class="purple">fxName</span>(arr1);</span>
+        <span data-line="21"><span class="red">if</span> (bool <span class="blue">!=</span><span class="blue">=</span> <span
+            class="blue">true</span>) {</span>
+        <span data-line="22"> console.<span class="purple">log</span>(<span class="blue">true</span>);</span>
+        <span data-line="23">} <span class="red">else</span> {</span>
+        <span data-line="24"> console.<span class="purple">log</span>(<span class="blue">false</span>);</span>
+        <span data-line="25">}</span>
+        <span data-line="26"><span class="red">const</span> someNum <span class="blue">=</span> <span
+            class="orange">Math</span>.<span class="purple">random</span>() * 10;</span>
+        <span data-line="27"><span class="red">const</span> today <span class="blue">=</span> <span class="red">new</span> <span class="orange">Date</<span class="purple">span></span>().<span class="purple">getFullYear</span>();</span>
+        &lt;!-- What happened to the line above? --&gt;
+        <span data-line="28"><span class="comment">/* Start JavaScript classes */</span></span>
       </pre>
       <p><strong>NOTE</strong>: For now this part is done but I am expecting errors when I start converting JS. I would prefer to be more positive but I do not think my expressions are ideal, plus my brain is getting fried. I wanted to make all numbers blue but running that RegEx added a huge number of empty span.blue tags. I also was not able to escape a backtick to test my <code>backtick</code> RegEx. However, everything else worked and I only had to adjust a few lines and some indentations.</p>
       <hr>
@@ -300,58 +329,44 @@
       <pre class="code-block dark_block">
         <span class="comment">&lt;!-- RegEx order: 1. htmlAttr, 2. phpCustonFx, 3. phpHtmlTag, --&gt;</span>
         <span class="comment">&lt;!-- 4. phpKeywords, 5. jsFx, 6. singleQt, 7. dblQuote, 8. jsBool --&gt;</span>
-        <span>&lt;<span class="green">?php</span></span>
-        <span></span>
-        <span><span class="comment">/*
-         Plugin Name: Word Count Plugin
-         Description: Plugin to display read time, character &amp; word count for posts
-         Version: 1.0.0
-        */</span>
-        <span></span>
-        <span><span class="red">class</span> <span class="orange">WordCountAndTimePlugin</span><span class="orange"></span> {</span>
-        <span> <span class="red">function</span> <span class="purple">__construct</span><span class="purple"></span>()<span
+        <span data-line="1"></span>
+        <span data-line="2"><span class="red">class</span> <span class="orange">WordCountAndTimePlugin</span><span
             class="orange"></span> {</span>
-        <span> <span class="purple">add_action</span><span class="purple"></span>(<span
-            class="light-blue">&apos;admin_menu&apos;</span>, <span class="purple">array</span><span
-            class="purple"></span>(<span class="blue">$</span>this, <span class="light-blue">&apos;adminPage&apos;</span>));</span>
-        <span> <span class="purple">add_action</span><span class="purple"></span>(<span
-            class="light-blue">&apos;admin_init&apos;</span>, <span class="purple">array</span><span
-            class="purple"></span>(<span class="blue">$</span>this, <span class="light-blue">&apos;settings&apos;</span>));</span>
-        <span> <span class="purple">add_filter</span><span class="purple"></span>(<span
-            class="light-blue">&apos;the_content&apos;</span>, <span class="purple">array</span><span
-            class="purple"></span>(<span class="blue">$</span>this, <span class="light-blue">&apos;ifWrap&apos;</span>));</span>
-        <span> }</span>
-        <span></span>
-        <span> <span class="red">function</span> <span class="purple">settings</span><span class="purple"></span>()<span
+         <span data-line="3"> <span class="red">function</span> <span class="purple">__construct</span>()<span
             class="orange"></span> {</span>
-        <span> <span class="purple">add_settings_section</span><span class="purple"></span>(<span
+          <span data-line="4"> <span class="purple">add_action</span>(<span class="light-blue">&apos;admin_menu&apos;</span>, <span class="purple">array</span>($this, <span class="light-blue">&apos;adminPage&apos;</span>));</span>
+          <span data-line="5"> <span class="purple">add_action</span>(<span class="light-blue">&apos;admin_init&apos;</span>, <span class="purple">array</span>($this, <span class="light-blue">&apos;settings&apos;</span>));</span>
+          <span data-line="6"> <span class="purple">add_filter</span>(<span class="light-blue">&apos;the_content&apos;</span>, <span class="purple">array</span>($this, <span class="light-blue">&apos;ifWrap&apos;</span>));</span>
+        <span data-line="7"> }</span>
+        <span data-line="8"></span>
+        <span data-line="9"> <span class="red">function</span> <span class="purple">settings</span>()<span
+            class="orange"></span> {</span>
+          <span data-line="10"> <span class="purple">add_settings_section</span>(<span
             class="light-blue">&apos;wcp_first_section&apos;</span>, <span class="blue">null</span>, <span
             class="blue">null</span>, <span class="light-blue">&apos;word-count-settings-page&apos;</span>);</span>
-        <span></span>
-        <span> <span class="purple">add_settings_field</span><span class="purple"></span>(<span
-            class="light-blue">&apos;wcp_location&apos;</span>, <span class="light-blue">&apos;Display Location&apos;</span>,
-          <span class="purple">array</span><span class="purple"></span>(<span class="blue">$</span>this, <span
+          <span data-line="12"> <span class="purple">add_settings_field</span>(<span
+            class="light-blue">&apos;wcp_location&apos;</span>, <span class="light-blue">&apos;Display Location&apos;</span>,</span> <span data-line="13"> <span class="purple">array</span>($this, <span
             class="light-blue">&apos;locationHTML&apos;</span>), <span
             class="light-blue">&apos;word-count-settings-page&apos;</span>, <span
             class="light-blue">&apos;wcp_first_section&apos;</span>);</span>
-        <span> <span class="purple">register_setting</span><span class="purple"></span>(<span
-            class="light-blue">&apos;wordcountplugin&apos;</span>, <span class="light-blue">&apos;wcp_location&apos;</span>,
-          <span class="purple">array</span><span class="purple"></span>(<span
-            class="light-blue">&apos;sanitize_callback&apos;</span> <span class="blue"></span>=&gt; <span
-            class="purple">array</span><span class="purple"></span>(<span class="blue">$</span>this, <span
+          <span data-line="14"> <span class="purple">register_setting</span>(<span
+            class="light-blue">&apos;wordcountplugin&apos;</span>, <span
+            class="light-blue">&apos;wcp_location&apos;</span>,</span>
+          <span data-line="15"> <span class="purple">array</span>(<span class="light-blue">&apos;sanitize_callback&apos;</span> <span class="blue"></span>=&gt; <span class="purple">array</span>($this, <span
             class="light-blue">&apos;sanitizeLocation&apos;</span>), <span class="light-blue">&apos;default&apos;</span> <span
             class="blue"></span>=&gt; <span class="light-blue">&apos;0&apos;</span>));</span>
-        <span> }</span>
-        <span>}</span>
-        <span>$wordCountAndTimePlugin <span class="blue"></span>= <span class="red">new</span> <span
-            class="orange">WordCountAndTimePlugin</span><span class="purple"></span>();</span>
-        <span><span class="green">?</span>&gt;</span>
-        <span>&lt;<span class="green">div</span> <span class="blue">class</span><span class="blue"></span>=<span
+         <span data-line="16"> }</span>
+        <span data-line="17">}</span>
+        <span data-line="18">$wordCountAndTimePlugin <span class="blue"></span>= <span class="red">new</span> <span
+            class="purple">WordCountAndTimePlugin</span>();</span>
+        <span data-line="19"><span class="green">?</span>&gt;</span>
+        <span data-line="20">&lt;<span class="green">div</span> <span class="blue">class</span><span class="blue"></span>=<span
             class="light-blue">&quot;container&quot;</span>&gt;</span>
-        <span> &lt;<span class="green">h3</span> <span class="blue">class</span><span class="blue"></span>=<span
+         <span data-line="21"> &lt;<span class="green">h3</span> <span class="blue">class</span><span class="blue"></span>=<span
             class="light-blue">&quot;custom-title&quot;</span>&gt;&lt;<span class="green">?php</span> <span
-            class="purple">esc_html_e</span><span class="purple"></span>(<span class="light-blue">&apos;Latest Articles&apos;</span>, <span class="light-blue">&apos;tower&apos;</span>) ?&gt;&lt;<span class="green"></span>/<span
+            class="purple">esc_html_e</span>(<span class="light-blue">&apos;Latest Articles&apos;</span>, <span class="light-blue">&apos;tower&apos;</span>) ?&gt;&lt;<span class="green"></span>/<span
             class="green">h3</span>&gt;</span>
+        <span data-line="22">&lt;<span class="green"></span>/<span class="green">div</span>&gt;</span>
       </pre>
       <p><strong>NOTE</strong>: I had some issues with the RegEx here. First, my comments RegEx did not grab my comment so I manually added <code>span.comment</code>. It did not take because it was on multiple lines, so it was split that way. Second, I was able to grab the custom function but not the <code><span class="red">new</span></code> instance of it. The new instance took on the color of functions (purple), so I manually changed it to <code>span.orange</code>. Third, I was not able to grab the closing <code><span class="green">?</span></code> for the php tag, so I manually added <code>span.green</code>. Lastly, I did not try to grab the <code><span class="light-blue">$</span></code> prefix to <code>this</code>, so I manually added <code>span.blue</code>. I'll work on that one later.</p>
       <hr>
@@ -362,48 +377,52 @@
         <span class="comment">&lt;!-- 5. singleQt, 6. dblQuote, 7. mdHeadings, 8. mdLinks,  --&gt;</span>
         <span class="comment">&lt;!-- 9. mdBlockQt, 10. mdDiffMinus, 11. mdDiffPlus, 12. mdLists  --&gt;</span>
 
-        <span class="comment">&lt;<span class="green"></span>!<span class="green"></span>-- Markdown comment the same as for HTML --&gt;</span>
-        <span class="blue"># MARKDOWN CHEAT SHEET</span>
-        <span class="blue">#### How about H4 as a comparison</span>
-        
-        [<span class="light-blue">Link</span><span class="light-blue"></span>](https://example.com)
-        [<span class="light-blue">Link text</span><span class="light-blue"></span>](URL <span class="light-blue">&apos;Optional link title&apos;</span>)
-        !<span class="green"></span>[<span class="light-blue">picture alt text</span><span
-          class="light-blue"></span>](https://url.com/images/filename.png <span class="light-blue">&apos;Title is optional&apos;</span>)
-        [<span class="light-blue">Strike thru section</span><span class="light-blue"></span>](#strike-thru-section)
-
-        &lt;<span class="green">span</span>&gt;&lt;<span class="green">img</span> <span class="blue">alt</span><span
-          class="blue"></span>=<span class="light-blue">&quot;alt&quot;</span> <span class="blue">src</span><span
-          class="blue"></span>=<span class="light-blue">&quot;https://url.com/images/filename.jpg&quot;</span>&gt;&lt;<span
-          class="green"></span>/<span class="green">span</span>&gt;
-        &lt;<span class="green">div</span> <span class="blue">align</span><span class="blue"></span>=<span
-          class="light-blue">&quot;right&quot;</span>&gt;<span class="red">&amp;#8673;</span> &lt;<span class="green">a</span> <span class="blue">href</span><span class="blue"></span>=<span class="light-blue">&quot;#back-to-top&quot;</span> <span class="blue">title</span><span class="blue"></span>=<span class="light-blue">&quot;Title&quot;</span>&gt;Back to Top&lt;<span class="green"></span>/<span class="green">a</span>&gt;&lt;<span class="green"></span>/<span
-          class="green">div</span>&gt;
-        
-        Some other important footnote.[<span class="light-blue">^2</span><span class="light-blue"></span>]
-        [<span class="light-blue">^1</span><span class="light-blue"></span>]: This is footnote number one.
-        [<span class="light-blue">^2</span><span class="light-blue"></span>]: Here is the second footnote.
-        
-        - [<span class="light-blue"> </span><span class="light-blue"></span>] Incomplete _task_
-        - [<span class="light-blue">x</span><span class="light-blue"></span>] Completed **task**
-        
-        <span class="orange">1.</span> list item
-        <span class="orange">1.</span> Ordered item 2
-          <span class="orange">1.</span> Child item 1
-        
-        <span class="orange">-</span> bullet point
-        <span class="orange">-</span> List item 2
-          <span class="orange">-</span> Child item 1
-        
-        <span class="green">&gt; Blockquote</span>
-        <span class="green">&gt; &gt; Indented blockquote</span>
-        <span class="green">&gt; img tags as block level _unless_ nested in table cells</span>
-        
-        <span class="red">- this code or text is the old version</span>
-        <span class="red"><span class="green">+ this is what it was changed to</span></span>
+        <span data-line="1"><span class="comment">&lt;<span class="green"></span>!-- Markdown comment the same as for HTML --&gt;</span></span>
+        <span data-line="2"><span class="blue"># MARKDOWN CHEAT SHEET</span></span>
+        <span data-line="3"><span class="blue">#### How about H4 as a comparison</span></span>
+        <span data-line="4"></span>
+        <span data-line="5">[<span class="light-blue">Link</span><span class="light-blue"></span>](https://example.com)</span>
+        <span data-line="6">[<span class="light-blue">Link text</span><span class="light-blue"></span>](URL <span
+            class="light-blue">&apos;Optional link title&apos;</span>)</span>
+        <span data-line="7">![<span class="light-blue">picture alt text</span><span
+            class="light-blue"></span>](https://url.com/images/filename.png <span class="light-blue">&apos;Title is optional&apos;</span>)</span>
+        <span data-line="8">[<span class="light-blue">Strike thru section</span><span
+            class="light-blue"></span>](#strike-thru-section)</span>
+        <span data-line="9">&lt;<span class="green">span</span>&gt;&lt;<span class="green">img</span> <span
+            class="blue">alt</span><span class="blue"></span>=<span class="light-blue">&quot;alt&quot;</span> <span
+            class="blue">src</span><span class="blue"></span>=<span
+            class="light-blue">&quot;https://url.com/images/filename.jpg&quot;</span>&gt;&lt;<span class="green"></span>/<span
+            class="green">span</span>&gt;</span>
+        <span data-line="10">&lt;<span class="green">div</span> <span class="blue">align</span><span class="blue"></span>=<span
+            class="light-blue">&quot;right&quot;</span>&gt;<span class="red">&amp;#8673;</span>&lt;<span class="green">a</span> <span class="blue">href</span><span class="blue"></span>=<span
+            class="light-blue">&quot;#back-to-top&quot;</span> <span class="blue">title</span><span class="blue"></span>=<span
+            class="light-blue">&quot;Title&quot;</span>&gt;Back to Top&lt;<span class="green"></span>/<span
+            class="green">a</span>&gt;&lt;<span class="green"></span>/<span class="green">div</span>&gt;</span>
+        <span data-line="11">Some other important footnote.[<span class="light-blue">^2</span><span
+            class="light-blue"></span>]</span>
+        <span data-line="12">[<span class="light-blue">^1</span><span class="light-blue"></span>]: This is footnote number one.</span>
+        <span data-line="13">[<span class="light-blue">^2</span><span class="light-blue"></span>]: Here is the second footnote.</span>
+        <span data-line="14"></span>
+        <span data-line="15"><span class="orange">-</span> [<span class="light-blue"> </span><span class="light-blue"></span>] Incomplete _task_</span>
+        <span data-line="16"><span class="orange">-</span> [<span class="light-blue">x</span><span class="light-blue"></span>] Completed **task**</span>
+        <span data-line="17"></span>
+        <span data-line="18"><span class="orange">1.</span> list item</span>
+        <span data-line="19"><span class="orange">1.</span> Ordered item 2</span>
+         <span data-line="20"> <span class="orange">1.</span> Child item 1</span>
+        <span data-line="21"></span>
+        <span data-line="22"><span class="orange">-</span> bullet point</span>
+        <span data-line="23"><span class="orange">-</span> List item 2</span>
+         <span data-line="24"> <span class="orange">-</span> Child item 1</span>
+        <span data-line="25"></span>
+        <span data-line="26"><span class="green">&gt; Blockquote</span></span>
+        <span data-line="27"><span class="green">&gt; &gt; Indented blockquote</span></span>
+        <span data-line="28"><span class="green">&gt; img tags as block level _unless_ nested in table cells</span></span>
+        <span data-line="29"></span>
+        <span data-line="30"><span class="red">- this code or text is the old version</span></span>
+        <span data-line="31"><span class="red"><span class="green">+ this is what it was changed to</span></span></span>
   
       </pre>
-      <p><strong>NOTE</strong>: Everything was relatively good until I got to lists and diff code blocks. I have to add <code>span.orange</code> for unordered lists, and <code>span.red</code> for the minus line in a diff code block. Also, blockquotes will only output as green if they do not have symbols other than alphanumeric and underscore.</p>
+      <p><strong>NOTE</strong>: Everything was relatively good until I got to lists and diff code blocks. I have to add <code>span.orange</code> for unordered lists, and <code>span.red</code> for the minus line in a diff code block. Also, blockquotes will only output as green if they do not have symbols other than alphanumeric and underscore, and for somereason I had to add <code>span.green</code> for the blockquotes</p>
       <hr>
 
       <h3>Other Code Examples</h3>

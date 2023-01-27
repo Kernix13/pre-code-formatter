@@ -26,8 +26,7 @@ a:hover {
 }`;
 
 const inputSASS =
-`
-@use './components/card';
+`@use '/components/card';
 @use 'base';
 $primary: #326dee !default;
 $base-font-size: 1rem;
@@ -52,9 +51,9 @@ header {
   color: $headerClr;
 
   p {
-    color: 
+    color: $headerClr;
     img {
-      width
+      max-width: 100%;
     }
   }
   .header-container h1 {
@@ -122,8 +121,7 @@ const today = new Date().getFullYear();
 /* Start JavaScript classes */`;
 
 const inputJSON =
-`
-{
+`{
   "Chord": "",
   "Intervals": ["1", "3", "5"],
   "steps": [0, 4, 7],

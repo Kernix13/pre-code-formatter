@@ -16,7 +16,7 @@ const htmlComment = /(&lt;!--\s[\w\s\W]*\s--&gt;)/g;
 const htmlTag = /(?<=&lt;\/*)([a-zA-Z1-6]*)/g;
 const htmlBoolAttr = /(\s\w*)(?=&gt;)/g; // need to have it right on > or &gt;
 const htmlEntity = /(&amp;#[\d]*;)/g;
-const htmlRegEx = [htmlAttr, htmlComment, htmlTag, htmlBoolAttr, htmlEntity, dblQuote];
+const htmlRegEx = [[htmlAttr, 1], [htmlComment, 3], [htmlTag, 0], [htmlBoolAttr, 1], [htmlEntity, 4], [dblQuote, 2]];
 
 // CSS Regular Expressions
 const cssProp = /(?<![;=\w])([a-z-]*)(?=:\s)/g;
@@ -25,12 +25,13 @@ const cssUnits = /(?<=\d)(em|rem|vh|vw|px|%|ch|ex|vmin|vmax)/g;
 const cssAtRules = /([@][a-z-]*|!important|!default)/g;
 const cssVariables = /([\s\(?][-]{2}[a-zA-Z-]*)/g;
 const cssClassId = /(?<=[\.:])([^\d][a-zA-Z_-\d]*)/g; // problems
-const cssRegEx = [cssProp, comments, cssFxName, cssUnits, cssAtRules, cssVariables, singleQt];
+// const cssRegEx = [cssProp, comments, cssFxName, cssUnits, cssAtRules, cssVariables, singleQt];
+const cssRegEx = [[cssProp, 1], [comments, 3], [cssFxName, 5], [cssUnits, 4], [cssAtRules, 4], [cssVariables, 6], [singleQt, 2], [cssClassId, 1]];
 
 // SASS/SCSS Regular Expressions
 const sassProp = /(?<![;=\w$-])([a-z-]*)(?=:\s)/g;
 const sassVars = /([$]{1}[\w-]*)/g;
-const sassRegEx = [sassProp, comments, cssFxName, cssUnits, cssAtRules, sassVars, singleQt];
+const sassRegEx = [[sassProp, 1], [comments, 3], [cssFxName, 5], [cssUnits, 4], [cssAtRules, 4], [sassVars, 6], [singleQt, 2]];
 
 // JavaScript Regular Expressions
 const jsFx = /([\w]*[^\(\s])(?=\()/g;
@@ -39,21 +40,19 @@ const jsObjProp = /([\w]*)(?=:)/g;
 const jsBool = /(true|false|null|undefined)/g;
 const jsEqual = /(=&gt;|=|!=|!==|==|===|\+=|\*=|\/=|-=)/g;
 const jsKeywords = /(?<=\(?)(typeof|async|await|break|case|catch|class|const|default|delete|do|else|extends|for|from|function|get|if|import|in|let|new|of|return|set|switch|throw|try|while)(?=\s)/g;
-const jsRegEx = [jsEqual, jsNumDate, jsBool, jsObjProp, jsKeywords, jsFx, singleQt, dblQuote, comments];
+const jsRegEx = [[jsEqual, 1], [jsNumDate, 6], [jsBool, 1], [jsObjProp, 1], [jsKeywords, 4], [jsFx, 5], [singleQt, 2], [dblQuote, 2], [comments, 3]];
 
 // JSON Regular Expressions
 const jsonValDblQt = /(&quot;[.\s\w/*#?-]*&quot;)(?!:)/g;
 const jsonProp = /(&quot;[.\w\/:*\{\s?-]*\w&quot;)(?=:\s)/g;
 const jsonNumBool = /([\d]*|true|false|null)(?=[,\]])/g;
-const jsonRegEx = [jsonValDblQt, jsonProp, jsonNumBool];
+const jsonRegEx = [[jsonValDblQt, 2], [jsonProp, 0], [jsonNumBool, 1]];
 
 // PHP Regular Expressions
 const phpCustomFx = /(?!\()([\w]*)(?=\s\{)/g; // canst isolate new instance
 const phpHtmlTag = /(?<=&lt;\/*|!)([a-zA-Z1-6?]*)/g; // not getting closing ?
 const phpKeywords = /(?<=\(?)(while|new|array|echo|endwhile|else|elseif|class|function|return|break|catch|continue|default|endfor|endforeach|enum|eval|exit|extends|final|finally|foreach|instanceof|insteadof|match|namespace|require|static|switch|throw|try)(?=\s)/g;
-const phpRegEx = [htmlAttr, phpCustomFx, phpHtmlTag, phpKeywords, jsFx, singleQt, dblQuote, comments];
-
-// JSX Regular Expressions
+const phpRegEx = [[htmlAttr, 1], [phpCustomFx, 6], [phpHtmlTag, 0], [phpKeywords, 4], [jsFx, 5], [singleQt, 2], [dblQuote, 2], [jsBool, 1]];
 
 // Markdown Regular Expressions
 const mdHeadings = /([#]{1,6}[\s]{1}[\s\w]*)(?<!\n)/g;
@@ -62,7 +61,9 @@ const mdBlockQt = /(^&gt;(?:[\t ]*&gt;)*[\w\s]*)/gm;
 const mdDiffMinus = /(\+\s[\w\s]*)/gm
 const mdDiffPlus = /(\+\s[\w\s]*)/g
 const mdLists = /([\d]\.)/g;
-const mdRegEx = [htmlAttr, htmlComment, htmlTag, htmlEntity, singleQt, dblQuote, mdHeadings, mdLinks, mdBlockQt, mdDiffMinus, mdDiffPlus, mdLists];
+const mdRegEx = [[htmlAttr, 1], [htmlComment, 3], [htmlTag, 0], [htmlEntity, 4], [singleQt, 2], [dblQuote, 2], [mdHeadings, 1], [mdLinks, 2], [mdBlockQt, 0], [mdDiffMinus, 4], [mdDiffPlus, 0], [mdLists, 6]];
+
+// JSX Regular Expressions
 
 // Step 1: Get your code added to a backtick string in input.js or from input in this file
 const input =
@@ -113,13 +114,7 @@ function convertCode(arr) {
   })
 }
 // convertCode(myInput);
-// convertCode(myHtml);
-// convertCode(myCss);
-// convertCode(mySass);
-// convertCode(myJs);
-// convertCode(myJson);
-// convertCode(myPhp);
-convertCode(myMd);
+
 
 // Step 3b: Output the HTML entities if you want to stop there
 convertedCode.forEach(codeLine => {
@@ -127,200 +122,58 @@ convertedCode.forEach(codeLine => {
 })
 
 // Step 4: add span color classes to converted code for the RegEx scenarios
-/* HOW DO I DO THIS DIFFERENTLY? Nested map, nested for loop, recursion? */
-let DblQuotesClass = []; let singleQtClass = []; let commentsClass = [];
 
-let HtmlAttrClass = []; let HtmlCommentClass = []; let HtmlTagClass = []; let HtmlBoollClass = []; let htmlEntityClass = [];
-
-let cssPropClass = []; let cssFxNameClass = []; let cssUnitsClass = []; let cssAtRulesClass = []; let cssVarsClass = []; let cssClassIdClass = []; let cssTagClass = [];
-
-let sassPropClass = []; let sassVarsClass = []; let sassClassClass = [];
-
-let jsonPropClass = []; let jsonValDblQtClass = []; let jsonNumBoolClass = [];
-
-let jsKeywordsClass = []; let jsNumClass = []; let jsFxClass = []; let jsNumDateClass = []; let jsObjPropClass = []; let jsBoolClass = []; let jsEqualClass = []; let backTicksClass = [];
-
-let phpCustomFxClass = []; let phpHtmlTagClass = []; let phpKeywordsClass = []; let mdListsClass = [];
-
-// const mdRegEx = [htmlAttr, mdHeadings, htmlComment, htmlTag, singleQt, dblQuote,];
-let mdHeadingsClass = []; let mdLinksClass = []; let mdBlockQtClass = []; let mdDiffPlusClass = []; let mdDiffMinusClass = [];
+let finishedArr = [];
 
 class htmlCode {
-  constructor(arr, regex, lineArray, index) {
-    this.arr = arr;
-    this.regex = regex;
-    this.lineArray = lineArray;
-    this.index = index;
+  constructor(regexArr) {
+    this.regexArr = regexArr;
   }
 
   findMatches() {
-    
-    this.arr.map(line => {
-
-      // The 1st string is to remove empty span.color tags (removeDups())
-      const htmlString = `<span class="${classes[this.index]}">${'$1'}</span>`;
-
-      const result = line.replace(this.regex, htmlString);
-
-      return this.lineArray.push(result);
+    let str = convertedCode.join("~");
+    let str2 = "";
+    this.regexArr.forEach(([regex, index]) => {
+      const htmlStrings = `<span class="${classes[index]}">${'$1'}</span>`;
+      str2 = str.replaceAll(regex, htmlStrings);
+      str = str2;
+      
     })
+    finishedArr = str.split("~");
   }
 }
 
-/* Start HTML classes */
-/*
-const myHtmlAttr = new htmlCode(convertedCode, htmlAttr, HtmlAttrClass, 1);
-myHtmlAttr.findMatches();
-const myHtmlComment = new htmlCode(HtmlAttrClass, htmlComment, HtmlCommentClass, 3);
-myHtmlComment.findMatches();
-const myHtmlTags = new htmlCode(HtmlCommentClass, htmlTag, HtmlTagClass, 0);
-myHtmlTags.findMatches();
-const myHtmlBoolAttr = new htmlCode(HtmlTagClass, htmlBoolAttr, HtmlBoollClass, 1);
-myHtmlBoolAttr.findMatches();
-const myHtmlEntity = new htmlCode(HtmlBoollClass, htmlEntity, htmlEntityClass, 4);
-myHtmlEntity.findMatches();
-const myHtmlDblQuotes = new htmlCode(htmlEntityClass, dblQuote, DblQuotesClass, 2);
-myHtmlDblQuotes.findMatches();
-*/
-/* End HTML classes */
+// Choose the correct RegEx array depending on myInput 
+const myInputOutput = new htmlCode(htmlRegEx);
+myInputOutput.findMatches();
 
-/* Start CSS classes */
-/* 
-const myCssProp = new htmlCode(convertedCode, cssProp, cssPropClass, 1);
-myCssProp.findMatches();
-const mCssComments = new htmlCode(cssPropClass, comments, commentsClass, 3);
-mCssComments.findMatches();
-const myCssFx = new htmlCode(commentsClass, cssFxName, cssFxNameClass, 5);
-myCssFx.findMatches();
-const myCssUnits = new htmlCode(cssFxNameClass, cssUnits, cssUnitsClass, 4);
-myCssUnits.findMatches();
-const myCssAt = new htmlCode(cssUnitsClass, cssAtRules, cssAtRulesClass, 4);
-myCssAt.findMatches();
-const myCssVars = new htmlCode(cssAtRulesClass, cssVariables, cssVarsClass, 6);
-myCssVars.findMatches();
-const mySingleQt = new htmlCode(cssVarsClass, singleQt, singleQtClass, 2);
-mySingleQt.findMatches();
-const myCssClassId = new htmlCode(singleQtClass, cssClassId, cssClassIdClass, 1);
-myCssClassId.findMatches();
-*/
-/* End CSS classes */
+/* Function to create the language classes from input.js  */
+function createClass(input, arr) {
+  convertCode(input);
+  const classOutput = new htmlCode(arr);
+  return classOutput.findMatches();
+}
 
-/* Start SASS/SCSS classes */
-/* 
-const mySassProp = new htmlCode(convertedCode, sassProp, sassPropClass, 1);
-mySassProp.findMatches();
-const mySassComments = new htmlCode(sassPropClass, comments, commentsClass, 3);
-mySassComments.findMatches();
-const mySassFx = new htmlCode(commentsClass, cssFxName, cssFxNameClass, 5);
-mySassFx.findMatches();
-const mySassUnits = new htmlCode(cssFxNameClass, cssUnits, cssUnitsClass, 4);
-mySassUnits.findMatches();
-const mySassAt = new htmlCode(cssUnitsClass, cssAtRules, cssAtRulesClass, 4);
-mySassAt.findMatches();
-const mySassVars = new htmlCode(cssAtRulesClass, sassVars, sassVarsClass, 6);
-mySassVars.findMatches();
-const mySingleQt = new htmlCode(sassVarsClass, singleQt, singleQtClass, 2);
-mySingleQt.findMatches();
-// const mySassClass = new htmlCode(singleQtClass, sassClass, sassClassClass, 2);
-// mySassClass.findMatches();
-*/
-/* End SASS/SCSS classes */
+/* add the regex for the language from inputText in input.js */
+// createClass(myText, htmlRegEx) 
 
-/* Start JavaScript classes */
-/*
-const myjsEqual = new htmlCode(convertedCode, jsEqual, jsEqualClass, 1);
-myjsEqual.findMatches();
-const myjsNumDate = new htmlCode(jsEqualClass, jsNumDate, jsNumDateClass, 6);
-myjsNumDate.findMatches();
-const myjsBool = new htmlCode(jsNumDateClass, jsBool, jsBoolClass, 1);
-myjsBool.findMatches();
-const myjsObjProp = new htmlCode(jsBoolClass, jsObjProp, jsObjPropClass, 1);
-myjsObjProp.findMatches();
-const myjsKeywords = new htmlCode(jsObjPropClass, jsKeywords, jsKeywordsClass, 4);
-myjsKeywords.findMatches();
-const myjsFx = new htmlCode(jsKeywordsClass, jsFx, jsFxClass, 5);
-myjsFx.findMatches();
-const mySingleQt = new htmlCode(jsFxClass, singleQt, singleQtClass, 2);
-mySingleQt.findMatches();
-const myHtmlDblQuotes = new htmlCode(singleQtClass, dblQuote, DblQuotesClass, 2);
-myHtmlDblQuotes.findMatches();
-const myjsComments = new htmlCode(DblQuotesClass, comments, commentsClass, 3);
-myjsComments.findMatches();
-*/
-/* End JavaScript classes */
-
-/* Start JSON classes */
-/*
-const myjsonValDblQt = new htmlCode(convertedCode, jsonValDblQt, jsonValDblQtClass, 2);
-myjsonValDblQt.findMatches();
-const myjsonProp = new htmlCode(jsonValDblQtClass, jsonProp, jsonPropClass, 0);
-myjsonProp.findMatches();
-const myjsonNumBool = new htmlCode(jsonPropClass, jsonNumBool, jsonNumBoolClass, 1);
-myjsonNumBool.findMatches();
-*/
-/* End JSON classes */
+/* Uncomment the language you want to run */
+createClass(myHtml, htmlRegEx);
+// createClass(myCss, cssRegEx);
+// createClass(mySass, sassRegEx);
+// createClass(myJson, jsonRegEx);
+// createClass(myJs, jsRegEx);
+// createClass(myPhp, phpRegEx);
+// createClass(myMd, mdRegEx);
 
 
-/* Start PHP classes */
-/*
-const myHtmlAttr = new htmlCode(convertedCode, htmlAttr, HtmlAttrClass, 1);
-myHtmlAttr.findMatches();
-const myphpCustomFx = new htmlCode(HtmlAttrClass, phpCustomFx, phpCustomFxClass, 6);
-myphpCustomFx.findMatches();
-const myphpHtmlTag = new htmlCode(phpCustomFxClass, phpHtmlTag, phpHtmlTagClass, 0);
-myphpHtmlTag.findMatches();
-const myphpKeywords = new htmlCode(phpHtmlTagClass, phpKeywords, phpKeywordsClass, 4);
-myphpKeywords.findMatches();
-const myjsFx = new htmlCode(phpKeywordsClass, jsFx, jsFxClass, 5);
-myjsFx.findMatches();
-const mysingleQt = new htmlCode(jsFxClass, singleQt, singleQtClass, 2);
-mysingleQt.findMatches();
-const myHtmlDblQuotes = new htmlCode(singleQtClass, dblQuote, DblQuotesClass, 2);
-myHtmlDblQuotes.findMatches();
-const myjsBool = new htmlCode(DblQuotesClass, jsBool, jsBoolClass, 1);
-myjsBool.findMatches();
-// const myjsComments = new htmlCode(jsBoolClass, comments, commentsClass, 3);
-// myjsComments.findMatches();
-*/
-/* End PHP classes */
+/* Step 5: Output your code to the DOM */
+finishedArr.forEach((codeLine, i) => {
+  darkBlockOutput.textContent += '<li><span data-line="' + `${i + 1}` + '">' + `${codeLine}` + "</span></li>";
 
-/* Start Markdown classes */
+  /* Use the line below as a visual check for the colors before doing the work to format the final code for your pre block: */
 
-const myHtmlAttr = new htmlCode(convertedCode, htmlAttr, HtmlAttrClass, 1);
-myHtmlAttr.findMatches();
-const myHtmlComment = new htmlCode(HtmlAttrClass, htmlComment, HtmlCommentClass, 3);
-myHtmlComment.findMatches();
-const myHtmlTags = new htmlCode(HtmlCommentClass, htmlTag, HtmlTagClass, 0);
-myHtmlTags.findMatches();
-const myHtmlEntity = new htmlCode(HtmlTagClass, htmlEntity, htmlEntityClass, 4);
-myHtmlEntity.findMatches();
-const mysingleQt = new htmlCode(htmlEntityClass, singleQt, singleQtClass, 2);
-mysingleQt.findMatches();
-const myHtmlDblQuotes = new htmlCode(singleQtClass, dblQuote, DblQuotesClass, 2);
-myHtmlDblQuotes.findMatches();
-const myMdHeadings = new htmlCode(DblQuotesClass, mdHeadings, mdHeadingsClass, 1);
-myMdHeadings.findMatches();
-const myMdLinks = new htmlCode(mdHeadingsClass, mdLinks, mdLinksClass, 2);
-myMdLinks.findMatches();
-const myMdBlockQt = new htmlCode(mdLinksClass, mdBlockQt, mdBlockQtClass, 0);
-myMdBlockQt.findMatches();
-const myMdDiffMinus = new htmlCode(mdBlockQtClass, mdDiffMinus, mdDiffMinusClass, 4);
-myMdDiffMinus.findMatches();
-const myMdDiffPlus = new htmlCode(mdDiffMinusClass, mdDiffPlus, mdDiffPlusClass, 0);
-myMdDiffPlus.findMatches();
-const myMdLists = new htmlCode(mdDiffPlusClass, mdLists, mdListsClass, 6);
-myMdLists.findMatches();
-
-/* End Markdown classes */
-
-/* Step 5: Output your code to the DOM - I will need a switch statement here
-   to attach the final output array for */
-mdListsClass.forEach(codeLine => {
-  // darkBlockOutput.textContent += '<li>' + `${codeLine}` + "</li>";
-
-  /* Use the line below as a visual check for the colors before doing all the work to format the final code for your pre block: */
-
-  darkBlockOutput.innerHTML += '<li>' + `${codeLine}` + "</li>";
+  // darkBlockOutput.innerHTML += '<li>' + `${codeLine}` + "</li>";
   
 })
 
