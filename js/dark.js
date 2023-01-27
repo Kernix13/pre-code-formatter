@@ -1,8 +1,9 @@
 const htmlEntities = document.getElementById("html_entities");
-const lightBlockOutput = document.getElementById("light_block_output");
+const darkBlockOutput = document.getElementById("dark_block_output");
+const testingPre = document.getElementById("test");
 
 // span tag color classes, and keywords
-const classes = ["maroon", "blue", "light-blue", "comment", "red", "purple", "orange", "red", "gray", "green"]
+const classes = ["green", "blue", "light-blue", "comment", "red", "purple", "orange"];
 
 // Global Regular Expressions
 const dblQuote = /(&quot;[.\s\w\/:*#?-]*&quot;)/g;
@@ -15,7 +16,7 @@ const htmlComment = /(&lt;!--\s[\w\s\W]*\s--&gt;)/g;
 const htmlTag = /(?<=&lt;\/*)([a-zA-Z1-6]*)/g;
 const htmlBoolAttr = /(\s\w*)(?=&gt;)/g; // need to have it right on > or &gt;
 const htmlEntity = /(&amp;#[\d]*;)/g;
-const htmlRegEx = [[htmlAttr, 9], [htmlComment, 3], [htmlTag, 0], [htmlBoolAttr, 1], [dblQuote, 2]];
+const htmlRegEx = [[htmlAttr, 1], [htmlComment, 3], [htmlTag, 0], [htmlBoolAttr, 1], [dblQuote, 2]];
 
 // CSS Regular Expressions
 const cssProp = /(?<![;=\w])([a-z-]*)(?=:\s)/g;
@@ -24,12 +25,12 @@ const cssUnits = /(?<=\d)(em|rem|vh|vw|px|%|ch|ex|vmin|vmax)/g;
 const cssAtRules = /([@][a-z-]*|!important|!default)/g;
 const cssVariables = /([\s\(?][-]{2}[a-zA-Z-]*)/g;
 const cssClassId = /(?<=[\.:])([^\d][a-zA-Z_-\d]*)/g; // problems
-const cssRegEx = [[cssProp, 9], [comments, 3], [cssFxName, 5], [cssUnits, 4], [cssAtRules, 4], [cssVariables, 6], [singleQt, 2]];
+const cssRegEx = [[cssProp, 1], [comments, 3], [cssFxName, 5], [cssUnits, 4], [cssAtRules, 4], [cssVariables, 6], [singleQt, 2]];
 
 // SASS/SCSS Regular Expressions
 const sassProp = /(?<![;=\w$-])([a-z-]*)(?=:\s)/g;
 const sassVars = /([$]{1}[\w-]*)/g;
-const sassRegEx = [[sassProp, 9], [comments, 3], [cssFxName, 5], [cssUnits, 4], [cssAtRules, 4], [sassVars, 6], [singleQt, 2]];
+const sassRegEx = [[sassProp, 1], [comments, 3], [cssFxName, 5], [cssUnits, 4], [cssAtRules, 4], [sassVars, 6], [singleQt, 2]];
 
 // JavaScript Regular Expressions
 const jsFx = /([\w]*[^\(\s])(?=\()/g;
@@ -59,7 +60,7 @@ const mdBlockQt = /(^&gt;(?:[\t ]*&gt;)*[\w\s]*)/gm;
 const mdDiffMinus = /(\+\s[\w\s]*)/gm
 const mdDiffPlus = /(\+\s[\w\s]*)/g
 const mdLists = /([\d]\.)/g;
-const mdRegEx = [[htmlAttr, 1], [htmlComment, 3], [htmlTag, 0], [htmlEntity, 4], [singleQt, 2], [dblQuote, 2], [mdHeadings, 1], [mdLinks, 2], [mdBlockQt, 0], [mdDiffMinus, 4], [mdDiffPlus, 9], [mdLists, 6]];
+const mdRegEx = [[htmlAttr, 1], [htmlComment, 3], [htmlTag, 0], [htmlEntity, 4], [singleQt, 2], [dblQuote, 2], [mdHeadings, 1], [mdLinks, 2], [mdBlockQt, 0], [mdDiffMinus, 4], [mdDiffPlus, 0], [mdLists, 6]];
 
 // JSX Regular Expressions
 
@@ -98,7 +99,7 @@ const myHtml = inputHTML.split(/[\n\r]|[\n]/g);
 const myCss = inputCSS.split(/[\n\r]|[\n]/g);
 const mySass = inputSASS.split(/[\n\r]|[\n]/g);
 const myJs = inputJS.split(/[\n\r]|[\n]/g);
-const myJson = inputJSON.split(/[\n\r]|[\n]/g);
+const myJson = inputJSON.split(/[\n]/g);
 const myPhp = inputPHP.split(/[\n\r]|[\n]/g);
 const myMd = inputMD.split(/[\n\r]|[\n]/g);
 
@@ -112,13 +113,13 @@ function convertCode(arr) {
 }
 
 /* CHOOSE THE LANGUAGE YOU WANT TO OUTPUT: */
-convertCode(myInput);
+// convertCode(myInput);
 // convertCode(myText);
 // convertCode(myHtml);
 // convertCode(myCss);
 // convertCode(mySass);
-// convertCode(myJs);  
-// convertCode(myJson);
+// convertCode(myJs);
+convertCode(myJson);
 // convertCode(myPhp);
 // convertCode(myMd);
 
@@ -147,7 +148,7 @@ class htmlCode {
     })
 
     // FOR SOME REASON I'M GETTING DOUBLE RESULTS
-    finishedArr = str.split("~").slice(str.split("~").length / 2)
+    finishedArr = str.split("~").slice(str.split("~").length / 2);
     console.log(finishedArr.length);
   }
 }
@@ -164,7 +165,7 @@ function createClass(input, arr) {
 }
 
 /* add the regex for the language from inputText in input.js */
-createClass(myInput, htmlRegEx);
+// createClass(myInput, htmlRegEx);
 
 /* Uncomment the language you want to run */
 // createClass(myText, htmlRegEx);
@@ -172,17 +173,21 @@ createClass(myInput, htmlRegEx);
 // createClass(myCss, cssRegEx);
 // createClass(mySass, sassRegEx);
 // createClass(myJs, jsRegEx);
-// createClass(myJson, jsonRegEx);
+createClass(myJson, jsonRegEx);
 // createClass(myPhp, phpRegEx);
 // createClass(myMd, mdRegEx);
 
 /* Step 5: Output your code to the DOM */
 finishedArr.forEach((codeLine, i) => {
-  // lightBlockOutput.textContent += '<li><span data-line="' + `${i + 1}` + '">' + `${codeLine}` + "</span></li>";
+  darkBlockOutput.textContent += '<li><span data-line="' + `${i + 1}` + '">' + `${codeLine}` + "</span></li>";
 
   /* Using innerHTML below is extremely useful for seeing the colors as a check before your remove the li tags and fix the indentation: */
 
-  lightBlockOutput.innerHTML += '<li>' + `${codeLine}` + "</li>";
+  // darkBlockOutput.innerHTML += '<li>' + `${codeLine}` + "</li>";
+  
+})
+finishedArr.forEach((codeLine, i) => {
+  testingPre.textContent += '<span data-line="' + `${i + 1}` + '">' + `${codeLine}` + "</span>";
   
 })
 

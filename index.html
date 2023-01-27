@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
-    <title>Code Formatter</title>
+    <title>Pre Code Formatter</title>
   </head>
   <body>
     <header>
@@ -14,7 +14,7 @@
           <div class="nav-item"><a class="nav-link" href="./index.html"><code>&lt;Home&gt;</code></a></div>
           <ul class="nav-list">
             <li class="nav-item"><a class="nav-link" href="./dark.html"><code>&lt;Dark&gt;</code></a></li>
-            <li class="nav-item"><a class="nav-link" href="#"><code>&lt;Light&gt;</code></a></li>
+            <li class="nav-item"><a class="nav-link" href="./light.html"><code>&lt;Light&gt;</code></a></li>
           </ul>
         </nav>
       </div>
@@ -167,13 +167,13 @@
           <span data-line="12"> <span class="blue">border</span>:<span class="blue"> 1</span><span class="red">px</span> solid red <span class="red">!important</span>;</span>
         <span data-line="13">}</span>
       </pre>
-      <p><strong>NOTE</strong>: I have not figured out how to select HTML selectors so use <em>Emmet: Wrap with Abbreviation</em> to manually add the <code>span.color</code> classes. I also considered not including my match for Class selectors because of URLs with a period (.) which are also selected. I added it back. If you do have an <code><span class="red">@import</span></code> or a <code><span class="purple">url</span>()</code> in your CSS, then remove the dot, or for Google font imports, substitute the actual URL with a dummy string and replace the URL at the end. And I can only select CSS variables as a value, not the declaration. Also note that if you have a period in yout comment(s), then it will get wrapped in <code>span.blue</code> - classes and HTML selectors require advanced regular expressions.</p>
+      <p><strong>NOTE</strong>: I have not figured out how to select HTML selectors so use <em>Emmet: Wrap with Abbreviation</em> to manually add the <code>span.color</code> classes. I also am not including my match for Class selectors because of other lines with a period (relative URLS, decimal #&apos;s) which are also selected. And I can only select CSS variables as a value, not the declaration. Also note that if you have a period in yout comment(s), then it will get wrapped in <code>span.blue</code> if you use the class Regex - classes and HTML selectors require advanced regular expressions.</p>
       <hr>
 
       <h3>SASS Example</h3>
       <pre class="code-block dark_block">
         <span class="comment">&lt;!-- RegEx order: 1. sassProp , 2. comments, 3. cssFxName,   --&gt;</span>
-        <span class="comment">&lt;!-- 4. cssUnits, 5. sassProp , 6. sassVars, 7. singleQt --&gt;</span>
+        <span class="comment">&lt;!-- 4. cssUnits, 5. cssAtRules , 6. sassVars, 7. singleQt --&gt;</span>
         <span class="comment">&lt;!-- I manually added span.color tags for all the classes and HTML selectors --&gt;</span>
 
         <span data-line="2"><span class="red">@use</span> <span class="light-blue">&apos;./components/card&apos;</span>;</span>
@@ -322,7 +322,7 @@
         &lt;!-- What happened to the line above? --&gt;
         <span data-line="28"><span class="comment">/* Start JavaScript classes */</span></span>
       </pre>
-      <p><strong>NOTE</strong>: For now this part is done but I am expecting errors when I start converting JS. I would prefer to be more positive but I do not think my expressions are ideal, plus my brain is getting fried. I wanted to make all numbers blue but running that RegEx added a huge number of empty span.blue tags. I also was not able to escape a backtick to test my <code>backtick</code> RegEx. However, everything else worked and I only had to adjust a few lines and some indentations.</p>
+      <p><strong>NOTE</strong>: For now this part is done but I am expecting errors when I start converting JS. I would prefer to be more positive but I do not think my regular expressions are ideal, plus my brain is getting fried. I wanted to make all numbers blue but running that RegEx added a huge number of empty <code>span.blue</code> tags. I also was not able to escape a backtick to test my <code>backtick</code> RegEx. However, everything else worked and I only had to adjust a few lines and some indentations.</p>
       <hr>
 
       <h3>PHP Example</h3>
@@ -368,7 +368,7 @@
             class="green">h3</span>&gt;</span>
         <span data-line="22">&lt;<span class="green"></span>/<span class="green">div</span>&gt;</span>
       </pre>
-      <p><strong>NOTE</strong>: I had some issues with the RegEx here. First, my comments RegEx did not grab my comment so I manually added <code>span.comment</code>. It did not take because it was on multiple lines, so it was split that way. Second, I was able to grab the custom function but not the <code><span class="red">new</span></code> instance of it. The new instance took on the color of functions (purple), so I manually changed it to <code>span.orange</code>. Third, I was not able to grab the closing <code><span class="green">?</span></code> for the php tag, so I manually added <code>span.green</code>. Lastly, I did not try to grab the <code><span class="light-blue">$</span></code> prefix to <code>this</code>, so I manually added <code>span.blue</code>. I'll work on that one later.</p>
+      <p><strong>NOTE</strong>: I had some issues with the RegEx here. First, my comments RegEx did not grab my comment so I manually added <code>span.comment</code>. It did not take because it was on multiple lines, so it was split that way. Second, I was able to grab the custom function but not the <code><span class="red">new</span></code> instance of it. The new instance took on the color of functions (purple) - I did not change it to <code>span.orange</code>. Third, I was not able to grab the closing <code><span class="green">?</span></code> for the php tag, so I manually added <code>span.green</code>. Lastly, I did not try to grab the <code><span class="light-blue">$</span></code> prefix to <code>this</code>, so I manually added <code>span.blue</code>. I'll work on that one later.</p>
       <hr>
 
       <h3>Markdown Example</h3>
@@ -422,14 +422,14 @@
         <span data-line="31"><span class="red"><span class="green">+ this is what it was changed to</span></span></span>
   
       </pre>
-      <p><strong>NOTE</strong>: Everything was relatively good until I got to lists and diff code blocks. I have to add <code>span.orange</code> for unordered lists, and <code>span.red</code> for the minus line in a diff code block. Also, blockquotes will only output as green if they do not have symbols other than alphanumeric and underscore, and for somereason I had to add <code>span.green</code> for the blockquotes</p>
+      <p><strong>NOTE</strong>: Everything was relatively good until I got to lists and diff code blocks. I have to add <code>span.orange</code> for unordered lists, and <code>span.red</code> for the minus line in a diff code block. Also, blockquotes will only output as green if they do not have symbols other than alphanumeric and underscore, and for somereason I had to add <code>span.green</code> for the blockquotes - more RegEx work!</p>
       <hr>
 
       <h3>Other Code Examples</h3>
       <p>I am considering adding syntax/languages like <em>Git</em> and <em>Git Bash</em>, <em>NPM</em> commands, <em>SQL</em>, <em>React/JSX</em> and <em>Astro</em>, <em>YAML</em>, <em>Apache</em>, and any other language or syntax that I come in contact with on my Front End journey.</p>
       <p>However, there is not much syntax highlighting with Git commands, and I believe all NPM commands in the terminal are white. Also, the number of lines for a code block of Git or NPM commands are small and I could just add my color classes line by line for the few snippets that have color highlighting.</p>
       <p>JSX like syntax seems to add the coloring for HTML and JavaScript together, so once I finish JavaScript, I should have what I need for Astro and JSX files.</p>
-      <p>Apache syntax highlighting would be good for <code>.htaccess</code> code, so that is one I will do. And it appears I can use the HTML regular expressions for Apache. I would be interested in YAML only for GitHub actions, however I have no idea how to use Actions.</p>
+      <p>Apache syntax highlighting would be good for <code>.htaccess</code> code, so that is one I will do. And it appears I can use the HTML regular expressions for Apache with a little tweaking. I would be interested in YAML only for GitHub actions, however I have no idea how to use Actions.</p>
       <hr>
 
       <!-- <h3>JSX Example</h3>
@@ -452,11 +452,11 @@
         </ul>
         <ul>
           <h3>Issues, problems, and To-Do items</h3>
-          <li>As of <date>January 21st, 2023,</date> I'm getting empty <code>span.color</code> tags. They don't affect the display in the <code>&lt;<span class="green">pre</span>&gt;</code> block, but they should not be there. I will begin debugging the code to get rid of them when I am done the regular expressions for all the languages I want to cover. I assume it's my RegEx capture groups or the <code><span class="purple">replace</span>()</code> method.</li>
-          <li>A better way than using an array to grab the code: I want to either <strong>1)</strong> add a <code>&lt;<span class="green">textarea</span>&gt;</code> to paste the code and then grab it, or ideally <strong>2)</strong>
+          <li>As of <date>January 21st, 2023,</date> I'm getting empty <code>span.color</code> tags. They don't affect the display in the <code>&lt;<span class="green">pre</span>&gt;</code> block, but they should not be there. I will begin debugging the code to get rid of them when I am done the regular expressions for all the languages I want to cover. I made changes in my capture groups to get rid of them and it worked, but then some characters were not outputting.</li>
+          <li>A better way than using a string split into an array to grab the code: I want to either <strong>1)</strong> add a <code>&lt;<span class="green">textarea</span>&gt;</code> to paste the code and then grab it, or ideally <strong>2)</strong>
           grab the code out of a file using the <em>FileReader API</em>.</li>
           <li>As of January 21st I am using another JavaScript file (<code>input.js</code>) to get the code (see repo).</li>
-          <li>As of January 15th I switched from a functional approach to using Classes.</li>
+          <!-- <li>As of January 15th I switched from a functional approach to using Classes.</li> -->
           <li>I'm open to any suggestions for the styling of my <code>&lt;<span class="green">code</span>&gt;</code>, <code>&lt;<span class="green">kbd</span>&gt;</code>, and <code>&lt;<span class="green">var</span>&gt;</code> tags.</li>
         </ul>
         <p>I am now going to work on removing empty duplicate span tags, and then create a <code>light.html</code> and <code>dark.html</code> files with a language select list. I added a <code><span class="blue">data</span></code> attribute to more easily locate each line visually, and to maybe use JavaScript to indent specific lines.</p>

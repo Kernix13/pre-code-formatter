@@ -5,43 +5,31 @@
 }
 
 :root {
-  --dark: hsl(210, 19%, 8%);
-  --white: #f1f5f9;
+  --dark: hsl(0, 0%, 20%);
+  --white: hsl(0, 0%, 100%);
 
-  /* LIGHT code block variables */
-  --bg-light_block: hsl(0, 0%, 87%);
-  --light-blue: hsl(208, 100%, 50%); // hsl(229, 100%, 72%);
-  --blue: hsl(237, 97%, 57%); // hsl(198, 100%, 33%);
-  // --blue: hsl(220, 100%, 31%); // hsl(237, 97%, 57%);
-  // --green: hsl(120, 100%, 31%); // hsl(137, 100%, 30%);
-  --green: hsl(137, 100%, 30%); // hsl(120, 100%, 31%);
-  --comment: hsl(0, 0%, 60%);
-  --gray: #6e6e6e;
-  --maroon: hsl(327, 100%, 30%);
-  --red: rgb(219, 0, 0);
-  --purple: hsl(283, 100%, 66%);
-  --orange: rgb(255, 113, 5); // hsl(26, 100%, 51%);
+  /* DARK code block variables */
+  --bg-dark_block: hsl(210, 19%, 8%);
+  --light-text: hsl(210, 40%, 96%);
+  --light-blue: hsl(199, 95%, 85%);
+  --blue: hsl(199, 100%, 65%);
+  --green: hsl(93, 86%, 51%);
+  --comment: hsl(0, 0%, 67%);
+  --red: hsl(0, 97%, 75%);
+  --purple: hsl(283, 100%, 85%);
+  --orange: hsl(41, 98%, 57%);
 }
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1rem;
-  background-color: var(--dark);
-  color: var(--white);
+  color: var(--dark);
   padding: 0;
   margin: 0;
 }
 
 p {
   font-size: 1.125rem;
-}
-
-a {
-  color: var(--white);
-}
-
-a:hover {
-  color: var(--blue);
 }
 
 kbd,
@@ -53,17 +41,22 @@ var {
 
 code {
   font-family: "Lucida Console", Monaco, monospace;
+  // font-weight: 600;
   font-size: 90%;
   line-height: 1.5;
   padding: 0.15em 0.2em 0.05em;
   border-radius: 0.3em;
-  color: #333;
-  background-color: var(--white);
+  background-color: var(--bg-dark_block);
+  color: var(--white);
+  // tab-size: 4;
+  // text-align: left;
+  // box-shadow: black 1px 1px 0.3em -0.1em inset;
 }
 
 var {
   font-size: 87.5%;
   font-style: oblique;
+  // font-style: italic;
 }
 
 pre {
@@ -75,9 +68,8 @@ kbd {
   font-size: 87.5%;
   line-height: 1;
 
-  // background-color: #d9edfe;
-  color: #e1ebf5;
-  background-color: #333;
+  background-color: #e1ebf5; // #d9edfe;
+  color: #555;
 
   padding: 0.0625em 0.1875em;
   border: 1px solid #888;
@@ -88,7 +80,7 @@ kbd {
 .small {
   font-size: 1rem;
   font-weight: lighter;
-  color: #aaa;
+  color: #555;
 }
 
 .notes {
@@ -103,19 +95,22 @@ kbd {
 
 /* DARK and LIGHT code blocks */
 .code-block {
+  /* Why do I need a padding-top? The line-height? */
   padding-top: 1.5em;
   line-height: 1.5;
   overflow: auto;
+  // overflow: scroll;
+  // overflow-x: auto;
+  // white-space: pre-wrap;
 }
 
-/* LIGHT code block and section */
-.light_block {
-  background-color: var(--bg-light_block);
-  color: #777;
-  font-weight: 600;
+/* DARK code block */
+.dark_block {
+  background-color: var(--bg-dark_block);
+  color: var(--white);
 }
 
-/* LIGHT code block language colors */
+/* DARK code block language colors */
 .light-blue {
   color: var(--light-blue);
 }
@@ -133,12 +128,8 @@ kbd {
   color: var(--comment);
 }
 
-.gray {
-  color: var(--gray);
-}
-
-.maroon {
-  color: var(--maroon);
+.white {
+  color: var(--white);
 }
 
 .red {
@@ -154,10 +145,10 @@ kbd {
 }
 
 /* The output you need to copy to paste into your <pre> block */
-p.light-code,
+p.dark-code,
 p.html-entities {
-  color: #333;
-  background-color: var(--bg-light_block);
+  background-color: var(--bg-dark_block);
+  color: var(--white);
   font-size: 1rem;
   line-height: 1.6;
   overflow: auto;
@@ -211,12 +202,12 @@ textarea {
 }
 
 .nav-link code:hover {
-  color: var(--maroon);
+  color: var(--blue);
   text-decoration: underline;
   text-underline-offset: 0.25em;
 }
 
-/* OPTIONAL: code for line numbers in pre code blocks, but check the styling because I have changed a lot
+/* OPTIONAL: code for line numbers in pre code blocks
 
 pre {
   font-family: 'Courier New', Courier, monospace;

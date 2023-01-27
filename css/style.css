@@ -12,7 +12,7 @@
   --bg-dark_block: hsl(210, 19%, 8%);
   --light-text: hsl(210, 40%, 96%);
   --light-blue: hsl(199, 95%, 85%);
-  --blue: hsl(199, 100%, 74%);
+  --blue: hsl(199, 100%, 74%); // hsl(199, 100%, 65%);
   --green: hsl(93, 86%, 51%);
   --comment: hsl(0, 0%, 67%);
   --red: hsl(0, 97%, 75%);
@@ -190,14 +190,24 @@ kbd {
 
 /* The output you need to copy to paste into your <pre> block */
 p.dark-code, p.light-code, p.html-entities {
-  background-color: var(--bg-light_block);
   font-size: 1rem;
   line-height: 1.6;
   overflow: auto;
   padding: 1em;
   margin: 0 auto;
   width: 90%;
-  border: 1px solid #999;
+  // max-width: 800px;
+}
+
+p.dark-code,
+p.html-entities {
+  background-color: var(--bg-dark_block);
+  color: var(--white);
+}
+
+p.light-code {
+  color: #333;
+  background-color: var(--bg-light_block);
   // max-width: 800px;
 }
 

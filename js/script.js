@@ -3,7 +3,7 @@ const darkBlockOutput = document.getElementById("dark_block_output");
 const lightBlockOutput = document.getElementById("light_block_output");
 
 // span tag color classes, and keywords
-const classes = ["green", "blue", "light-blue", "comment", "red", "purple", "orange"]
+const classes = ["green", "blue", "light-blue", "comment", "red", "purple", "orange"];
 
 // Global Regular Expressions
 const dblQuote = /(&quot;[.\s\w\/:*#?-]*&quot;)/g;
@@ -15,8 +15,9 @@ const htmlAttr = /([\w-]*)(?==)/g;
 const htmlComment = /(&lt;!--\s[\w\s\W]*\s--&gt;)/g;
 const htmlTag = /(?<=&lt;\/*)([a-zA-Z1-6]*)/g;
 const htmlBoolAttr = /(\s\w*)(?=&gt;)/g; // need to have it right on > or &gt;
+// htmlEntity only displays as red in markdown files
 const htmlEntity = /(&amp;#[\d]*;)/g;
-const htmlRegEx = [[htmlAttr, 1], [htmlComment, 3], [htmlTag, 0], [htmlBoolAttr, 1], [htmlEntity, 4], [dblQuote, 2]];
+const htmlRegEx = [[htmlAttr, 1], [htmlComment, 3], [htmlTag, 0], [htmlBoolAttr, 1], [dblQuote, 2]];
 
 // CSS Regular Expressions
 const cssProp = /(?<![;=\w])([a-z-]*)(?=:\s)/g;
@@ -25,8 +26,7 @@ const cssUnits = /(?<=\d)(em|rem|vh|vw|px|%|ch|ex|vmin|vmax)/g;
 const cssAtRules = /([@][a-z-]*|!important|!default)/g;
 const cssVariables = /([\s\(?][-]{2}[a-zA-Z-]*)/g;
 const cssClassId = /(?<=[\.:])([^\d][a-zA-Z_-\d]*)/g; // problems
-// const cssRegEx = [cssProp, comments, cssFxName, cssUnits, cssAtRules, cssVariables, singleQt];
-const cssRegEx = [[cssProp, 1], [comments, 3], [cssFxName, 5], [cssUnits, 4], [cssAtRules, 4], [cssVariables, 6], [singleQt, 2], [cssClassId, 1]];
+const cssRegEx = [[cssProp, 1], [comments, 3], [cssFxName, 5], [cssUnits, 4], [cssAtRules, 4], [cssVariables, 6], [singleQt, 2]];
 
 // SASS/SCSS Regular Expressions
 const sassProp = /(?<![;=\w$-])([a-z-]*)(?=:\s)/g;
@@ -93,9 +93,8 @@ function convertReservedChars(str) {
 
 // Step 3a: Run your code through convertReservedChars()
 
-/* I think the split regex should be /[\n\r]|[\n]/g */
-
-const myInput = input.split(/[\n]/);
+/* I think the split regex should be /[\n\r]|[\n]/g not /[\n]/g */
+const myInput = input.split(/[\n]/g);
 const myText = inputText.split(/[\n\r]|[\n]/g);
 const myHtml = inputHTML.split(/[\n\r]|[\n]/g);
 const myCss = inputCSS.split(/[\n\r]|[\n]/g);
@@ -113,18 +112,23 @@ function convertCode(arr) {
     convertedCode.push(`${convertedLine}`);
   })
 }
+
 /* CHOOSE THE LANGUAGE YOU WANT TO OUTPUT: */
-// convertCode(myInput);
+convertCode(myInput);
+// convertCode(myText);
 // convertCode(myHtml);
-convertCode(myCss);
+// convertCode(myCss);
 // convertCode(mySass);
-// convertCode(myJs);
+// convertCode(myJs);  
 // convertCode(myJson);
 // convertCode(myPhp);
 // convertCode(myMd);
 
-
-
+// Step 3b: Output the HTML entities if you want to stop there
+convertedCode.forEach(codeLine => {
+  htmlEntities.textContent += '<li>' + `${codeLine}` + "</li>";
+  // console.log(htmlEntities.textContent.length)
+})
 
 // Step 4: add span color classes to converted code for the RegEx scenarios
 
@@ -137,19 +141,14 @@ class htmlCode {
 
   findMatches() {
     let str = convertedCode.join("~");
-    let str2 = "";
     this.regexArr.forEach(([regex, index], i) => {
+
       const htmlStrings = `<span class="${classes[index]}">${'$1'}</span>`;
-
-      // str2 = str.replaceAll(regex, htmlStrings);
-      // str = str2;
-
       str = str.replace(regex, htmlStrings);
-      // str = str2;
 
     })
 
-    // FPR SOME REASON I'M GETTING DOUBLE RESULTS
+    // FOR SOME REASON I'M GETTING DOUBLE RESULTS
     finishedArr = str.split("~").slice(str.split("~").length / 2)
     console.log(finishedArr.length);
   }
@@ -167,42 +166,37 @@ function createClass(input, arr) {
 }
 
 /* add the regex for the language from inputText in input.js */
-// createClass(myText, htmlRegEx) 
+createClass(myInput, htmlRegEx);
 
 /* Uncomment the language you want to run */
+// createClass(myText, htmlRegEx);
 // createClass(myHtml, htmlRegEx);
-createClass(myCss, cssRegEx);
+// createClass(myCss, cssRegEx);
 // createClass(mySass, sassRegEx);
-// createClass(myJson, jsonRegEx);
 // createClass(myJs, jsRegEx);
+// createClass(myJson, jsonRegEx);
 // createClass(myPhp, phpRegEx);
 // createClass(myMd, mdRegEx);
 
 /* Step 5: Output your code to the DOM */
 finishedArr.forEach((codeLine, i) => {
-  // darkBlockOutput.textContent += '<li><span data-line="' + `${i + 1}` + '">' + `${codeLine}` + "</span></li>";
+  darkBlockOutput.textContent += '<li><span data-line="' + `${i + 1}` + '">' + `${codeLine}` + "</span></li>";
 
-  /* Use the line below as a visual check for the colors before doing the work to format the final code for your pre block: */
+  /* Using innerHTML below is extremely useful for seeing the colors as a check before your remove the li tags and fix the indentation: */
 
-  darkBlockOutput.innerHTML += '<li>' + `${codeLine}` + "</li>";
+  // darkBlockOutput.innerHTML += '<li>' + `${codeLine}` + "</li>";
   
 })
 
-// Step 3b: Output the HTML entities if you want to stop there
-convertedCode.forEach(codeLine => {
-  htmlEntities.textContent += '<li>' + `${codeLine}` + "</li>";
-})
 
-/* 
-*
- for LIGHT code block, you need to use the classes constant 
- that is commented out and comment out the other one 
- and use lightBlockOutput as your output point to the DOM
-*
-*/
-
+/* Step 5: Output your code to the DOM */
 /*
-DblQuotesClass.forEach(codeLine => {
-  lightBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
+finishedArr.forEach((codeLine, i) => {
+  lightBlockOutput.textContent += '<li><span data-line="' + `${i + 1}` + '">' + `${codeLine}` + "</span></li>";
+
+  // Using innerHTML below is extremely useful for seeing the colors as a check before your remove the li tags and fix the indentation:
+
+  // lightBlockOutput.innerHTML += '<li>' + `${codeLine}` + "</li>";
+  
 })
-*/ 
+*/  
