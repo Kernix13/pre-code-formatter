@@ -1,9 +1,8 @@
 const htmlEntities = document.getElementById("html_entities");
-const darkBlockOutput = document.getElementById("dark_block_output");
 const lightBlockOutput = document.getElementById("light_block_output");
 
-// span tag color classes, and keywords
-const classes = ["green", "blue", "light-blue", "comment", "red", "purple", "orange"]
+// span tag color classes
+const classes = ["maroon", "blue", "light-blue", "comment", "red", "purple", "orange", "red", "gray", "green"]
 
 // Global Regular Expressions
 const dblQuote = /(&quot;[.\s\w\/:*#?-]*&quot;)/g;
@@ -25,7 +24,6 @@ const cssUnits = /(?<=\d)(em|rem|vh|vw|px|%|ch|ex|vmin|vmax)/g;
 const cssAtRules = /([@][a-z-]*|!important|!default)/g;
 const cssVariables = /([\s\(?][-]{2}[a-zA-Z-]*)/g;
 const cssClassId = /(?<=[\.:])([^\d][a-zA-Z_-\d]*)/g; // problems
-// const cssRegEx = [cssProp, comments, cssFxName, cssUnits, cssAtRules, cssVariables, singleQt];
 const cssRegEx = [[cssProp, 1], [comments, 3], [cssFxName, 5], [cssUnits, 4], [cssAtRules, 4], [cssVariables, 6], [singleQt, 2], [cssClassId, 1]];
 
 // SASS/SCSS Regular Expressions
@@ -61,7 +59,7 @@ const mdBlockQt = /(^&gt;(?:[\t ]*&gt;)*[\w\s]*)/gm;
 const mdDiffMinus = /(\+\s[\w\s]*)/gm
 const mdDiffPlus = /(\+\s[\w\s]*)/g
 const mdLists = /([\d]\.)/g;
-const mdRegEx = [[htmlAttr, 1], [htmlComment, 3], [htmlTag, 0], [htmlEntity, 4], [singleQt, 2], [dblQuote, 2], [mdHeadings, 1], [mdLinks, 2], [mdBlockQt, 0], [mdDiffMinus, 4], [mdDiffPlus, 0], [mdLists, 6]];
+const mdRegEx = [[htmlAttr, 1], [htmlComment, 3], [htmlTag, 0], [htmlEntity, 4], [singleQt, 2], [dblQuote, 2], [mdHeadings, 1], [mdLinks, 2], [mdBlockQt, 0], [mdDiffMinus, 4], [mdDiffPlus, 9], [mdLists, 6]];
 
 // JSX Regular Expressions
 
@@ -116,15 +114,12 @@ function convertCode(arr) {
 /* CHOOSE THE LANGUAGE YOU WANT TO OUTPUT: */
 // convertCode(myInput);
 // convertCode(myHtml);
-convertCode(myCss);
+// convertCode(myCss);
 // convertCode(mySass);
-// convertCode(myJs);
+convertCode(myJs);  
 // convertCode(myJson);
 // convertCode(myPhp);
 // convertCode(myMd);
-
-
-
 
 // Step 4: add span color classes to converted code for the RegEx scenarios
 
@@ -138,20 +133,13 @@ class htmlCode {
   findMatches() {
     let str = convertedCode.join("~");
     let str2 = "";
-    this.regexArr.forEach(([regex, index], i) => {
+    this.regexArr.forEach(([regex, index]) => {
       const htmlStrings = `<span class="${classes[index]}">${'$1'}</span>`;
-
-      // str2 = str.replaceAll(regex, htmlStrings);
-      // str = str2;
-
-      str = str.replace(regex, htmlStrings);
-      // str = str2;
-
+      str2 = str.replaceAll(regex, htmlStrings);
+      str = str2;
+      
     })
-
-    // FPR SOME REASON I'M GETTING DOUBLE RESULTS
-    finishedArr = str.split("~").slice(str.split("~").length / 2)
-    console.log(finishedArr.length);
+    finishedArr = str.split("~");
   }
 }
 
@@ -171,20 +159,20 @@ function createClass(input, arr) {
 
 /* Uncomment the language you want to run */
 // createClass(myHtml, htmlRegEx);
-createClass(myCss, cssRegEx);
+// createClass(myCss, cssRegEx);
 // createClass(mySass, sassRegEx);
+createClass(myJs, jsRegEx);
 // createClass(myJson, jsonRegEx);
-// createClass(myJs, jsRegEx);
 // createClass(myPhp, phpRegEx);
 // createClass(myMd, mdRegEx);
 
 /* Step 5: Output your code to the DOM */
 finishedArr.forEach((codeLine, i) => {
-  // darkBlockOutput.textContent += '<li><span data-line="' + `${i + 1}` + '">' + `${codeLine}` + "</span></li>";
+  // lightBlockOutput.textContent += '<li><span data-line="' + `${i + 1}` + '">' + `${codeLine}` + "</span></li>";
 
   /* Use the line below as a visual check for the colors before doing the work to format the final code for your pre block: */
 
-  darkBlockOutput.innerHTML += '<li>' + `${codeLine}` + "</li>";
+  lightBlockOutput.innerHTML += '<li>' + `${codeLine}` + "</li>";
   
 })
 
@@ -192,17 +180,3 @@ finishedArr.forEach((codeLine, i) => {
 convertedCode.forEach(codeLine => {
   htmlEntities.textContent += '<li>' + `${codeLine}` + "</li>";
 })
-
-/* 
-*
- for LIGHT code block, you need to use the classes constant 
- that is commented out and comment out the other one 
- and use lightBlockOutput as your output point to the DOM
-*
-*/
-
-/*
-DblQuotesClass.forEach(codeLine => {
-  lightBlockOutput.textContent += '<li><span>' + `${codeLine}` + "</span></li>";
-})
-*/ 

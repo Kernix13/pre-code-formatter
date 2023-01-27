@@ -1,0 +1,258 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+:root {
+  --dark: hsl(210, 19%, 8%);
+  --white: #f1f5f9;
+
+  /* LIGHT code block variables */
+  --bg-light_block: hsl(0, 0%, 87%);
+  --light-blue: rgb(40, 155, 255);
+  --blue: rgb(40, 51, 252);
+  --green: rgb(0, 175, 53);
+  --comment: hsl(0, 0%, 60%);
+  --gray: #6e6e6e;
+  --maroon: hsl(327, 100%, 30%);
+  --red: rgb(219, 0, 0);
+  --purple: hsl(283, 100%, 66%);
+  --orange: rgb(255, 113, 5);
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  background-color: var(--dark);
+  color: var(--white);
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  font-size: 1.125rem;
+}
+
+a {
+  color: var(--white);
+}
+
+a:hover {
+  color: var(--blue);
+}
+
+kbd,
+samp,
+var {
+  font-family: "Lucida Console", Monaco, monospace;
+  font-weight: 600;
+}
+
+code {
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 90%;
+  line-height: 1.5;
+  padding: 0.15em 0.2em 0.05em;
+  border-radius: 0.3em;
+  color: #333;
+  background-color: var(--white);
+}
+
+var {
+  font-size: 87.5%;
+  font-style: oblique;
+}
+
+pre {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+kbd {
+  display: inline-block;
+  font-size: 87.5%;
+  line-height: 1;
+
+  // background-color: #d9edfe;
+  color: #e1ebf5;
+  background-color: #333;
+
+  padding: 0.0625em 0.1875em;
+  border: 1px solid #888;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+}
+
+.small {
+  font-size: 1rem;
+  font-weight: lighter;
+  color: #aaa;
+}
+
+.notes {
+  margin-bottom: 3em;
+}
+
+.container {
+  width: 80%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* DARK and LIGHT code blocks */
+.code-block {
+  padding-top: 1.5em;
+  line-height: 1.5;
+  overflow: auto;
+}
+
+/* LIGHT code block and section */
+.light_block {
+  background-color: var(--bg-light_block);
+  color: #777;
+  font-weight: 600;
+}
+
+/* LIGHT code block language colors */
+.light-blue {
+  color: var(--light-blue);
+}
+
+.blue,
+.boolean {
+  color: var(--blue);
+}
+
+.green {
+  color: var(--green);
+}
+
+.comment {
+  color: var(--comment);
+}
+
+.gray {
+  color: var(--gray);
+}
+
+.maroon {
+  color: var(--maroon);
+}
+
+.red {
+  color: var(--red);
+}
+
+.purple {
+  color: var(--purple);
+}
+
+.orange {
+  color: var(--orange);
+}
+
+/* The output you need to copy to paste into your <pre> block */
+p.light-code,
+p.html-entities {
+  color: #333;
+  background-color: var(--bg-light_block);
+  font-size: 1rem;
+  line-height: 1.6;
+  overflow: auto;
+  padding: 1em;
+  margin: 0 auto;
+  width: 90%;
+  border: 1px solid #999;
+  // max-width: 800px;
+}
+
+/* color boxes */
+.color-container {
+  display: flex;
+  margin: 2rem auto;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  font-weight: bold;
+}
+
+.color-box {
+  width: 110px;
+  height: 110px;
+  text-align: center;
+}
+
+
+.file-reader {
+  margin-bottom: 3em;
+}
+
+textarea {
+  width: 50%;
+  height: 15rem;
+}
+
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.nav-list {
+  display: flex;
+  justify-content: center;
+  align-content: space-between;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  text-transform: uppercase;
+  font-size: 1.25rem;
+}
+
+.nav-item+.nav-item {
+  margin-left: 2em;
+}
+
+.nav-link {
+  text-decoration: none;
+}
+
+.nav-link code {
+  padding: 0.5rem 1rem;
+}
+
+.nav-link code:hover {
+  color: var(--maroon);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+/* OPTIONAL: code for line numbers in pre code blocks, but check the styling because I have changed a lot
+
+pre {
+  font-family: 'Courier New', Courier, monospace;
+  line-height: 1.4;
+  overflow: auto;
+  counter-reset: line;
+  border-radius: 0.5em;
+}
+
+pre span::before {
+  width: 2.5em;
+  content: counter(line);
+  counter-increment: line;
+  display: inline-block;
+  border-right: 1px solid rgba(136, 136, 136, 0.5);
+  padding: 0 0.5em;
+  margin-right: 1em;
+  color: #fff;
+  // uncomment below if you are using a light code block 
+  // color: #000;
+}
+
+*/

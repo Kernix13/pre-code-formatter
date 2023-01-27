@@ -13,7 +13,7 @@
         <nav class="main-nav">
           <div class="nav-item"><a class="nav-link" href="./index.html"><code>&lt;Home&gt;</code></a></div>
           <ul class="nav-list">
-            <li class="nav-item"><a class="nav-link" href="./dark.html"><code>&lt;Dark!&gt;</code></a></li>
+            <li class="nav-item"><a class="nav-link" href="./dark.html"><code>&lt;Dark&gt;</code></a></li>
             <li class="nav-item"><a class="nav-link" href="#"><code>&lt;Light&gt;</code></a></li>
           </ul>
         </nav>
@@ -444,7 +444,11 @@
           <h3>How to use this</h3>
           <li>In the CodePen version, you have to add your code in backticks to an array called <code>input</code>. That is only for anyone who wants to test this out before cloning my repo.</li>
           <li>Once you do that, copy the code under <em>Code to copy for dark code block</em>.</li>
-          <li>Paste that code <em>anywhere</em> into your HTML file so the <code>&lt;<span class="green">li</span>&gt;</code> tags break to a new line. Then remove the opening and closing <code>&lt;<span class="green">li</span>&gt;</code> tags and paste the remaining code into your <code>&lt;<span class="green">pre</span>&gt;</code> block - DONE! The code in the <code>&lt;<span class="green">pre</span>&gt;</code> tag will look funky but you should not have to touch it after pasting it except for using <kbd>TAB</kbd> and/or <kbd>SPACEBAR</kbd> to align things.</li>
+          <li>Paste that code into your HTML file below the first <code>&lt;<span class="green">pre</span>&gt;</code> block in the comment field so the <code>&lt;<span class="green">li</span>&gt;</code> tags break to a new line.</li>
+          <li>Then remove the opening and closing <code>&lt;<span class="green">li</span>&gt;</code> tags and paste the remaining code
+          into your <code>&lt;<span class="green">pre</span>&gt;</code> block - DONE! The code in the
+          <code>&lt;<span class="green">pre</span>&gt;</code> tag will look funky but you should not have to touch it after
+          pasting it except for using <kbd>TAB</kbd> and/or <kbd>SPACEBAR</kbd> to align things.</li>
         </ul>
         <ul>
           <h3>Issues, problems, and To-Do items</h3>
@@ -453,10 +457,9 @@
           grab the code out of a file using the <em>FileReader API</em>.</li>
           <li>As of January 21st I am using another JavaScript file (<code>input.js</code>) to get the code (see repo).</li>
           <li>As of January 15th I switched from a functional approach to using Classes.</li>
-          <li>My JavaScript code is <em>UGLY</em> and is an example of code that is not <strong>DRY</strong>! I suck at recursion, and nested <code><span class="purple">map</span>()</code> methods are not working to run each code line against each regular expression for each language. I am going to try a nester <code><span class="red">for</span></code> loop next and maybe revisit the nested map approach.</li>
           <li>I'm open to any suggestions for the styling of my <code>&lt;<span class="green">code</span>&gt;</code>, <code>&lt;<span class="green">kbd</span>&gt;</code>, and <code>&lt;<span class="green">var</span>&gt;</code> tags.</li>
         </ul>
-        <p>I am now going to work on doing a nested map in my class, remove empty duplicate span tags, and then create a <code>light.html</code> and <code>dark.html</code> files with a language select list.</p>
+        <p>I am now going to work on removing empty duplicate span tags, and then create a <code>light.html</code> and <code>dark.html</code> files with a language select list. I added a <code><span class="blue">data</span></code> attribute to more easily locate each line visually, and to maybe use JavaScript to indent specific lines.</p>
         <h3>Code, KBD, and Var element testing</h3>
         <p>Testing: the <code>&lt;<span class="green">kbd</span>&gt;</code> element: <kbd>ENTER</kbd>, and the <code>&lt;<span class="green">var</span>&gt;</code> element: <var>a<sup> 2</sup> +
             b<sup>2</sup> =

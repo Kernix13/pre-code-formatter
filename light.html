@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/light.css" />
+  <title>Dark Code Block</title>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <nav class="main-nav">
+        <div class="nav-item"><a class="nav-link" href="./index.html"><code>&lt;Home&gt;</code></a></div>
+        <ul class="nav-list">
+          <li class="nav-item"><a class="nav-link" href="./dark.html"><code>&lt;Dark&gt;</code></a></li>
+          <li class="nav-item"><a class="nav-link" href="./light.html"><code>&lt;Light&gt;</code></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="container">
+    <h1>HTML Pre Tag Formatter</h1>
+
+    <h2>Code to copy with color classes</h2>
+    <p id="light_block_output" class="light-code"></p>
+
+    <h3>Light block example:</h3>
+    <pre class="code-block light_block">
+
+        <span class="comment">&lt;!-- Manually added span color classes: --&gt;</span>
+        INDENTATION GONE BUT WAY LESS CODE 
+
+        <span>&lt;<span class="maroon">h3</span>&gt;HTML Example&lt;<span class="maroon"></span>/<span
+            class="maroon">h3</span>&gt;</span>
+        <span>&lt;<span class="maroon">nav</span> <span class="blue">class</span><span class="blue"></span>=<span
+            class="light-blue">&quot;main-nav&quot;</span>&gt;</span>
+          <span> &lt;<span class="maroon">ul</span> <span class="blue">class</span><span class="blue"></span>=<span
+              class="light-blue">&quot;nav-list&quot;</span>&gt;</span>
+            <span> &lt;<span class="maroon">li</span> <span class="blue">class</span><span class="blue"></span>=<span
+                class="light-blue">&quot;nav-item&quot;</span>&gt;&lt;<span class="maroon">a</span> <span
+                class="blue">class</span><span class="blue"></span>=<span class="light-blue">&quot;nav-link&quot;</span> <span
+                class="blue">href</span><span class="blue"></span>=<span class="light-blue">&quot;/&quot;</span>&gt;Home&lt;<span
+                class="maroon"></span>/<span class="maroon">a</span>&gt;&lt;<span class="maroon"></span>/<span
+                class="maroon">li</span>&gt;</span>
+            <span> &lt;<span class="maroon">li</span> <span class="blue">class</span><span class="blue"></span>=<span
+                class="light-blue">&quot;nav-item&quot;</span>&gt;&lt;<span class="maroon">a</span> <span
+                class="blue">class</span><span class="blue"></span>=<span class="light-blue">&quot;nav-link&quot;</span> <span
+                class="blue">href</span><span class="blue"></span>=<span
+                class="light-blue">&quot;/contact&quot;</span>&gt;Contact&lt;<span class="maroon"></span>/<span
+                class="maroon">a</span>&gt;&lt;<span class="maroon"></span>/<span class="maroon">li</span>&gt;</span>
+          <span> &lt;<span class="maroon"></span>/<span class="maroon">ul</span>&gt;</span>
+        <span>&lt;<span class="maroon"></span>/<span class="maroon">nav</span>&gt;</span>
+        
+    </pre>
+
+    <!-- TEMP: Paste code in here so the <li> tags break to a new line  -->
+
+    <!-- End pasted code -->
+
+    <h3>Color testing block &#8628;</h3>
+    <pre class="code-block light_block">
+        const users = ['default color for the dark color block'
+        <span class="light-blue">const color = "light-blue"</span> 
+        <span class="blue"> { color: "blue" },</span> 
+        <span class="green"> { color: "green" },</span> 
+        <span class="comment"> { color: "comment" }</span> 
+        <span class="white"> { color: "white" }</span> 
+        <span class="maroon"> { color: "maroon" }</span> 
+        <span class="purple"> { color: "purple" }</span> 
+        <span class="orange"> { color: "orange" } ];</span> 
+      </pre>
+    <h2>Code to copy for HTML entity conversion stage only</h2>
+    <p>If you only want to have the reserved characters converted to HTML entities, than copy the code below.</p>
+    <p id="html_entities" class="html-entities"></p>
+    <hr>
+
+  </div>
+
+  <div class="container">
+    <h3>HTML Example</h3>
+    <pre class="code-block light_block">
+        <span class="comment">&lt;!-- RegEx order: 1. htmlAttr, 2. htmlComment, 3. htmlTag, --&gt;</span>
+        <span class="comment">&lt;!--              4. htmlBoolAttr, 5. dblQuote --&gt;</span>
+
+        <span>&lt;<span class="maroon">h3</span>&gt;HTML Example&lt;<span class="maroon"></span>/<span
+            class="maroon">h3</span>&gt;</span>
+        <span>&lt;<span class="maroon">nav</span> <span class="green">class</span><span class="green"></span>=<span
+            class="light-blue">&quot;main-nav&quot;</span>&gt;</span>
+        <span> &lt;<span class="maroon">ul</span> <span class="green">class</span><span class="green"></span>=<span
+            class="light-blue">&quot;nav-list&quot;</span>&gt;</span>
+        <span> &lt;<span class="maroon">li</span> <span class="green">class</span><span class="green"></span>=<span
+            class="light-blue">&quot;nav-item&quot;</span>&gt;&lt;<span class="maroon">a</span> <span
+            class="green">class</span><span class="green"></span>=<span class="light-blue">&quot;nav-link&quot;</span> <span
+            class="green">href</span><span class="green"></span>=<span class="light-blue">&quot;/&quot;</span>&gt;Home&lt;<span
+            class="maroon"></span>/<span class="maroon">a</span>&gt;&lt;<span class="maroon"></span>/<span
+            class="maroon">li</span>&gt;</span>
+        <span> &lt;<span class="maroon">li</span> <span class="green">class</span><span class="green"></span>=<span
+            class="light-blue">&quot;nav-item&quot;</span>&gt;&lt;<span class="maroon">a</span> <span
+            class="green">class</span><span class="green"></span>=<span class="light-blue">&quot;nav-link&quot;</span> <span
+            class="green">href</span><span class="green"></span>=<span
+            class="light-blue">&quot;/contact&quot;</span>&gt;Contact&lt;<span class="maroon"></span>/<span
+            class="maroon">a</span>&gt;&lt;<span class="maroon"></span>/<span class="maroon">li</span>&gt;</span>
+        <span> &lt;<span class="maroon"></span>/<span class="maroon">ul</span>&gt;</span>
+        <span>&lt;<span class="maroon"></span>/<span class="maroon">nav</span>&gt;</span>
+        
+      </pre>
+    <p><strong>NOTE</strong>: The HTML part works without any problems!</p>
+    <hr>
+
+    <!-- <h3>JSX Example</h3>
+      <pre class="code-block dark_block">
+
+      </pre>
+      <hr> -->
+
+    <div id="notes" class="notes">
+      <h2>NOTES</h2>
+      <ul>
+        <h3>How to use this</h3>
+        <li>In the CodePen version, you have to add your code in backticks to an array called <code>&lt;<span class="maroon">input</span>&gt;</code>. That
+          is only for anyone who wants to test this out before cloning my repo.</li>
+        <li>Once you do that, copy the code under <em>Code to copy for dark code block</em>.</li>
+        <li>Paste that code <em>anywhere</em> into your HTML file so the
+          <code>&lt;<span class="maroon">li</span>&gt;</code> tags break to a new line. Then remove the opening and
+          closing <code>&lt;<span class="maroon">li</span>&gt;</code> tags and paste the remaining code into your
+          <code>&lt;<span class="maroon">pre</span>&gt;</code> block - DONE! The code in the
+          <code>&lt;<span class="maroon">pre</span>&gt;</code> tag will look funky but you should not have to touch it
+          after pasting it except for using <kbd>TAB</kbd> and/or <kbd>SPACEBAR</kbd> to align things.
+        </li>
+      </ul>
+
+      <p>Check out my GitHub repo <a href="https://github.com/Kernix13/pre-code-formatter"
+          target="_blank">pre-code-formatter</a> to see the updated code and full description in my
+        <code>README.md</code> file.</p>
+
+    </div>
+    <hr>
+    <div class="file-reader">
+      <h3>Get code from <code>&lt;<span class="maroon">textarea</span>&gt;</code> (<span class="small">not functional at
+          this time</span>)</h3>
+      <form>
+        <!-- <input type="file" name="readfile" id="readfile" /> -->
+        <!-- <input onchange="readFile(this)" type="file"> -->
+        <textarea id="mytextarea"></textarea>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  </div>
+
+
+  <script src="./js/input.js"></script>
+  <script src="./js/light.js"></script>
+</body>
+
+</html>
