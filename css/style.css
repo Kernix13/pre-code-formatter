@@ -323,3 +323,42 @@ pre span::before {
 }
 
 */
+
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.nav-list {
+  display: flex;
+  justify-content: center;
+  align-content: space-between;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  text-transform: uppercase;
+  font-size: 1.25rem;
+}
+
+.nav-item + .nav-item {
+  margin-left: 2em;
+}
+
+.nav-link {
+  text-decoration: none;
+}
+
+.nav-link code {
+  padding: 0.5rem 1rem;
+}
+.nav-link code:hover {
+  color:  var(--blue);
+  // outline: 10px solid white;
+  // outline-offset: 10px;
+}

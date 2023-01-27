@@ -124,7 +124,6 @@ const jsKeywords =
 **Markdown**:
 
 1. Adding a empty span tag in task lists for `[ ]` - need to rule out the selection if there are no chars between `[]`
-1. I'm getting multiple span tags again
 1. Blockquotes issue: you can alphanumeric (`\w`) characters but not other characters. This one may have to manually have `span.green` is you have quotes inside or any other non word char
 1. I had to remove the `-` for unordered lists because it is grabbing other dashes
 1. And for the last color you see in Markdown files (other than language blocks), diff blocks. I was not able to select the `-` old code line. I was in regexr.com, but not in this app. I'll have to remove the orange span and manually add red.

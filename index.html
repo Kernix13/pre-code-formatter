@@ -8,26 +8,33 @@
     <title>Code Formatter</title>
   </head>
   <body>
+    <header>
+      <div class="container">
+        <nav class="main-nav">
+          <div class="nav-item"><a class="nav-link" href="./index.html"><code>&lt;Home&gt;</code></a></div>
+          <ul class="nav-list">
+            <li class="nav-item"><a class="nav-link" href="./dark.html"><code>&lt;Dark!&gt;</code></a></li>
+            <li class="nav-item"><a class="nav-link" href="#"><code>&lt;Light&gt;</code></a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
     <div class="container">
       <h1>HTML Pre Tag Formatter</h1>
       <p>Output <code>&lt;<span class="green">span</span>&gt;</code> tags for use in a <code>&lt;<span class="green">pre</span>&gt;</code> tag for code blocks in blog posts (dark and light versions, see <a href="#notes">notes</a> below). The <code>&lt;<span class="green">span</span>&gt;</code> tags have color classes based on the specific language and syntax.</p>
 
-      <!-- output here: -->
       <hr>
       <h2>Code to copy for <em>dark</em> code block with color classes</h2>
       <p id="dark_block_output" class="dark-code"></p>
 
       <h3>Dark block example:</h3>
       <pre class="code-block dark_block">
-      
-
-
-        <span class="comment">&lt;!-- Manually added span color classes: --&gt;</span>
+        <span class="comment">&lt;!-- Paste the code above here after removing the li tags: --&gt;</span>
 
       </pre>   
 
-      <!-- Paste code in here so the <li> tags break to a new line  -->
-
+      <!-- TEMP: Paste code in here so the <li> tags break to a new line  -->
+      
       <!-- End pasted code -->
 
       <h3>Color testing block &#8628;</h3>
@@ -117,21 +124,21 @@
             class="green">h3</span>&gt;</span>
         <span>&lt;<span class="green">nav</span> <span class="blue">class</span><span class="blue"></span>=<span
             class="light-blue">&quot;main-nav&quot;</span>&gt;</span>
-         <span> &lt;<span class="green">ul</span> <span class="blue">class</span><span class="blue"></span>=<span
-            class="light-blue">&quot;nav-list&quot;</span>&gt;</span>
-           <span> &lt;<span class="green">li</span> <span class="blue">class</span><span class="blue"></span>=<span
-            class="light-blue">&quot;nav-item&quot;</span>&gt;&lt;<span class="green">a</span> <span
-            class="blue">class</span><span class="blue"></span>=<span class="light-blue">&quot;nav-link&quot;</span> <span
-            class="blue">href</span><span class="blue"></span>=<span class="light-blue">&quot;/&quot;</span>&gt;Home&lt;<span
-            class="green"></span>/<span class="green">a</span>&gt;&lt;<span class="green"></span>/<span
-            class="green">li</span>&gt;</span>
-           <span> &lt;<span class="green">li</span> <span class="blue">class</span><span class="blue"></span>=<span
-            class="light-blue">&quot;nav-item&quot;</span>&gt;&lt;<span class="green">a</span> <span
-            class="blue">class</span><span class="blue"></span>=<span class="light-blue">&quot;nav-link&quot;</span> <span
-            class="blue">href</span><span class="blue"></span>=<span
-            class="light-blue">&quot;/contact&quot;</span>&gt;Contact&lt;<span class="green"></span>/<span
-            class="green">a</span>&gt;&lt;<span class="green"></span>/<span class="green">li</span>&gt;</span>
-         <span> &lt;<span class="green"></span>/<span class="green">ul</span>&gt;</span>
+          <span> &lt;<span class="green">ul</span> <span class="blue">class</span><span class="blue"></span>=<span
+              class="light-blue">&quot;nav-list&quot;</span>&gt;</span>
+            <span> &lt;<span class="green">li</span> <span class="blue">class</span><span class="blue"></span>=<span
+                class="light-blue">&quot;nav-item&quot;</span>&gt;&lt;<span class="green">a</span> <span
+                class="blue">class</span><span class="blue"></span>=<span class="light-blue">&quot;nav-link&quot;</span> <span
+                class="blue">href</span><span class="blue"></span>=<span class="light-blue">&quot;/&quot;</span>&gt;Home&lt;<span
+                class="green"></span>/<span class="green">a</span>&gt;&lt;<span class="green"></span>/<span
+                class="green">li</span>&gt;</span>
+            <span> &lt;<span class="green">li</span> <span class="blue">class</span><span class="blue"></span>=<span
+                class="light-blue">&quot;nav-item&quot;</span>&gt;&lt;<span class="green">a</span> <span
+                class="blue">class</span><span class="blue"></span>=<span class="light-blue">&quot;nav-link&quot;</span> <span
+                class="blue">href</span><span class="blue"></span>=<span
+                class="light-blue">&quot;/contact&quot;</span>&gt;Contact&lt;<span class="green"></span>/<span
+                class="green">a</span>&gt;&lt;<span class="green"></span>/<span class="green">li</span>&gt;</span>
+          <span> &lt;<span class="green"></span>/<span class="green">ul</span>&gt;</span>
         <span>&lt;<span class="green"></span>/<span class="green">nav</span>&gt;</span>
       </pre>
       <p><strong>NOTE</strong>: The HTML part works without any problems!</p>
@@ -144,22 +151,7 @@
         <span class="comment">&lt;!-- NOTE: I manually added the classes for the HTML tag selectors --&gt;</span>
         <span class="comment">&lt;!-- and manually added the dot before /images --&gt;</span>
 
-        <span><span class="comment">/* Single line comment, the CSS below is just an example: */</span></span>
-        <span><span class="green">body</span>,</span>
-        <span><span class="green">h1</span>,</span>
-        <span>.<span class="blue">dark_block</span>,</span>
-        <span>.<span class="blue">bem__Class--name</span>,</span>
-        <span><span class="green">a</span>:<span class="blue">hover</span> {</span>
-        <span> <span class="blue">font-family</span>:<span class="blue"> </span><span class="light-blue">&apos;Segoe UI&apos;</span>, Tahoma, Geneva, Verdana, sans-serif;</span>
-        <span> <span class="blue">background-image</span>:<span class="blue"> </span><span class="purple">url</span>(<span
-            class="light-blue">&apos;./images/picjpg&apos;</span>);</span>
-        <span> <span class="blue">font-size</span>:<span class="blue"> 1</span><span class="red">rem</span>;</span>
-        <span> <span class="blue">background-color</span>:<span class="blue"> </span>#333;</span>
-        <span> <span class="blue">color</span>:<span class="blue"> </span><span class="purple">var</span><span
-            class="orange">(--text-main</span>);</span>
-        <span> <span class="blue">border</span>:<span class="blue"> 1</span><span class="red">px</span> solid red <span
-            class="red">!important</span>;</span>
-        <span>}</span>
+        
       </pre>
       <p><strong>NOTE</strong>: I have not figured out how to select HTML selectors so use <em>Emmet: Wrap with Abbreviation</em> to manually add the <code>span.color</code> classes. I also considered not including my match for Class selectors because of URLs with a period (.) which are also selected. I added it back. If you do have an <code><span class="red">@import</span></code> or a <code><span class="purple">url</span>()</code> in your CSS, then remove the dot, or for Google font imports, substitute the actual URL with a dummy string and replace the URL at the end. And I can only select CSS variables as a value, not the declaration. Also note that if you have a period in yout comment(s), then it will get wrapped in <code>span.blue</code> - classes and HTML selectors require advanced regular expressions.</p>
       <hr>
@@ -301,7 +293,7 @@
             class="purple"></span>();</span>
         <span><span class="comment">/* Start JavaScript classes */</span></span>
       </pre>
-      <p><strong>NOTE</strong>: For now this part is done but I am expecting errors when I start converting JS. I would prefer to be more positive but I do not think my expressions are ideal, plus my brain is getting fried. I wanted to make all numbers blue but running that part of the code added a huge number of empty span.blue tags (<em>It's almost always </em><code><span class="blue">class</span>=<span class="light-blue">&quot;blue&quot;</span></code>). I also was not able to escape a backtick to test my <code>backtick</code> RegEx. However, everything else worked and I only had to adjust a few lines and some indentations.</p>
+      <p><strong>NOTE</strong>: For now this part is done but I am expecting errors when I start converting JS. I would prefer to be more positive but I do not think my expressions are ideal, plus my brain is getting fried. I wanted to make all numbers blue but running that RegEx added a huge number of empty span.blue tags. I also was not able to escape a backtick to test my <code>backtick</code> RegEx. However, everything else worked and I only had to adjust a few lines and some indentations.</p>
       <hr>
 
       <h3>PHP Example</h3>
