@@ -137,3 +137,12 @@ I only have regular expressions for languages that I use. If you would like to c
 1. RegEx for Markdown unordered lists - [see issue #3](https://github.com/Kernix13/pre-code-formatter/issues/3)
 1. RegEx capture groups issue - [see issue #4](https://github.com/Kernix13/pre-code-formatter/issues/4)
 1. RegEx for CSS classes - [see issue #5](https://github.com/Kernix13/pre-code-formatter/issues/5)
+
+## WordPress
+
+**NOTE**: I just updated the styles for my WordPress theme and my pre code blocks did not wrap but instead stretched out on a single line:
+
+- `.code-block` with a property of `overflow: auto;` did not take effect
+- I had to add a `div` tag around the `pre` block with a class of `pre-container` and with `width: 100%;`
+
+That seems ridiculous but that is what I needed to do. Take that into account if you are using these codeblocks on a WordPress site.

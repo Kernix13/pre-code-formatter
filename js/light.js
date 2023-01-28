@@ -152,10 +152,6 @@ class htmlCode {
   }
 }
 
-// Choose the correct RegEx array depending on myInput 
-// const myInputOutput = new htmlCode(htmlRegEx);
-// myInputOutput.findMatches();
-
 /* Function to create the language classes from input.js  */
 function createClass(input, arr) {
   convertCode(input);

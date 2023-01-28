@@ -118,9 +118,9 @@ function convertCode(arr) {
 // convertCode(myCss);
 // convertCode(mySass);
 // convertCode(myJs);
-convertCode(myJson);
+// convertCode(myJson);
 // convertCode(myPhp);
-// convertCode(myMd);
+convertCode(myMd);
 
 // Step 3b: Output the HTML entities if you want to stop there
 convertedCode.forEach(codeLine => {
@@ -152,10 +152,6 @@ class htmlCode {
   }
 }
 
-// Choose the correct RegEx array depending on myInput 
-// const myInputOutput = new htmlCode(htmlRegEx);
-// myInputOutput.findMatches();
-
 /* Function to create the language classes from input.js  */
 function createClass(input, arr) {
   convertCode(input);
@@ -172,9 +168,9 @@ function createClass(input, arr) {
 // createClass(myCss, cssRegEx);
 // createClass(mySass, sassRegEx);
 // createClass(myJs, jsRegEx);
-createClass(myJson, jsonRegEx);
+// createClass(myJson, jsonRegEx);
 // createClass(myPhp, phpRegEx);
-// createClass(myMd, mdRegEx);
+createClass(myMd, mdRegEx);
 
 /* Step 5: Output your code to the DOM */
 finishedArr.forEach((codeLine, i) => {

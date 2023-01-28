@@ -91,36 +91,26 @@ header {
 /* Comment */`;
 
 const inputJS =
-`const str = 'string for';
-const num = 1.618;
-const isNull = null;
-const isUndefined = undefined;
-let bool = true;
-for (let item of arr)
-const arr1 = [1, 12.36, 'word while'];
-const obj = {
-  a: 'word',
-  b: 42,
-  firstName: "Jim",
-  "test": false
-};
-async function fxName(arr) {
-  const output = await arr.forEach(item => {
-    console.log(typeof item);
-  });
-  return output;
-}
-fxName(arr1);
-if (bool !== true) {
-  console.log(true);
-} else {
-  console.log(false);
-}
-const someNum = Math.random() * 10;
-const today = new Date().getFullYear();
-/* Start JavaScript classes */ \n`
-+ 
-"`templte literal here`";
+`str.slice()
+arr.slice()
+str.concat(str2, str3, …)
+arr.concat(arr2, arr3, …)
+str.includes(value)
+arr.includes(value)
+str.indexOf(value)
+arr.indexOf(value)
+str.lastIndexOf(value)
+arr.lastIndexOf(value)
+str.length
+arr.length
+str[index]
+arr[index]
+str.charAt(index)
+arr.at(index)
+str.substring()
+arr.splice()
+str.split()
+arr.join()`;
 
 const inputJSON =
 `{
@@ -136,58 +126,28 @@ const inputJSON =
 }`;
 
 const inputMD =
-`<!-- Markdown comment the same as for HTML -->
-# MARKDOWN CHEAT SHEET
-#### How about H4 as a comparison
-
-[Link](https://example.com)
-[Link text](URL 'Optional link title')
-![picture alt text](https://url.com/images/filename.png 'Title is optional')
-[Strike thru section](#strike-thru-section)
-<span><img alt="alt" src="https://url.com/images/filename.jpg"></span>
-<div align="right">&#8673; <a href="#back-to-top" title="Title">Back to Top</a></div>
-Some other important footnote.[^2]
-[^1]: This is footnote number one.
-[^2]: Here is the second footnote.
-
-- [ ] Incomplete _task_
-- [x] Completed **task**
-
-1. list item
-1. Ordered item 2
-   1. Child item 1
-
-- bullet point
-- List item 2
-  - Child item 1
-
-> Blockquote
-> > Indented blockquote
-> img tags as block level _unless_ nested in table cells
-
-- this code or text is the old version
-+ this is what it was changed to`;
+`![alt text](https://via.placeholder.com/150)`;
 
 const inputPHP =
-`
-class WordCountAndTimePlugin {
-  function __construct() {
-  add_action('admin_menu', array($this, 'adminPage'));
-  add_action('admin_init', array($this, 'settings'));
-  add_filter('the_content', array($this, 'ifWrap'));
-  }
+`if ( have_posts() ) :
+  while ( have_posts() ) :
+  the_post();
+    get_template_part( 'template-parts/content', 'front-page' ); ?>
 
-  function settings() {
-  add_settings_section('wcp_first_section', null, null, 'word-count-settings-page');
+  <aside class="bgcolor4"></aside>
+    <div class="container"></div>
+      <h3 class="custom-title">
+      <?php esc_html_e('Latest Articles ', 'tower') ?>
+      </h3>
+      <div class="row"></div>
+        <?php
+        $posts = get_posts([
+      'post_type'	 => 'post',
+      'category_name'  => 'code',
+      'posts_per_page' => 3,
+    ]);
 
-  add_settings_field('wcp_location', 'Display Location',
-  array($this, 'locationHTML'), 'word-count-settings-page', 'wcp_first_section');
-  register_setting('wordcountplugin', 'wcp_location',
-  array('sanitize_callback' => array($this, 'sanitizeLocation'), 'default' => '0'));
-  }
-}
-$wordCountAndTimePlugin = new WordCountAndTimePlugin();
-?>
-<div class="container">
-  <h3 class="custom-title"><?php esc_html_e('Latest Articles', 'tower') ?></h3>
-</div>`;
+    foreach ($posts as $post) {
+      setup_postdata($post); ?>
+
+      <div class="recent-row">`;

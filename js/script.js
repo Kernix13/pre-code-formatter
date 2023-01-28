@@ -95,7 +95,12 @@ function convertReservedChars(str) {
 
 // Step 3a: Run your code through convertReservedChars()
 
-/* I think the split regex should be /[\n\r]|[\n]/g not /[\n]/g */
+/* Should the split regex should be 
+
+1. /[\n\r]|[\n]/g instead of /[\n]/g or 
+2. /[\r]|[\g]/gm 
+
+*/
 const myInput = input.split(/[\n]/g);
 const myText = inputText.split(/[\n\r]|[\n]/g);
 const myHtml = inputHTML.split(/[\n\r]|[\n]/g);
@@ -156,10 +161,6 @@ class htmlCode {
     console.log(finishedArr.length);
   }
 }
-
-// Choose the correct RegEx array depending on myInput 
-// const myInputOutput = new htmlCode(htmlRegEx);
-// myInputOutput.findMatches();
 
 /* Function to create the language classes from input.js  */
 function createClass(input, arr) {
