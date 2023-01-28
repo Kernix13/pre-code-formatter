@@ -91,15 +91,13 @@ That's some serious issues for CSS, and I have not tested out all the various co
 **SASS**:
 
 1. All the same issues as with CSS.
-1. Since there is a lot more unique syntax for SASS, I have only tested the most common. I'm going to need help testing all the syntax and figuring out the regular expressions.
+1. Since there are a lot more unique syntax for SASS, I have only tested the most common. I'm going to need help testing all the syntax and figuring out the regular expressions.
 
 **JavaScript**:
 
 1. I have a selected list of keywords - the ones I use. Here is the complete list. Also, I had to put `typeof` before `of` because my RegEx skills are intermediate at best:
 
 ```js
-// There are more keywords, but these are the only ones I have currently used
-// the positive lookbehind then lookahead covers scenarios like forEach with the keeyword for but not if you have a keyword in a string with a space on either side
 // I left off null and undefined
 const jsKeywords =
   /(?<=\(?)(typeof|as|assert|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|of|package|private|protected|public|return|set|static|super|switch|throw|try|var|void|whilewith|yield)(?=\s)/g;
@@ -107,6 +105,7 @@ const jsKeywords =
 
 2. Single quotes and double quotes are fine
 3. Template literals: I am putting the code in a template literal so adding a template literal inside is not easy (see example in `input.js`). I had to use a simple RegEx and it has to be a single line template literal.
+4. I can't seem to select numbers without an extreme number of empty span tags.
 
 **PHP**:
 
@@ -123,11 +122,18 @@ const phpKeywords =
 **Markdown**:
 
 1. The foolwoing are good: Headings, Images, links, footnotes, HTML tags, and ordered lists
-1. Blockquotes issue: you can alphanumeric (`\w`) characters but not other characters. This one may have to manually have `span.green` is you have quotes inside or any other non word char
+1. Blockquotes issue: you can alphanumeric (`\w`) characters but not other characters. This one may have to manually have `span.green` is you have quotes inside or any other non word char. My RegEx works in [regexr.com](https://regexr.com/76te2) but not in my JavaScript.
 1. I had to remove the `-` for unordered lists because it is grabbing other dashes
-1. Diff blocks: I was not able to select the `-` for the changes/old code line. I was able to in _regexr.com_, but not in this app. I'll have to manually add red.
+1. Diff blocks: I was not able to select the `-` for the changes/old code line. I was able to in [regexr.com](https://regexr.com/76tiu) but not in this app. I'll have to manually add red.
 1. Outputting backticks will require some creativity when it comes to inline code. Language blocks can be simulated by using the language in question then adding backticks above and below the code block.
 
 ## Contributing
 
 I only have regular expressions for languages that I use. If you would like to contribute to this repo for additional languages (or improve mine), then open an issue or fork the repo and create a Pull Request. Hopefully, you are good with regular expressions. Although, feel free to suggest any changes.
+
+### Issues:
+
+1. RegEx for Markdown blockquotes - [see issue #2](https://github.com/Kernix13/pre-code-formatter/issues/2)
+1. RegEx for Markdown unordered lists - [see issue #3](https://github.com/Kernix13/pre-code-formatter/issues/3)
+1. RegEx capture groups issue - [see issue #4](https://github.com/Kernix13/pre-code-formatter/issues/4)
+1. RegEx for CSS classes - [see issue #5](https://github.com/Kernix13/pre-code-formatter/issues/5)

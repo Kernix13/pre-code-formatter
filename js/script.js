@@ -59,8 +59,8 @@ const phpRegEx = [[htmlAttr, 1], [phpCustomFx, 6], [phpHtmlTag, 0], [phpKeywords
 // Markdown Regular Expressions
 const mdHeadings = /([#]{1,6}[\s]{1}[\s\w]*)(?<!\n)/g;
 const mdLinks = /(?!\[)([\w\s?\^?]*)(?=\])/g;
-const mdBlockQt = /(^&gt;(?:[\t ]*&gt;)*[\w\s]*)/gm;
-const mdDiffMinus = /(\+\s[\w\s]*)/gm
+const mdBlockQt = /(^&gt;(?:[\t ]*&gt;)*[\w\s]*)/g;
+const mdDiffMinus = /(-\s[\w\s]*)(?=\+)/gm
 const mdDiffPlus = /(\+\s[\w\s]*)/g
 const mdLists = /([\d]\.)/g;
 const mdRegEx = [[htmlAttr, 1], [htmlComment, 3], [htmlTag, 0], [htmlEntity, 4], [singleQt, 2], [dblQuote, 2], [mdHeadings, 1], [mdLinks, 2], [mdBlockQt, 0], [mdDiffMinus, 4], [mdDiffPlus, 0], [mdLists, 6]];
