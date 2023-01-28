@@ -2,12 +2,7 @@
 
 A JavaScript program to output different languages with `span.color` classes for syntax highlighting. This is a manual process, as opposed to using PrismJS.
 
-If you would like to see an example, check my [Pre tag formatter CodePen](https://codepen.io/jim-kernicky/pen/KKQebjW).
-
-## Details
-
-1. The JavaScript files grab your code from another `.js` file and splits it into lines.
-1. After selecting
+If you would like to see an example, check my [Pre tag formatter in CodePen](https://codepen.io/jim-kernicky/pen/KKQebjW).
 
 ## How to use
 
@@ -15,7 +10,7 @@ If you would like to see an example, check my [Pre tag formatter CodePen](https:
 
 1. At this point, you have to paste your code to the variables in backticks in `js/input.js`.
 1. Those strings are brought into `js/script.js` as a variable and then split.
-1. Depending on the language you are working on, uncomment `convertCode(arr)` after the comment `/* CHOOSE THE LANGUAGE YOU WANT TO CONVERT: */`.
+1. Depending on the language you are working on, uncomment `convertCode(arr)` after the comment `/* CHOOSE THE LANGUAGE YOU WANT TO CONVERT: */` for the language you want.
    1. `convertCode(arr)` converts reserved characters (`< > ' " &`) to HTML entities
 1. Also unccoment the appropriate `createClass(input, arr)` line under `/* CHOOSE THE LANGUAGE YOU WANT TO OUTPUT: */`
 1. Then save `script.js` and copy the code under _Code to copy for dark code block_.
@@ -45,21 +40,13 @@ The code in the `pre` tag will look funky but you should not have to touch it af
 
 HTML:
 
-1. `index.html`: has an example for a dark code block on a light background and a light code block on a dark background. Ie also has examples for each language, style for `code`, `kbd`, and `var` tags. It also has brief notes similar to above.
+1. `index.html`: has an example for a dark code block on a light background and a light code block on a dark background. It also has examples for each language, and styling for `code`, `kbd`, and `var` tags. It also has brief notes similar to above.
 1. `dark.html` has a light background and a dark `pre` ode block.
 1. `light.html` has a dark background and a light `pre` ode block.
 
-CSS:
+CSS: `css/style.css` has the styling for `index.html`, `css/dark.css` for `dark.html`, `css/light.css` for `light.html`
 
-1. `css/style.css` has the styling for `index.html`
-1. `css/dark.css` has the styling for `dark.html`
-1. `css/light.css` has the styling for `light.html`
-
-JavaScript:
-
-1. `js/script.js` is for `index.html`
-1. `js/dark.js` is for `dark.html`
-1. `js/light.js` is for `light.html`
+JavaScript: `js/script.js` is for `index.html`, `js/dark.js` is for `dark.html`, `js/light.js` is for `light.html`
 
 `js/script.js`: I use `textContent` to output the `span` tags to the DOM, but in that `forEach` I also have `innerHTML` commented out. Turn that one on to see the coloring for your code to make sure it looks good. That method is really helpful!
 
@@ -84,7 +71,7 @@ Other _languages/syntax_ I want to cover: Git and Git Bash, NPM commands, SQL, R
 
 ### Notes by Language
 
-NOTE: All languages use the same color for anything in single quotes, double quotes, and backticks.
+**NOTE**: All languages use the same color for anything in single quotes, double quotes, and backticks.
 
 **HTML**: All good!
 
