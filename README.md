@@ -1,6 +1,6 @@
 # Pre and Code tag formatter
 
-A JavaScript program to output different languages with `span.color` classes for syntax highlighting. This is a manual process, as opposed to using PrismJS.
+A JavaScript program to output different languages with `code.color` classes for syntax highlighting. This is a manual process, as opposed to using PrismJS.
 
 If you would like to see an example, check my [Pre tag formatter in CodePen](https://codepen.io/jim-kernicky/pen/KKQebjW).
 
@@ -17,11 +17,11 @@ If you would like to see an example, check my [Pre tag formatter in CodePen](htt
 1. Paste that code between the comments under the `pre` block in the HTML file so the `li` tags break to a new line. Then remove the opening and closing `li` tags.
 1. Finally, cut and paste the remaining code into your `pre` block.
 
-**NOTE**: I added `data-` attributes to indicate each line number to make it easier to see each new line among all the span tags.
+**NOTE**: I added `data-` attributes to indicate each line number to make it easier to see each new line among all the code tags.
 
 You will need to <kbd>TAB</kbd> the entire code block to be indented in from your `pre` tag. You may also have to use the <kbd>SPACEBAR</kbd> key for nested/indented lines.
 
-The code in the `pre` tag will look funky but you should not have to touch it after pasting it other than for indentation. I have noticed some exceptions though, so you may need to adjust some of the `span` tags, but I've only seen that with long lines.
+The code in the `pre` tag will look funky but you should not have to touch it after pasting it other than for indentation. I have noticed some exceptions though, so you may need to adjust some of the `code` tags, but I've only seen that with long lines.
 
 ### SUMMARY OF MANUAL STEPS ON YOUR PART
 
@@ -48,11 +48,11 @@ CSS: `css/style.css` has the styling for `index.html`, `css/dark.css` for `dark.
 
 JavaScript: `js/script.js` is for `index.html`, `js/dark.js` is for `dark.html`, `js/light.js` is for `light.html`
 
-`js/script.js`: I use `textContent` to output the `span` tags to the DOM, but in that `forEach` I also have `innerHTML` commented out. Turn that one on to see the coloring for your code to make sure it looks good. That method is really helpful!
+`js/script.js`: I use `textContent` to output the `code` tags to the DOM, but in that `forEach` I also have `innerHTML` commented out. Turn that one on to see the coloring for your code to make sure it looks good. That method is really helpful!
 
 ## RegEx and languages and color
 
-I am using regualr expressions to wrap parts of a language in span tags with a color class. Here is a list of the languages I will be covering and ones I am done:
+I am using regualr expressions to wrap parts of a language in code tags with a color class. Here is a list of the languages I will be covering and ones I am done:
 
 - [x] HTML
 - [x] CSS (_except HTML selectors AND Classes_)
@@ -65,7 +65,7 @@ I am using regualr expressions to wrap parts of a language in span tags with a c
 
 I have different colors for both a dark code block and a light code block, even though I personally will only be using the dark code block colors. I will be tweaking those colors as I go.
 
-I added the colors to an array which is used to output the span tags with the appropriate color class.
+I added the colors to an array which is used to output the code tags with the appropriate color class.
 
 Other _languages/syntax_ I want to cover: Git and Git Bash, NPM commands, SQL, React/JSX and Astro, YAML, and Apache.
 
@@ -82,7 +82,7 @@ Other _languages/syntax_ I want to cover: Git and Git Bash, NPM commands, SQL, R
 1. I can't seem to escape `//` so using web urls like Google fonts also creates a problem so don't use them until I fix that.
 1. I can match and replace variable names in `var()` but not the declaration.
 1. My regular expression for Classes and Ids (`.#`) works but it also selects file or URLs with a `.` in it. So either don't use `@import`, `url`, etc., or remove the period and add it back as the last step. It also breaks for pseudo-classes like `nth-child`.
-1. HTML tag selectors have to be done manually until I figure the RegEx to select only them. Use _Emmet wrap with abbreviation_ and add the appropriate `span.color` class..
+1. HTML tag selectors have to be done manually until I figure the RegEx to select only them. Use _Emmet wrap with abbreviation_ and add the appropriate `code.color` class..
 
 That's some serious issues for CSS, and I have not tested out all the various combinators, pseudo-classes, pseudo-selectors, and other edge cases.
 
@@ -105,7 +105,7 @@ const jsKeywords =
 
 2. Single quotes and double quotes are fine
 3. Template literals: I am putting the code in a template literal so adding a template literal inside is not easy (see example in `input.js`). I had to use a simple RegEx and it has to be a single line template literal.
-4. I can't seem to select numbers without an extreme number of empty span tags.
+4. I can't seem to select numbers without an extreme number of empty code tags.
 
 **PHP**:
 
@@ -122,7 +122,7 @@ const phpKeywords =
 **Markdown**:
 
 1. The foolwoing are good: Headings, Images, links, footnotes, HTML tags, and ordered lists
-1. Blockquotes issue: you can alphanumeric (`\w`) characters but not other characters. This one may have to manually have `span.green` is you have quotes inside or any other non word char. My RegEx works in [regexr.com](https://regexr.com/76te2) but not in my JavaScript.
+1. Blockquotes issue: you can alphanumeric (`\w`) characters but not other characters. This one may have to manually have `code.green` is you have quotes inside or any other non word char. My RegEx works in [regexr.com](https://regexr.com/76te2) but not in my JavaScript.
 1. I had to remove the `-` for unordered lists because it is grabbing other dashes
 1. Diff blocks: I was not able to select the `-` for the changes/old code line. I was able to in [regexr.com](https://regexr.com/76tiu) but not in this app. I'll have to manually add red.
 1. Outputting backticks will require some creativity when it comes to inline code. Language blocks can be simulated by using the language in question then adding backticks above and below the code block.

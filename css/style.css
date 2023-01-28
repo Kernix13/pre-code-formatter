@@ -47,20 +47,24 @@ p {
 kbd,
 samp,
 var {
-  font-family: "Lucida Console", Monaco, monospace;
+  // font-family: "Lucida Console", Monaco, monospace;
+  font-family: "Lucida Console", 'Courier New', Courier, Monaco, monospace;
   font-weight: 600;
 }
 
 code {
-  font-family: "Lucida Console", Monaco, monospace;
-  // font-weight: 600;
+  // font-family: "Lucida Console", Monaco, monospace;
+  font-family: "Lucida Console", 'Courier New', Courier, Monaco, monospace;
   font-size: 90%;
   line-height: 1.5;
   padding: 0.15em 0.2em 0.05em;
-  // tab-size: 4;
   border-radius: 0.3em;
+  // tab-size: 4;
   // text-align: left;
   // box-shadow: black 1px 1px 0.3em -0.1em inset;
+}
+
+p > code, h3 > code, li > code, a > code {
   background-color: var(--bg-dark_block);
   color: var(--white);
 }
@@ -72,7 +76,10 @@ var {
 }
 
 pre {
-  font-family: 'Courier New', Courier, monospace;
+  // font-family: 'Courier New', Courier, monospace;
+  // font-family: "Lucida Console", Monaco, monospace;
+  font-family: "Lucida Console", 'Courier New', Courier, Monaco, monospace;
+  font-weight: 400;
 }
 
 kbd {
@@ -103,7 +110,8 @@ kbd {
 .container {
   width: 80%;
   max-width: 1100px;
-  margin: 0 auto;
+  margin: 2rem auto;
+  // margin: 2rem 0;
 }
 
 /* DARK and LIGHT code blocks */
@@ -344,9 +352,16 @@ textarea {
 }
 
 .nav-link code:hover {
-  color: var(--blue);
+  color: var(--green);
   text-decoration: underline;
   text-underline-offset: 0.25em;
+}
+
+.intro {
+  // display: grid;
+  // grid-template-columns: 33% 67%;
+  margin: 2rem 0;
+  border-bottom: 1px solid var(--comment);
 }
 
 /* OPTIONAL: code for line numbers in pre code blocks

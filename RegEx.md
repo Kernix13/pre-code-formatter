@@ -8,7 +8,7 @@ That's fine. However, a code block with color syntax highlighting not only looks
 
 But how many colors would you need? You can try to recreate your own code editor, or look at other blog posts, documentation pages, or markdown language blocks.
 
-Since I am adding span tags with a color class around every RegEx match, I would like to have only enough colors to make the code readable and have differentiation between different languages.
+Since I am adding code tags with a color class around every RegEx match, I would like to have only enough colors to make the code readable and have differentiation between different languages.
 
 > Prism.js: Very easy to define new languages. The only thing you need is **a good understanding of regular expressions**.
 
@@ -31,9 +31,9 @@ Since I am adding span tags with a color class around every RegEx match, I would
 
 ## Colors and classes
 
-I do not want to add span tags around puctuation like `(){}[],;:`, etc. Therefore, all code not wrapped in a `span.color` tag will be white for dark code bloacks, and black for light code blocks.
+I do not want to add code tags around puctuation like `(){}[],;:`, etc. Therefore, all code not wrapped in a `code.color` tag will be white for dark code bloacks, and black for light code blocks.
 
-All languages seem to use light-blue for anything inside single-quotes, double-quotes, and backticks so I will use RegEx to add a `span.light-blue` around those symbols and their contents.
+All languages seem to use light-blue for anything inside single-quotes, double-quotes, and backticks so I will use RegEx to add a `code.light-blue` around those symbols and their contents.
 
 I am going to use either the colors I see in VS Code or the colors in language code blocks on GitHub.
 
@@ -72,7 +72,7 @@ The comments regex is global for me by being used in CSS, SASS, JavaScript, and 
 
 ## HTML RegEx and colors
 
-**NOTE**: the HTML atttribute RegEx has to be run first or else it will wrap tags around `span.blue` tags added for other scans of the code. Then the comments RegEx must run second, or at least before the RegEx for tags.
+**NOTE**: the HTML atttribute RegEx has to be run first or else it will wrap tags around `code.blue` tags added for other scans of the code. Then the comments RegEx must run second, or at least before the RegEx for tags.
 
 | Name         | RegEx                           | Color class |
 | :----------- | :------------------------------ | :---------- |
@@ -96,7 +96,7 @@ The comments regex is global for me by being used in CSS, SASS, JavaScript, and 
 </nav>
 
 <!-- example of the only red in HTML (in VS Code only) -->
-<span class="comment">&lt;!-- Comment here --&gt;</span>
+<code class="comment">&lt;!-- Comment here --&gt;</code>
 ```
 
 ### Misc HTML regex
@@ -566,11 +566,11 @@ const someNum = Math.random() * 10;
 
 ```js
 /* Comment type 1 */
-// My attempt at getting rid of the empty span tags (SUX!)
+// My attempt at getting rid of the empty code tags (SUX!)
 let newLineArr = [];
-const str1 = `<span class="lime-green"></span>`;
-const str2 = `<span class="blue"></span>`;
-const str3 = `<span class="light-blue"></span>`;
+const str1 = `<code class="lime-green"></code>`;
+const str2 = `<code class="blue"></code>`;
+const str3 = `<code class="light-blue"></code>`;
 const rand = Math.random()
 const today = new Date().getFullYear()
 
@@ -929,7 +929,7 @@ Use this for where you want the link: `[^1]`
 
 > > Indented blockquote
 
-> img tags **display** as block level _unless_ nested in table cells or `<span>` tags
+> img tags **display** as block level _unless_ nested in table cells or `<code>` tags
 
 ## ~~A Literal~~ <ins>Table</ins> of _Contents_
 
@@ -969,7 +969,7 @@ a {
 [Link text](URL &apos;Optional link title&apos;)
 ![picture alt text](https://url.com/images/filename.png &apos;Title is optional&apos;)
 [Strike thru section](#strike-thru-section)
-&lt;span&gt;&lt;img alt=&quot;alt&quot; src=&quot;https://url.com&quot;&gt;&lt;/span&gt;
+&lt;code&gt;&lt;img alt=&quot;alt&quot; src=&quot;https://url.com&quot;&gt;&lt;/code&gt;
 &lt;div align=&quot;right&quot;&gt;&amp;#8673; &lt;a href=&quot;#back-to-top&quot; title=&quot;Title&quot;&gt;Back
   to Top&lt;/a&gt;&lt;/div&gt;
 Some other important footnote.[^2]
@@ -988,7 +988,7 @@ Some other important footnote.[^2]
   - Child item 1
 &gt; Blockquote
 &gt; &gt; Indented blockquote
-&gt; img tags **display** as block level _unless_ nested in table cells or &lt;span&gt; tags
+&gt; img tags **display** as block level _unless_ nested in table cells or &lt;code&gt; tags
 ---
 **two asterisks**
 _one asterisk_

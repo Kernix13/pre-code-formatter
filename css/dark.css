@@ -35,22 +35,29 @@ p {
 kbd,
 samp,
 var {
-  font-family: "Lucida Console", Monaco, monospace;
+  // font-family: "Lucida Console", Monaco, monospace;
+  font-family: "Lucida Console", 'Courier New', Courier, Monaco, monospace;
   font-weight: 600;
 }
 
 code {
-  font-family: "Lucida Console", Monaco, monospace;
-  // font-weight: 600;
+  // font-family: "Lucida Console", Monaco, monospace;
+  font-family: "Lucida Console", 'Courier New', Courier, Monaco, monospace;
   font-size: 90%;
   line-height: 1.5;
   padding: 0.15em 0.2em 0.05em;
   border-radius: 0.3em;
-  background-color: var(--bg-dark_block);
-  color: var(--white);
   // tab-size: 4;
   // text-align: left;
   // box-shadow: black 1px 1px 0.3em -0.1em inset;
+}
+
+p > code,
+h3 > code,
+li > code,
+a > code {
+  background-color: var(--bg-dark_block);
+  color: var(--white);
 }
 
 var {
@@ -60,7 +67,10 @@ var {
 }
 
 pre {
-  font-family: 'Courier New', Courier, monospace;
+  // font-family: 'Courier New', Courier, monospace;
+  // font-family: "Lucida Console", Monaco, monospace;
+  font-family: "Lucida Console", 'Courier New', Courier, Monaco, monospace;
+  font-weight: 400;
 }
 
 kbd {

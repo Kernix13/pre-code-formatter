@@ -178,7 +178,7 @@ createClass(myInput, htmlRegEx);
 
 /* Step 5: Output your code to the DOM */
 finishedArr.forEach((codeLine, i) => {
-  // lightBlockOutput.textContent += '<li><span data-line="' + `${i + 1}` + '">' + `${codeLine}` + "</span></li>";
+  // lightBlockOutput.textContent += '<li><code data-line="' + `${i + 1}` + '">' + `${codeLine}` + "</code></li>";
 
   /* Using innerHTML below is extremely useful for seeing the colors as a check before your remove the li tags and fix the indentation: */
 
