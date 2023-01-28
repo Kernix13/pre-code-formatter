@@ -1,6 +1,6 @@
 # Pre and Code tag formatter
 
-A JavaScript program to output different languages with `code.color` classes for syntax highlighting. This is a manual process, as opposed to using PrismJS.
+A JavaScript program to output different languages with `code.color` (or `span.color`, haven't decided yet) classes for syntax highlighting. This is a manual process, as opposed to using PrismJS.
 
 If you would like to see an example, check my [Pre tag formatter in CodePen](https://codepen.io/jim-kernicky/pen/KKQebjW).
 
