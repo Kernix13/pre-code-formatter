@@ -39,8 +39,10 @@ const jsNumDate = /(Math|Date|Number|BigInt)(?=\(|\.)/g;
 const jsObjProp = /([\w]*)(?=:)/g;
 const jsBool = /(true|false|null|undefined)/g;
 const jsEqual = /(=&gt;|=|!=|!==|==|===|\+=|\*=|\/=|-=)/g;
+// const backTicks = /`(?:\\.|\$\{[^{}]*\}|(?!\$\{)[^\\`])*`/g;
+const backTicks = /`(.*?)`/g;
 const jsKeywords = /(?<=\(?)(typeof|async|await|break|case|catch|class|const|default|delete|do|else|extends|for|from|function|get|if|import|in|let|new|of|return|set|switch|throw|try|while)(?=\s)/g;
-const jsRegEx = [[jsEqual, 1], [jsNumDate, 6], [jsBool, 1], [jsObjProp, 1], [jsKeywords, 4], [jsFx, 5], [singleQt, 2], [dblQuote, 2], [comments, 3]];
+const jsRegEx = [[jsEqual, 1], [jsNumDate, 6], [jsBool, 1], [jsObjProp, 1], [jsKeywords, 4], [jsFx, 5], [backTicks, 2], [singleQt, 2], [dblQuote, 2], [comments, 3]];
 
 // JSON Regular Expressions
 const jsonValDblQt = /(&quot;[.\s\w/*#?-]*&quot;)(?!:)/g;
@@ -113,16 +115,17 @@ function convertCode(arr) {
   })
 }
 
-/* CHOOSE THE LANGUAGE YOU WANT TO OUTPUT: */
-convertCode(myInput);
+/* CHOOSE THE LANGUAGE YOU WANT TO CONVERT: */
+// convertCode(myInput);
 // convertCode(myText);
+
 // convertCode(myHtml);
 // convertCode(myCss);
 // convertCode(mySass);
-// convertCode(myJs);  
+// convertCode(myJs);
 // convertCode(myJson);
 // convertCode(myPhp);
-// convertCode(myMd);
+convertCode(myMd);
 
 // Step 3b: Output the HTML entities if you want to stop there
 convertedCode.forEach(codeLine => {
@@ -166,9 +169,9 @@ function createClass(input, arr) {
 }
 
 /* add the regex for the language from inputText in input.js */
-createClass(myInput, htmlRegEx);
+// createClass(myInput, htmlRegEx);
 
-/* Uncomment the language you want to run */
+/* CHOOSE THE LANGUAGE YOU WANT TO OUTPUT: */
 // createClass(myText, htmlRegEx);
 // createClass(myHtml, htmlRegEx);
 // createClass(myCss, cssRegEx);
@@ -176,15 +179,15 @@ createClass(myInput, htmlRegEx);
 // createClass(myJs, jsRegEx);
 // createClass(myJson, jsonRegEx);
 // createClass(myPhp, phpRegEx);
-// createClass(myMd, mdRegEx);
+createClass(myMd, mdRegEx);
 
 /* Step 5: Output your code to the DOM */
 finishedArr.forEach((codeLine, i) => {
-  darkBlockOutput.textContent += '<li><span data-line="' + `${i + 1}` + '">' + `${codeLine}` + "</span></li>";
+  // darkBlockOutput.textContent += '<li><span data-line="' + `${i + 1}` + '">' + `${codeLine}` + "</span></li>";
 
   /* Using innerHTML below is extremely useful for seeing the colors as a check before your remove the li tags and fix the indentation: */
 
-  // darkBlockOutput.innerHTML += '<li>' + `${codeLine}` + "</li>";
+  darkBlockOutput.innerHTML += '<li>' + `${codeLine}` + "</li>";
   
 })
 

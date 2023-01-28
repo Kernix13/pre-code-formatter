@@ -100,7 +100,7 @@ for (let item of arr)
 const arr1 = [1, 12.36, 'word while'];
 const obj = {
   a: 'word',
-  b: '42',
+  b: 42,
   firstName: "Jim",
   "test": false
 };
@@ -118,7 +118,9 @@ if (bool !== true) {
 }
 const someNum = Math.random() * 10;
 const today = new Date().getFullYear();
-/* Start JavaScript classes */`;
+/* Start JavaScript classes */ \n`
++ 
+"`templte literal here`";
 
 const inputJSON =
 `{
