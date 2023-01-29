@@ -126,7 +126,11 @@ const inputJSON =
 }`;
 
 const inputMD =
-`![alt text](https://via.placeholder.com/150)`;
+`Footnote.[^1]
+Another footnote.[^2]
+
+[^1]: This is footnote number one.
+[^2]: Here is the second footnote.`;
 
 const inputPHP =
 `if ( have_posts() ) :

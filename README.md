@@ -146,3 +146,13 @@ I only have regular expressions for languages that I use. If you would like to c
 - I had to add a `div` tag around the `pre` block with a class of `pre-container` and with `width: 100%;`
 
 That seems ridiculous but that is what I needed to do. Take that into account if you are using these codeblocks on a WordPress site.
+
+I noticed that I missed updating a few codeblocks in my markdown article so I started to add the new code. Things got messed up again. My solution was to manually redo every code block and remove empty `span.color` tags and to make sure there were no line breaks for the opening `code` tags.
+
+> What a PITA!
+
+Let's see how a new blog article looks with my new classes and CSS. Here are the articles I updated that used my CSS from this project:
+
+1. [Learn JavaScript: String and Array Methods](https://kernixwebdesign.com/website/learn-javascript-string-array-methods/) (online inline `code` examples)
+1. [Markdown Cheat Sheet for Beginners](https://kernixwebdesign.com/website/code/markdown-cheat-sheet-beginners/)
+1. [WordPress Recent Posts using a Custom Query](https://kernixwebdesign.com/website/code/wordpress-recent-posts-using-a-custom-query/)
