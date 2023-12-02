@@ -76,11 +76,14 @@ var {
 }
 
 pre {
-  // font-family: 'Courier New', Courier, monospace;
-  // font-family: "Lucida Console", Monaco, monospace;
-  font-family: "Lucida Console", 'Courier New', Courier, Monaco, monospace;
+  font-family: 'Courier New', Courier, 'Lucida Console', Consolas, Monaco, 'Lucida Sans Typewriter', monospace;
   font-weight: 400;
 }
+
+// pre::selection {
+//   color: white;
+//   background-color: black;
+// }
 
 kbd {
   display: inline-block;
